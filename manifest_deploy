@@ -1,0 +1,13 @@
+{
+	"version":"0.1"
+	,"name":"Configuration project"
+	,"description":"Configuration project"
+	,"icons":{"16":null,"48":"img/icons/Logo_48.jpg","128":null}
+	,"developer":{"url":"","name":"Helder Castrillon, Marko Garcia, Adrian Quintana, Jose Garcia, Ignacio Foche","company":"Hisp Colombia - EyeSeeTea Ltd.","email":"heldersoft@gmail.com, josemp10@gmail.com"}
+	,"launch_path":"index.html"
+	,"installs_allowed_from":null
+	,"default_locale":"es"
+	,"activities": {
+	  "dhis": { "href": "*" }
+	}
+}

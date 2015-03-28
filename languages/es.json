@@ -1,0 +1,35 @@
+{
+	"_______________ Common ":" for APPS_____________",
+	"TITLE_APPS":"MSF-OCBA Health Information System",
+	"YES":"Yes",
+	"NO":"No",
+		
+	"_______________ Module ":"International _____________",
+	"INTERNATIONAL_TITTLE": "Bienvenido al Sistema de Configuración",
+	
+	"_______________ Module ":" Operatational Center_____________",
+	"OPERATIONALCENTER_TITTLE": "Centro de operaciones",
+			
+	"_______________ Module ":" MISSION_____________",
+	"MISSION_TITTLE": "Mision",
+		
+	"_______________ Module ":" PROJECT _____________",
+	"PROJECT_TITTLE": "Proyecto",
+	
+	
+	"_______________ Module":" HEALTH SITE_____________",
+	"HEALTHSITE_TITTLE":"EStablecimiento de Salud",
+	
+	"_______________ Module":" HEALTH SERVICE_____________",
+	"HEALTHSERVICE_TITTLE":"Servicio de salud",
+	
+	
+	"_______________ Directive ":" OrganisationUnit+tree_____________",
+	"ORGANISATIONUNIT":"Proyecto",
+	"ORGANISATIONUNIT_FIND":"Seleccione un proyecto",
+	
+	"_______________ Directive ":" Access_____________",
+	"ACCESS_TITLE":"Error de Acceso",
+	"ACCESS_DESC":"No tienes acceso a este modulo. Si requieres acceso por favor comunicate con el administrador del sistema",
+	"ACCESS_BUTTON":"Regresar"
+}
