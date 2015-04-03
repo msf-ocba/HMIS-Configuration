@@ -5,23 +5,35 @@
 	"NO":"No",
 		
 	"_______________ Module ":"International _____________",
-	"INTERNATIONAL_TITTLE": "Welcome to Configuration system",
+	"INTERNATIONAL_TITLE": "Welcome to Configuration system",
 	
 	"_______________ Module ":" Operatational Center_____________",
-	"OPERATIONALCENTER_TITTLE": "operational Center",
+	"OPERATIONALCENTER_TITLE": "Operational Center",
 			
 	"_______________ Module ":" MISSION_____________",
-	"MISSION_TITTLE": "Mission",
+	"MISSION_TITLE": "Mission",
+	"MISSION_NAME": "Mission name",
+	"MISSION_PLACEHOLDER_NAME": "Enter the Mission Name",
+	"MISSION_OPENING_DATE" : "Mission Date",
+  	"MISSION_PLACEHOLDER_OPENING_DATE" : "Enter Mission Date",
+  	"MISSION_CREATE": "Create Mission",
+  	"MISSION_SAVE": "Save Mission",
 		
 	"_______________ Module ":" PROJECT _____________",
-	"PROJECT_TITTLE": "Project",
+	"PROJECT_TITLE": "Project",
+	"PROJECT_NAME": "Project name",
+	"PROJECT_PLACEHOLDER_NAME": "Enter the Project Name",
+	"PROJECT_OPENING_DATE" : "Project Date",
+	"PROJECT_PLACEHOLDER_OPENING_DATE" : "Enter Project Date",
+	"PROJECT_CREATE": "Create Project",
+	"PROJECT_SAVE": "Save Project",
 	
 	
 	"_______________ Module":" HEALTH SITE_____________",
-	"HEALTHSITE_TITTLE":"Health Site",
+	"HEALTHSITE_TITLE":"Health Site",
 	
 	"_______________ Module":" HEALTH SERVICE_____________",
-	"HEALTHSERVICE_TITTLE":"Health tittle",
+	"HEALTHSERVICE_TITLE":"Health title",
 	
 	
 	"_______________ Directive ":" OrganisationUnit+tree_____________",

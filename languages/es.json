@@ -12,13 +12,27 @@
 			
 	"_______________ Module ":" MISSION_____________",
 	"MISSION_TITTLE": "Mision",
+	"MISSION_NAME": "Nombre de la Misión",
+	"MISSION_PLACEHOLDER_NAME": "Entre el nombre de la Misión",
+	"MISSION_OPENING_DATE" : "Fecha de la Misión",
+  	"MISSION_PLACEHOLDER_OPENING_DATE" : "Entre la fecha de la Misión",
+	"MISSION_CREATE": "Crear Misión",
+	"MISSION_SAVE": "Guardar Misión",
+
+
 		
 	"_______________ Module ":" PROJECT _____________",
 	"PROJECT_TITTLE": "Proyecto",
+	"PROJECT_NAME": "Nombre de la Proyecto",
+	"PROJECT_PLACEHOLDER_NAME": "Entre el nombre de la Proyecto",
+	"PROJECT_OPENING_DATE" : "Fecha de la Proyecto",
+	"PROJECT_PLACEHOLDER_OPENING_DATE" : "Entre la fecha de la Proyecto",
+	"PROJECT_CREATE": "Crear Proyecto",
+	"PROJECT_SAVE": "Guardar Proyecto",
 	
 	
 	"_______________ Module":" HEALTH SITE_____________",
-	"HEALTHSITE_TITTLE":"EStablecimiento de Salud",
+	"HEALTHSITE_TITTLE":"Establecimiento de Salud",
 	
 	"_______________ Module":" HEALTH SERVICE_____________",
 	"HEALTHSERVICE_TITTLE":"Servicio de salud",

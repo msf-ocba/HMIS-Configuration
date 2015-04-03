@@ -17,7 +17,8 @@ Dhis2Api.factory("commonvariable", function () {
 	var Vari={
 			url: urlApi,
 			urlbase: urlBase,
-			OrganisationUnitList:[]
+			OrganisationUnitList:[],
+			OrganisationUnit:""
 			};
 
    return Vari; 
@@ -41,5 +42,13 @@ Dhis2Api.factory("TreeOrganisationunit",['$resource','commonvariable', function 
     fields:'name,id,level,children[name,id,level]'
    }, 
   { get: { method: "GET"} });
+}]);
+
+Dhis2Api.factory("Mission",['$resource','commonvariable', function ($resource,commonvariable) {
+	return $resource(commonvariable.url+"organisationUnits/:uid",
+		{
+			uid:'@uid'
+		},
+		{ POST: { method: "POST"} });
 }]);
 

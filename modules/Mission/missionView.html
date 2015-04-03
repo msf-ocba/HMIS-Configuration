@@ -1,6 +1,51 @@
 <d2-authorization menuoption="F_APPROVE_DATA"></d2-authorization>
 <div class="row">
 <div class="col-md-12">
-	<h2>{{'MISSION_TITTLE' | translate}}</h2>
+	<div class="col-md-6">
+	<h2>{{'MISSION_TITLE' | translate}} </h2>
+	</div>
+	<div class="col-md-6">
+		<h2>	<button ng-click="showfields()" type="button" class="btn btn-primary">{{'PROJECT_CREATE' | translate}}</button></h2>
+	</div>
 </div>
 </div>
+
+<div ng-show="true">
+	<div class="row">
+		<div class="col-md-6">
+			<label for="InputName2">{{'MISSION_NAME' | translate}}</label>
+			<input ng-model="mdMissionName" type="text" class="form-control" id="InputName2" textarea=name disabled>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6">
+			<label for="InputName2">{{'MISSION_OPENING_DATE' | translate}}</label>
+			<input ng-model="mdMissionName" type="text" class="form-control" id="InputName2" textarea=name disabled>
+		</div>
+	</div>
+
+	<div class="row">
+	<div class="col-md-6">
+		<label for="InputName2">{{'PROJECT_NAME' | translate}}</label>
+		<input ng-model="mdname" type="text" class="form-control" id="InputName2" placeholder="{{'PROJECT_PLACEHOLDER_NAME' | translate}}">
+	</div>
+</div>
+
+	<div class="row">
+		<div class="col-md-6">
+		<label for="InputName2">{{'PROJECT_OPENING_DATE' | translate}}</label>
+		<input ng-model="mdopendate" type="text" class="form-control" id="InputName2" placeholder="{{'PROJECT_PLACEHOLDER_OPENING_DATE' | translate}}">
+		</div>
+	</div>
+
+<div class="row">
+		<div class="col-md-2">
+			<button ng-click="missionsave()" type="button" class="btn btn-primary">{{'PROJECT_SAVE' | translate}} </button>
+		</div>
+
+		<div class="col-md-2">
+			<button type="button" class="btn btn-danger">Clear Data</button>
+		</div>
+</div>
+</div>
+
