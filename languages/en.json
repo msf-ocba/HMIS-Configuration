@@ -19,6 +19,7 @@
   	"MISSION_PLACEHOLDER_OPENING_DATE" : "Enter Mission Date",
   	"MISSION_CREATE": "Create Mission",
   	"MISSION_SAVE": "Save Mission",
+  	"MISSION_CANCEL": "Clear form",
 		
 	"_______________ Module ":" PROJECT _____________",
 	"PROJECT_TITLE": "Project",
