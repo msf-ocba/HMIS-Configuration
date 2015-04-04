@@ -3,6 +3,7 @@
 	"TITLE_APPS":"MSF-OCBA Health Information System",
 	"YES":"Yes",
 	"NO":"No",
+  	"CLEAR_DATA": "Clear data",
 		
 	"_______________ Module ":"International _____________",
 	"INTERNATIONAL_TITLE": "Welcome to Configuration system",

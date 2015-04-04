@@ -2,6 +2,7 @@ appConfigProjectMSF.controller('missionController', ["$scope",'$filter',"commonv
 	var $translate = $filter('translate');
 
 	console.log(commonvariable.OrganisationUnit);
+
 	$scope.missionsave=function(){
 		Mission.POST({uid:commonvariable.OrganisationUnit.id,name:$scope.mdname,openingDate:$scope.mdopendate});
 		console.log($scope.mdname);
@@ -10,7 +11,12 @@ appConfigProjectMSF.controller('missionController', ["$scope",'$filter',"commonv
 			$scope.show=true;
 		}
 
-		$scope.name=commonvariable.OrganisationUnit.name;
+		$scope.$watch(
+			function($scope) {
+				$scope.orgunitname=commonvariable.OrganisationUnit.name;
+			});
+
+
 
 	};
 }]);
