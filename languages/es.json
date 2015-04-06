@@ -34,6 +34,11 @@
 	
 	"_______________ Module":" HEALTH SITE_____________",
 	"HEALTHSITE_TITTLE":"Establecimiento de Salud",
+	"HEALTHSITE_CREATE": "Crear centro",
+	"HEALTHSITE_OPENING_DATE": "Fecha de alta",
+	"HEALTHSITE_NAME": "Nombre del centro",
+	"HEALTHSITE_SAVE": "Salvar centro",
+	"HEALTHSITE_CANCEL": "Cancelar",
 	
 	"_______________ Module":" HEALTH SERVICE_____________",
 	"HEALTHSERVICE_TITTLE":"Servicio de salud",
