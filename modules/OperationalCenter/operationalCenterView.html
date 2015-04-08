@@ -1,37 +1,47 @@
 <d2-authorization menuoption="F_APPROVE_DATA"></d2-authorization>
 <div class="row">
-
-		<div class="col-md-4">
-			<h2>{{'OPERATIONALCENTER_TITLE' | translate}} </h2>
-		</div>
-		<div class="col-md-4">
-			<h2>	<button ng-click="showfields()" type="button" class="btn btn-primary">{{'MISSION_CREATE' | translate}}</button></h2>
-		</div>
-
+<div class="col-md-12">
+	<div class="col-md-6">
+	</div>
+	<div class="col-md-6">
+		<h2>	<button ng-click="showForm()" type="button" class="btn btn-primary">{{'MISSION_CREATE' | translate}}</button></h2>
+	</div>
+</div>
 </div>
 
-<div ng-show="true">
+<div ng-show="showfields" class="col-md-8">
+
+<div class="panel panel-default">
+  <div class="panel-heading">{{'MISSION_TITLE' | translate}}</div>
+  <div class="panel-body">
 	<div class="row">
-		<div class="col-md-6">
+		<div class="col-md-12">
 			<label for="exampleInputName2">{{'MISSION_NAME' | translate}}</label>
 			<input ng-model="mdname" type="text" class="form-control" id="exampleInputName2" placeholder="{{'MISSION_PLACEHOLDER_NAME' | translate}}">
 		</div>
 	</div>
 
 	<div class="row">
-		<div class="col-md-6">
+		<div class="col-md-12">
 			<label for="exampleInputName2">{{'MISSION_OPENING_DATE' | translate}}</label>
-			<input ng-model="mdopendate" type="text" class="form-control" id="exampleInputName2" placeholder="{{'MISSION_PLACEHOLDER_OPENING_DATE' | translate}}">
+			<p class="input-group">
+              <input type="text" class="form-control" datepicker-popup="yyyy-MM-dd" ng-model="mdopendate" is-open="opened" min-date="minDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+              </span>
+            </p>
 		</div>
 	</div>
-
+<br>
 	<div class="row">
-		<div class="col-md-4">
+		<div class="col-md-6">
 			<button ng-click="missionsave()" type="button" class="btn btn-primary">{{'MISSION_SAVE' | translate}}</button>
 		</div>
 
-		<div class="col-md-4">
-			<button type="button" class="btn btn-danger">Clear Data</button>
+		<div class="col-md-6">
+			<button type="button" class="btn btn-danger" ng-click="hideForm()">{{'MISSION_CANCEL' | translate}}</button>
 		</div>
+	</div>
+</div>
 	</div>
 </div>

@@ -3,16 +3,15 @@
 	"TITLE_APPS":"MSF-OCBA Health Information System",
 	"YES":"Yes",
 	"NO":"No",
-  	"CLEAR_DATA": "Limpiar datos",
 		
 	"_______________ Module ":"International _____________",
 	"INTERNATIONAL_TITTLE": "Bienvenido al Sistema de Configuración",
 	
 	"_______________ Module ":" Operatational Center_____________",
-	"OPERATIONALCENTER_TITLE": "Centro de operaciones",
+	"OPERATIONALCENTER_TITTLE": "Centro de operaciones",
 			
 	"_______________ Module ":" MISSION_____________",
-	"MISSION_TITLE": "Misión",
+	"MISSION_TITTLE": "Mision",
 	"MISSION_NAME": "Nombre de la Misión",
 	"MISSION_PLACEHOLDER_NAME": "Entre el nombre de la Misión",
 	"MISSION_OPENING_DATE" : "Fecha de la Misión",
@@ -30,6 +29,7 @@
 	"PROJECT_PLACEHOLDER_OPENING_DATE" : "Entre la fecha de la Proyecto",
 	"PROJECT_CREATE": "Crear Proyecto",
 	"PROJECT_SAVE": "Guardar Proyecto",
+	"PROJECT_CANCEL":"Cancelar",
 	
 	
 	"_______________ Module":" HEALTH SITE_____________",
