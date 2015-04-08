@@ -9,10 +9,30 @@
 </div>
 </div>
 
+<div ng-hide="showfields" class="col-md-8">
+<div class="panel panel-default">
+	<div class="panel-heading">{{'MISSION_DETAILS' | translate}}</div>
+	<div class="panel-body">
+		<div class="row">
+			<div class="col-md-8">
+				<label for="InputName2">{{'MISSION_NAME' | translate}}</label>
+				<input  ng-model="missionname" type="text" class="form-control" id="MissionName" disabled>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-8">
+				<label for="InputName3">{{'CREATION_DATE' | translate}}</label>
+				<input datepicker-popup="yyyy-MM-dd" ng-model="missioncreated" type="text" class="form-control" id="MissionName" disabled>
+			</div>
+		</div>
+		</div>
+	</div>
+	</div>
+
 <div ng-show="showfields" class="col-md-8">
 
 <div class="panel panel-default">
-  <div class="panel-heading">{{'PROJECT_TITLE' | translate}}</div>
+  <div class="panel-heading">{{'PROJECT_TITLE' | translate}} </div>
   <div class="panel-body">
   	<div class="row">
 		<div class="col-md-12">

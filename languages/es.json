@@ -3,15 +3,16 @@
 	"TITLE_APPS":"MSF-OCBA Health Information System",
 	"YES":"Yes",
 	"NO":"No",
+  	"CREATION_DATE":"Fecha de creación",
 		
 	"_______________ Module ":"International _____________",
 	"INTERNATIONAL_TITTLE": "Bienvenido al Sistema de Configuración",
 	
 	"_______________ Module ":" Operatational Center_____________",
-	"OPERATIONALCENTER_TITTLE": "Centro de operaciones",
+	"OPERATIONALCENTER_TITLE": "Centro de operaciones",
 			
 	"_______________ Module ":" MISSION_____________",
-	"MISSION_TITTLE": "Mision",
+	"MISSION_TITLE": "Misión",
 	"MISSION_NAME": "Nombre de la Misión",
 	"MISSION_PLACEHOLDER_NAME": "Entre el nombre de la Misión",
 	"MISSION_OPENING_DATE" : "Fecha de la Misión",
@@ -19,10 +20,11 @@
 	"MISSION_CREATE": "Crear Misión",
 	"MISSION_SAVE": "Guardar Misión",
 	"MISSION_CANCEL": "Cancelar",
+  	"MISSION_DETAILS": "Detalles de la Misión",
 
 		
 	"_______________ Module ":" PROJECT _____________",
-	"PROJECT_TITTLE": "Proyecto",
+	"PROJECT_TITLE": "Proyecto",
 	"PROJECT_NAME": "Nombre de la Proyecto",
 	"PROJECT_PLACEHOLDER_NAME": "Entre el nombre de la Proyecto",
 	"PROJECT_OPENING_DATE" : "Fecha de la Proyecto",
@@ -33,15 +35,10 @@
 	
 	
 	"_______________ Module":" HEALTH SITE_____________",
-	"HEALTHSITE_TITTLE":"Establecimiento de Salud",
-	"HEALTHSITE_CREATE": "Crear centro",
-	"HEALTHSITE_OPENING_DATE": "Fecha de alta",
-	"HEALTHSITE_NAME": "Nombre del centro",
-	"HEALTHSITE_SAVE": "Salvar centro",
-	"HEALTHSITE_CANCEL": "Cancelar",
+	"HEALTHSITE_TITLE":"Establecimiento de Salud",
 	
 	"_______________ Module":" HEALTH SERVICE_____________",
-	"HEALTHSERVICE_TITTLE":"Servicio de salud",
+	"HEALTHSERVICE_TITLE":"Servicio de salud",
 	
 	
 	"_______________ Directive ":" OrganisationUnit+tree_____________",

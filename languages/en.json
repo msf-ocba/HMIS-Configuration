@@ -3,6 +3,7 @@
 	"TITLE_APPS":"MSF-OCBA Health Information System",
 	"YES":"Yes",
 	"NO":"No",
+  	"CREATION_DATE":"Creation date",
 		
 	"_______________ Module ":"International _____________",
 	"INTERNATIONAL_TITLE": "Welcome to Configuration system",
@@ -19,6 +20,7 @@
   	"MISSION_CREATE": "Create Mission",
   	"MISSION_SAVE": "Save Mission",
   	"MISSION_CANCEL": "Clear form",
+  	"MISSION_DETAILS": "Mission Details",
 		
 	"_______________ Module ":" PROJECT _____________",
 	"PROJECT_TITLE": "Project",

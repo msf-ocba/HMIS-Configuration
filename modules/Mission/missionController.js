@@ -14,6 +14,11 @@ appConfigProjectMSF.controller('missionController', ["$scope",'$filter',"commonv
 		$scope.today();
 		$scope.showfields=false;
 	};
+	$scope.$watch(
+		function($scope) {
+			$scope.missionname=commonvariable.OrganisationUnit.name;
+			$scope.missioncreated=commonvariable.OrganisationUnit.created;
+		});
 	
     // Date datepicker
 	  $scope.today = function() {
