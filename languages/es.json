@@ -32,10 +32,22 @@
 	"PROJECT_CREATE": "Crear Proyecto",
 	"PROJECT_SAVE": "Guardar Proyecto",
 	"PROJECT_CANCEL":"Cancelar",
+	"PROJECT_TYPE": "Tipo de proyecto",
+	"POPULATION_TYPE": "Tipo de población",
+	"TYPE_OF_MANAGEMENT": "Tipo de gestión",
+	"EVENTS": "Eventos",
+	"CONTEXT": "Contexto",
+	
 	
 	
 	"_______________ Module":" HEALTH SITE_____________",
 	"HEALTHSITE_TITLE":"Establecimiento de Salud",
+	"HEALTHSITE_CREATE": "Nuevo centro de salud",
+	"HEALTHSITE_OPENING_DATE": "Fecha de alta",
+	"HEALTHSITE_NAME": "Nombre del centro",
+	"HEALTHSITE_SAVE": "Guardar",
+	"HEALTHSITE_CANCEL": "Cancelar",
+	"HEALTHSITE_TYPE": "Tipo de centro",
 	
 	"_______________ Module":" HEALTH SERVICE_____________",
 	"HEALTHSERVICE_TITLE":"Servicio de salud",

@@ -19,6 +19,12 @@ appConfigProjectMSF.controller('projectController', ["$scope",'$filter',"commonv
 	    $scope.mdopendate=datetoday.getFullYear()+"-"+((datetoday.getMonth()+1)<=9?"0"+(datetoday.getMonth()+1):(datetoday.getMonth()+1))+"-"+(datetoday.getDate()<=9?"0"+datetoday.getDate():datetoday.getDate());
 	  };
 	  $scope.today();
+	  
+	  $scope.open = function($event) {
+		    $event.preventDefault();
+		    $event.stopPropagation();
+		    $scope.opened = true;
+	  };
 	
 }]);
 

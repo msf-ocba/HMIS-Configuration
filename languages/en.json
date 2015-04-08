@@ -31,6 +31,11 @@
 	"PROJECT_CREATE": "Create Project",
 	"PROJECT_SAVE": "Save Project",
 	"PROJECT_CANCEL":"Clear form",
+	"PROJECT_TYPE": "Project type",
+	"POPULATION_TYPE": "Population type",
+	"TYPE_OF_MANAGEMENT": "Type of management",
+	"EVENTS": "Events",
+	"CONTEXT": "Context",
 	
 	
 	"_______________ Module":" HEALTH SITE_____________",
@@ -40,6 +45,7 @@
 	"HEALTHSITE_NAME": "Health site name",
 	"HEALTHSITE_SAVE": "Save health site",
 	"HEALTHSITE_CANCEL": "Clear form",
+	"HEALTHSITE_TYPE": "Health site type",
 	
 	
 	"_______________ Module":" HEALTH SERVICE_____________",
