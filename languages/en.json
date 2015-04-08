@@ -33,6 +33,12 @@
 	
 	"_______________ Module":" HEALTH SITE_____________",
 	"HEALTHSITE_TITLE":"Health Site",
+	"HEALTHSITE_CREATE": "Create health site",
+	"HEALTHSITE_OPENING_DATE": "Opening date",
+	"HEALTHSITE_NAME": "Health site name",
+	"HEALTHSITE_SAVE": "Save health site",
+	"HEALTHSITE_CANCEL": "Clear form",
+	
 	
 	"_______________ Module":" HEALTH SERVICE_____________",
 	"HEALTHSERVICE_TITLE":"Health title",
