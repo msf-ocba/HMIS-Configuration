@@ -4,12 +4,15 @@ Dhis2Api.directive('d2Messages', function(){
 		templateUrl: 'directives/messages/messagesView.html',
 		scope: {
 		      type: '@',
-		      textmessage: '@'
+		      textmessage: '@',
+		      showmessage:'@'
 		    }
 	}
 	}); 
 Dhis2Api.controller("d2messagesController", ['$scope',function ($scope) {
-
+	$scope.hidemessage=function(){
+		$scope.show=false;
+	};
 	switch($scope.type){
 		case 'success':
 			$scope.typemessage="alert alert-success";

@@ -11,12 +11,15 @@ Dhis2Api.directive('d2Treeorganisationunit', function(){
 Dhis2Api.controller("d2TreeorganisationUnitController", ['$scope','$location','TreeOrganisationunit',"commonvariable", function ($scope,$location,TreeOrganisationunit,commonvariable) {
 	$scope.currentid="";
 	 $scope.currentlevel=0;
-     TreeOrganisationunit.get({filter:'level:eq:1'})
-	 .$promise.then(function(data){
-		  $scope.treeOrganisationUnitList = data.organisationUnits;
-	 });
+     $scope.loadOrganisationUnit=function(){
+         TreeOrganisationunit.get({filter:'level:eq:1'})
+    	 .$promise.then(function(data){
+    		  $scope.treeOrganisationUnitList = data.organisationUnits;
+    	 });
+    };
+    $scope.loadOrganisationUnit();
 	 
-	$scope.update = function (json, valorOrig, valorDest)		{
+	$scope.update = function (json, valorOrig, valorDest,treeup)		{
     	 var type;
     	 var resultado;
     	 for (var i=0; i<json.length;i++){
@@ -24,14 +27,21 @@ Dhis2Api.controller("d2TreeorganisationUnitController", ['$scope','$location','T
     	 		if (type=="undefined"){
     				resultado = true;
     			 	if (json[i].id==valorOrig){
-    			 		json[i].children = valorDest;
+                        if(treeup==0)
+    			 		  json[i].children = valorDest;
+                        else
+                          json[i].children.push(valorDest);
+                        
     			 	}
     			}
     			else{
     				if (json[i].id==valorOrig){
-    					json[i].children = valorDest;
+    					if(treeup==0)
+                          json[i].children = valorDest;
+                        else
+                          json[i].children.push(valorDest);
     				}
-    				resultado = $scope.update(json[i].children, valorOrig, valorDest);
+    				resultado = $scope.update(json[i].children, valorOrig, valorDest,treeup);
     			}
     		}
 
@@ -41,7 +51,13 @@ Dhis2Api.controller("d2TreeorganisationUnitController", ['$scope','$location','T
      
   $scope.$watch(
             function(OrganisationUnit) {
-            	   	//redirect to correct url
+            	   //refresh if it is neccesary
+                   if(commonvariable.RefreshTreeOU){
+                        commonvariable.RefreshTreeOU=false;
+                       $scope.treeOrganisationUnitList=$scope.update($scope.treeOrganisationUnitList, $scope.OrganisationUnit.currentNode.id,commonvariable.NewOrganisationUnit,1);                                       
+                       console.log($scope.treeOrganisationUnitList);
+                   }
+                   	//redirect to correct url
                     if(typeof($scope.OrganisationUnit.currentNode)!="undefined" && $scope.currentlevel!=$scope.OrganisationUnit.currentNode.level){
                         $scope.currentlevel=$scope.OrganisationUnit.currentNode.level;
                         var url="/";
@@ -74,7 +90,7 @@ Dhis2Api.controller("d2TreeorganisationUnitController", ['$scope','$location','T
             	   	    $scope.currentid=$scope.OrganisationUnit.currentNode.id;
 						TreeOrganisationunit.get({uid:$scope.OrganisationUnit.currentNode.id})
 						.$promise.then(function(data){
-							$scope.treeOrganisationUnitList=$scope.update($scope.treeOrganisationUnitList, $scope.OrganisationUnit.currentNode.id,data.children) 									  
+							$scope.treeOrganisationUnitList=$scope.update($scope.treeOrganisationUnitList, $scope.OrganisationUnit.currentNode.id,data.children,0) 									  
 						});
 					}
    	

@@ -3,7 +3,14 @@ appConfigProjectMSF.controller('missionController', ["$scope",'$filter',"commonv
 	$scope.showfields=false;
 	console.log(commonvariable.OrganisationUnit);
 	$scope.missionsave=function(){
-		Mission.POST({uid:commonvariable.OrganisationUnit.id,name:$scope.mdname,openingDate:$scope.mdopendate});
+		Mission.POST(
+			{
+			name:$scope.mdname,
+			level:(commonvariable.OrganisationUnit.level+1),
+            shortName:$scope.mdname,
+           	openingDate:$scope.mdopendate,
+            parent:commonvariable.OrganisationUnit.id
+			});
 		console.log($scope.mdname);
 	};
 	$scope.showForm=function(){

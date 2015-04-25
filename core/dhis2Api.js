@@ -18,7 +18,9 @@ Dhis2Api.factory("commonvariable", function () {
 			url: urlApi,
 			urlbase: urlBase,
 			OrganisationUnitList:[],
-			OrganisationUnit:""
+			OrganisationUnit:"",
+			RefreshTreeOU:false,
+			NewOrganisationUnit:[]
 			};
 
    return Vari; 
@@ -35,6 +37,17 @@ Dhis2Api.factory("userAuthorization", ['$resource','commonvariable',function($re
 
 }]);
 
+Dhis2Api.factory("uidDhis",['md5','commonvariable', function(md5,commonvariable) {
+	 var get = function(name) {
+        if (!name) return undefined;
+        return "h" + md5.createHash(name.toLowerCase()).substring(0, 10);
+    };
+
+    return {
+        "get": get
+    };
+}]);
+
 Dhis2Api.factory("TreeOrganisationunit",['$resource','commonvariable', function ($resource,commonvariable) {
 	return $resource(commonvariable.url+"organisationUnits/:uid", 
    {
@@ -45,10 +58,8 @@ Dhis2Api.factory("TreeOrganisationunit",['$resource','commonvariable', function 
 }]);
 
 Dhis2Api.factory("Mission",['$resource','commonvariable', function ($resource,commonvariable) {
-	return $resource(commonvariable.url+"organisationUnits/:uid",
-		{
-			uid:'@uid'
-		},
+	return $resource(commonvariable.url+"organisationUnits",
+		{},
 		{ POST: { method: "POST"} });
 }]);
 

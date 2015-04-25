@@ -1,4 +1,4 @@
-var appConfigProjectMSF = angular.module("appConfigProjectMSF", ['ngRoute','Dhis2Api','pascalprecht.translate','ui.bootstrap','d2Menu', 'angularFileUpload','angularTreeview']);
+var appConfigProjectMSF = angular.module("appConfigProjectMSF", ['ngRoute','Dhis2Api','pascalprecht.translate','ui.bootstrap','d2Menu', 'angularFileUpload','angularTreeview','angular-md5']);
 
 appConfigProjectMSF.config(function($routeProvider) {
  
