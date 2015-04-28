@@ -1,9 +1,12 @@
 appConfigProjectMSF.controller('operationalCenterController', ["$scope",'$filter',"commonvariable","Mission", function($scope, $filter,commonvariable,Mission) {
 	
 	//set message variable
-	$scope.typemessage="info";
-	$scope.message="";
-	$scope.messageshow=false;
+	$scope.closeAlertMessage = function(index) {
+       $scope.messages.splice(index, 1);
+  	};
+	
+	$scope.messages=[];
+	
 
 	var $translate = $filter('translate');
 	$scope.showfields=false;
@@ -24,29 +27,25 @@ appConfigProjectMSF.controller('operationalCenterController', ["$scope",'$filter
 				  commonvariable.NewOrganisationUnit=newOu;
 
 				 //set message variable
-				$scope.typemessage="success";
-				$scope.message="Mission saved";
-				$scope.messageshow=true;
+				$scope.messages.push({type:"success",
+				text:"Mission saved"});
 
 				//clear txtbox
 				$scope.mdname="";
 
 			}
 			else{
-				$scope.typemessage="danger";
-				$scope.message="Mission doesn't saved, review that the field name isn't empty";
-				$scope.messageshow=true;
+				$scope.messages.push({type:"danger",
+				text:"Mission doesn't saved, review that the field name isn't empty"});
 			}
     	 });
 		
 	};
 	$scope.showForm=function(){
 		if(commonvariable.OrganisationUnit==undefined){
-				$scope.typemessage="info";
-				$scope.message="Please select a operational center";
-				$scope.messageshow=true;
+				$scope.messages.push({type:"info",
+				text:"Please select an operational center"});
 				$scope.showfields=false;
-				console.log("Seleccione una unidad organizativa");
 		}
 		else{
 			$scope.showfields=true;

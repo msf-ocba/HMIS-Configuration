@@ -11,7 +11,7 @@
 </div>
 <div class="row">
 	<div class="col-md-6">
-		<d2-messages type="{{typemessage}}" textmessage="{{message}}" showmessage="{{messageshow}}"></d2-messages>
+		<alert ng-repeat="message in messages" type="{{message.type}}" close="closeAlertMessage($index)">{{message.text}}</alert>
 	</div>
 </div>
 
