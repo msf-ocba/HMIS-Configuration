@@ -11,7 +11,6 @@ var Dhis2Api = angular.module("Dhis2Api", ['ngResource']);
 
 var urlApi = "http://localhost:8080/dhis/api/";
 var urlBase = "http://localhost:8080/dhis/";
-var typeOfProjects = "Lnx11vt4CsQ";
 
 //Create all common variables of the apps 
 Dhis2Api.factory("commonvariable", function () {
