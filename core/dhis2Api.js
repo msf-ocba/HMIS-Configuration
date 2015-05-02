@@ -11,6 +11,7 @@ var Dhis2Api = angular.module("Dhis2Api", ['ngResource']);
 
 var urlApi = "http://localhost:8080/dhis/api/";
 var urlBase = "http://localhost:8080/dhis/";
+var typeOfProjects = "Lnx11vt4CsQ";
 
 //Create all common variables of the apps 
 Dhis2Api.factory("commonvariable", function () {
@@ -20,7 +21,8 @@ Dhis2Api.factory("commonvariable", function () {
 			OrganisationUnitList:[],
 			OrganisationUnit:"",
 			RefreshTreeOU:false,
-			NewOrganisationUnit:[]
+			NewOrganisationUnit:[],
+			orgUnitGroupSet:""
 			};
 
    return Vari; 
@@ -64,10 +66,11 @@ Dhis2Api.factory("Mission",['$resource','commonvariable', function ($resource,co
 }]);
 
 Dhis2Api.factory("OrgUnitGroupSet",['$resource','commonvariable', function ($resource,commonvariable) {
+			
 	return $resource(commonvariable.url+"organisationUnitGroupSets/:uid",
-		{
-			uid:'@uid'
+		{	
+		uid:'@uid'
 		},
-		{ POST: { method: "GET"} });
+		{ get: { method: "GET"} });
 }]);
 

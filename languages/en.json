@@ -32,6 +32,8 @@
 	"PROJECT_SAVE": "Save Project",
 	"PROJECT_CANCEL":"Clear form",
 	"PROJECT_TYPE": "Project type",
+	"TEST": "Test",
+	"PROJECT_LIST": "Select a project",
 	"POPULATION_TYPE": "Population type",
 	"TYPE_OF_MANAGEMENT": "Type of management",
 	"EVENTS": "Events",
