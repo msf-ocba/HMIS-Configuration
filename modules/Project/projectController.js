@@ -1,6 +1,8 @@
 appConfigProjectMSF.controller('projectController', ["$scope",'$filter',"commonvariable", function($scope, $filter,commonvariable) {
 	var $translate = $filter('translate');
 	
+	
+	
 	$scope.showfields=false;
 	console.log(commonvariable.OrganisationUnit);
 	
@@ -12,6 +14,15 @@ appConfigProjectMSF.controller('projectController', ["$scope",'$filter',"commonv
 		$scope.today();
 		$scope.showfields=false;
 	};
+	
+	$scope.$watch(
+			function($scope) {
+				if(commonvariable.OrganisationUnit!=undefined){
+					$scope.projectname=commonvariable.OrganisationUnit.name;
+					$scope.projectcreated=commonvariable.OrganisationUnit.created;
+			}
+			});
+	
 	
 	// Date datepicker
 	  $scope.today = function() {
@@ -25,6 +36,7 @@ appConfigProjectMSF.controller('projectController', ["$scope",'$filter',"commonv
 		    $event.stopPropagation();
 		    $scope.opened = true;
 	  };
+	  
 	
 }]);
 

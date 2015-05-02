@@ -9,6 +9,41 @@
 </div>
 </div>
 
+
+<div ng-hide="showfields" class="col-md-8">
+<div class="panel panel-default">
+	<div class="panel-heading">{{'PROJECT_DETAILS' | translate}}</div>
+	<div class="panel-body">
+		<div class="row">
+			<div class="col-md-8">
+				<label for="InputName2">{{'PROJECT_NAME' | translate}}</label>
+				<input  ng-model="projectname" type="text" class="form-control" id="ProyectName" disabled>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-8">
+				<label for="InputName3">{{'PROJECT_OPENING_DATE' | translate}}</label>
+				<input datepicker-popup="yyyy-MM-dd" ng-model="projectcreated" type="text" class="form-control" id="ProjectCreated" disabled>
+			</div>
+		</div>
+		<div class="row">
+		<div class="col-md-8">
+			<label for="sel12"> {{'PROJECT_TYPE' | translate }} </label>
+			<d2-dropdownorgunitgroupset uidgroupSet="Lnx11vt4CsQ"></d2-dropdownorgunitgroupset>
+		</div>
+		</div>
+		<div class="row">
+		<div class="col-md-12">
+			<label for="sel12"> {{'POPULATION_TYPE' | translate }} </label>
+			<d2-dropdownorgunitgroupset uidgroupSet="k63xi1QH8eP"></d2-dropdownorgunitgroupset>
+		</div>
+		</div>
+		
+		
+		</div>
+	</div>
+</div>
+
 <div ng-show="showfields" class="col-md-8">
 
 <div class="panel panel-default">
