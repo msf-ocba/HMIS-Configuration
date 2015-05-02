@@ -22,7 +22,7 @@ Dhis2Api.factory("commonvariable", function () {
 			OrganisationUnit:"",
 			RefreshTreeOU:false,
 			NewOrganisationUnit:[],
-			orgUnitGroupSet:""
+			orgUnitGroupSet:[]
 			};
 
    return Vari; 

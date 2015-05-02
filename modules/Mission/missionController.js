@@ -3,6 +3,9 @@ appConfigProjectMSF.controller('missionController', ["$scope",'$filter',"commonv
 	$scope.showfields=false;
 	console.log(commonvariable.OrganisationUnit);
 	$scope.missionsave=function(){
+		//de esta forma podes acceder a los orgUnitGroup que se han seleccionado
+		console.log(commonvariable.orgUnitGroupSet.Lnx11vt4CsQ.id);
+		console.log(commonvariable.orgUnitGroupSet.Lnx11vt4CsQ.name);
 		Mission.POST(
 			{
 			name:$scope.mdname,
@@ -23,8 +26,10 @@ appConfigProjectMSF.controller('missionController', ["$scope",'$filter',"commonv
 	};
 	$scope.$watch(
 		function($scope) {
-			$scope.missionname=commonvariable.OrganisationUnit.name;
-			$scope.missioncreated=commonvariable.OrganisationUnit.created;
+			if(commonvariable.OrganisationUnit!=undefined){
+				$scope.missionname=commonvariable.OrganisationUnit.name;
+				$scope.missioncreated=commonvariable.OrganisationUnit.created;
+		}
 		});
 	
     // Date datepicker
