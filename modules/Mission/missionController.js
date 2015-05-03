@@ -1,21 +1,70 @@
-appConfigProjectMSF.controller('missionController', ["$scope",'$filter',"commonvariable","Mission", function($scope, $filter,commonvariable,Mission) {
+appConfigProjectMSF.controller('missionController', ["$scope",'$filter',"commonvariable","Mission","OrgUnitGroupsOrgUnit", function($scope, $filter,commonvariable,Mission,OrgUnitGroupsOrgUnit) {
+	
+	//set message variable
+	$scope.closeAlertMessage = function(index) {
+       $scope.messages.splice(index, 1);
+  	};
+	
+	$scope.messages=[];
+	
+	
 	var $translate = $filter('translate');
 	$scope.showfields=false;
 	console.log(commonvariable.OrganisationUnit);
+	
+	
 	$scope.missionsave=function(){
-		//de esta forma podes acceder a los orgUnitGroup que se han seleccionado
-		console.log(commonvariable.orgUnitGroupSet.Lnx11vt4CsQ.id);
-		console.log(commonvariable.orgUnitGroupSet.Lnx11vt4CsQ.name);
-		Mission.POST(
-			{
-			name:$scope.mdname,
-			level:(commonvariable.OrganisationUnit.level+1),
-            shortName:$scope.mdname,
-           	openingDate:$scope.mdopendate,
-            parent:commonvariable.OrganisationUnit.id
-			});
-		console.log($scope.mdname);
+
+		var newOu={//payload
+				name:$scope.projectName,
+				level:(commonvariable.OrganisationUnit.level+1),
+	            shortName:$scope.projectName,
+	           	openingDate:$scope.propendate,
+	            parent:commonvariable.OrganisationUnit
+				};
+
+		console.log($scope.projectName);
+		console.log(commonvariable.OrganisationUnit.level+1);
+		console.log($scope.propendate);
+		console.log(commonvariable.OrganisationUnit);
+		
+		Mission.POST({},newOu)
+		.$promise.then(function(data){
+    		  console.log(data);
+    		  if(data.status=="SUCCESS"){
+    		  	  commonvariable.RefreshTreeOU=true;
+				  newOu.id=data.lastImported;
+				  commonvariable.NewOrganisationUnit=newOu;
+				  
+				  if (commonvariable.orgUnitGroupSet.Lnx11vt4CsQ.id!=undefined)
+					  OrgUnitGroupsOrgUnit.POST({uidgroup:commonvariable.orgUnitGroupSet.Lnx11vt4CsQ.id, uidorgunit:newOu.id});
+				  if (commonvariable.orgUnitGroupSet.k63xi1QH8eP.id!=undefined)
+					  OrgUnitGroupsOrgUnit.POST({uidgroup:commonvariable.orgUnitGroupSet.k63xi1QH8eP.id, uidorgunit:newOu.id});
+				  if (commonvariable.orgUnitGroupSet.ugFKDWBnbki.id!=undefined)
+					  OrgUnitGroupsOrgUnit.POST({uidgroup:commonvariable.orgUnitGroupSet.ugFKDWBnbki.id, uidorgunit:newOu.id});
+				  if (commonvariable.orgUnitGroupSet.yKKi6EHh1ri.id!=undefined)
+					  OrgUnitGroupsOrgUnit.POST({uidgroup:commonvariable.orgUnitGroupSet.yKKi6EHh1ri.id, uidorgunit:newOu.id});
+				  if (commonvariable.orgUnitGroupSet.cbGfyYMVRJs.id!=undefined)
+					  OrgUnitGroupsOrgUnit.POST({uidgroup:commonvariable.orgUnitGroupSet.cbGfyYMVRJs.id, uidorgunit:newOu.id});
+				  
+
+				 //set message variable
+				$scope.messages.push({type:"success",
+				text:"Project saved"});
+
+				//clear txtbox
+				$scope.projectName="";
+
+			}
+			else{
+				$scope.messages.push({type:"danger",
+				text:"Project doesn't saved, review that the field name isn't empty"});
+			}
+    	 });
+				
 	};
+	
+	
 	$scope.showForm=function(){
 		$scope.showfields=true;
 	};
@@ -35,12 +84,12 @@ appConfigProjectMSF.controller('missionController', ["$scope",'$filter',"commonv
     // Date datepicker
 	  $scope.today = function() {
 	    datetoday = new Date();
-	    $scope.projectDate=datetoday.getFullYear()+"-"+((datetoday.getMonth()+1)<=9?"0"+(datetoday.getMonth()+1):(datetoday.getMonth()+1))+"-"+(datetoday.getDate()<=9?"0"+datetoday.getDate():datetoday.getDate());
+	    $scope.propendate=datetoday.getFullYear()+"-"+((datetoday.getMonth()+1)<=9?"0"+(datetoday.getMonth()+1):(datetoday.getMonth()+1))+"-"+(datetoday.getDate()<=9?"0"+datetoday.getDate():datetoday.getDate());
 	  };
 	  $scope.today();
 
 	  $scope.clear = function () {
-	    $scope.projectDate = null;
+	    $scope.propendate = null;
 	  };
 
 	   $scope.open = function($event) {

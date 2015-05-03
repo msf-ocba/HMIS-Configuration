@@ -18,6 +18,10 @@ appConfigProjectMSF.controller('operationalCenterController', ["$scope",'$filter
 	           	openingDate:$scope.mdopendate,
 	            parent:commonvariable.OrganisationUnit
 				};
+		console.log($scope.mdname);
+		console.log(commonvariable.OrganisationUnit.level+1);
+		console.log($scope.mdopendate);
+		console.log(commonvariable.OrganisationUnit);
 		Mission.POST({},newOu)
 		.$promise.then(function(data){
     		  console.log(data);
