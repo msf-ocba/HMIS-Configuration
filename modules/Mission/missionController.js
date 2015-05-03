@@ -13,7 +13,8 @@ appConfigProjectMSF.controller('missionController', ["$scope",'$filter',"commonv
 	console.log(commonvariable.OrganisationUnit);
 	
 	
-	$scope.missionsave=function(){
+	$scope.projectsave=function(){
+
 
 		var newOu={//payload
 				name:$scope.projectName,
@@ -23,11 +24,6 @@ appConfigProjectMSF.controller('missionController', ["$scope",'$filter',"commonv
 	            parent:commonvariable.OrganisationUnit
 				};
 
-		console.log($scope.projectName);
-		console.log(commonvariable.OrganisationUnit.level+1);
-		console.log($scope.propendate);
-		console.log(commonvariable.OrganisationUnit);
-		
 		Mission.POST({},newOu)
 		.$promise.then(function(data){
     		  console.log(data);
@@ -36,15 +32,15 @@ appConfigProjectMSF.controller('missionController', ["$scope",'$filter',"commonv
 				  newOu.id=data.lastImported;
 				  commonvariable.NewOrganisationUnit=newOu;
 				  
-				  if (commonvariable.orgUnitGroupSet.Lnx11vt4CsQ.id!=undefined)
+				  if (commonvariable.orgUnitGroupSet.Lnx11vt4CsQ!=undefined)
 					  OrgUnitGroupsOrgUnit.POST({uidgroup:commonvariable.orgUnitGroupSet.Lnx11vt4CsQ.id, uidorgunit:newOu.id});
-				  if (commonvariable.orgUnitGroupSet.k63xi1QH8eP.id!=undefined)
+				  if (commonvariable.orgUnitGroupSet.k63xi1QH8eP!=undefined)
 					  OrgUnitGroupsOrgUnit.POST({uidgroup:commonvariable.orgUnitGroupSet.k63xi1QH8eP.id, uidorgunit:newOu.id});
-				  if (commonvariable.orgUnitGroupSet.ugFKDWBnbki.id!=undefined)
+				  if (commonvariable.orgUnitGroupSet.ugFKDWBnbki!=undefined)
 					  OrgUnitGroupsOrgUnit.POST({uidgroup:commonvariable.orgUnitGroupSet.ugFKDWBnbki.id, uidorgunit:newOu.id});
-				  if (commonvariable.orgUnitGroupSet.yKKi6EHh1ri.id!=undefined)
+				  if (commonvariable.orgUnitGroupSet.yKKi6EHh1ri!=undefined)
 					  OrgUnitGroupsOrgUnit.POST({uidgroup:commonvariable.orgUnitGroupSet.yKKi6EHh1ri.id, uidorgunit:newOu.id});
-				  if (commonvariable.orgUnitGroupSet.cbGfyYMVRJs.id!=undefined)
+				  if (commonvariable.orgUnitGroupSet.cbGfyYMVRJs!=undefined)
 					  OrgUnitGroupsOrgUnit.POST({uidgroup:commonvariable.orgUnitGroupSet.cbGfyYMVRJs.id, uidorgunit:newOu.id});
 				  
 
