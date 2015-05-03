@@ -73,3 +73,14 @@ Dhis2Api.factory("OrgUnitGroupSet",['$resource','commonvariable', function ($res
 		{ get: { method: "GET"} });
 }]);
 
+Dhis2Api.factory("OrgUnitGroupsOrgUnit",['$resource','commonvariable', function ($resource,commonvariable) {
+	
+	return $resource(commonvariable.url+"organisationUnitGroups/:uidgroup/organisationUnits/:uidorgunit",
+		{	
+		uidgroup:'@uidgroup',
+		uidorgunit: '@uidorgunit'
+		},
+		{ POST: { method: "POST"} });
+}]);
+
+
