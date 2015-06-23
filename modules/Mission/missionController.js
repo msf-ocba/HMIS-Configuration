@@ -10,7 +10,7 @@ appConfigProjectMSF.controller('missionController', ["$scope",'$filter',"commonv
 	
 	var $translate = $filter('translate');
 	$scope.showfields=false;
-	console.log(commonvariable.OrganisationUnit);
+	//console.log(commonvariable.OrganisationUnit);
 	
 	
 	$scope.projectsave=function(){
@@ -31,7 +31,7 @@ appConfigProjectMSF.controller('missionController', ["$scope",'$filter',"commonv
     		  	  commonvariable.RefreshTreeOU=true;
 				  newOu.id=data.lastImported;
 				  commonvariable.NewOrganisationUnit=newOu;
-				  
+				 
 				  if (commonvariable.orgUnitGroupSet.Lnx11vt4CsQ!=undefined)
 					  OrgUnitGroupsOrgUnit.POST({uidgroup:commonvariable.orgUnitGroupSet.Lnx11vt4CsQ.id, uidorgunit:newOu.id});
 				  if (commonvariable.orgUnitGroupSet.k63xi1QH8eP!=undefined)
