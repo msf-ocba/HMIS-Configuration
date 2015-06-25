@@ -1,13 +1,16 @@
 <d2-authorization menuoption="F_APPROVE_DATA"></d2-authorization>
+
 <div class="row">
 <div class="col-md-12">
 	<div class="col-md-6">
+	 <d2-resourcejson id="vaccination"></d2-resourcejson>
 	</div>
 	<div class="col-md-6">
 		<h2>	<button ng-click="showForm()" type="button" class="btn btn-primary">{{'PROJECT_CREATE' | translate}}</button></h2>
 	</div>
 </div>
 </div>
+
 <div class="row">
 	<div class="col-md-6">
 		<alert ng-repeat="message in messages" type="{{message.type}}" close="closeAlertMessage($index)">{{message.text}}</alert>
@@ -34,9 +37,13 @@
 	</div>
 	</div>
 <div>
-	
- <d2-resourcejson id="vaccination"></d2-resourcejson>
 </div>
+
+
+
+
+
+
 <div ng-show="showfields" class="col-md-8">
 
 <div class="panel panel-default">

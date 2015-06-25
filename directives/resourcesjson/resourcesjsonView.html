@@ -1,4 +1,29 @@
 <div  ng-controller="d2ResourcejsonController">
+<h2><button ng-click="loadjson()" type="button" class="btn btn-primary">{{'VACCINATION_DATASET' | translate}}</button></h2>
+ 
+<accordion close-others="true">
+<accordion-group is-open="status.open" ng-repeat="section in sections">
+        <accordion-heading>
+            {{section.name}} <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+        </accordion-heading>
+	     
+       <table class="table table-condensed">
+         <tbody>
+        <tr ng-repeat="(key, group) in section.dataElementGroup" class="{{style[key]}}">
+          <td>{{group.name}}</td>
+          <td>
+          <span ng-repeat="dataElement in group.dataElements">{{dataElement.code}},</span>
+          </td>
+          <td>
+       	 <button ng-click="style[key]==''?style[key]='success':''" ng-init="style[key]=''" type="button" class="btn btn-default" aria-label="Left Align">
+		  <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+		</button>
+          </td>
+        </tr>        
+      </tbody>
+    </table>
+    </accordion-group>
+  </accordion>
 
 </div>
 

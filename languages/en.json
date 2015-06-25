@@ -21,6 +21,7 @@
   	"MISSION_SAVE": "Save Mission",
   	"MISSION_CANCEL": "Clear form",
   	"MISSION_DETAILS": "Mission Details",
+
 		
 	"_______________ Module ":" PROJECT _____________",
 	"PROJECT_TITLE": "Project",
@@ -39,6 +40,7 @@
 	"EVENTS": "Events",
 	"CONTEXT": "Context",
 	"PROJECT_DETAILS": "Project Details",
+	"VACCINATION_DATASET":"Create vaccination dataset",
 	
 	"_______________ Module":" HEALTH SITE_____________",
 	"HEALTHSITE_TITLE":"Health Site",
