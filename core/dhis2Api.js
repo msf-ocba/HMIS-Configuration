@@ -123,3 +123,13 @@ Dhis2Api.factory("OrgUnitGroupsOrgUnit",['$resource','commonvariable', function 
 }]);
 
 
+Dhis2Api.factory("OrgUnitChildren",['$resource','commonvariable', function ($resource,commonvariable) {
+	
+	return $resource(commonvariable.url+"organisationUnis/:uid",
+		{	
+		uid:'@uid',
+		fields:'children'
+		},
+		{ GET: { method: "GET"} });
+}]);
+
