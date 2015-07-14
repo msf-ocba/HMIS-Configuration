@@ -7,12 +7,12 @@ Dhis2Api.directive('d2Resourcejson', function(){
 		    }
 	}
 	}); 
-Dhis2Api.controller("d2ResourcejsonController", ['$scope',"commonvariable","loadjsonresource", function ($scope,commonvariable,loadjsonresource) {
+Dhis2Api.controller("d2ResourcejsonController", ['$scope',"commonvariable","loadjsonresource","DataElements", function ($scope,commonvariable,loadjsonresource,DataElements) {
 	$scope.style=[];
     $scope.loadjson=function(){
-        loadjsonresource.get($scope.id)
+       loadjsonresource.get($scope.id)
         .then(function(response){
-                $scope.sections=response.data.vaccinationDataset[0];
+                $scope.sections=response.data.vaccinationDataset;
         });
     }
 
@@ -27,6 +27,15 @@ Dhis2Api.controller("d2ResourcejsonController", ['$scope',"commonvariable","load
 
 
     };
+
+    $scope.SeeNameDataelement=function(code){
+        DataElements.Get({filter:'code:eq:'+code})
+        .$promise.then(function(response){
+                $scope.nameDataelement=response.dataElements[0].name;
+        });
+        
+
+    }
 
     /// esto ya no se necesita pero es un codigo interesante que lee recursivamente el json ////
     $scope.toType = function(obj) {

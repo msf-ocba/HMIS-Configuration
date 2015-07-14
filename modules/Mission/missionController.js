@@ -61,13 +61,23 @@ appConfigProjectMSF.controller('missionController', ["$scope",'$filter',"commonv
 	};
 	
 	
-	$scope.showForm=function(){
-		$scope.showfields=true;
+	$scope.showForm=function(frm){
+		if(frm==1){
+			$scope.frmVaccination=false;
+			$scope.frmProject=true;
+		}
+		else{
+			$scope.frmVaccination=true;
+			$scope.frmProject=false;
+		}
+
 	};
 	$scope.hideForm=function(){
 		$scope.projectName="";
 		$scope.today();
 		$scope.showfields=false;
+		$scope.frmVaccination=false;
+		$scope.frmProject=false;
 	};
 	$scope.$watch(
 		function($scope) {

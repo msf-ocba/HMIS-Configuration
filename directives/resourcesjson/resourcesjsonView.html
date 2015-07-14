@@ -10,7 +10,9 @@
         <tr ng-repeat="(key, group) in section.dataElementGroup" class="{{style[skey][key]}}">
           <td>{{group.name}}</td>
           <td>
-          <span ng-repeat="dataElement in group.dataElements">{{dataElement.code}},</span>
+          <div class="btn-group-xs" role="group" aria-label="...">
+             <button type="button" class="btn btn-default" ng-click="SeeNameDataelement(dataElement.code)"  tooltip="{{nameDataelement}}"  tooltip-trigger="focus" tooltip-placement="right" ng-repeat="dataElement in group.dataElements">{{dataElement.code}} </button>
+          </div>
           </td>
           <td>
        	 <button ng-click="selectgroup(key,skey)" type="button" class="btn btn-{{style[skey][key]}}" aria-label="Left Align">

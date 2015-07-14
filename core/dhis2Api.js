@@ -11,10 +11,11 @@ var Dhis2Api = angular.module("Dhis2Api", ['ngResource']);
 
 var urlApi = "http://localhost:8080/dhis/api/";
 var urlBase = "http://localhost:8080/dhis/";
-var urlResource ={"vaccination":{url:"resources/vaccination datasets.json"},
-				"services":{url:"resources/datasets by service.json"},
-				"healthservice":{url:"resources/healthservice suffix.json"},
-				"servicebysite":{url:"resources/services by site type.json"}
+var urlResource ={"vaccination":{url:"resources/vaccinationDataset.json"},
+				"services":{url:"resources/datasetByService.json"},
+				"healthservice":{url:"resources/healthserviceSuffix.json"},
+				"servicebysite":{url:"resources/servicesBySiteType.json"},
+				"servicebyservicetype":{url:"resources/serviceByServiceType.json"}
 				};
 
 //Create all common variables of the apps 
@@ -133,3 +134,11 @@ Dhis2Api.factory("OrgUnitChildren",['$resource','commonvariable', function ($res
 		{ GET: { method: "GET"} });
 }]);
 
+Dhis2Api.factory("DataElements",['$resource','commonvariable', function ($resource,commonvariable) {
+	
+	return $resource(commonvariable.url+"dataElements",
+		{	
+		filter:'@filter'
+		},
+		{ Get: { method: "GET"} });
+}]);

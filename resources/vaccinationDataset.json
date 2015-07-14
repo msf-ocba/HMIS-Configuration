@@ -1,0 +1,278 @@
+{
+	"vaccinationDataset": [{
+		"name": "Routine Vaccination",
+		"dataElementGroup": [{
+			"name": "BCG",
+			"dataElements": [{
+				"code": "VAC1"
+			}]
+		},
+		{
+			"name": "Polio",
+			"dataElements": [{
+				"code": "VAC2"
+			},
+			{
+				"code": "VAC3"
+			},
+			{
+				"code": "VAC4"
+			},
+			{
+				"code": "VAC5"
+			}]
+		},
+		{
+			"name": "DPT",
+			"dataElements": [{
+				"code": "VAC6"
+			},
+			{
+				"code": "VAC7"
+			},
+			{
+				"code": "VAC8"
+			},
+			{
+				"code": "VAC9"
+			}]
+		},
+		{
+			"name": "Penta",
+			"dataElements": [{
+				"code": "VAC10"
+			},
+			{
+				"code": "VAC11"
+			},
+			{
+				"code": "VAC12"
+			},
+			{
+				"code": "VAC13"
+			}]
+		},
+		{
+			"name": "Measles",
+			"dataElements": [{
+				"code": "VAC14"
+			},
+			{
+				"code": "VAC15"
+			},
+			{
+				"code": "VAC16"
+			}]
+		},
+		{
+			"name": "Yellow Fever",
+			"dataElements": [{
+				"code": "VAC17"
+			}]
+		},
+		{
+			"name": "Haemophilus influenzae B",
+			"dataElements": [{
+				"code": "VAC18"
+			},
+			{
+				"code": "VAC19"
+			},
+			{
+				"code": "VAC20"
+			}]
+		},
+		{
+			"name": "Hepatitis",
+			"dataElements": [{
+				"code": "VAC21"
+			},
+			{
+				"code": "VAC22"
+			},
+			{
+				"code": "VAC23"
+			},
+			{
+				"code": "VAC24"
+			}]
+		},
+		{
+			"name": "Pneumo",
+			"dataElements": [{
+				"code": "VAC25"
+			},
+			{
+				"code": "VAC26"
+			},
+			{
+				"code": "VAC27"
+			},
+			{
+				"code": "VAC28"
+			}]
+		},
+		{
+			"name": "MMR",
+			"dataElements": [{
+				"code": "VAC29"
+			},
+			{
+				"code": "VAC30"
+			}]
+		},
+		{
+			"name": "Rotavirus",
+			"dataElements": [{
+				"code": "VAC31"
+			},
+			{
+				"code": "VAC32"
+			},
+			{
+				"code": "VAC33"
+			}]
+		},
+		{
+			"name": "Japanese encephalitis",
+			"dataElements": [{
+				"code": "VAC34"
+			},
+			{
+				"code": "VAC35"
+			},
+			{
+				"code": "VAC36"
+			}]
+		},
+		{
+			"name": "Meningitis",
+			"dataElements": [{
+				"code": "VAC37"
+			}]
+		},
+		{
+			"name": "Other antigen",
+			"dataElements": [{
+				"code": "VAC501"
+			}]
+		},
+		{
+			"name": "Papilloma virus",
+			"dataElements": [{
+				"code": "VAC38"
+			},
+			{
+				"code": "VAC39"
+			},
+			{
+				"code": "VAC40"
+			}]
+		},
+		{
+			"name": "IPTi",
+			"dataElements": [{
+				"code": "VAC106"
+			},
+			{
+				"code": "VAC107"
+			},
+			{
+				"code": "VAC108"
+			}]
+		}]
+	},
+	{
+		"name": "Women TT",
+		"dataElementGroup": [{
+			"name": "Women TT",
+			"dataElements": [{
+				"code": "VAC41"
+			},
+			{
+				"code": "VAC42"
+			},
+			{
+				"code": "VAC43"
+			},
+			{
+				"code": "VAC44"
+			},
+			{
+				"code": "VAC45"
+			},
+			{
+				"code": "VAC109"
+			},
+			{
+				"code": "VAC110"
+			},
+			{
+				"code": "VAC111"
+			},
+			{
+				"code": "VAC112"
+			},
+			{
+				"code": "VAC113"
+			}]
+		}]
+	},
+	{
+		"name": "Wounded",
+		"dataElementGroup": [{
+			"name": "Wounded",
+			"dataElements": [{
+				"code": "VAC68"
+			},
+			{
+				"code": "VAC69"
+			},
+			{
+				"code": "VAC70"
+			}]
+		}]
+	},
+	{
+		"name": "Rabies",
+		"dataElementGroup": [{
+			"name": "Rabies",
+			"dataElements": [{
+				"code": "VAC46"
+			},
+			{
+				"code": "VAC47"
+			},
+			{
+				"code": "VAC48"
+			},
+			{
+				"code": "VAC49"
+			}]
+		}]
+	},
+	{
+		"name": "Sexual Violence Vaccination",
+		"dataElementGroup": [{
+			"name": "Sexual Violence Vaccination",
+			"dataElements": [{
+				"code": "VAC71"
+			},
+			{
+				"code": "VAC72"
+			},
+			{
+				"code": "VAC73"
+			},
+			{
+				"code": "VAC74"
+			},
+			{
+				"code": "VAC75"
+			},
+			{
+				"code": "VAC76"
+			}]
+		}]
+	}]
+}
