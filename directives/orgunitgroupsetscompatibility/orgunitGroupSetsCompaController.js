@@ -21,7 +21,9 @@ Dhis2Api.controller("d2DropdownorgunitgroupsetcompaController", ['$scope','$http
     });
     
 	OrgUnitGroupSet.get({uid:$scope.uidgroupset}).$promise.then(function(data) {
-		$scope.ListOrgUnitGroups=data;			
+		$scope.ListOrgUnitGroups=data;		
+		
+		$scope.ougName= data.organisationUnitGroups[1].name;
 		
 		console.log(data);
 		

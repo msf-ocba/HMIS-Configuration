@@ -92,6 +92,7 @@ appConfigProjectMSF.controller('missionController', ["$scope",'$filter',"commonv
 	    datetoday = new Date();
 	    $scope.propendate=datetoday.getFullYear()+"-"+((datetoday.getMonth()+1)<=9?"0"+(datetoday.getMonth()+1):(datetoday.getMonth()+1))+"-"+(datetoday.getDate()<=9?"0"+datetoday.getDate():datetoday.getDate());
 	  };
+	  
 	  $scope.today();
 
 	  $scope.clear = function () {
