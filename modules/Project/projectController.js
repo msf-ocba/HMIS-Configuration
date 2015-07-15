@@ -55,9 +55,23 @@ appConfigProjectMSF.controller('projectController', ["$scope",'$filter',"commonv
 		
 	
 	
-	$scope.showForm=function(){
-		$scope.showfields=true;
+	$scope.showForm=function(frm){
+		
+		console.log("Ejecuto showForm");
+		
+		if(frm==1){
+			$scope.frmSite=true;
+		}
+		else{
+			$scope.frmSite=false;
+		}
+
+		
+	//	$scope.showfields=true;
 	};
+	
+	
+	
 	$scope.hideForm=function(){
 		$scope.mdname="";
 		$scope.today();
