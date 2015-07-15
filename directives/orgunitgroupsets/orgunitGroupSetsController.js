@@ -11,7 +11,6 @@ Dhis2Api.directive('d2Dropdownorgunitgroupset', function(){
 
 Dhis2Api.controller("d2DropdownorgunitgroupsetController", ['$scope','$http', 'OrgUnitGroupSet',"commonvariable", "OrgUnitGroupByOrgUnit", function ($scope, $http, OrgUnitGroupSet, commonvariable, OrgUnitGroupByOrgUnit) {
 	
-	console.log("And the operation is: " + $scope.operation);
 	
 	if ($scope.operation=="show") {
 		showOrgUnit();
@@ -38,7 +37,6 @@ Dhis2Api.controller("d2DropdownorgunitgroupsetController", ['$scope','$http', 'O
 	}
 	
 	showOrgUnit = function() {
-		console.log("Entro aqui!!!");
 		
 		OrgUnitGroupByOrgUnit.get({uid:commonvariable.OrganisationUnit.id}).$promise.then(function(data) {
 			
@@ -54,7 +52,6 @@ Dhis2Api.controller("d2DropdownorgunitgroupsetController", ['$scope','$http', 'O
 					for (var j=0; j<ougsOrgUnitGroups.length;j++) {
 						if (ouOrgUnitGroups[i].id==ougsOrgUnitGroups[j].id) {
 							$scope.ougName = ouOrgUnitGroups[i].name;
-							console.log("It finds something!");
 							break;
 						}
 							

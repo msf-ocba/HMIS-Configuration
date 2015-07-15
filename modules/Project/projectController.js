@@ -57,8 +57,6 @@ appConfigProjectMSF.controller('projectController', ["$scope",'$filter',"commonv
 	
 	$scope.showForm=function(frm){
 		
-		console.log("Ejecuto showForm");
-		
 		if(frm==1){
 			$scope.frmSite=true;
 		}
