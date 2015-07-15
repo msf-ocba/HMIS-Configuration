@@ -7,75 +7,75 @@
 			"services": [
 				{
 				"name": "External Consultations",
-				"code": "OUG_HSV_EC",
+				"code": "OUG_HSV_EC"
 				},
 				{
 				"name": "External Consultations (children)",
-				"code": "OUG_HSV_ECp",
+				"code": "OUG_HSV_ECp"
 				},
 				{
 				"name": "Gender Based Violence",
-				"code": "OUG_HSV_GBV",
+				"code": "OUG_HSV_GBV"
 				},
 				{
 				"name": "HIV",
-				"code": "OUG_HSV_HIV",
+				"code": "OUG_HSV_HIV"
 				},
 				{
 				"name": "Mental Health",
-				"code": "OUG_HSV_MH",
+				"code": "OUG_HSV_MH"
 				},
 				{
 				"name": "NUT ATFC",
-				"code": "OUG_HSV_ATFC",
+				"code": "OUG_HSV_ATFC"
 				},
 				{
 				"name": "NUT TSFC",
-				"code": "OUG_HSV_TSFC",
+				"code": "OUG_HSV_TSFC"
 				},
 				{
 				"name": "Outbreak Cholera",
-				"code": "OUG_HSV_CHO",
+				"code": "OUG_HSV_CHO"
 				},
 				{
 				"name": "Outbreak Dengue",
-				"code": "OUG_HSV_DEN",
+				"code": "OUG_HSV_DEN"
 				},
 				{
 				"name": "Outbreak Measles",
-				"code": "OUG_HSV_MSL",
+				"code": "OUG_HSV_MSL"
 				},
 				{
 				"name": "Outbreak Meningitis",
-				"code": "OUG_HSV_MNG",
+				"code": "OUG_HSV_MNG"
 				},
 				{
 				"name": "Outbreak Malaria OPD",
-				"code": "OUG_HSV_MALOPD",
+				"code": "OUG_HSV_MALOPD"
 				},
 				{
 				"name": "Sexual & Rep. Health OPD",
-				"code": "OUG_HSV_SRHOPD",
+				"code": "OUG_HSV_SRHOPD"
 				},
 				{
 				"name": "Surveillance Epid",
-				"code": "OUG_HSV_EWS",
+				"code": "OUG_HSV_EWS"
 				},
 				{
 				"name": "Surveillance Mortality",
-				"code": "OUG_HSV_MOR",
+				"code": "OUG_HSV_MOR"
 				},
 				{
 				"name": "Surveillance Nutrition",
-				"code": "OUG_HSV_NUT",
+				"code": "OUG_HSV_NUT"
 				},
 				{
 				"name": "TB",
-				"code": "OUG_HSV_TB",
+				"code": "OUG_HSV_TB"
 				},
 				{
 				"name": "Vaccination",
-				"code": "OUG_HSV_VAC",
+				"code": "OUG_HSV_VAC"
 				}
 			]},
 			{
@@ -84,111 +84,111 @@
 			"services": [
 				{
 				"name": "Diagnostic test",
-				"code": "OUG_HSV_DT",
+				"code": "OUG_HSV_DT"
 				},
 				{
 				"name": "Emergency Room",
-				"code": "OUG_HSV_ER",
+				"code": "OUG_HSV_ER"
 				},
 				{
 				"name": "External Consultations",
-				"code": "OUG_HSV_EC",
+				"code": "OUG_HSV_EC"
 				},
 				{
 				"name": "External Consultations (children)",
-				"code": "OUG_HSV_ECp",
+				"code": "OUG_HSV_ECp"
 				},
 				{
 				"name": "Gender Based Violence",
-				"code": "OUG_HSV_GBV",
+				"code": "OUG_HSV_GBV"
 				},
 				{
 				"name": "HIV",
-				"code": "OUG_HSV_HIV",
+				"code": "OUG_HSV_HIV"
 				},
 				{
 				"name": "Hospitalization Ward",
-				"code": "OUG_HSV_IPD",
+				"code": "OUG_HSV_IPD"
 				},
 				{
 				"name": "Hospitalization Ward (children)",
-				"code": "OUG_HSV_IPDp",
+				"code": "OUG_HSV_IPDp"
 				},
 				{
 				"name": "Mental Health",
-				"code": "OUG_HSV_MH",
+				"code": "OUG_HSV_MH"
 				},
 				{
 				"name": "Neonatology",
-				"code": "OUG_HSV_NEO",
+				"code": "OUG_HSV_NEO"
 				},
 				{
 				"name": "NUT ATFC",
-				"code": "OUG_HSV_ATFC",
+				"code": "OUG_HSV_ATFC"
 				},
 				{
 				"name": "NUT ITFC",
-				"code": "OUG_HSV_ITFC",
+				"code": "OUG_HSV_ITFC"
 				},
 				{
 				"name": "NUT TSFC",
-				"code": "OUG_HSV_TSFC",
+				"code": "OUG_HSV_TSFC"
 				},
 				{
 				"name": "Observation Room",
-				"code": "OUG_HSV_OR",
+				"code": "OUG_HSV_OR"
 				},
 				{
 				"name": "Outbreak Cholera",
-				"code": "OUG_HSV_CHO",
+				"code": "OUG_HSV_CHO"
 				},
 				{
 				"name": "Outbreak Dengue",
-				"code": "OUG_HSV_DEN",
+				"code": "OUG_HSV_DEN"
 				},
 				{
 				"name": "Outbreak Measles",
-				"code": "OUG_HSV_MSL",
+				"code": "OUG_HSV_MSL"
 				},
 				{
 				"name": "Outbreak Meningitis",
-				"code": "OUG_HSV_MNG",
+				"code": "OUG_HSV_MNG"
 				},
 				{
 				"name": "Outbreak Malaria IPD",
-				"code": "OUG_HSV_MALIPD",
+				"code": "OUG_HSV_MALIPD"
 				},
 				{
 				"name": "Outbreak Malaria OPD",
-				"code": "OUG_HSV_MALOPD",
+				"code": "OUG_HSV_MALOPD"
 				},
 				{
 				"name": "Sexual & Rep. Health IPD",
-				"code": "OUG_HSV_SRHIPD",
+				"code": "OUG_HSV_SRHIPD"
 				},
 				{
 				"name": "Sexual & Rep. Health OPD",
-				"code": "OUG_HSV_SRHOPD",
+				"code": "OUG_HSV_SRHOPD"
 				},
 				{
 				"name": "Surveillance Epid",
-				"code": "OUG_HSV_EWS",
+				"code": "OUG_HSV_EWS"
 				},
 				{
 				"name": "Surveillance Mortality",
-				"code": "OUG_HSV_MOR",
+				"code": "OUG_HSV_MOR"
 				},
 				{
 				"name": "Surveillance Nutrition",
-				"code": "OUG_HSV_NUT",
+				"code": "OUG_HSV_NUT"
 				},
 				{
 				"name": "TB",
-				"code": "OUG_HSV_TB",
+				"code": "OUG_HSV_TB"
 				},
 				{
 				"name": "Vaccination",
-				"code": "OUG_HSV_VAC",
+				"code": "OUG_HSV_VAC"
 				}
 			]},
 			{
@@ -197,75 +197,75 @@
 			"services": [
 				{
 				"name": "External Consultations",
-				"code": "OUG_HSV_EC",
+				"code": "OUG_HSV_EC"
 				},
 				{
 				"name": "External Consultations (children)",
-				"code": "OUG_HSV_ECp",
+				"code": "OUG_HSV_ECp"
 				},
 				{
 				"name": "Gender Based Violence",
-				"code": "OUG_HSV_GBV",
+				"code": "OUG_HSV_GBV"
 				},
 				{
 				"name": "HIV",
-				"code": "OUG_HSV_HIV",
+				"code": "OUG_HSV_HIV"
 				},
 				{
 				"name": "Mental Health",
-				"code": "OUG_HSV_MH",
+				"code": "OUG_HSV_MH"
 				},
 				{
 				"name": "NUT ATFC",
-				"code": "OUG_HSV_ATFC",
+				"code": "OUG_HSV_ATFC"
 				},
 				{
 				"name": "NUT TSFC",
-				"code": "OUG_HSV_TSFC",
+				"code": "OUG_HSV_TSFC"
 				},
 				{
 				"name": "Outbreak Cholera",
-				"code": "OUG_HSV_CHO",
+				"code": "OUG_HSV_CHO"
 				},
 				{
 				"name": "Outbreak Dengue",
-				"code": "OUG_HSV_DEN",
+				"code": "OUG_HSV_DEN"
 				},
 				{
 				"name": "Outbreak Measles",
-				"code": "OUG_HSV_MSL",
+				"code": "OUG_HSV_MSL"
 				},
 				{
 				"name": "Outbreak Meningitis",
-				"code": "OUG_HSV_MNG",
+				"code": "OUG_HSV_MNG"
 				},
 				{
 				"name": "Outbreak Malaria OPD",
-				"code": "OUG_HSV_MALOPD",
+				"code": "OUG_HSV_MALOPD"
 				},
 				{
 				"name": "Sexual & Rep. Health OPD",
-				"code": "OUG_HSV_SRHOPD",
+				"code": "OUG_HSV_SRHOPD"
 				},
 				{
 				"name": "Surveillance Epid",
-				"code": "OUG_HSV_EWS",
+				"code": "OUG_HSV_EWS"
 				},
 				{
 				"name": "Surveillance Mortality",
-				"code": "OUG_HSV_MOR",
+				"code": "OUG_HSV_MOR"
 				},
 				{
 				"name": "Surveillance Nutrition",
-				"code": "OUG_HSV_NUT",
+				"code": "OUG_HSV_NUT"
 				},
 				{
 				"name": "TB",
-				"code": "OUG_HSV_TB",
+				"code": "OUG_HSV_TB"
 				},
 				{
 				"name": "Vaccination",
-				"code": "OUG_HSV_VAC",
+				"code": "OUG_HSV_VAC"
 				}
 			]},
 			{
@@ -274,27 +274,27 @@
 			"services": [
 				{
 				"name": "Outbreak Cholera",
-				"code": "OUG_HSV_CHO",
+				"code": "OUG_HSV_CHO"
 				},
 				{
 				"name": "Outbreak Dengue",
-				"code": "OUG_HSV_DEN",
+				"code": "OUG_HSV_DEN"
 				},
 				{
 				"name": "Outbreak Measles",
-				"code": "OUG_HSV_MSL",
+				"code": "OUG_HSV_MSL"
 				},
 				{
 				"name": "Outbreak Meningitis",
-				"code": "OUG_HSV_MNG",
+				"code": "OUG_HSV_MNG"
 				},
 				{
 				"name": "Surveillance Epid",
-				"code": "OUG_HSV_EWS",
+				"code": "OUG_HSV_EWS"
 				},
 				{
 				"name": "Surveillance Mortality",
-				"code": "OUG_HSV_MOR",
+				"code": "OUG_HSV_MOR"
 				}
 			]},
 			{
@@ -303,119 +303,119 @@
 			"services": [
 				{
 				"name": "Diagnostic test",
-				"code": "OUG_HSV_DT",
+				"code": "OUG_HSV_DT"
 				},
 				{
 				"name": "Emergency Room",
-				"code": "OUG_HSV_ER",
+				"code": "OUG_HSV_ER"
 				},
 				{
 				"name": "External Consultations",
-				"code": "OUG_HSV_EC",
+				"code": "OUG_HSV_EC"
 				},
 				{
 				"name": "External Consultations (children)",
-				"code": "OUG_HSV_ECp",
+				"code": "OUG_HSV_ECp"
 				},
 				{
 				"name": "Gender Based Violence",
-				"code": "OUG_HSV_GBV",
+				"code": "OUG_HSV_GBV"
 				},
 				{
 				"name": "HIV",
-				"code": "OUG_HSV_HIV",
+				"code": "OUG_HSV_HIV"
 				},
 				{
 				"name": "Hospitalization Ward",
-				"code": "OUG_HSV_IPD",
+				"code": "OUG_HSV_IPD"
 				},
 				{
 				"name": "Hospitalization Ward (children)",
-				"code": "OUG_HSV_IPDp",
+				"code": "OUG_HSV_IPDp"
 				},
 				{
 				"name": "Mental Health",
-				"code": "OUG_HSV_MH",
+				"code": "OUG_HSV_MH"
 				},
 				{
 				"name": "Neonatology",
-				"code": "OUG_HSV_NEO",
+				"code": "OUG_HSV_NEO"
 				},
 				{
 				"name": "NUT ATFC",
-				"code": "OUG_HSV_ATFC",
+				"code": "OUG_HSV_ATFC"
 				},
 				{
 				"name": "NUT ITFC",
-				"code": "OUG_HSV_ITFC",
+				"code": "OUG_HSV_ITFC"
 				},
 				{
 				"name": "NUT TSFC",
-				"code": "OUG_HSV_TSFC",
+				"code": "OUG_HSV_TSFC"
 				},
 				{
 				"name": "Observation Room",
-				"code": "OUG_HSV_OR",
+				"code": "OUG_HSV_OR"
 				},
 				{
 				"name": "Operating Theatre",
-				"code": "OUG_HSV_OT",
+				"code": "OUG_HSV_OT"
 				},
 				{
 				"name": "Outbreak Cholera",
-				"code": "OUG_HSV_CHO",
+				"code": "OUG_HSV_CHO"
 				},
 				{
 				"name": "Outbreak Dengue",
-				"code": "OUG_HSV_DEN",
+				"code": "OUG_HSV_DEN"
 				},
 				{
 				"name": "Outbreak Measles",
-				"code": "OUG_HSV_MSL",
+				"code": "OUG_HSV_MSL"
 				},
 				{
 				"name": "Outbreak Meningitis",
-				"code": "OUG_HSV_MNG",
+				"code": "OUG_HSV_MNG"
 				},
 				{
 				"name": "Outbreak Malaria IPD",
-				"code": "OUG_HSV_MALIPD",
+				"code": "OUG_HSV_MALIPD"
 				},
 				{
 				"name": "Outbreak Malaria OPD",
-				"code": "OUG_HSV_MALOPD",
+				"code": "OUG_HSV_MALOPD"
 				},
 				{
 				"name": "Sexual & Rep. Health IPD",
-				"code": "OUG_HSV_SRHIPD",
+				"code": "OUG_HSV_SRHIPD"
 				},
 				{
 				"name": "Sexual & Rep. Health OPD",
-				"code": "OUG_HSV_SRHOPD",
+				"code": "OUG_HSV_SRHOPD"
 				},
 				{
 				"name": "Surgical Ward",
-				"code": "OUG_HSV_SW",
+				"code": "OUG_HSV_SW"
 				},
 				{
 				"name": "Surveillance Epid",
-				"code": "OUG_HSV_EWS",
+				"code": "OUG_HSV_EWS"
 				},
 				{
 				"name": "Surveillance Mortality",
-				"code": "OUG_HSV_MOR",
+				"code": "OUG_HSV_MOR"
 				},
 				{
 				"name": "Surveillance Nutrition",
-				"code": "OUG_HSV_NUT",
+				"code": "OUG_HSV_NUT"
 				},
 				{
 				"name": "TB",
-				"code": "OUG_HSV_TB",
+				"code": "OUG_HSV_TB"
 				},
 				{
 				"name": "Vaccination",
-				"code": "OUG_HSV_VAC",
+				"code": "OUG_HSV_VAC"
 				}
 			]},
 			{
@@ -424,75 +424,75 @@
 			"services": [
 				{
 				"name": "External Consultations",
-				"code": "OUG_HSV_EC",
+				"code": "OUG_HSV_EC"
 				},
 				{
 				"name": "External Consultations (children)",
-				"code": "OUG_HSV_ECp",
+				"code": "OUG_HSV_ECp"
 				},
 				{
 				"name": "Gender Based Violence",
-				"code": "OUG_HSV_GBV",
+				"code": "OUG_HSV_GBV"
 				},
 				{
 				"name": "HIV",
-				"code": "OUG_HSV_HIV",
+				"code": "OUG_HSV_HIV"
 				},
 				{
 				"name": "Mental Health",
-				"code": "OUG_HSV_MH",
+				"code": "OUG_HSV_MH"
 				},
 				{
 				"name": "NUT ATFC",
-				"code": "OUG_HSV_ATFC",
+				"code": "OUG_HSV_ATFC"
 				},
 				{
 				"name": "NUT TSFC",
-				"code": "OUG_HSV_TSFC",
+				"code": "OUG_HSV_TSFC"
 				},
 				{
 				"name": "Outbreak Cholera",
-				"code": "OUG_HSV_CHO",
+				"code": "OUG_HSV_CHO"
 				},
 				{
 				"name": "Outbreak Dengue",
-				"code": "OUG_HSV_DEN",
+				"code": "OUG_HSV_DEN"
 				},
 				{
 				"name": "Outbreak Measles",
-				"code": "OUG_HSV_MSL",
+				"code": "OUG_HSV_MSL"
 				},
 				{
 				"name": "Outbreak Meningitis",
-				"code": "OUG_HSV_MNG",
+				"code": "OUG_HSV_MNG"
 				},
 				{
 				"name": "Outbreak Malaria OPD",
-				"code": "OUG_HSV_MALOPD",
+				"code": "OUG_HSV_MALOPD"
 				},
 				{
 				"name": "Sexual & Rep. Health OPD",
-				"code": "OUG_HSV_SRHOPD",
+				"code": "OUG_HSV_SRHOPD"
 				},
 				{
 				"name": "Surveillance Epid",
-				"code": "OUG_HSV_EWS",
+				"code": "OUG_HSV_EWS"
 				},
 				{
 				"name": "Surveillance Mortality",
-				"code": "OUG_HSV_MOR",
+				"code": "OUG_HSV_MOR"
 				},
 				{
 				"name": "Surveillance Nutrition",
-				"code": "OUG_HSV_NUT",
+				"code": "OUG_HSV_NUT"
 				},
 				{
 				"name": "TB",
-				"code": "OUG_HSV_TB",
+				"code": "OUG_HSV_TB"
 				},
 				{
 				"name": "Vaccination",
-				"code": "OUG_HSV_VAC",
+				"code": "OUG_HSV_VAC"
 				}
 			]},
 			{
@@ -501,75 +501,75 @@
 			"services": [
 				{
 				"name": "External Consultations",
-				"code": "OUG_HSV_EC",
+				"code": "OUG_HSV_EC"
 				},
 				{
 				"name": "External Consultations (children)",
-				"code": "OUG_HSV_ECp",
+				"code": "OUG_HSV_ECp"
 				},
 				{
 				"name": "Gender Based Violence",
-				"code": "OUG_HSV_GBV",
+				"code": "OUG_HSV_GBV"
 				},
 				{
 				"name": "HIV",
-				"code": "OUG_HSV_HIV",
+				"code": "OUG_HSV_HIV"
 				},
 				{
 				"name": "Mental Health",
-				"code": "OUG_HSV_MH",
+				"code": "OUG_HSV_MH"
 				},
 				{
 				"name": "NUT ATFC",
-				"code": "OUG_HSV_ATFC",
+				"code": "OUG_HSV_ATFC"
 				},
 				{
 				"name": "NUT TSFC",
-				"code": "OUG_HSV_TSFC",
+				"code": "OUG_HSV_TSFC"
 				},
 				{
 				"name": "Outbreak Cholera",
-				"code": "OUG_HSV_CHO",
+				"code": "OUG_HSV_CHO"
 				},
 				{
 				"name": "Outbreak Dengue",
-				"code": "OUG_HSV_DEN",
+				"code": "OUG_HSV_DEN"
 				},
 				{
 				"name": "Outbreak Measles",
-				"code": "OUG_HSV_MSL",
+				"code": "OUG_HSV_MSL"
 				},
 				{
 				"name": "Outbreak Meningitis",
-				"code": "OUG_HSV_MNG",
+				"code": "OUG_HSV_MNG"
 				},
 				{
 				"name": "Outbreak Malaria OPD",
-				"code": "OUG_HSV_MALOPD",
+				"code": "OUG_HSV_MALOPD"
 				},
 				{
 				"name": "Sexual & Rep. Health OPD",
-				"code": "OUG_HSV_SRHOPD",
+				"code": "OUG_HSV_SRHOPD"
 				},
 				{
 				"name": "Surveillance Epid",
-				"code": "OUG_HSV_EWS",
+				"code": "OUG_HSV_EWS"
 				},
 				{
 				"name": "Surveillance Mortality",
-				"code": "OUG_HSV_MOR",
+				"code": "OUG_HSV_MOR"
 				},
 				{
 				"name": "Surveillance Nutrition",
-				"code": "OUG_HSV_NUT",
+				"code": "OUG_HSV_NUT"
 				},
 				{
 				"name": "TB",
-				"code": "OUG_HSV_TB",
+				"code": "OUG_HSV_TB"
 				},
 				{
 				"name": "Vaccination",
-				"code": "OUG_HSV_VAC",
+				"code": "OUG_HSV_VAC"
 				}
 			]},
 			{
@@ -578,75 +578,75 @@
 			"services": [
 				{
 				"name": "External Consultations",
-				"code": "OUG_HSV_EC",
+				"code": "OUG_HSV_EC"
 				},
 				{
 				"name": "External Consultations (children)",
-				"code": "OUG_HSV_ECp",
+				"code": "OUG_HSV_ECp"
 				},
 				{
 				"name": "Gender Based Violence",
-				"code": "OUG_HSV_GBV",
+				"code": "OUG_HSV_GBV"
 				},
 				{
 				"name": "HIV",
-				"code": "OUG_HSV_HIV",
+				"code": "OUG_HSV_HIV"
 				},
 				{
 				"name": "Mental Health",
-				"code": "OUG_HSV_MH",
+				"code": "OUG_HSV_MH"
 				},
 				{
 				"name": "NUT ATFC",
-				"code": "OUG_HSV_ATFC",
+				"code": "OUG_HSV_ATFC"
 				},
 				{
 				"name": "NUT TSFC",
-				"code": "OUG_HSV_TSFC",
+				"code": "OUG_HSV_TSFC"
 				},
 				{
 				"name": "Outbreak Cholera",
-				"code": "OUG_HSV_CHO",
+				"code": "OUG_HSV_CHO"
 				},
 				{
 				"name": "Outbreak Dengue",
-				"code": "OUG_HSV_DEN",
+				"code": "OUG_HSV_DEN"
 				},
 				{
 				"name": "Outbreak Measles",
-				"code": "OUG_HSV_MSL",
+				"code": "OUG_HSV_MSL"
 				},
 				{
 				"name": "Outbreak Meningitis",
-				"code": "OUG_HSV_MNG",
+				"code": "OUG_HSV_MNG"
 				},
 				{
 				"name": "Outbreak Malaria OPD",
-				"code": "OUG_HSV_MALOPD",
+				"code": "OUG_HSV_MALOPD"
 				},
 				{
 				"name": "Sexual & Rep. Health OPD",
-				"code": "OUG_HSV_SRHOPD",
+				"code": "OUG_HSV_SRHOPD"
 				},
 				{
 				"name": "Surveillance Epid",
-				"code": "OUG_HSV_EWS",
+				"code": "OUG_HSV_EWS"
 				},
 				{
 				"name": "Surveillance Mortality",
-				"code": "OUG_HSV_MOR",
+				"code": "OUG_HSV_MOR"
 				},
 				{
 				"name": "Surveillance Nutrition",
-				"code": "OUG_HSV_NUT",
+				"code": "OUG_HSV_NUT"
 				},
 				{
 				"name": "TB",
-				"code": "OUG_HSV_TB",
+				"code": "OUG_HSV_TB"
 				},
 				{
 				"name": "Vaccination",
-				"code": "OUG_HSV_VAC",
+				"code": "OUG_HSV_VAC"
 				}
 			]}
 		]
