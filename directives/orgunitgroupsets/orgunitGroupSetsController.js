@@ -13,22 +13,28 @@ Dhis2Api.controller("d2DropdownorgunitgroupsetController", ['$scope','$http', 'O
 	
 	
 	if ($scope.operation=="show") {
+		$scope.disabled=true;
 		showOrgUnit();
 	}
+	
+	else {
 
+		
+		$scope.disabled=false;
+		
+		OrgUnitGroupSet.get({uid:$scope.uidgroupset}).$promise.then(function(data) {
 			
-	OrgUnitGroupSet.get({uid:$scope.uidgroupset}).$promise.then(function(data) {
-			
-		$scope.ListOrgUnitGroups=data;	
+			$scope.ListOrgUnitGroups=data;	
 				
 		
-	  });
+		});
 	
-	if(commonvariable.OrganisationUnit!=undefined && commonvariable.OrganisationUnit.level == 4){
+		if(commonvariable.OrganisationUnit!=undefined && commonvariable.OrganisationUnit.level == 4){
 
-		//Falta por completar
+			//Falta por completar
+		}
+		else console.log("La unidad no existe");
 	}
-	else console.log("La unidad no existe");
 	
 	
 	$scope.selectOrgUnitGroup = function(ougSelected){ 
