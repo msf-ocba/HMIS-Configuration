@@ -32,16 +32,16 @@ appConfigProjectMSF.controller('missionController', ["$scope",'$filter',"commonv
 				  newOu.id=data.lastImported;
 				  commonvariable.NewOrganisationUnit=newOu;
 				 
-				  if (commonvariable.orgUnitGroupSet.Lnx11vt4CsQ!=undefined)
-					  OrgUnitGroupsOrgUnit.POST({uidgroup:commonvariable.orgUnitGroupSet.Lnx11vt4CsQ.id, uidorgunit:newOu.id});
-				  if (commonvariable.orgUnitGroupSet.k63xi1QH8eP!=undefined)
-					  OrgUnitGroupsOrgUnit.POST({uidgroup:commonvariable.orgUnitGroupSet.k63xi1QH8eP.id, uidorgunit:newOu.id});
-				  if (commonvariable.orgUnitGroupSet.ugFKDWBnbki!=undefined)
-					  OrgUnitGroupsOrgUnit.POST({uidgroup:commonvariable.orgUnitGroupSet.ugFKDWBnbki.id, uidorgunit:newOu.id});
-				  if (commonvariable.orgUnitGroupSet.yKKi6EHh1ri!=undefined)
-					  OrgUnitGroupsOrgUnit.POST({uidgroup:commonvariable.orgUnitGroupSet.yKKi6EHh1ri.id, uidorgunit:newOu.id});
-				  if (commonvariable.orgUnitGroupSet.cbGfyYMVRJs!=undefined)
-					  OrgUnitGroupsOrgUnit.POST({uidgroup:commonvariable.orgUnitGroupSet.cbGfyYMVRJs.id, uidorgunit:newOu.id});
+				  if (commonvariable.orgUnitGroupSet.rQjuGZcxNxE!=undefined)
+					  OrgUnitGroupsOrgUnit.POST({uidgroup:commonvariable.orgUnitGroupSet.rQjuGZcxNxE.id, uidorgunit:newOu.id});
+				  if (commonvariable.orgUnitGroupSet.lR7GVB43jaX!=undefined)
+					  OrgUnitGroupsOrgUnit.POST({uidgroup:commonvariable.orgUnitGroupSet.lR7GVB43jaX.id, uidorgunit:newOu.id});
+				  if (commonvariable.orgUnitGroupSet.DIYl9kZDij3!=undefined)
+					  OrgUnitGroupsOrgUnit.POST({uidgroup:commonvariable.orgUnitGroupSet.DIYl9kZDij3.id, uidorgunit:newOu.id});
+				  if (commonvariable.orgUnitGroupSet.iiFM3YudVxq!=undefined)
+					  OrgUnitGroupsOrgUnit.POST({uidgroup:commonvariable.orgUnitGroupSet.iiFM3YudVxq.id, uidorgunit:newOu.id});
+				  if (commonvariable.orgUnitGroupSet.ZximACPowCs!=undefined)
+					  OrgUnitGroupsOrgUnit.POST({uidgroup:commonvariable.orgUnitGroupSet.ZximACPowCs.id, uidorgunit:newOu.id});
 				  
 
 				 //set message variable
