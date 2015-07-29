@@ -41,6 +41,11 @@
 	"CONTEXT": "Contexto",
 	"PROJECT_DETAILS": "Detalles del proyecto",
 	"VACCINATION_DATASET":"Crear formulario de vacunación",
+	"VACCINATION_DATASET_NAME":"Nombre",
+	"VACCINATION_DATASET_CODE":"Codigo",
+	"VACCINATION_DATASET_PERIOD":"Periodo",
+	"VACCINATION_DATASET_DESCRIPTION":"Descripción",
+	"VACCINATION_DATASET_SELECT_TITTLE":"Seleccione los elementos de datos para el DataSet",
 	
 	
 	"_______________ Module":" HEALTH SITE_____________",

@@ -41,7 +41,12 @@
 	"CONTEXT": "Context",
 	"PROJECT_DETAILS": "Project Details",
 	"VACCINATION_DATASET":"Create vaccination dataset",
-	
+	"VACCINATION_DATASET_NAME":"Name",
+	"VACCINATION_DATASET_CODE":"Code",
+	"VACCINATION_DATASET_PERIOD":"Period",
+	"VACCINATION_DATASET_DESCRIPTION":"Description",
+	"VACCINATION_DATASET_SELECT_TITTLE":"Select the Dataelements for this DataSet",
+		
 	"_______________ Module":" HEALTH SITE_____________",
 	"HEALTHSITE_TITLE":"Health Site",
 	"HEALTHSITE_CREATE": "Create health site",

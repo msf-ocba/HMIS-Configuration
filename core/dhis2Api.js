@@ -17,6 +17,10 @@ var urlResource ={"vaccination":{url:"resources/vaccinationDataset.json"},
 				"servicebysite":{url:"resources/servicesBySiteType.json"},
 				"servicebyservicetype":{url:"resources/serviceByServiceType.json"}
 				};
+var Listperioddhis = [{code:'Daily',name:'PERIODTYPE_DAILY'},
+					{code:'Weekly',name:'PERIODTYPE_WEEKLY'},
+					{code:'Monthly',name:'PERIODTYPE_MONTHLY'},
+					{code:'Yearly',name:'PERIODTYPE_YEARLY'}];
 
 //Create all common variables of the apps 
 Dhis2Api.factory("commonvariable", function () {
@@ -28,7 +32,8 @@ Dhis2Api.factory("commonvariable", function () {
 			RefreshTreeOU:false,
 			NewOrganisationUnit:[],
 			orgUnitGroupSet:[],
-			urllocalresource:urlResource
+			urllocalresource:urlResource,
+			Listperiod:Listperioddhis
 			};
 
    return Vari; 
