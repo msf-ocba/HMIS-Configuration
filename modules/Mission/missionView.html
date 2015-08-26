@@ -35,15 +35,27 @@
 	</div>
 	</div>
 	</div>
-
 	<div class="row">
-		<div class="col-md-6">
-			<br>
-		</div>
-		<div class="col-md-6">
-				<button type="button" ng-click="showForm(1)" class="btn btn-primary">{{'PROJECT_CREATE' | translate}} </button>
-				<button type="button" ng-click="showForm(2)" class="btn btn-primary">{{'VACCINATION_DATASET' | translate}} </button>
-		</div>
+		       
+		<div class="col-md-12">
+            <div ng-show="!CreateDatasetVaccination">
+
+                <form class="navbar-form navbar-left" role="search">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <span class="input-group-addon">{{'VACCINATION_DATASET_NAME' | translate}}</span>
+                            <label class="form-control">{{VaccinationDataset.name}}</label>
+                        </div>
+                    </div>
+                 <button type="button" class="btn btn-primary">{{'VACCINATION_DATASET_BUTTON_UPDATE' | translate}}</button>
+                 <button type="button" ng-click="showForm(1)" class="btn btn-primary">{{'PROJECT_CREATE' | translate}} </button>              
+                 </form>
+
+            </div>
+            <div ng-show="CreateDatasetVaccination">
+                <button type="button" ng-click="showForm(2)" class="btn btn-primary">{{'VACCINATION_DATASET' | translate}} </button>
+                <button type="button" ng-click="showForm(1)" class="btn btn-primary">{{'PROJECT_CREATE' | translate}} </button>
+            </div>
 	</div>
 
 
@@ -136,17 +148,16 @@
 			 <div class="col-md-6">
 			 	<label for="dataSetName">{{'VACCINATION_DATASET_NAME' | translate}}</label>
 				<div class="input-group">
-					<span class="input-group-addon" id="basic-addon2">COM_VAC_</span>
-					<input type="text"  class="form-control" ng-model="dataSetName" name='dataSetName'>
- 				
-				</div>
+					<span class="input-group-addon" id="basic-addon2">{{preName}}</span>
+                    <label class="form-control">{{vaccinationName}}</label>
+    			</div>
 			</div>
 			<div class="col-md-6">
 			 	<label for="dataSetCode">{{'VACCINATION_DATASET_CODE' | translate}}</label>
 			 	<div class="input-group">
-					<span class="input-group-addon" id="basic-addon2">COM_VAC_</span>
-					<input type="text"  class="form-control" ng-model="dataSetCode" name='dataSetCode'>
-				</div>
+					<span class="input-group-addon" id="basic-addon2">{{preCode}}</span>
+					<label class="form-control">{{vaccinationCode}}</label> 
+                </div>
 			</div>
 	     </div> 
 	     <div class="row">
@@ -156,7 +167,7 @@
 			</div>
 			<div class="col-md-6">
 			 	<label for="dataSetCode">{{'VACCINATION_DATASET_DESCRIPTION' | translate}}</label>
-				<input type="text"  class="form-control" ng-model="dataSetCode" name='dataSetDescription'>
+				<input type="text"  class="form-control" ng-model="dataSetDescription" name='dataSetDescription'>
 			</div>
 	     </div>	
 	      <br>
@@ -165,9 +176,18 @@
 		</div>
 		</div>
 		</div>
+         <div class="row">
+             <div class="col-md-6">
+
+             </div>
+             <div class="col-md-6">
+                 <button type="button" class="btn btn-default" ng-click="">{{'PROJECT_CANCEL' | translate}} </button>
+                 <button ng-click="saveDatasetVaccination()" type="button" class="btn btn-primary">{{'PROJECT_SAVE' | translate}} </button>
+             </div>
+         </div>
+
     </div>
     </div>
- </div>
  </div>
  </div>
  </div>

@@ -22,6 +22,7 @@ var Listperioddhis = [{code:'Daily',name:'PERIODTYPE_DAILY'},
 					{code:'Monthly',name:'PERIODTYPE_MONTHLY'},
 					{code:'Yearly',name:'PERIODTYPE_YEARLY'}];
 
+var prefixVaccination = { vaccinationName: 'Vaccination_', vaccinationCode: 'DS_VAC_' };
 //Create all common variables of the apps 
 Dhis2Api.factory("commonvariable", function () {
 	var Vari={
@@ -33,7 +34,9 @@ Dhis2Api.factory("commonvariable", function () {
 			NewOrganisationUnit:[],
 			orgUnitGroupSet:[],
 			urllocalresource:urlResource,
-			Listperiod:Listperioddhis
+			Listperiod: Listperioddhis,
+			prefixVaccination: prefixVaccination,
+	        DataElementSelected:[]
 			};
 
    return Vari; 
@@ -76,7 +79,7 @@ Dhis2Api.factory("TreeOrganisationunit",['$resource','commonvariable', function 
 	return $resource(commonvariable.url+"organisationUnits/:uid", 
    {
 	uid:'@uid',
-    fields:'name,id,level,children[name,id,level,created]'
+	fields: 'name,id,level,shortName,children[name,id,shortName,level,created]'
    }, 
   { get: { method: "GET"} });
 }]);
@@ -147,3 +150,14 @@ Dhis2Api.factory("DataElements",['$resource','commonvariable', function ($resour
 		},
 		{ Get: { method: "GET"} });
 }]);
+
+
+Dhis2Api.factory("DataSets", ['$resource', 'commonvariable', function ($resource, commonvariable) {
+
+    return $resource(commonvariable.url + "dataSets",
+		{},
+		{   Get:{method:"GET"},
+		    Post: { method: "POST" }
+		});
+}]);
+

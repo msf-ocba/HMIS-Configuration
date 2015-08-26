@@ -96,7 +96,7 @@ Dhis2Api.controller("d2TreeorganisationUnitController", ['$scope','$location','T
    	
            	   	switch($scope.treetype){
             	   	case "single":
-            	   		commonvariable.OrganisationUnit=$scope.OrganisationUnit.currentNode;
+            	   	    commonvariable.OrganisationUnit = $scope.OrganisationUnit.currentNode;
             	   		break;
             	   	case "multiple":
             	   		commonvariable.OrganisationUnitList=$scope.OrganisationUnit.listNodesSelected;	

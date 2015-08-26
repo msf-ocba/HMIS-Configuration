@@ -13,24 +13,10 @@ Dhis2Api.controller("d2ResourcejsonController", ['$scope',"commonvariable","load
 
      $scope.GetDataelement=function(codes){
         $scope.ListnameDataelement=[];
-        $scope.GroupWithID=[];
         DataElements.Get({filter:'code:in:['+codes+"]"})
         .$promise.then(function(response){
             angular.forEach(response.dataElements, function(dvalue,dkey){
-                $scope.ListnameDataelement[dvalue.code]={id:dvalue.id,name:dvalue.name};
-                angular.forEach($scope.GroupDE,function(lvalue,lkey){
-                    angular.forEach(lvalue,function(levalue,lekey){
-                             if(dvalue.code==levalue){
-                                if($scope.GroupWithID[lkey])
-                                    $scope.GroupWithID[lkey].push({id:dvalue.id,name:dvalue.name,code:dvalue.code});
-                                else{
-                                    $scope.GroupWithID[lkey]=[];
-                                    $scope.GroupWithID[lkey].push({id:dvalue.id,name:dvalue.name,code:dvalue.code});
-                                }                           
-                               
-                            }
-                     });
-                });
+                $scope.ListnameDataelement[dvalue.code]={id:dvalue.id,name:dvalue.name};                
             });
         });
         
@@ -43,7 +29,7 @@ Dhis2Api.controller("d2ResourcejsonController", ['$scope',"commonvariable","load
        loadjsonresource.get($scope.id)
         .then(function(response){
                 $scope.sections=response.data.vaccinationDataset;
-                //get code of data eleement
+                //get code of data element
                 angular.forEach($scope.sections, function(vvalue,vkey){
                      angular.forEach(vvalue.dataElementGroup, function(dgvalue,dgkey){
                         angular.forEach(dgvalue.dataElements, function(devalue,dekey){
@@ -74,9 +60,18 @@ Dhis2Api.controller("d2ResourcejsonController", ['$scope',"commonvariable","load
     $scope.loadjson(function(){
                             $scope.DEListCode="["+$scope.DEListCode+"]";
                             $scope.GetDataelement($scope.DEListCode);
-                    });
+    });
+
     $scope.selectgroup=function(key,skey){
-        console.log($scope.GroupWithID[key]);
+        console.log($scope.sections[skey].dataElementGroup[key].dataElements);
+
+        ///
+         angular.forEach($scope.sections[skey].dataElementGroup[key].dataElements, function (dvalue, dkey) {
+            // console.log($scope.ListnameDataelement[dvalue.code]); 
+            commonvariable.DataElementSelected.push({ id: $scope.ListnameDataelement[dvalue.code].id });
+        });
+
+
         //config style for list of DataElements
         if($scope.style[skey]==undefined)
             $scope.style[skey]=[];
@@ -88,9 +83,8 @@ Dhis2Api.controller("d2ResourcejsonController", ['$scope',"commonvariable","load
 
     };
 
-   
 
-    /// esto ya no se necesita pero es un codigo interesante que lee recursivamente el json ////
+     /// esto ya no se necesita pero es un codigo interesante que lee recursivamente el json ////
     $scope.toType = function(obj) {
         return ({}).toString.call(obj).match(/\s([a-z|A-Z]+)/)[1].toLowerCase()
     }

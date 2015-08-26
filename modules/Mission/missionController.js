@@ -1,6 +1,29 @@
-appConfigProjectMSF.controller('missionController', ["$scope",'$filter',"commonvariable","Mission","OrgUnitGroupsOrgUnit", function($scope, $filter,commonvariable,Mission,OrgUnitGroupsOrgUnit) {
+appConfigProjectMSF.controller('missionController', ["$scope", '$filter', "commonvariable", "Mission", "OrgUnitGroupsOrgUnit", "DataSets", function ($scope, $filter, commonvariable, Mission, OrgUnitGroupsOrgUnit, DataSets) {
 	
-	//set message variable
+    //Load Data of OU selected
+    $scope.prevOu = "";
+    $scope.CreateDatasetVaccination = true;
+    $scope.initValue = function () {
+        $scope.vaccinationName = commonvariable.OrganisationUnit.name;
+        $scope.vaccinationCode = commonvariable.OrganisationUnit.shortName;
+        $scope.preName = commonvariable.prefixVaccination.vaccinationName;
+        $scope.preCode = commonvariable.prefixVaccination.vaccinationCode;
+    }
+    $scope.initValue();
+    ///get if there exist a Dataset for this Mission.
+    $scope.getDataset = function () {
+        $scope.initValue();
+        DataSets.Get({ filter: "name:eq:" + $scope.preName + $scope.vaccinationName, fields: 'id,name,code,description,dataElements' })
+               .$promise.then(function (data) {
+                   if (data.dataSets.length> 0) {
+                        $scope.CreateDatasetVaccination = false;
+                        $scope.VaccinationDataset = data.dataSets[0];
+                   }
+                   else
+                       $scope.CreateDatasetVaccination = true;
+               });
+    }
+    //set message variable
 	$scope.closeAlertMessage = function(index) {
        $scope.messages.splice(index, 1);
   	};
@@ -104,7 +127,34 @@ appConfigProjectMSF.controller('missionController', ["$scope",'$filter',"commonv
 		    $event.stopPropagation();
 		    $scope.opened = true;
 	  };
-/////////////////////////////////////////
+    /////////////////////////////////////////
+
+	   $scope.saveDatasetVaccination = function () {
+	       var newDataSet = {
+	           name: $scope.preName + $scope.vaccinationName,
+	           code: $scope.preCode + $scope.vaccinationCode,
+	           shortName: $scope.preCode + $scope.vaccinationCode,
+	           description: $scope.dataSetDescription,
+	           periodType: commonvariable.PeriodSelected.code,
+	           dataElements: commonvariable.DataElementSelected,
+	           organisationUnits: [{ id: commonvariable.OrganisationUnit.id }]
+	       };
+	       console.log(newDataSet);
+	       DataSets.Post({}, newDataSet)
+	        .$promise.then(function (data) {
+	            console.log(data);
+	            if (data.status == "SUCCESS") {
+	            }
+	        });
+	   };
+
+    ///
+	   $scope.$watch(function () {
+	       if (commonvariable.OrganisationUnit && commonvariable.OrganisationUnit.id != $scope.prevOu) {
+	           $scope.prevOu = commonvariable.OrganisationUnit.id;
+	           $scope.getDataset();
+	       }
+	   });
 	
 }]);
 
