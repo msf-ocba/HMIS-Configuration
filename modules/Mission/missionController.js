@@ -1,7 +1,8 @@
-appConfigProjectMSF.controller('missionController', ["$scope", '$filter', "commonvariable", "Mission", "OrgUnitGroupsOrgUnit", "DataSets", function ($scope, $filter, commonvariable, Mission, OrgUnitGroupsOrgUnit, DataSets) {
+appConfigProjectMSF.controller('missionController', ["$scope", '$filter', "commonvariable", "Mission", "OrgUnitGroupsOrgUnit", "DataSets", "OrgUnitChildren", function ($scope, $filter, commonvariable, Mission, OrgUnitGroupsOrgUnit, DataSets, OrgUnitChildren) {
 	
     //Load Data of OU selected
     $scope.prevOu = "";
+    $scope.showbutton = true;
     $scope.CreateDatasetVaccination = true;
     $scope.initValue = function () {
         $scope.vaccinationName = commonvariable.OrganisationUnit.name;
@@ -18,10 +19,16 @@ appConfigProjectMSF.controller('missionController', ["$scope", '$filter', "commo
                    if (data.dataSets.length> 0) {
                         $scope.CreateDatasetVaccination = false;
                         $scope.VaccinationDataset = data.dataSets[0];
+                        commonvariable.VaccinationDatasetSelected = $scope.VaccinationDataset;
                    }
                    else
                        $scope.CreateDatasetVaccination = true;
                });
+    }
+
+    // if there exist Vaccination DataSet   then show the DataElements  
+    $scope.showDataSetforEdit = function () {
+        $scope.showForm(2);
     }
     //set message variable
 	$scope.closeAlertMessage = function(index) {
@@ -33,7 +40,7 @@ appConfigProjectMSF.controller('missionController', ["$scope", '$filter', "commo
 	
 	var $translate = $filter('translate');
 	$scope.showfields=false;
-	//console.log(commonvariable.OrganisationUnit);
+
 	
 	
 	$scope.projectsave=function(){
@@ -84,7 +91,8 @@ appConfigProjectMSF.controller('missionController', ["$scope", '$filter', "commo
 	};
 	
 	
-	$scope.showForm=function(frm){
+	$scope.showForm = function (frm) {
+	    $scope.showbutton = false;
 		if(frm==1){
 			$scope.frmVaccination=false;
 			$scope.frmProject=true;
@@ -100,16 +108,10 @@ appConfigProjectMSF.controller('missionController', ["$scope", '$filter', "commo
 		$scope.today();
 		$scope.showfields=false;
 		$scope.frmVaccination=false;
-		$scope.frmProject=false;
+		$scope.frmProject = false;
+		$scope.showbutton = true;
 	};
-	$scope.$watch(
-		function($scope) {
-			if(commonvariable.OrganisationUnit!=undefined){
-				$scope.missionname=commonvariable.OrganisationUnit.name;
-				$scope.missioncreated=commonvariable.OrganisationUnit.created;
-		}
-		});
-	
+
     // Date datepicker
 	  $scope.today = function() {
 	    datetoday = new Date();
@@ -148,11 +150,24 @@ appConfigProjectMSF.controller('missionController', ["$scope", '$filter', "commo
 	        });
 	   };
 
+
+	   $scope.getChildrenByOUID = function (uidSelected) {
+	       OrgUnitChildren.get({ uid :uidSelected})
+           .$promise.then(function (dataChild){
+               $scope.ListChildren = dataChild.children;
+	        });
+	   }
     ///
 	   $scope.$watch(function () {
 	       if (commonvariable.OrganisationUnit && commonvariable.OrganisationUnit.id != $scope.prevOu) {
+	           $scope.missionname = commonvariable.OrganisationUnit.name;
+	           $scope.missioncreated = commonvariable.OrganisationUnit.created;
 	           $scope.prevOu = commonvariable.OrganisationUnit.id;
 	           $scope.getDataset();
+
+	           //get Children for OU selected
+
+	           $scope.getChildrenByOUID(commonvariable.OrganisationUnit.id);
 	       }
 	   });
 	

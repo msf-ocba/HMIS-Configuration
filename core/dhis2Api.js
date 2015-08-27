@@ -36,7 +36,8 @@ Dhis2Api.factory("commonvariable", function () {
 			urllocalresource:urlResource,
 			Listperiod: Listperioddhis,
 			prefixVaccination: prefixVaccination,
-	        DataElementSelected:[]
+			DataElementSelected: [],
+			VaccinationDatasetSelected: {}
 			};
 
    return Vari; 
@@ -134,7 +135,7 @@ Dhis2Api.factory("OrgUnitGroupsOrgUnit",['$resource','commonvariable', function 
 
 Dhis2Api.factory("OrgUnitChildren",['$resource','commonvariable', function ($resource,commonvariable) {
 	
-	return $resource(commonvariable.url+"organisationUnis/:uid",
+	return $resource(commonvariable.url+"organisationUnits/:uid",
 		{	
 		uid:'@uid',
 		fields:'children'

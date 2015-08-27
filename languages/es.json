@@ -16,11 +16,12 @@
 	"MISSION_NAME": "Nombre de la Misión",
 	"MISSION_PLACEHOLDER_NAME": "Entre el nombre de la Misión",
 	"MISSION_OPENING_DATE" : "Fecha de la Misión",
-  	"MISSION_PLACEHOLDER_OPENING_DATE" : "Entre la fecha de la Misión",
+  "MISSION_PLACEHOLDER_OPENING_DATE" : "Entre la fecha de la Misión",
 	"MISSION_CREATE": "Crear Misión",
 	"MISSION_SAVE": "Guardar Misión",
 	"MISSION_CANCEL": "Cancelar",
-  	"MISSION_DETAILS": "Detalles de la Misión",
+  "MISSION_DETAILS": "Detalles de la Misión",
+
 
 		
 	"_______________ Module ":" PROJECT _____________",
@@ -39,14 +40,16 @@
 	"TYPE_OF_MANAGEMENT": "Tipo de gestión",
 	"EVENTS": "Eventos",
 	"CONTEXT": "Contexto",
-	"PROJECT_DETAILS": "Detalles del proyecto",
+  "PROJECT_DETAILS": "Detalles del proyecto",
+  "PROJECT_LABEL_LIST": "Lista de proyecto",
 	"VACCINATION_DATASET":"Crear formulario de vacunación",
 	"VACCINATION_DATASET_NAME":"Nombre",
 	"VACCINATION_DATASET_CODE":"Codigo",
 	"VACCINATION_DATASET_PERIOD":"Periodo",
 	"VACCINATION_DATASET_DESCRIPTION":"Descripción",
-	"VACCINATION_DATASET_SELECT_TITTLE":"Seleccione los elementos de datos para el DataSet",
-	
+  "VACCINATION_DATASET_SELECT_TITTLE": "Seleccione los elementos de datos para el DataSet",
+  "VACCINATION_DATASET_BUTTON_UPDATE": "Editar",
+  "VACCINATION_DATASET_LABEL_UPDATE": "DataSet de Vacunación",	
 	
 	"_______________ Module":" HEALTH SITE_____________",
 	"HEALTHSITE_TITLE":"Establecimiento de Salud",

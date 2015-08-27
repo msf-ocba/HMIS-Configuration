@@ -3,12 +3,42 @@ Dhis2Api.directive('d2Resourcejson', function(){
 		restrict: 'E',
 		templateUrl: 'directives/resourcesjson/resourcesjsonView.html',
 		scope: {
-		      id: '@'
+		    id: '@'
 		    }
 	}
 	}); 
 Dhis2Api.controller("d2ResourcejsonController", ['$scope',"commonvariable","loadjsonresource","DataElements", function ($scope,commonvariable,loadjsonresource,DataElements) {
 	$scope.style=[];
+
+	
+
+    //waiting for dataset of OU selected
+	$scope.$watch(function () {
+	    if (commonvariable.VaccinationDatasetSelected && commonvariable.VaccinationDatasetSelected.id != $scope.preid) {
+	        $scope.preid = commonvariable.VaccinationDatasetSelected.id;
+	        $scope.checkingDEGroup();
+	    }
+	});
+
+	$scope.checkingDEGroup = function () {
+
+	    angular.forEach($scope.sections, function (vvalue, vkey) {
+	        angular.forEach(vvalue.dataElementGroup, function (dgvalue, dgkey) {
+	            angular.forEach(dgvalue.dataElements, function (devalue, dekey) {
+	                angular.forEach(commonvariable.VaccinationDatasetSelected.dataElements, function (Svalue, Skey) {
+	                    if (Svalue.code == devalue.code) {
+	                        $scope.selectgroup(dgkey, vkey);
+	                    }
+
+	                });
+	            });
+
+
+	        });
+
+	    });
+
+	};
 
 
      $scope.GetDataelement=function(codes){
