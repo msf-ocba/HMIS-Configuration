@@ -1,6 +1,138 @@
 <d2-authorization menuoption="F_APPROVE_DATA"></d2-authorization>
+
+<br/>
+
 <div class="row">
-<div class="col-md-12">
-	<h2>{{'HEALTHSITE_TITTLE' | translate}}</h2>
+<div class="col-md-11">
+<div class="panel panel-default">
+<div class="panel-body">
+
+<div ng-hide="showfields" class="col-md-12">
+<div class="panel panel-default">
+	<div class="panel-heading">{{'HEALTHSITE_DETAILS' | translate}}</div>
+	<div class="panel-body">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="row">
+					<div class="col-md-6">
+						<label for="InputName2">{{'HEALTHSITE_NAME' | translate}}</label>
+						<input  ng-model="healthsitename" type="text" class="form-control" id="ProyectName" disabled>
+					</div>
+					<div class="col-md-6">
+						<label for="InputName3">{{'HEALTHSITE_OPENING_DATE' | translate}}</label>
+						<input datepicker-popup="yyyy-MM-dd" ng-model="healthsitecreated" type="text" class="form-control" id="ProjectCreated" disabled>
+					</div>
+				</div>
+			</div>
+		</div>
+		<br/>
+		<div class="row">
+			<div class="col-md-12">
+			
+				<div class="row">
+					<div class="col-md-6">
+						<label for="sel12"> {{'HEALTHSITE_CODE' | translate }} </label>
+						<input ng-model="healthsitecode" type="text" class="form-control" id="ProyectName" disabled>
+					</div>
+				
+					<div class="col-md-6">
+						<label for="sel12"> {{'HEALTHSITE_TYPE' | translate }} </label>
+						<d2-dropdownorgunitgroupset uidgroupSet="ZxNjaKVXY1D" operation="show"></d2-dropdownorgunitgroupset>
+					</div>
+
+				</div>								
+			
+			</div>
+		</div>
+				
+				
+		
+		
+		</div>
+	</div>
+</div>
+
+		<div class="row">
+		<div class="col-md-12">
+			<div class="col-md-9">
+			</div>
+			<div class="col-md-3">
+				<h2>	<button ng-click="showForm(1)" type="button" class="btn btn-primary">{{'HEALTHSITE_CREATE' | translate}}</button></h2>
+			</div>
+		</div>
+		</div>
+
+<br/>
+
+
+<div ng-show="frmSite" class="col-md-12">
+
+<div class="panel panel-default">
+  <div class="panel-heading">{{'HEALTHSITE_TITLE' | translate}}</div>
+  <div class="panel-body">
+  	<div class="row">
+		<div class="col-md-12">
+			<div class="row">
+				<div class="col-md-6">
+					<label for="InputName2">{{'HEALTHSITE_NAME' | translate}}</label>
+					<input ng-model="siteName" type="text" class="form-control" id="siteName">
+				</div>
+				<div class="col-md-6">
+					<label for="InputName2">{{'HEALTHSITE_OPENING_DATE' | translate}}</label>
+					<p class="input-group">
+           		    <input type="text" class="form-control" datepicker-popup="yyyy-MM-dd" ng-model="siteDate" is-open="opened" min-date="minDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+              		<span class="input-group-btn">
+                		<button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+              		</span>
+            		</p>
+				</div>
+			</div>
+		</div>
+	</div>
+		<div class="col-md-12">
+	<div class="row">
+		</div>
+	</div>
+	
+	<!--  <div class="row">
+		<div class="col-md-12">
+			<label for="sel12"> Toy example </label>
+			<d2-dropdownorgunitgroupsetcompa uidgroupset="ZxNjaKVXY1D" file="servicebysite" ></d2-dropdownorgunitgroupsetcompa> 
+			
+		</div>
+	</div> -->
+	
+
+	<div class="row">
+		<div class="col-md-3">
+			<label for="sel12">{{'HEALTHSITE_PREFIX' | translate}}</label>
+			<input  ng-model="siteprefix" type="text" class="form-control" id="SitePrefix">
+		</div>
+	</div>
+						
+	
+	<div class="row">
+		<div class="col-md-12">
+			<label for="sel12"> {{'HEALTHSITE_TYPE' | translate }} </label>
+			<d2-dropdownorgunitgroupset uidgroupSet="ZxNjaKVXY1D" ></d2-dropdownorgunitgroupset>
+		</div>
+	</div>	
+
+<br>
+<div class="row">
+		<div class="col-md-6">
+			<button ng-click="sitesave()" type="button" class="btn btn-primary">{{'HEALTHSITE_SAVE' | translate}} </button>
+		</div>
+
+		<div class="col-md-6">
+			<button type="button" class="btn btn-danger" ng-click="hideForm()">{{'HEALTHSITE_CANCEL' | translate}} </button>
+		</div>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
 </div>
 </div>

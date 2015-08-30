@@ -60,6 +60,9 @@
 	"HEALTHSITE_CANCEL": "Cancelar",
 	"HEALTHSITE_TYPE": "Tipo de centro",
 	"HEALTHSITE_PREFIX": "Prefijo",
+	"HEALTHSITE_DETAILS": "Detalles del puesto de salud",
+	"HEALTHSITE_CODE":"Código",
+	
 	
 	"_______________ Module":" HEALTH SERVICE_____________",
 	"HEALTHSERVICE_TITLE":"Servicio de salud",

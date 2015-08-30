@@ -59,6 +59,8 @@
 	"HEALTHSITE_CANCEL": "Clear form",
 	"HEALTHSITE_TYPE": "Health site type",
 	"HEALTHSITE_PREFIX": "Prefix",
+	"HEALTHSITE_DETAILS":"Health Site Details",
+	"HEALTHSITE_CODE":"Code",
 	
 	
 	"_______________ Module":" HEALTH SERVICE_____________",
