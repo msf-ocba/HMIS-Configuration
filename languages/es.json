@@ -74,6 +74,8 @@
 	"HEALTHSERVICE":"Servicio de salud",
 	"HEALTHSERVICE_TYPE": "Tipo de servicio",
 	"HEALTHSERVICE_CODE": "Código",
+	"HEALTHSERVICE_CREATE": "Nuevo servicio de salud",
+	"HEALTHSERVICE_SUFFIX": "Sufijo",
 	
 	
 	

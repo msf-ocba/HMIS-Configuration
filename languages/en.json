@@ -73,8 +73,8 @@
 	"HEALTHSERVICE":"Health Service",
 	"HEALTHSERVICE_TYPE": "Health service type",
 	"HEALTHSERVICE_CODE": "Health service code",
-	
-	
+	"HEALTHSERVICE_CREATE": "Create Health service",
+	"HEALTHSERVICE_SUFFIX": "Code suffix",
 	
 	
 	"_______________ Directive ":" OrganisationUnit+tree_____________",
