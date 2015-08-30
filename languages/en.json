@@ -65,6 +65,16 @@
 	
 	"_______________ Module":" HEALTH SERVICE_____________",
 	"HEALTHSERVICE_TITLE":"Health title",
+	"HEALTHSERVICE_DETAILS":"Health Service Details",
+	"HEALTHSERVICE_SAVE": "Save health service",
+	"HEALTHSERVICE_CANCEL": "Clear form",
+	"HEALTHSERVICE_OPENING_DATE": "Opening date",
+	"HEALTHSERVICE_NAME": "Health service name",
+	"HEALTHSERVICE":"Health Service",
+	"HEALTHSERVICE_TYPE": "Health service type",
+	"HEALTHSERVICE_CODE": "Health service code",
+	
+	
 	
 	
 	"_______________ Directive ":" OrganisationUnit+tree_____________",

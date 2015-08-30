@@ -66,6 +66,15 @@
 	
 	"_______________ Module":" HEALTH SERVICE_____________",
 	"HEALTHSERVICE_TITLE":"Servicio de salud",
+	"HEALTHSERVICE_DETAILS": "Detalles del servicio de salud",
+	"HEALTHSERVICE_SAVE": "Guardar",
+	"HEALTHSERVICE_CANCEL": "Cancelar",
+	"HEALTHSERVICE_OPENING_DATE": "Fecha alta servicio",
+	"HEALTHSERVICE_NAME": "Nombre del servicio",
+	"HEALTHSERVICE":"Servicio de salud",
+	"HEALTHSERVICE_TYPE": "Tipo de servicio",
+	"HEALTHSERVICE_CODE": "Código",
+	
 	
 	
 	"_______________ Directive ":" OrganisationUnit+tree_____________",

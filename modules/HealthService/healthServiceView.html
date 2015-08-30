@@ -1,6 +1,65 @@
 <d2-authorization menuoption="F_APPROVE_DATA"></d2-authorization>
+
+<br/>
+
 <div class="row">
-<div class="col-md-12">
-	<h2>{{'HEALTHSERVICE_TITTLE' | translate}}</h2>
+<div class="col-md-11">
+<div class="panel panel-default">
+<div class="panel-body">
+
+<div ng-hide="showfields" class="col-md-12">
+<div class="panel panel-default">
+	<div class="panel-heading">{{'HEALTHSERVICE_DETAILS' | translate}}</div>
+	<div class="panel-body">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="row">
+					<div class="col-md-6">
+						<label for="InputName2">{{'HEALTHSERVICE_NAME' | translate}}</label>
+						<input  ng-model="healthservicename" type="text" class="form-control" id="ProyectName" disabled>
+					</div>
+					
+					<div class="col-md-6">
+						<label for="sel12"> {{'HEALTHSERVICE_CODE' | translate }} </label>
+						<input ng-model="healthservicecode" type="text" class="form-control" id="ProyectName" disabled>
+					</div>
+					
+					
+				</div>
+			</div>
+		</div>
+		<br/>
+		<div class="row">
+			<div class="col-md-12">
+			
+				<div class="row">
+					<div class="col-md-6">
+						<label for="sel12"> {{'HEALTHSERVICE' | translate }} </label>
+						<d2-dropdownorgunitgroupset uidgroupSet="BtFXTpKRl6n" operation="show"></d2-dropdownorgunitgroupset>
+					</div>
+				
+					<div class="col-md-6">
+						<label for="sel12"> {{'HEALTHSERVICE_TYPE' | translate }} </label>
+						<d2-dropdownorgunitgroupset uidgroupSet="akYeq1mMz2N" operation="show"></d2-dropdownorgunitgroupset>
+					</div>
+
+				</div>								
+			
+			</div>
+		</div>
+				
+				
+		
+		
+		</div>
+	</div>
+</div>
+
+
+<br/>
+
 </div>
 </div>
+</div>
+</div>
+
