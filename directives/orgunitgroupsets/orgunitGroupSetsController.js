@@ -6,8 +6,7 @@ Dhis2Api.directive('d2Dropdownorgunitgroupset', function(){
 	        uidgroupset: '@',
 	        operation: '@',
 	        uidgroupsetfilterby: '@',
-	        file: '@',
-	        filterBy: '@'
+	        file: '@'
 	      }
 		}
 	}); 
