@@ -1,5 +1,5 @@
 appConfigProjectMSF.controller('missionController', ["$scope", '$filter', "commonvariable", "OrgUnit", "OrgUnitGroupsOrgUnit", "DataSets", "OrgUnitChildren", function ($scope, $filter, commonvariable, OrgUnit, OrgUnitGroupsOrgUnit, DataSets, OrgUnitChildren) {
-	
+    var $translate = $filter('translate');
     //Load Data of OU selected
     $scope.prevOu = "";
     $scope.showbutton = true;
