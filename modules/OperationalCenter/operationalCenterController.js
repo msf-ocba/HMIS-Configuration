@@ -1,4 +1,4 @@
-appConfigProjectMSF.controller('operationalCenterController', ["$scope",'$filter',"commonvariable","Mission", function($scope, $filter,commonvariable,Mission) {
+appConfigProjectMSF.controller('operationalCenterController', ["$scope",'$filter',"commonvariable","OrgUnit", function($scope, $filter,commonvariable,OrgUnit) {
 	
 	//set message variable
 	$scope.closeAlertMessage = function(index) {
@@ -22,7 +22,7 @@ appConfigProjectMSF.controller('operationalCenterController', ["$scope",'$filter
 		console.log(commonvariable.OrganisationUnit.level+1);
 		console.log($scope.mdopendate);
 		console.log(commonvariable.OrganisationUnit);
-		Mission.POST({},newOu)
+		OrgUnit.POST({},newOu)
 		.$promise.then(function(data){
     		  console.log(data);
     		  if(data.status=="SUCCESS"){

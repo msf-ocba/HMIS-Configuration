@@ -1,4 +1,4 @@
-appConfigProjectMSF.controller('missionController', ["$scope", '$filter', "commonvariable", "Mission", "OrgUnitGroupsOrgUnit", "DataSets", "OrgUnitChildren", function ($scope, $filter, commonvariable, Mission, OrgUnitGroupsOrgUnit, DataSets, OrgUnitChildren) {
+appConfigProjectMSF.controller('missionController', ["$scope", '$filter', "commonvariable", "OrgUnit", "OrgUnitGroupsOrgUnit", "DataSets", "OrgUnitChildren", function ($scope, $filter, commonvariable, OrgUnit, OrgUnitGroupsOrgUnit, DataSets, OrgUnitChildren) {
 	
     //Load Data of OU selected
     $scope.prevOu = "";
@@ -59,7 +59,7 @@ appConfigProjectMSF.controller('missionController', ["$scope", '$filter', "commo
 	            parent:commonvariable.OrganisationUnit
 				};
 
-		Mission.POST({},newOu)
+		OrgUnit.POST({},newOu)
 		.$promise.then(function(data){
     		  console.log(data);
     		  if(data.status=="SUCCESS"){
