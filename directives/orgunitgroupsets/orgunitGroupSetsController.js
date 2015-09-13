@@ -12,7 +12,7 @@ Dhis2Api.directive('d2Dropdownorgunitgroupset', function(){
 		}
 	}); 
 
-Dhis2Api.controller("d2DropdownorgunitgroupsetController", ['$timeout','$q','$scope','$http', 'OrgUnitGroupSet',"commonvariable", "OrgUnitGroupByOrgUnit", "Parent", "loadjsonresource", function ($timeout, $q, $scope, $http, OrgUnitGroupSet, commonvariable, OrgUnitGroupByOrgUnit, Parent, loadjsonresource) {
+Dhis2Api.controller("d2DropdownorgunitgroupsetController", ['$q','$scope','$http', 'OrgUnitGroupSet',"commonvariable", "OrgUnitGroupByOrgUnit", "loadjsonresource", function ($q, $scope, $http, OrgUnitGroupSet, commonvariable, OrgUnitGroupByOrgUnit, loadjsonresource) {
 	
 	if ($scope.operation=="show") {
 		$scope.disabled=true;
