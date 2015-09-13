@@ -7,26 +7,57 @@ Dhis2Api.directive('d2Resourcejson', function(){
 		    }
 	}
 	}); 
-Dhis2Api.controller("d2ResourcejsonController", ['$scope',"commonvariable","loadjsonresource","DataElements", function ($scope,commonvariable,loadjsonresource,DataElements) {
+Dhis2Api.controller("d2ResourcejsonController", ['$scope', '$interval', "commonvariable", "loadjsonresource", "DataElements", function ($scope, $interval, commonvariable, loadjsonresource, DataElements) {
 	$scope.style=[];
 
 	
-
+	var stop;
+	$scope.prevOu = undefined;
     //waiting for dataset of OU selected
+	$scope.getDataElementSelected = function () {
+	    $interval(function () {
+	        if ($scope.ListnameDataelement && commonvariable.VaccinationDatasetSelected && commonvariable.VaccinationDatasetSelected.id != $scope.preid) {
+	            if ($scope.ListnameDataelement.length > 0) {
+	                $scope.preid = commonvariable.VaccinationDatasetSelected.id;
+	                $scope.checkingDEGroup();
+                    
+	                if (angular.isDefined(stop)) {
+	                   
+	                    $interval.cancel(stop);
+	                    stop = undefined;
+	                }
+	            }
+
+	        }
+	    }, 500);
+	}
 	$scope.$watch(function () {
-	    if (commonvariable.VaccinationDatasetSelected && commonvariable.VaccinationDatasetSelected.id != $scope.preid) {
-	        $scope.preid = commonvariable.VaccinationDatasetSelected.id;
-	        $scope.checkingDEGroup();
+	    if (commonvariable.OrganisationUnit && commonvariable.OrganisationUnit.id != $scope.prevOu) {
+	        $scope.prevOu = commonvariable.OrganisationUnit.id;
+	        $scope.getDataElementSelected();
 	    }
 	});
 
-	$scope.checkingDEGroup = function () {
 
+	$scope.checkingDEGroup = function () {
+   
+	    $scope.DESelected = [];
+	    reallyselected = true;
 	    angular.forEach($scope.sections, function (vvalue, vkey) {
 	        angular.forEach(vvalue.dataElementGroup, function (dgvalue, dgkey) {
 	            angular.forEach(dgvalue.dataElements, function (devalue, dekey) {
 	                angular.forEach(commonvariable.VaccinationDatasetSelected.dataElements, function (Svalue, Skey) {
-	                    if (Svalue.code == devalue.code) {
+
+	                    var reallyselected = $scope.DESelected.filter(function (obj)
+	                    {
+	                        if (obj.dg == dgkey && obj.de == vkey) {
+	                            return true;
+	                        } else {
+	                             return false;
+	                        }
+	                    });
+	                    if (Svalue.code == devalue.code && reallyselected.length == 0) {
+                            $scope.DESelected.push({ dg: dgkey, de: vkey });
 	                        $scope.selectgroup(dgkey, vkey);
 	                    }
 
@@ -46,7 +77,8 @@ Dhis2Api.controller("d2ResourcejsonController", ['$scope',"commonvariable","load
         DataElements.Get({filter:'code:in:['+codes+"]"})
         .$promise.then(function(response){
             angular.forEach(response.dataElements, function(dvalue,dkey){
-                $scope.ListnameDataelement[dvalue.code]={id:dvalue.id,name:dvalue.name};                
+                $scope.ListnameDataelement[dvalue.code] = { id: dvalue.id, name: dvalue.name };
+                $scope.ListnameDataelement.length++;
             });
         });
         
@@ -93,23 +125,18 @@ Dhis2Api.controller("d2ResourcejsonController", ['$scope',"commonvariable","load
     });
 
     $scope.selectgroup=function(key,skey){
-        console.log($scope.sections[skey].dataElementGroup[key].dataElements);
-
-        ///
+        ///add dataelement selected of all group
          angular.forEach($scope.sections[skey].dataElementGroup[key].dataElements, function (dvalue, dkey) {
-            // console.log($scope.ListnameDataelement[dvalue.code]); 
-            commonvariable.DataElementSelected.push({ id: $scope.ListnameDataelement[dvalue.code].id });
-        });
+             commonvariable.DataElementSelected.push({ id: $scope.ListnameDataelement[dvalue.code].id });
+         });
 
-
-        //config style for list of DataElements
+         //config style for list of DataElements
         if($scope.style[skey]==undefined)
             $scope.style[skey]=[];
         if($scope.style[skey][key]=='' || $scope.style[skey][key]==undefined)
             $scope.style[skey][key]='success';
         else
             $scope.style[skey][key]='';
-
 
     };
 

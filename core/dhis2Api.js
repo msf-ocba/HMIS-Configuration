@@ -155,10 +155,11 @@ Dhis2Api.factory("DataElements",['$resource','commonvariable', function ($resour
 
 Dhis2Api.factory("DataSets", ['$resource', 'commonvariable', function ($resource, commonvariable) {
 
-    return $resource(commonvariable.url + "dataSets",
+    return $resource(commonvariable.url + "dataSets/:uid",
 		{},
 		{   Get:{method:"GET"},
-		    Post: { method: "POST" }
+		Post: { method: "POST" },
+		Put: { method: "PUT" }
 		});
 }]);
 

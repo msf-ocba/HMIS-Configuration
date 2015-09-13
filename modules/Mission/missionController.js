@@ -14,12 +14,17 @@ appConfigProjectMSF.controller('missionController', ["$scope", '$filter', "commo
     ///get if there exist a Dataset for this Mission.
     $scope.getDataset = function () {
         $scope.initValue();
-        DataSets.Get({ filter: "name:eq:" + $scope.preName + $scope.vaccinationName, fields: 'id,name,code,description,dataElements' })
+        DataSets.Get({ filter: "name:eq:" + $scope.preName + $scope.vaccinationName, fields: 'id,name,code,description,periodType,dataElements' })
                .$promise.then(function (data) {
                    if (data.dataSets.length> 0) {
                         $scope.CreateDatasetVaccination = false;
                         $scope.VaccinationDataset = data.dataSets[0];
                         commonvariable.VaccinationDatasetSelected = $scope.VaccinationDataset;
+                        $scope.vaccinationName = commonvariable.OrganisationUnit.name;
+                        $scope.vaccinationCode = commonvariable.OrganisationUnit.shortName;
+                        $scope.PeriodSelected = $scope.VaccinationDataset.periodType;
+                        $scope.dataSetDescription = $scope.VaccinationDataset.description;
+                        $scope.dataSetid = $scope.VaccinationDataset.id;
                    }
                    else
                        $scope.CreateDatasetVaccination = true;
@@ -150,6 +155,23 @@ appConfigProjectMSF.controller('missionController', ["$scope", '$filter', "commo
 	        });
 	   };
 
+	   $scope.updateDatasetVaccination = function () {
+	      var newDataSet = {
+	           name: $scope.preName + $scope.vaccinationName,
+	           code: $scope.preCode + $scope.vaccinationCode,
+	           shortName: $scope.preCode + $scope.vaccinationCode,
+	           description: $scope.dataSetDescription,
+	           periodType: commonvariable.PeriodSelected.code,
+	           dataElements: commonvariable.DataElementSelected,
+	           organisationUnits: [{ id: commonvariable.OrganisationUnit.id }]
+	       };
+	       DataSets.Put({ uid: $scope.dataSetid }, newDataSet)
+	        .$promise.then(function (data) {
+	            console.log(data);
+	            if (data.status == "SUCCESS") {
+	            }
+	        });
+	   };
 
 	   $scope.getChildrenByOUID = function (uidSelected) {
 	       OrgUnitChildren.get({ uid :uidSelected})
