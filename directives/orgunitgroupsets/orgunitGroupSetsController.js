@@ -11,7 +11,7 @@ Dhis2Api.directive('d2Dropdownorgunitgroupset', function(){
 		}
 	}); 
 
-Dhis2Api.controller("d2DropdownorgunitgroupsetController", ['$q','$scope','$http', 'OrgUnitGroupSet',"commonvariable", "OrgUnitGroupByOrgUnit", "loadjsonresource", function ($q, $scope, $http, OrgUnitGroupSet, commonvariable, OrgUnitGroupByOrgUnit, loadjsonresource) {
+Dhis2Api.controller("d2DropdownorgunitgroupsetController", ['$q','$scope','$http', 'OrgUnitGroupSet',"commonvariable", "OrgUnitGroupByOrgUnit", "loadjsonresource", "getIDOUG", function ($q, $scope, $http, OrgUnitGroupSet, commonvariable, OrgUnitGroupByOrgUnit, loadjsonresource, getIDOUG) {
 	
 	if ($scope.operation=="show") {
 		$scope.disabled=true;
@@ -45,7 +45,12 @@ Dhis2Api.controller("d2DropdownorgunitgroupsetController", ['$q','$scope','$http
 	
 	$scope.selectOrgUnitGroup = function(ougSelected){ 
 		$scope.ougName=ougSelected.name;
-		commonvariable.orgUnitGroupSet[$scope.uidgroupset]=ougSelected;
+		
+		getIDOUG.get({filter:'code:eq:'+ougSelected.code}).$promise.then(function(response) {
+			
+			commonvariable.orgUnitGroupSet[$scope.uidgroupset]=response.organisationUnitGroups[0];
+		
+		});
 	}
 	
 	

@@ -174,3 +174,13 @@ Dhis2Api.factory("Parent",  ['$resource', 'commonvariable', function ($resource,
 		
 }]);
 
+Dhis2Api.factory("getIDOUG",  ['$resource', 'commonvariable', function ($resource, commonvariable) {
+	
+	return $resource(commonvariable.url + "organisationUnitGroups",
+			{
+			filter:'@filter'
+			},
+			{GET: {method: "GET"}});
+		
+}]);
+

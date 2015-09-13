@@ -30,6 +30,8 @@ appConfigProjectMSF.controller('healthServiceController', ["$scope",'$filter',"c
 			function($scope) {
 				if(commonvariable.OrganisationUnit!=undefined){
 					$scope.healthservicename=commonvariable.OrganisationUnit.name;
+					$scope.healthservicecreated=commonvariable.OrganisationUnit.created;
+					
 			}
 			});
 
