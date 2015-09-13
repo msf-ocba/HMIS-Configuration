@@ -4,36 +4,42 @@ Dhis2Api.directive('d2Dropdownorgunitgroupset', function(){
 		templateUrl: 'directives/orgunitgroupsets/orgunitGroupSetsView.html',
 		scope: {
 	        uidgroupset: '@',
-	        operation: '@'
+	        operation: '@',
+	        uidgroupsetfilterby: '@',
+	        file: '@'
 	      }
 		}
 	}); 
 
-Dhis2Api.controller("d2DropdownorgunitgroupsetController", ['$scope','$http', 'OrgUnitGroupSet',"commonvariable", "OrgUnitGroupByOrgUnit", function ($scope, $http, OrgUnitGroupSet, commonvariable, OrgUnitGroupByOrgUnit) {
-	
+Dhis2Api.controller("d2DropdownorgunitgroupsetController", ['$q','$scope','$http', 'OrgUnitGroupSet',"commonvariable", "OrgUnitGroupByOrgUnit", "loadjsonresource", function ($q, $scope, $http, OrgUnitGroupSet, commonvariable, OrgUnitGroupByOrgUnit, loadjsonresource) {
 	
 	if ($scope.operation=="show") {
 		$scope.disabled=true;
-		showOrgUnit();
+		getOrgUnitGroup(commonvariable.OrganisationUnit.id, $scope.uidgroupset).then(function(data){$scope.ougName=data.name;})
 	}
 	
 	else {
-
 		
 		$scope.disabled=false;
 		
-		OrgUnitGroupSet.get({uid:$scope.uidgroupset}).$promise.then(function(data) {
+		if ($scope.uidgroupsetfilterby != undefined) {
 			
-			$scope.ListOrgUnitGroups=data;	
+			getOrgUnitGroup(commonvariable.OrganisationUnit.id, $scope.uidgroupsetfilterby).then(function(data){
 				
-		
-		});
-	
-		if(commonvariable.OrganisationUnit!=undefined && commonvariable.OrganisationUnit.level == 4){
-
-			//Falta por completar
+				var parentOrgUnitGroupName = data;
+				loadjsonresource.get($scope.file).then(function(response) {					
+					$scope.ListOrgUnitGroups = getServiceTypeBySiteType(response.data.servicesBySite, parentOrgUnitGroupName.code);
+				});
+			});
 		}
-		else console.log("La unidad no existe");
+		
+		else  {
+			OrgUnitGroupSet.get({uid:$scope.uidgroupset}).$promise.then(function(data) {
+				$scope.ListOrgUnitGroups=data.organisationUnitGroups;
+						
+			});
+		
+		}
 	}
 	
 	
@@ -42,37 +48,50 @@ Dhis2Api.controller("d2DropdownorgunitgroupsetController", ['$scope','$http', 'O
 		commonvariable.orgUnitGroupSet[$scope.uidgroupset]=ougSelected;
 	}
 	
-	showOrgUnit = function() {
-		
-		OrgUnitGroupByOrgUnit.get({uid:commonvariable.OrganisationUnit.id}).$promise.then(function(data) {
+	
+	function getOrgUnitGroup (uidOrgUnit, uidOrgUnitGroupSet) {
+				
+		var defered = $q.defer();
+        var promise = defered.promise;        
+
+		OrgUnitGroupByOrgUnit.get({uid:uidOrgUnit}).$promise.then(function(data) {
 			
 			ouOrgUnitGroups=data.organisationUnitGroups;
 			
-			OrgUnitGroupSet.get({uid:$scope.uidgroupset}).$promise.then(function(data) {
-				
+			OrgUnitGroupSet.get({uid:uidOrgUnitGroupSet}).$promise.then(function(data) {
+								
 				ougsOrgUnitGroups=data.organisationUnitGroups;
-				
-				console.log(ougsOrgUnitGroups);
 				
 				for (var i=0; i<ouOrgUnitGroups.length; i++) 
 					for (var j=0; j<ougsOrgUnitGroups.length;j++) {
 						if (ouOrgUnitGroups[i].id==ougsOrgUnitGroups[j].id) {
-							$scope.ougName = ouOrgUnitGroups[i].name;
-							break;
-						}
 							
+							defered.resolve(ouOrgUnitGroups[i]);																																		
+							break;
+						}							
 					}
-				
-						
-				
-			  });
-			
-			
+			});
 			
 		});
-
+		
+		return promise;
 	}
 	
+	getServiceTypeBySiteType = function(servicesBySiteType, code) {
+		
+		var sites = servicesBySiteType.siteType;
+		var services = {};
+		
+		for (var i=0; i<sites.length; i++) {			
+			if (sites[i].code==code) {
+				services = sites[i].services;
+				break;
+			}
+		}
+		return services;
+	}
+	
+		
 	
 
 }]);
