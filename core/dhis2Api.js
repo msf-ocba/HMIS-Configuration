@@ -85,7 +85,7 @@ Dhis2Api.factory("TreeOrganisationunit",['$resource','commonvariable', function 
   { get: { method: "GET"} });
 }]);
 
-Dhis2Api.factory("Mission",['$resource','commonvariable', function ($resource,commonvariable) {
+Dhis2Api.factory("OrgUnit",['$resource','commonvariable', function ($resource,commonvariable) {
 	return $resource(commonvariable.url+"organisationUnits",
 		{},
 		{ POST: { method: "POST"} });

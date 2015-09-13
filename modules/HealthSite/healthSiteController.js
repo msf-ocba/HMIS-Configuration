@@ -1,4 +1,4 @@
-appConfigProjectMSF.controller('healthSiteController', ["$scope",'$filter',"commonvariable", "Mission", "OrgUnitGroupsOrgUnit", function($scope, $filter,commonvariable, Mission, OrgUnitGroupsOrgUnit) {
+appConfigProjectMSF.controller('healthSiteController', ["$scope",'$filter',"commonvariable", "OrgUnit", "OrgUnitGroupsOrgUnit", function($scope, $filter,commonvariable, OrgUnit, OrgUnitGroupsOrgUnit) {
 	var $translate = $filter('translate');
 	
 	//set message variable
@@ -23,7 +23,7 @@ appConfigProjectMSF.controller('healthSiteController', ["$scope",'$filter',"comm
 	            parent:commonvariable.OrganisationUnit
 				};
 
-		Mission.POST({},newOu)
+		OrgUnit.POST({},newOu)
 		.$promise.then(function(data){
     		  console.log(data);
     		  if(data.status=="SUCCESS"){
