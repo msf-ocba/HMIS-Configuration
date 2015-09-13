@@ -5,13 +5,13 @@
 	"NO":"No",
   	"CREATION_DATE":"Fecha de creación",
 		
-	"_______________ Module ":"International _____________",
+	"_______________ Module_ ":"International _____________",
 	"INTERNATIONAL_TITTLE": "Bienvenido al Sistema de Configuración",
 	
 	"_______________ Module ":" Operatational Center_____________",
 	"OPERATIONALCENTER_TITLE": "Centro de operaciones",
 			
-	"_______________ Module ":" MISSION_____________",
+	"_______________ Module__ ":" MISSION_____________",
 	"MISSION_TITLE": "Misión",
 	"MISSION_NAME": "Nombre de la Misión",
 	"MISSION_PLACEHOLDER_NAME": "Entre el nombre de la Misión",
@@ -24,7 +24,7 @@
 
 
 		
-	"_______________ Module ":" PROJECT _____________",
+	"_______________ Module___ ":" PROJECT _____________",
 	"PROJECT_TITLE": "Proyecto",
 	"PROJECT_NAME": "Nombre de la Proyecto",
 	"PROJECT_PLACEHOLDER_NAME": "Entre el nombre de la Proyecto",
@@ -42,6 +42,8 @@
 	"CONTEXT": "Contexto",
   "PROJECT_DETAILS": "Detalles del proyecto",
   "PROJECT_LABEL_LIST": "Lista de proyecto",
+  "PROJECT_SAVED": "Proyecto guardado",
+  "PROJECT_NOSAVED": "Proyecto no guardado, revise que el campo del nombre no este en blanco",
 	"VACCINATION_DATASET":"Crear formulario de vacunación",
 	"VACCINATION_DATASET_NAME":"Nombre",
 	"VACCINATION_DATASET_CODE":"Codigo",
@@ -49,7 +51,11 @@
 	"VACCINATION_DATASET_DESCRIPTION":"Descripción",
   "VACCINATION_DATASET_SELECT_TITTLE": "Seleccione los elementos de datos para el DataSet",
   "VACCINATION_DATASET_BUTTON_UPDATE": "Editar",
-  "VACCINATION_DATASET_LABEL_UPDATE": "DataSet de Vacunación",	
+  "VACCINATION_DATASET_LABEL_UPDATE": "DataSet de Vacunación",
+  "VACCINATION_DATASET_SAVED": "El DataSet de Vacunación se ha guardado exitoramente",
+  "VACCINATION_DATASET_NOSAVED": "El DataSet de Vacunación no pudo ser guardado, revise la descripción y periodo seleccionado",
+  "VACCINATION_DATASET_SAVE": "Guardar DataSet de Vacunación",
+  "VACCINATION_DATASET_UPDATE": "Actualizar DataSet de Vacunación",	
 	
 	"_______________ Module":" HEALTH SITE_____________",
 	"HEALTHSITE_TITLE":"Establecimiento de Salud",
@@ -64,7 +70,7 @@
 	"HEALTHSITE_CODE":"Código",
 	
 	
-	"_______________ Module":" HEALTH SERVICE_____________",
+	"______________ Module":" HEALTH SERVICE_____________",
 	"HEALTHSERVICE_TITLE":"Servicio de salud",
 	"HEALTHSERVICE_DETAILS": "Detalles del servicio de salud",
 	"HEALTHSERVICE_SAVE": "Guardar",
@@ -83,7 +89,7 @@
 	"ORGANISATIONUNIT":"Proyecto",
 	"ORGANISATIONUNIT_FIND":"Seleccione un proyecto",
 	
-	"_______________ Directive ":" Access_____________",
+	"______________ Directive ":" Access_____________",
 	"ACCESS_TITLE":"Error de Acceso",
 	"ACCESS_DESC":"No tienes acceso a este modulo. Si requieres acceso por favor comunicate con el administrador del sistema",
 	"ACCESS_BUTTON":"Regresar"

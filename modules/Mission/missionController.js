@@ -1,5 +1,5 @@
 appConfigProjectMSF.controller('missionController', ["$scope", '$filter', "commonvariable", "Mission", "OrgUnitGroupsOrgUnit", "DataSets", "OrgUnitChildren", function ($scope, $filter, commonvariable, Mission, OrgUnitGroupsOrgUnit, DataSets, OrgUnitChildren) {
-	
+    var $translate = $filter('translate');
     //Load Data of OU selected
     $scope.prevOu = "";
     $scope.showbutton = true;
@@ -43,7 +43,7 @@ appConfigProjectMSF.controller('missionController', ["$scope", '$filter', "commo
 	$scope.messages=[];
 	
 	
-	var $translate = $filter('translate');
+	
 	$scope.showfields=false;
 
 	
@@ -62,34 +62,32 @@ appConfigProjectMSF.controller('missionController', ["$scope", '$filter', "commo
 		Mission.POST({},newOu)
 		.$promise.then(function(data){
     		  console.log(data);
-    		  if(data.status=="SUCCESS"){
+    		  if (data.response.status == "SUCCESS") { ///verificar que en la versión 2.19 y 2.20 sea data.response.status
     		  	  commonvariable.RefreshTreeOU=true;
 				  newOu.id=data.lastImported;
 				  commonvariable.NewOrganisationUnit=newOu;
 				 
-				  if (commonvariable.orgUnitGroupSet.rQjuGZcxNxE!=undefined)
-					  OrgUnitGroupsOrgUnit.POST({uidgroup:commonvariable.orgUnitGroupSet.rQjuGZcxNxE.id, uidorgunit:newOu.id});
-				  if (commonvariable.orgUnitGroupSet.lR7GVB43jaX!=undefined)
-					  OrgUnitGroupsOrgUnit.POST({uidgroup:commonvariable.orgUnitGroupSet.lR7GVB43jaX.id, uidorgunit:newOu.id});
-				  if (commonvariable.orgUnitGroupSet.DIYl9kZDij3!=undefined)
-					  OrgUnitGroupsOrgUnit.POST({uidgroup:commonvariable.orgUnitGroupSet.DIYl9kZDij3.id, uidorgunit:newOu.id});
-				  if (commonvariable.orgUnitGroupSet.iiFM3YudVxq!=undefined)
-					  OrgUnitGroupsOrgUnit.POST({uidgroup:commonvariable.orgUnitGroupSet.iiFM3YudVxq.id, uidorgunit:newOu.id});
-				  if (commonvariable.orgUnitGroupSet.ZximACPowCs!=undefined)
-					  OrgUnitGroupsOrgUnit.POST({uidgroup:commonvariable.orgUnitGroupSet.ZximACPowCs.id, uidorgunit:newOu.id});
+				  if (commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.ProjectType] != undefined)
+				      OrgUnitGroupsOrgUnit.POST({uidgroup:commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.ProjectType].id, uidorgunit:newOu.id});
+				  if (commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.PopulationType] != undefined)
+				      OrgUnitGroupsOrgUnit.POST({ uidgroup: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.PopulationType].id, uidorgunit: newOu.id });
+				  if (commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.TypeManagement] != undefined)
+				      OrgUnitGroupsOrgUnit.POST({ uidgroup: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.TypeManagement].id, uidorgunit: newOu.id });
+				  if (commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.Event] != undefined)
+				      OrgUnitGroupsOrgUnit.POST({ uidgroup: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.Event].id, uidorgunit: newOu.id });
+				  if (commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.Context] != undefined)
+				      OrgUnitGroupsOrgUnit.POST({ uidgroup: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.Context].id, uidorgunit: newOu.id });
 				  
 
 				 //set message variable
-				$scope.messages.push({type:"success",
-				text:"Project saved"});
-
+				  $scope.messages.push({ type: "success", text: $translate('PROJECT_SAVED') });
+				  $scope.hideForm();
 				//clear txtbox
 				$scope.projectName="";
 
 			}
 			else{
-				$scope.messages.push({type:"danger",
-				text:"Project doesn't saved, review that the field name isn't empty"});
+    		      $scope.messages.push({ type: "danger", text: $translate('PROJECT_NOSAVED') });
 			}
     	 });
 				
@@ -115,6 +113,14 @@ appConfigProjectMSF.controller('missionController', ["$scope", '$filter', "commo
 		$scope.frmVaccination=false;
 		$scope.frmProject = false;
 		$scope.showbutton = true;
+
+		$scope.getChildrenByOUID(commonvariable.OrganisationUnit.id);
+		$scope.getDataset();
+		$scope.vaccinationName="";
+		$scope.vaccinationCode="";
+	    $scope.dataSetDescription=""
+	    commonvariable.PeriodSelected=[];
+	    commonvariable.DataElementSelected = [];
 	};
 
     // Date datepicker
@@ -149,8 +155,12 @@ appConfigProjectMSF.controller('missionController', ["$scope", '$filter', "commo
 	       console.log(newDataSet);
 	       DataSets.Post({}, newDataSet)
 	        .$promise.then(function (data) {
-	            console.log(data);
-	            if (data.status == "SUCCESS") {
+	            if (data.response.status == "SUCCESS") {
+	                $scope.messages.push({ type: "success", text: $translate('VACCINATION_DATASET_SAVED') });
+	                $scope.hideForm();
+	            }
+	            else {
+	                $scope.messages.push({ type: "danger", text: $translate('VACCINATION_DATASET_NOSAVED') });
 	            }
 	        });
 	   };
@@ -167,8 +177,12 @@ appConfigProjectMSF.controller('missionController', ["$scope", '$filter', "commo
 	       };
 	       DataSets.Put({ uid: $scope.dataSetid }, newDataSet)
 	        .$promise.then(function (data) {
-	            console.log(data);
-	            if (data.status == "SUCCESS") {
+	            if (data.response.status == "SUCCESS") {
+	                $scope.messages.push({ type: "success", text: $translate('VACCINATION_DATASET_SAVED') });
+	                scope.hideForm();
+	            }
+	            else {
+	                $scope.messages.push({ type: "danger", text: $translate('VACCINATION_DATASET_NOSAVED') });
 	            }
 	        });
 	   };
@@ -192,7 +206,8 @@ appConfigProjectMSF.controller('missionController', ["$scope", '$filter', "commo
 	           $scope.getChildrenByOUID(commonvariable.OrganisationUnit.id);
 	       }
 	   });
-	
+
+  
 }]);
 
 

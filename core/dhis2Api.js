@@ -20,7 +20,13 @@ var urlResource ={"vaccination":{url:"resources/vaccinationDataset.json"},
 var Listperioddhis = [{code:'Daily',name:'PERIODTYPE_DAILY'},
 					{code:'Weekly',name:'PERIODTYPE_WEEKLY'},
 					{code:'Monthly',name:'PERIODTYPE_MONTHLY'},
-					{code:'Yearly',name:'PERIODTYPE_YEARLY'}];
+					{ code: 'Yearly', name: 'PERIODTYPE_YEARLY' }];
+
+var ougroupsetId = { ProjectType: "rQjuGZcxNxE" 
+                    ,PopulationType: "iiFM3YudVxq" 
+                    ,TypeManagement: "ZximACPowCs" 
+                    ,Event: "DIYl9kZDij3" 
+                    ,Context: "lR7GVB43jaX"};
 
 var prefixVaccination = { vaccinationName: 'Vaccination_', vaccinationCode: 'DS_VAC_' };
 //Create all common variables of the apps 
@@ -37,7 +43,8 @@ Dhis2Api.factory("commonvariable", function () {
 			Listperiod: Listperioddhis,
 			prefixVaccination: prefixVaccination,
 			DataElementSelected: [],
-			VaccinationDatasetSelected: {}
+			VaccinationDatasetSelected: {},
+			ouGroupsetId: ougroupsetId
 			};
 
    return Vari; 

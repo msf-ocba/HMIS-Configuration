@@ -6,11 +6,7 @@
 		</div>
 </div>
 
-<div class="row">
-		<div class="col-md-6">
-			<alert ng-repeat="message in messages" type="{{message.type}}" close="closeAlertMessage($index)">{{message.text}}</alert>
-		</div>
-</div>
+
 <div class="row">
 <div class="col-md-11">
 <div class="panel panel-default">
@@ -35,6 +31,11 @@
 	</div>
 	</div>
 	</div>
+    <div class="row">
+        <div class="col-md-12">
+            <alert ng-repeat="message in messages" type="{{message.type}}" close="closeAlertMessage($index)">{{message.text}}</alert>
+        </div>
+    </div>
 	<div class="row" ng-show="showbutton">
         <div class="col-md-6">
            
@@ -103,15 +104,15 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <label for="sel12"> {{'PROJECT_TYPE' | translate }} </label>
-                                <d2-dropdownorgunitgroupset uidgroupSet="rQjuGZcxNxE"></d2-dropdownorgunitgroupset>
+                                <d2-dropdownorgunitgroupset uidgroupSet="{{commonvariable.ouGroupsetId.ProjectType}}"></d2-dropdownorgunitgroupset>
                             </div>
                             <div class="col-md-4">
                                 <label for="sel12"> {{'POPULATION_TYPE' | translate }} </label>
-                                <d2-dropdownorgunitgroupset uidgroupSet="iiFM3YudVxq"></d2-dropdownorgunitgroupset>
+                                <d2-dropdownorgunitgroupset uidgroupSet="{{commonvariable.ouGroupsetId.PopulationType}}"></d2-dropdownorgunitgroupset>
                             </div>
                             <div class="col-md-4">
                                 <label for="sel12"> {{'TYPE_OF_MANAGEMENT' | translate }} </label>
-                                <d2-dropdownorgunitgroupset uidgroupSet="ZximACPowCs"></d2-dropdownorgunitgroupset>
+                                <d2-dropdownorgunitgroupset uidgroupSet="{{commonvariable.ouGroupsetId.TypeManagement}}"></d2-dropdownorgunitgroupset>
                             </div>
                         </div>
 
@@ -121,12 +122,12 @@
 
                             <div class="col-md-4">
                                 <label for="sel12"> {{'EVENTS' | translate }} </label>
-                                <d2-dropdownorgunitgroupset uidgroupSet="DIYl9kZDij3"></d2-dropdownorgunitgroupset>
+                                <d2-dropdownorgunitgroupset uidgroupSet="{{commonvariable.ouGroupsetId.Event}}"></d2-dropdownorgunitgroupset>
                             </div>
 
                             <div class="col-md-4">
                                 <label for="sel12"> {{'CONTEXT' | translate }} </label>
-                                <d2-dropdownorgunitgroupset uidgroupSet="lR7GVB43jaX"></d2-dropdownorgunitgroupset>
+                                <d2-dropdownorgunitgroupset uidgroupSet="{{commonvariable.ouGroupsetId.Context}}"></d2-dropdownorgunitgroupset>
                             </div>
                         </div>
 
