@@ -1,5 +1,5 @@
-appConfigProjectMSF.controller('missionController', ["$scope", '$filter', "commonvariable", "Mission", "OrgUnitGroupsOrgUnit", "DataSets", "OrgUnitChildren", function ($scope, $filter, commonvariable, Mission, OrgUnitGroupsOrgUnit, DataSets, OrgUnitChildren) {
-    var $translate = $filter('translate');
+appConfigProjectMSF.controller('missionController', ["$scope", '$filter', "commonvariable", "OrgUnit", "OrgUnitGroupsOrgUnit", "DataSets", "OrgUnitChildren", function ($scope, $filter, commonvariable, OrgUnit, OrgUnitGroupsOrgUnit, DataSets, OrgUnitChildren) {
+	
     //Load Data of OU selected
     $scope.prevOu = "";
     $scope.showbutton = true;
@@ -59,7 +59,7 @@ appConfigProjectMSF.controller('missionController', ["$scope", '$filter', "commo
 	            parent:commonvariable.OrganisationUnit
 				};
 
-		Mission.POST({},newOu)
+		OrgUnit.POST({},newOu)
 		.$promise.then(function(data){
     		  console.log(data);
     		  if (data.response.status == "SUCCESS") { ///verificar que en la versión 2.19 y 2.20 sea data.response.status
@@ -206,7 +206,7 @@ appConfigProjectMSF.controller('missionController', ["$scope", '$filter', "commo
 	           $scope.getChildrenByOUID(commonvariable.OrganisationUnit.id);
 	       }
 	   });
-
+	
   
 }]);
 

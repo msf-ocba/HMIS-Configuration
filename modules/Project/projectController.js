@@ -1,4 +1,4 @@
-appConfigProjectMSF.controller('projectController', ["$scope",'$filter',"commonvariable", "Mission","OrgUnitGroupsOrgUnit", function($scope, $filter,commonvariable,Mission,OrgUnitGroupsOrgUnit) {
+appConfigProjectMSF.controller('projectController', ["$scope",'$filter',"commonvariable", "OrgUnit","OrgUnitGroupsOrgUnit", function($scope, $filter,commonvariable,OrgUnit,OrgUnitGroupsOrgUnit) {
 	
 	
 	//set message variable
@@ -25,7 +25,7 @@ appConfigProjectMSF.controller('projectController', ["$scope",'$filter',"commonv
 	            parent:commonvariable.OrganisationUnit
 				};
 
-		Mission.POST({},newOu)
+		OrgUnit.POST({},newOu)
 		.$promise.then(function(data){
     		  console.log(data);
     		  if(data.status=="SUCCESS"){
