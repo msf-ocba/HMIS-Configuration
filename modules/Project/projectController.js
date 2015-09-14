@@ -8,6 +8,8 @@ appConfigProjectMSF.controller('projectController', ["$scope",'$filter',"commonv
 	
 	$scope.messages=[];
 	
+	$scope.prevOu=undefined;
+	
 	var $translate = $filter('translate');
 	
 	
@@ -78,7 +80,10 @@ appConfigProjectMSF.controller('projectController', ["$scope",'$filter',"commonv
 	
 	$scope.$watch(
 			function($scope) {
-				if(commonvariable.OrganisationUnit!=undefined){
+				if(commonvariable.OrganisationUnit!=undefined && commonvariable.OrganisationUnit.id != $scope.prevOu){
+					
+			        $scope.prevOu = commonvariable.OrganisationUnit.id;
+
 					$scope.projectname=commonvariable.OrganisationUnit.name;
 					$scope.projectcode=commonvariable.OrganisationUnit.code;
 					$scope.projectcreated=commonvariable.OrganisationUnit.created;
