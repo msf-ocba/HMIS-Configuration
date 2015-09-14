@@ -108,11 +108,16 @@
   	<div class="row">
 		<div class="col-md-12">
 			<div class="row">
-				<div class="col-md-6">
+				<div class="col-md-12">
 					<label for="InputName2">{{'HEALTHSITE_NAME' | translate}}</label>
 					<input ng-model="siteName" type="text" class="form-control" id="siteName">
 				</div>
-				<div class="col-md-6">
+			</div>
+			
+			<br/>
+			
+			<div class="row">
+				<div class="col-md-4">
 					<label for="InputName2">{{'HEALTHSITE_OPENING_DATE' | translate}}</label>
 					<p class="input-group">
            		    <input type="text" class="form-control" datepicker-popup="yyyy-MM-dd" ng-model="siteDate" is-open="opened" min-date="minDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
@@ -121,6 +126,18 @@
               		</span>
             		</p>
 				</div>
+				
+				<div class="col-md-2">
+					<label for="sel12">{{'HEALTHSITE_PREFIX' | translate}}</label>
+					<input  ng-model="siteprefix" type="text" class="form-control" id="SitePrefix">
+				</div>
+
+				<div class="col-md-6">
+					<label for="sel12"> {{'HEALTHSITE_TYPE' | translate }} </label>
+					<d2-dropdownorgunitgroupset uidgroupSet="ZxNjaKVXY1D" ></d2-dropdownorgunitgroupset>
+				</div>
+				
+				
 			</div>
 		</div>
 	</div>
@@ -129,29 +146,6 @@
 		</div>
 	</div>
 	
-	<!--  <div class="row">
-		<div class="col-md-12">
-			<label for="sel12"> Toy example </label>
-			<d2-dropdownorgunitgroupsetcompa uidgroupset="ZxNjaKVXY1D" file="servicebysite" ></d2-dropdownorgunitgroupsetcompa> 
-			
-		</div>
-	</div> -->
-	
-
-	<div class="row">
-		<div class="col-md-3">
-			<label for="sel12">{{'HEALTHSITE_PREFIX' | translate}}</label>
-			<input  ng-model="siteprefix" type="text" class="form-control" id="SitePrefix">
-		</div>
-	</div>
-						
-	
-	<div class="row">
-		<div class="col-md-12">
-			<label for="sel12"> {{'HEALTHSITE_TYPE' | translate }} </label>
-			<d2-dropdownorgunitgroupset uidgroupSet="ZxNjaKVXY1D" ></d2-dropdownorgunitgroupset>
-		</div>
-	</div>	
 
 <br>
 <div class="row">
