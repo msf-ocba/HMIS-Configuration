@@ -197,14 +197,19 @@ appConfigProjectMSF.controller('missionController', ["$scope", '$filter', "commo
     ///
 	   $scope.$watch(function () {
 	       if (commonvariable.OrganisationUnit && commonvariable.OrganisationUnit.id != $scope.prevOu) {
-	           $scope.missionname = commonvariable.OrganisationUnit.name;
-	           $scope.missioncreated = commonvariable.OrganisationUnit.created;
-	           $scope.prevOu = commonvariable.OrganisationUnit.id;
-	           $scope.getDataset();
+	           try {
 
-	           //get Children for OU selected
+	               $scope.missionname = commonvariable.OrganisationUnit.name;
+	               $scope.missioncreated = commonvariable.OrganisationUnit.created;
+	               $scope.prevOu = commonvariable.OrganisationUnit.id;
+	               $scope.getDataset();
 
-	           $scope.getChildrenByOUID(commonvariable.OrganisationUnit.id);
+	               //get Children for OU selected
+
+	               $scope.getChildrenByOUID(commonvariable.OrganisationUnit.id);
+	           } catch (err) {
+	               console.log("Error, Organisation Unnit doesn't selected");
+	           };
 	       }
 	   });
 	

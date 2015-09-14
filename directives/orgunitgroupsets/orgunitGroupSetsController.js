@@ -13,12 +13,7 @@ Dhis2Api.directive('d2Dropdownorgunitgroupset', function(){
 
 Dhis2Api.controller("d2DropdownorgunitgroupsetController", ['$q','$scope','$http', 'OrgUnitGroupSet',"commonvariable", "OrgUnitGroupByOrgUnit", "loadjsonresource", "getIDOUG", function ($q, $scope, $http, OrgUnitGroupSet, commonvariable, OrgUnitGroupByOrgUnit, loadjsonresource, getIDOUG) {
 	
-	if ($scope.operation=="show") {
-		$scope.disabled=true;
-		getOrgUnitGroup(commonvariable.OrganisationUnit.id, $scope.uidgroupset).then(function(data){$scope.ougName=data.name;})
-	}
-	
-	else {
+	if ($scope.operation!="show") {
 		
 		$scope.disabled=false;
 		
@@ -96,7 +91,22 @@ Dhis2Api.controller("d2DropdownorgunitgroupsetController", ['$q','$scope','$http
 		return services;
 	}
 	
-		
+	$scope.prevOu = undefined;
+	$scope.$watch(function () {
+	    if (commonvariable.OrganisationUnit && commonvariable.OrganisationUnit.id != $scope.prevOu) {
+	        $scope.prevOu = commonvariable.OrganisationUnit.id;
+	        //function to call when change of OU
+	        if ($scope.operation == "show") {
+	            $scope.disabled = true;
+	            try{
+	                getOrgUnitGroup(commonvariable.OrganisationUnit.id, $scope.uidgroupset).then(function (data) { $scope.ougName = data.name; })
+	            }catch(err){
+	                console.log("Error, Organisation Unnit doesn't selected");
+	            };
+	        }
+
+	    }
+	});
 	
 
 }]);
