@@ -101,7 +101,7 @@ Dhis2Api.controller("d2DropdownorgunitgroupsetController", ['$q','$scope','$http
 	            try{
 	                getOrgUnitGroup(commonvariable.OrganisationUnit.id, $scope.uidgroupset).then(function (data) { $scope.ougName = data.name; })
 	            }catch(err){
-	                console.log("Error, Organisation Unnit doesn't selected");
+	                console.log("Error, Organisation Unit doesn't selected");
 	            };
 	        }
 

@@ -9,6 +9,13 @@ appConfigProjectMSF.controller('missionController', ["$scope", '$filter', "commo
         $scope.vaccinationCode = commonvariable.OrganisationUnit.shortName;
         $scope.preName = commonvariable.prefixVaccination.vaccinationName;
         $scope.preCode = commonvariable.prefixVaccination.vaccinationCode;
+
+        ///OrgunitGroupSet 
+        $scope.projectTypeId = commonvariable.ouGroupsetId.ProjectType;
+        $scope.populationTypeId = commonvariable.ouGroupsetId.PopulationType;
+        $scope.typeManagementID = commonvariable.ouGroupsetId.TypeManagement;
+        $scope.gsEventID = commonvariable.ouGroupsetId.Event;
+        $scope.gsContextID = commonvariable.ouGroupsetId.Context;
     }
     $scope.initValue();
     ///get if there exist a Dataset for this Mission.
