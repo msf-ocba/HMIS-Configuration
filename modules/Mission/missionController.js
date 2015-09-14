@@ -54,6 +54,7 @@ appConfigProjectMSF.controller('missionController', ["$scope", '$filter', "commo
 		var newOu={//payload
 				name:$scope.projectName,
 				level:(commonvariable.OrganisationUnit.level+1),
+				code:$scope.projectCode,
 	            shortName:$scope.projectName,
 	           	openingDate:$scope.propendate,
 	            parent:commonvariable.OrganisationUnit

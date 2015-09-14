@@ -14,14 +14,25 @@
 		<div class="row">
 			<div class="col-md-12">
 				<div class="row">
-					<div class="col-md-6">
+					<div class="col-md-12">
 						<label for="InputName2">{{'PROJECT_NAME' | translate}}</label>
-						<input  ng-model="projectname" type="text" class="form-control" id="ProyectName" disabled>
+						<input  ng-model="projectname" type="text" class="form-control" id="ProjectName" disabled>
 					</div>
+				</div>
+				<br/>
+				<div class="row">
+
 					<div class="col-md-6">
 						<label for="InputName3">{{'PROJECT_OPENING_DATE' | translate}}</label>
 						<input datepicker-popup="yyyy-MM-dd" ng-model="projectcreated" type="text" class="form-control" id="ProjectCreated" disabled>
 					</div>
+					
+					<div class="col-md-6">
+						<label for="InputName4">{{'PROJECT_CODE' | translate}}</label>
+						<input  ng-model="projectcode" type="text" class="form-control" id="ProjectCode" disabled>
+					</div>
+					
+					
 				</div>
 			</div>
 		</div>

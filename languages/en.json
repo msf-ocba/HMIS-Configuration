@@ -26,6 +26,7 @@
 	"_______________ Module__ ":" PROJECT _____________",
 	"PROJECT_TITLE": "Project",
 	"PROJECT_NAME": "Project name",
+	"PROJECT_CODE": "Code",
 	"PROJECT_PLACEHOLDER_NAME": "Enter the Project Name",
 	"PROJECT_OPENING_DATE" : "Project Date",
 	"PROJECT_PLACEHOLDER_OPENING_DATE" : "Enter Project Date",

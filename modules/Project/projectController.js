@@ -80,6 +80,7 @@ appConfigProjectMSF.controller('projectController', ["$scope",'$filter',"commonv
 			function($scope) {
 				if(commonvariable.OrganisationUnit!=undefined){
 					$scope.projectname=commonvariable.OrganisationUnit.name;
+					$scope.projectcode=commonvariable.OrganisationUnit.code;
 					$scope.projectcreated=commonvariable.OrganisationUnit.created;
 			}
 			});
