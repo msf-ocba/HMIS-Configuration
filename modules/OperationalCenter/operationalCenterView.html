@@ -1,9 +1,17 @@
 <d2-authorization menuoption="F_APPROVE_DATA"></d2-authorization>
 
-<div class="row">
+<div class="row" ng-show="!showfields">
 <div class="col-md-12">
 	<div class="col-md-6">
-	</div>
+        <form class="navbar-form navbar-left" role="search">
+            <div class="form-group well well-sm">
+                <label>{{'MISSION_LABEL_LIST' | translate}}</label>
+                <ul class="list-group">
+                    <li class="list-group-item" ng-repeat="child in ListChildren">{{child.name}}</li>
+                </ul>
+            </div>
+        </form>
+    </div>
 	<div class="col-md-6">
 		<h2>	<button ng-click="showForm()" type="button" class="btn btn-primary">{{'MISSION_CREATE' | translate}}</button></h2>
 	</div>
@@ -52,4 +60,6 @@
 </div>
 	</div>
 </div>
+
+
 

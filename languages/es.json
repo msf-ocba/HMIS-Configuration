@@ -21,7 +21,8 @@
 	"MISSION_SAVE": "Guardar Misión",
 	"MISSION_CANCEL": "Cancelar",
   "MISSION_DETAILS": "Detalles de la Misión",
-
+  "MISSION_SAVED": "Misión Guardada",
+  "MISSION_NOSAVED": "Misión no Guardada, revisar que el campo nombre no esté vacio",
 
 		
 	"_______________ Module___ ":" PROJECT _____________",

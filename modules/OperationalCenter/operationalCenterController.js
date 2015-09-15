@@ -1,4 +1,4 @@
-appConfigProjectMSF.controller('operationalCenterController', ["$scope",'$filter',"commonvariable","OrgUnit", function($scope, $filter,commonvariable,OrgUnit) {
+appConfigProjectMSF.controller('operationalCenterController', ["$scope", '$filter', "commonvariable", "OrgUnit", "OrgUnitChildren", function ($scope, $filter, commonvariable, OrgUnit, OrgUnitChildren) {
 	
 	//set message variable
 	$scope.closeAlertMessage = function(index) {
@@ -28,15 +28,19 @@ appConfigProjectMSF.controller('operationalCenterController', ["$scope",'$filter
 				  commonvariable.NewOrganisationUnit=newOu;
 				 //set message variable
 				$scope.messages.push({type:"success",
-				text:"Mission saved"});
-
+				    text: $translate('MISSION_SAVED')
+				});
+				$scope.getChildrenByOUID(commonvariable.OrganisationUnit.id);
+				$scope.hideForm();
 				//clear txtbox
 				$scope.mdname="";
 
 			}
 			else{
 				$scope.messages.push({type:"danger",
-				text:"Mission doesn't saved, review that the field name isn't empty"});
+				    text: $translate('MISSION_NOSAVED')
+				});
+				$scope.seeForm = false;
 			}
     	 });
 		
@@ -73,7 +77,17 @@ appConfigProjectMSF.controller('operationalCenterController', ["$scope",'$filter
 		    $event.stopPropagation();
 		    $scope.opened = true;
 	  };
-/////////////////////////////////////////
+    /////////////////////////////////////////
+
+	   $scope.getChildrenByOUID = function (uidSelected) {
+	       OrgUnitChildren.get({ uid: uidSelected })
+           .$promise.then(function (dataChild) {
+               $scope.ListChildren = dataChild.children;
+               console.log($scope.ListChildren);
+           });
+	   }
+	   $scope.getChildrenByOUID(commonvariable.OrganisationUnit.id);
+
 }]);
 
 
