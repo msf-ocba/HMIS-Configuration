@@ -72,7 +72,8 @@ appConfigProjectMSF.controller('healthSiteController', ["$scope",'$filter',"comm
 			function($scope) {
 				if(commonvariable.OrganisationUnit!=undefined){
 					$scope.healthsitename=commonvariable.OrganisationUnit.name;
-					$scope.healthsitecreated=commonvariable.OrganisationUnit.created;
+					$scope.healthsitecreated=commonvariable.OrganisationUnit.openingDate;
+					$scope.healthsitecode=commonvariable.OrganisationUnit.code;
 			}
 			});
 	

@@ -1,4 +1,4 @@
-appConfigProjectMSF.controller('projectController', ["$scope",'$filter',"commonvariable", "OrgUnit","OrgUnitGroupsOrgUnit", function($scope, $filter,commonvariable,OrgUnit,OrgUnitGroupsOrgUnit) {
+appConfigProjectMSF.controller('projectController', ["$scope",'$filter',"commonvariable", "OrgUnit","OrgUnitGroupsOrgUnit", "Parent", function($scope, $filter,commonvariable,OrgUnit,OrgUnitGroupsOrgUnit, Parent) {
 	
 	
 	//set message variable
@@ -18,11 +18,19 @@ appConfigProjectMSF.controller('projectController', ["$scope",'$filter',"commonv
 	
 	
 	$scope.sitesave=function(){
+		
+		
+		var codeOrgUnit = undefined;
+		
+		if (commonvariable.OrganisationUnit.code!=undefined && commonvariable.OrganisationUnit.code.length>=7)
+			codeOrgUnit = "OU_" + commonvariable.OrganisationUnit.code.slice(2,7) + $scope.siteprefix;
+		
 
 		var newOu={//payload
 				name:$scope.siteName,
 				level:(commonvariable.OrganisationUnit.level+1),
 	            shortName:$scope.siteName,
+	            code:codeOrgUnit,
 	           	openingDate:$scope.siteDate,
 	            parent:commonvariable.OrganisationUnit
 				};
@@ -35,9 +43,9 @@ appConfigProjectMSF.controller('projectController', ["$scope",'$filter',"commonv
 				  newOu.id=data.lastImported;
 				  commonvariable.NewOrganisationUnit=newOu;
 				  
-				  if (commonvariable.orgUnitGroupSet.tQWPrbOHma9!=undefined)
-					  OrgUnitGroupsOrgUnit.POST({uidgroup:commonvariable.orgUnitGroupSet.tQWPrbOHma9.id, uidorgunit:newOu.id});
-				  
+				  if (commonvariable.orgUnitGroupSet.ZxNjaKVXY1D!=undefined)
+					  OrgUnitGroupsOrgUnit.POST({uidgroup:commonvariable.orgUnitGroupSet.ZxNjaKVXY1D.id, uidorgunit:newOu.id});
+				  				  				  				  
 
 				 //set message variable
 				$scope.messages.push({type:"success",
@@ -86,7 +94,7 @@ appConfigProjectMSF.controller('projectController', ["$scope",'$filter',"commonv
 
 					$scope.projectname=commonvariable.OrganisationUnit.name;
 					$scope.projectcode=commonvariable.OrganisationUnit.code;
-					$scope.projectcreated=commonvariable.OrganisationUnit.created;
+					$scope.projectcreated=commonvariable.OrganisationUnit.openingDate;
 			}
 			});
 	

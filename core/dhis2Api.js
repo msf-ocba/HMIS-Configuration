@@ -87,7 +87,7 @@ Dhis2Api.factory("TreeOrganisationunit",['$resource','commonvariable', function 
 	return $resource(commonvariable.url+"organisationUnits/:uid", 
    {
 	uid:'@uid',
-	fields: 'name,id,code,level,shortName,children[name,id,shortName,level,created,code]'
+	fields: 'name,id,code,level,openingDate,shortName,children[name,id,shortName,level,openingDate,code]'
    }, 
   { get: { method: "GET"} });
 }]);
