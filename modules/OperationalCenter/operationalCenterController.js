@@ -16,12 +16,9 @@ appConfigProjectMSF.controller('operationalCenterController', ["$scope",'$filter
 				level:(commonvariable.OrganisationUnit.level+1),
 	            shortName:$scope.mdname,
 	           	openingDate:$scope.mdopendate,
-	            parent:commonvariable.OrganisationUnit
+	           	parent: commonvariable.OrganisationUnitParentConf
 				};
-		console.log($scope.mdname);
-		console.log(commonvariable.OrganisationUnit.level+1);
-		console.log($scope.mdopendate);
-		console.log(commonvariable.OrganisationUnit);
+		console.log(newOu);
 		OrgUnit.POST({},newOu)
 		.$promise.then(function(data){
     		  console.log(data);
@@ -29,7 +26,6 @@ appConfigProjectMSF.controller('operationalCenterController', ["$scope",'$filter
     		  	  commonvariable.RefreshTreeOU=true;
 				  newOu.id=data.lastImported;
 				  commonvariable.NewOrganisationUnit=newOu;
-
 				 //set message variable
 				$scope.messages.push({type:"success",
 				text:"Mission saved"});

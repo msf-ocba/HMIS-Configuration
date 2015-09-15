@@ -20,7 +20,7 @@ appConfigProjectMSF.controller('healthSiteController', ["$scope",'$filter',"comm
 				level:(commonvariable.OrganisationUnit.level+1),
 	            shortName:$scope.healthServiceName,
 	           	openingDate:$scope.healthServiceDate,
-	            parent:commonvariable.OrganisationUnit
+	           	parent: commonvariable.OrganisationUnitParentConf
 				};
 
 		OrgUnit.POST({},newOu)

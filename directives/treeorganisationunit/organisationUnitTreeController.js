@@ -92,16 +92,32 @@ Dhis2Api.controller("d2TreeorganisationUnitController", ['$scope','$location','T
 						.$promise.then(function(data){
 							$scope.treeOrganisationUnitList=$scope.update($scope.treeOrganisationUnitList, $scope.OrganisationUnit.currentNode.id,data.children,0) 									  
 						});
-					}
-   	
-           	   	switch($scope.treetype){
-            	   	case "single":
-            	   	    commonvariable.OrganisationUnit = $scope.OrganisationUnit.currentNode;
-            	   		break;
-            	   	case "multiple":
-            	   		commonvariable.OrganisationUnitList=$scope.OrganisationUnit.listNodesSelected;	
-            	   		break;
-            	   	}
+                    }
+
+  	
+                try {
+                    if ($scope.OrganisationUnit.currentNode.id != $scope.PreOrganisationUnitId) {
+                        switch ($scope.treetype) {
+                            case "single":
+                                commonvariable.OrganisationUnit = $scope.OrganisationUnit.currentNode;
+                                $scope.PreOrganisationUnitId = $scope.OrganisationUnit.currentNode.id;
+                                commonvariable.OrganisationUnitParentConf = {
+                                    id: $scope.OrganisationUnit.currentNode.id,
+                                    level: $scope.OrganisationUnit.currentNode.level,
+                                    name: $scope.OrganisationUnit.currentNode.name,
+                                    openingDate: $scope.OrganisationUnit.currentNode.openingDate,
+                                    shortName: $scope.OrganisationUnit.currentNode.shortName
+                                };
+                                break;
+                            case "multiple":
+                                commonvariable.OrganisationUnitList = $scope.OrganisationUnit.listNodesSelected;
+                                $scope.PreOrganisationUnitId = $scope.OrganisationUnit.currentNode.id;
+                                break;
+                        }
+                    }
+                } catch (err) {
+                    console.log(err);
+                };
             }
         );
 }]);

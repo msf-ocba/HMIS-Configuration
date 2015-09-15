@@ -64,7 +64,7 @@ appConfigProjectMSF.controller('missionController', ["$scope", '$filter', "commo
 				code:$scope.projectCode,
 	            shortName:$scope.projectName,
 	           	openingDate:$scope.propendate,
-	            parent:commonvariable.OrganisationUnit
+	           	parent: commonvariable.OrganisationUnitParentConf
 				};
 
 		OrgUnit.POST({},newOu)

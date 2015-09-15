@@ -11,6 +11,7 @@ appConfigProjectMSF.controller('healthServiceController', ["$scope",'$filter',"c
 	
 	$scope.showfields=false;
 	console.log(commonvariable.OrganisationUnit);
+	console.log(commonvariable.OrganisationUnitParentConf) //using as parent  for create OUs
 	
 	
 	$scope.showForm=function(frm){
