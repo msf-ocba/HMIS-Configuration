@@ -23,7 +23,7 @@
   "MISSION_DETAILS": "Mission Details",
    "MISSION_SAVED": "Mission Saved",
   "MISSION_NOSAVED": "Mission doesn't saved, review that the field name isn't empty",
-
+   "MISSION_LABEL_LIST": "Mission List",
 		
 	"_______________ Module__ ":" PROJECT _____________",
 	"PROJECT_TITLE": "Project",
