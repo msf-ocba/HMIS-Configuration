@@ -1,9 +1,10 @@
 {
 	"_______________ Common ":" for APPS_____________",
-	"TITLE_APPS":"MSF-OCBA Health Information System",
-	"YES":"Yes",
-	"NO":"No",
-  	"CREATION_DATE":"Fecha de creación",
+  "TITLE_APPS":"MSF-OCBA Health Information System",
+  "YES":"Yes",
+  "NO":"No",
+  "CREATION_DATE":"Fecha de creación",
+  "ALARM_EXIST" :"Este objeto ya existe en el sistema",
 		
 	"_______________ Module_ ":"International _____________",
 	"INTERNATIONAL_TITTLE": "Bienvenido al Sistema de Configuración",

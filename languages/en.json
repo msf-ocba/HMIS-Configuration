@@ -4,6 +4,7 @@
   "YES": "Yes",
   "NO": "No",
   "CREATION_DATE": "Creation date",
+  "ALARM_EXIST" :"This object already exist",
 		
 	"_______________ Module ":"International _____________",
 	"INTERNATIONAL_TITLE": "Welcome to Configuration system",

@@ -45,7 +45,8 @@ Dhis2Api.factory("commonvariable", function () {
 			DataElementSelected: [],
 			VaccinationDatasetSelected: {},
 			ouGroupsetId: ougroupsetId,
-			OrganisationUnitParentConf: {}
+			OrganisationUnitParentConf: {},
+		    ouDirective:""
 			};
 
    return Vari; 
@@ -182,6 +183,7 @@ Dhis2Api.factory("Parent",  ['$resource', 'commonvariable', function ($resource,
 		
 }]);
 
+
 Dhis2Api.factory("getIDOUG",  ['$resource', 'commonvariable', function ($resource, commonvariable) {
 	
 	return $resource(commonvariable.url + "organisationUnitGroups",
@@ -190,5 +192,13 @@ Dhis2Api.factory("getIDOUG",  ['$resource', 'commonvariable', function ($resourc
 			},
 			{GET: {method: "GET"}});
 		
+}]);
+
+Dhis2Api.factory("OrganisationUnitFind",['$resource','commonvariable', function ($resource,commonvariable) {
+	return $resource(commonvariable.url+"organisationUnits?filter=:param",
+		{
+			param:'@param'
+		},
+		{ get: { method: "GET"} });
 }]);
 

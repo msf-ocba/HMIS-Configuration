@@ -1,4 +1,4 @@
-appConfigProjectMSF.controller('operationalCenterController', ["$scope", '$filter', "commonvariable", "OrgUnit", "OrgUnitChildren", function ($scope, $filter, commonvariable, OrgUnit, OrgUnitChildren) {
+appConfigProjectMSF.controller('operationalCenterController', ["$scope", '$filter', "commonvariable", "OrgUnit", "OrgUnitChildren","OrganisationUnitFind", function ($scope, $filter, commonvariable, OrgUnit, OrgUnitChildren,OrganisationUnitFind) {
 	
 	//set message variable
 	$scope.closeAlertMessage = function(index) {
@@ -12,9 +12,9 @@ appConfigProjectMSF.controller('operationalCenterController', ["$scope", '$filte
 	$scope.showfields=false;
 	$scope.missionsave=function(){
 		var newOu={//payload
-				name:$scope.mdname,
+				name:commonvariable.ouDirective,
 				level:(commonvariable.OrganisationUnit.level+1),
-	            shortName:$scope.mdname,
+	            shortName:commonvariable.ouDirective,
 	           	openingDate:$scope.mdopendate,
 	           	parent: commonvariable.OrganisationUnitParentConf
 				};
