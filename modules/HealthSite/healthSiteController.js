@@ -16,9 +16,9 @@ appConfigProjectMSF.controller('healthSiteController', ["$scope",'$filter',"comm
 	$scope.servicesave=function(){
 
 		var newOu={//payload
-				name:$scope.healthServiceName,
+				name:commonvariable.ouDirective,
 				level:(commonvariable.OrganisationUnit.level+1),
-	            shortName:$scope.healthServiceName,
+	            shortName:commonvariable.ouDirective,
 	           	openingDate:$scope.healthServiceDate,
 	           	parent: commonvariable.OrganisationUnitParentConf
 				};

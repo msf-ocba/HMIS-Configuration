@@ -46,7 +46,8 @@ Dhis2Api.factory("commonvariable", function () {
 			VaccinationDatasetSelected: {},
 			ouGroupsetId: ougroupsetId,
 			OrganisationUnitParentConf: {},
-		    ouDirective:""
+		    ouDirective:"",
+			ouDirectiveCode:""
 			};
 
    return Vari; 

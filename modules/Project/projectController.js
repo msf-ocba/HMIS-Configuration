@@ -27,9 +27,9 @@ appConfigProjectMSF.controller('projectController', ["$scope",'$filter',"commonv
 		
 
 		var newOu={//payload
-				name:$scope.siteName,
+				name:commonvariable.ouDirective,
 				level:(commonvariable.OrganisationUnit.level+1),
-	            shortName:$scope.siteName,
+	            shortName:commonvariable.ouDirective,
 	            code:codeOrgUnit,
 	           	openingDate:$scope.siteDate,
 	            parent:commonvariable.OrganisationUnit
