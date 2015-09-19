@@ -207,10 +207,10 @@ appConfigProjectMSF.controller('missionController', ["$scope", '$filter', "commo
 	           try {
 
 	               $scope.missionname = commonvariable.OrganisationUnit.name;
-	               $scope.missioncreated = commonvariable.OrganisationUnit.created;
+	               $scope.missioncreated = commonvariable.OrganisationUnit.openingDate;
 	               $scope.prevOu = commonvariable.OrganisationUnit.id;
 	               $scope.getDataset();
-
+	               $scope.hideForm();
 	               //get Children for OU selected
 
 	               $scope.getChildrenByOUID(commonvariable.OrganisationUnit.id);

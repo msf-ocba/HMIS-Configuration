@@ -33,6 +33,10 @@ Dhis2Api.controller("d2ResourcejsonController", ['$scope', '$interval', "commonv
 	}
 	$scope.$watch(function () {
 	    if (commonvariable.OrganisationUnit && commonvariable.OrganisationUnit.id != $scope.prevOu) {
+
+	        commonvariable.DataElementSelected = [];
+	        $scope.style = [];
+ 
 	        $scope.prevOu = commonvariable.OrganisationUnit.id;
 	        $scope.getDataElementSelected();
 	    }
@@ -42,6 +46,7 @@ Dhis2Api.controller("d2ResourcejsonController", ['$scope', '$interval', "commonv
 	$scope.checkingDEGroup = function () {
    
 	    $scope.DESelected = [];
+
 	    reallyselected = true;
 	    angular.forEach($scope.sections, function (vvalue, vkey) {
 	        angular.forEach(vvalue.dataElementGroup, function (dgvalue, dgkey) {
@@ -58,7 +63,7 @@ Dhis2Api.controller("d2ResourcejsonController", ['$scope', '$interval', "commonv
 	                    });
 	                    if (Svalue.code == devalue.code && reallyselected.length == 0) {
                             $scope.DESelected.push({ dg: dgkey, de: vkey });
-	                        $scope.selectgroup(dgkey, vkey);
+                            $scope.selectgroupforEdit(dgkey, vkey);
 	                    }
 
 	                });
@@ -137,6 +142,20 @@ Dhis2Api.controller("d2ResourcejsonController", ['$scope', '$interval', "commonv
             $scope.style[skey][key]='success';
         else
             $scope.style[skey][key]='';
+
+    };
+
+    $scope.selectgroupforEdit = function (key, skey) {
+        ///add dataelement selected of all group
+        angular.forEach($scope.sections[skey].dataElementGroup[key].dataElements, function (dvalue, dkey) {
+            commonvariable.DataElementSelected.push({ id: $scope.ListnameDataelement[dvalue.code].id });
+        });
+
+        //config style for list of DataElements
+        if ($scope.style[skey] == undefined)
+            $scope.style[skey] = [];
+        if ($scope.style[skey][key] == '' || $scope.style[skey][key] == undefined)
+            $scope.style[skey][key] = 'success';       
 
     };
 
