@@ -7,7 +7,7 @@
 			"suffix":	"DT"},
 			{
 			"name": "Emergency Room",
-			"code": "OUG_HSV_ER"},
+			"code": "OUG_HSV_ER",
 			"suffix":	"ER"},
 			{
 			"name": "External Consultations",
@@ -117,5 +117,6 @@
 			"name": "Vaccination",
 			"code":	"OUG_HSV_VAC",
 			"suffix":	"VAC"}
-		]	
+		]
+	}	
 }	

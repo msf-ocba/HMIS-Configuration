@@ -1,4 +1,4 @@
-appConfigProjectMSF.controller('healthSiteController', ["$scope",'$filter',"commonvariable", "OrgUnit", "OrgUnitGroupsOrgUnit", function($scope, $filter,commonvariable, OrgUnit, OrgUnitGroupsOrgUnit) {
+appConfigProjectMSF.controller('healthSiteController', ["$scope",'$filter',"commonvariable", "OrgUnit", "OrgUnitGroupsOrgUnit", "loadjsonresource", function($scope, $filter,commonvariable, OrgUnit, OrgUnitGroupsOrgUnit, loadjsonresource) {
 	var $translate = $filter('translate');
 	
 	//set message variable
@@ -16,16 +16,32 @@ appConfigProjectMSF.controller('healthSiteController', ["$scope",'$filter',"comm
 	$scope.servicesave=function(){
 		
 		var healthServiceName="";
+		var healthServiceCode="";
+		var healthServiceSuffix="";
+		
 		if (commonvariable.OrganisationUnit.code!=undefined) {
 
 			healthServiceName = commonvariable.OrganisationUnit.code.slice(7,10);
 		}
 		
 		healthServiceName = healthServiceName + commonvariable.orgUnitGroupSet.BtFXTpKRl6n.name;
+		
+
+		
+		loadjsonresource.get("healthservice").then(function(response) {
+			
+		
+			healthServiceSuffix = getServiceSuffix(response.data.healthserviceSuffix).suffix;
+			
+			
+		});
+		
+		healthServiceCode=commonvariable.OrganisationUnit.code + "_" + healthServiceSuffix
 
 		var newOu={//payload
-				name:healthServiceName,
+				name:healthServiceName,				
 				level:(commonvariable.OrganisationUnit.level+1),
+				code:healthServiceCode,
 	            shortName:commonvariable.ouDirective,
 	           	openingDate:$scope.healthServiceDate,
 	           	parent: commonvariable.OrganisationUnitParentConf
@@ -61,6 +77,25 @@ appConfigProjectMSF.controller('healthSiteController', ["$scope",'$filter',"comm
     	 });
 				
 	};
+	
+	getServiceSuffix = function(healthserviceSuffix) {
+		
+		var services = healthserviceSuffix.service;
+		
+		var serviceResult = {};
+		
+		for (var i=0; i<services.length; i++) {
+			
+			if (services[i].code==commonvariable.orgUnitGroupSet.BtFXTpKRl6n.code) {
+				serviceResult = services[i];
+				break;
+			}
+			
+		}
+		
+		return serviceResult;
+		
+	}
 	
 	
 	$scope.showForm=function(frm){
