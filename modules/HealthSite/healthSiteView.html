@@ -64,10 +64,6 @@
 		<div class="col-md-12">
 			<div class="row">
 				<div class="col-md-6">
-					<label for="InputName2">{{'HEALTHSERVICE_NAME' | translate}}</label>
-					<input ng-model="healthServiceName" type="text" class="form-control" id="siteName">
-				</div>
-				<div class="col-md-6">
 					<label for="InputName2">{{'HEALTHSERVICE_OPENING_DATE' | translate}}</label>
 					<p class="input-group">
            		    <input type="text" class="form-control" datepicker-popup="yyyy-MM-dd" ng-model="healthServiceDate" is-open="opened" min-date="minDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
@@ -76,6 +72,13 @@
               		</span>
             		</p>
 				</div>
+				
+				<div class="col-md-6">
+					<label for="sel12"> {{'HEALTHSERVICE' | translate }} </label>
+					<d2-dropdownorgunitgroupset uidgroupSet="BtFXTpKRl6n" uidgroupsetfilterby="ZxNjaKVXY1D" file="servicebysite"></d2-dropdownorgunitgroupset>
+				</div>
+				
+				
 			</div>
 		</div>
 	</div>
@@ -84,34 +87,8 @@
 		</div>
 	</div>
 	
-	<!--  <div class="row">
-		<div class="col-md-12">
-			<label for="sel12"> Toy example </label>
-			<d2-dropdownorgunitgroupsetcompa uidgroupset="ZxNjaKVXY1D" file="servicebysite" ></d2-dropdownorgunitgroupsetcompa> 
-			
-		</div>
-	</div> -->
 	
 
-	<div class="row">
-		<div class="col-md-4">
-			<label for="sel12">{{'HEALTHSERVICE_SUFFIX' | translate}}</label>
-			<input  ng-model="healthServiceSuffix" type="text" class="form-control" id="SitePrefix">
-		</div>
-						
-	
-		<div class="col-md-4">
-			<label for="sel12"> {{'HEALTHSERVICE' | translate }} </label>
-			<d2-dropdownorgunitgroupset uidgroupSet="BtFXTpKRl6n" uidgroupsetfilterby="ZxNjaKVXY1D" file="servicebysite"></d2-dropdownorgunitgroupset>
-		</div>
-	
-		<div class="col-md-4">
-			<label for="sel12"> {{'HEALTHSERVICE_TYPE' | translate }} </label>
-			<d2-dropdownorgunitgroupset uidgroupSet="akYeq1mMz2N" ></d2-dropdownorgunitgroupset>
-		</div>
-		
-	</div>
-		
 
 <br>
 <div class="row">
