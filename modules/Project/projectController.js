@@ -1,4 +1,4 @@
-appConfigProjectMSF.controller('projectController', ["$scope",'$filter',"commonvariable", "OrgUnit","OrgUnitGroupsOrgUnit", function($scope, $filter,commonvariable,OrgUnit,OrgUnitGroupsOrgUnit) {
+appConfigProjectMSF.controller('projectController', ["$scope",'$filter',"commonvariable", "OrgUnit","OrgUnitGroupsOrgUnit","FilterResource", "AddDataSetsToOrgUnit", function($scope, $filter,commonvariable,OrgUnit,OrgUnitGroupsOrgUnit,FilterResource,AddDataSetsToOrgUnit) {
 	
 	
 	//set message variable
@@ -45,6 +45,19 @@ appConfigProjectMSF.controller('projectController', ["$scope",'$filter',"commonv
 				  
 				  if (commonvariable.orgUnitGroupSet.ZxNjaKVXY1D!=undefined)
 					  OrgUnitGroupsOrgUnit.POST({uidgroup:commonvariable.orgUnitGroupSet.ZxNjaKVXY1D.id, uidorgunit:newOu.id});
+				  
+				  
+				  
+				  FilterResource.GET({resource:'dataSets', filter:'code:eq:'+"DS_INFR_3"}).$promise
+			  		.then(function(response){
+			  			
+			  			if (response.dataSets.length>0) {
+			  				
+			  				var dataSet = response.dataSets[0];
+			  				AddDataSetsToOrgUnit.POST({uidorgunit:newOu.id, uiddataset:dataSet.id});
+			  			}
+			  							  			
+			  		});
 				  				  				  				  
 
 				 //set message variable
