@@ -195,11 +195,32 @@ Dhis2Api.factory("getIDOUG",  ['$resource', 'commonvariable', function ($resourc
 		
 }]);
 
+Dhis2Api.factory("FilterResource",  ['$resource', 'commonvariable', function ($resource, commonvariable) {
+	
+	return $resource(commonvariable.url + ":resource",
+			{
+			resource:'@resource',
+			filter:'@filter'
+			},
+			{GET: {method: "GET"}});
+		
+}]);
+
 Dhis2Api.factory("OrganisationUnitFind",['$resource','commonvariable', function ($resource,commonvariable) {
 	return $resource(commonvariable.url+"organisationUnits?filter=:param",
 		{
 			param:'@param'
 		},
 		{ get: { method: "GET"} });
+}]);
+
+Dhis2Api.factory("AddDataSetsToOrgUnit",['$resource','commonvariable', function ($resource,commonvariable) {
+	
+	return $resource(commonvariable.url+"organisationUnits/:uidorgunit/dataSets/:uiddataset",
+		{	
+		uidorgunit:'@uidorgunit',
+		uiddataset: '@uiddataset'
+		},
+		{ POST: { method: "POST"} });
 }]);
 

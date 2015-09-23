@@ -1,4 +1,4 @@
-appConfigProjectMSF.controller('missionController', ["$scope", '$filter', "commonvariable", "OrgUnit", "OrgUnitGroupsOrgUnit", "DataSets", "OrgUnitChildren", function ($scope, $filter, commonvariable, OrgUnit, OrgUnitGroupsOrgUnit, DataSets, OrgUnitChildren) {
+appConfigProjectMSF.controller('missionController', ["$scope", '$filter', "commonvariable", "OrgUnit", "OrgUnitGroupsOrgUnit", "DataSets", "OrgUnitChildren", "FilterResource", "AddDataSetsToOrgUnit", function ($scope, $filter, commonvariable, OrgUnit, OrgUnitGroupsOrgUnit, DataSets, OrgUnitChildren, FilterResource, AddDataSetsToOrgUnit) {
     var $translate = $filter('translate');
     //Load Data of OU selected
     $scope.prevOu = "";
@@ -87,6 +87,19 @@ appConfigProjectMSF.controller('missionController', ["$scope", '$filter', "commo
 				      OrgUnitGroupsOrgUnit.POST({ uidgroup: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.Context].id, uidorgunit: newOu.id });
 				  
 
+				  FilterResource.GET({resource:'dataSets', filter:'code:eq:'+"DS_VST_3"}).$promise
+				  		.then(function(response){
+				  			
+				  			if (response.dataSets.length>0) {
+				  				
+				  				var dataSet = response.dataSets[0];
+				  				AddDataSetsToOrgUnit.POST({uidorgunit:newOu.id, uiddataset:dataSet.id});
+				  			}
+				  							  			
+				  		});
+				  
+				  
+				  
 				 //set message variable
 				  $scope.messages.push({ type: "success", text: $translate('PROJECT_SAVED') });
 				  $scope.hideForm();

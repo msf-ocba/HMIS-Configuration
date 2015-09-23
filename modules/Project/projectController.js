@@ -1,4 +1,4 @@
-appConfigProjectMSF.controller('projectController', ["$scope",'$filter',"commonvariable", "OrgUnit","OrgUnitGroupsOrgUnit", "Parent", function($scope, $filter,commonvariable,OrgUnit,OrgUnitGroupsOrgUnit, Parent) {
+appConfigProjectMSF.controller('projectController', ["$scope",'$filter',"commonvariable", "OrgUnit","OrgUnitGroupsOrgUnit", function($scope, $filter,commonvariable,OrgUnit,OrgUnitGroupsOrgUnit) {
 	
 	
 	//set message variable
