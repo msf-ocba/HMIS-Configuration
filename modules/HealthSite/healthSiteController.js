@@ -1,4 +1,4 @@
-appConfigProjectMSF.controller('healthSiteController', ["$scope",'$filter',"commonvariable", "OrgUnit", "OrgUnitGroupsOrgUnit", "loadjsonresource", function($scope, $filter,commonvariable, OrgUnit, OrgUnitGroupsOrgUnit, loadjsonresource) {
+appConfigProjectMSF.controller('healthSiteController', ["$scope",'$filter',"commonvariable", "OrgUnit", "OrgUnitGroupsOrgUnit", "loadjsonresource", "OrgUnitGroupByOrgUnit", function($scope, $filter,commonvariable, OrgUnit, OrgUnitGroupsOrgUnit, loadjsonresource, OrgUnitGroupByOrgUnit) {
 	var $translate = $filter('translate');
 	
 	//set message variable
@@ -60,6 +60,19 @@ appConfigProjectMSF.controller('healthSiteController', ["$scope",'$filter',"comm
 
 				  if (commonvariable.orgUnitGroupSet.akYeq1mMz2N!=undefined)
 					  OrgUnitGroupsOrgUnit.POST({uidgroup:commonvariable.orgUnitGroupSet.akYeq1mMz2N.id, uidorgunit:newOu.id});
+				  
+				  
+				  OrgUnitGroupByOrgUnit.get({uid:commonvariable.OrganisationUnit.id}).$promise.then(function(response) {
+						
+					  listOrgUnitGroups = response.organisationUnitGroups;
+					  
+					  
+					  for (var i=0;i<listOrgUnitGroups.length;i++)
+						  OrgUnitGroupsOrgUnit.POST({uidgroup:listOrgUnitGroups[i].id,uidorgunit:newOu.id});
+					  
+
+				  });
+
 
 
 				 //set message variable

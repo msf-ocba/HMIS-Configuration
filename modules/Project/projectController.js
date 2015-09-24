@@ -1,4 +1,4 @@
-appConfigProjectMSF.controller('projectController', ["$scope",'$filter',"commonvariable", "OrgUnit","OrgUnitGroupsOrgUnit","FilterResource", "AddDataSetsToOrgUnit", function($scope, $filter,commonvariable,OrgUnit,OrgUnitGroupsOrgUnit,FilterResource,AddDataSetsToOrgUnit) {
+appConfigProjectMSF.controller('projectController', ["$scope",'$filter',"commonvariable", "OrgUnit","OrgUnitGroupsOrgUnit","FilterResource", "AddDataSetsToOrgUnit", "OrgUnitGroupByOrgUnit", function($scope, $filter,commonvariable,OrgUnit,OrgUnitGroupsOrgUnit,FilterResource,AddDataSetsToOrgUnit,OrgUnitGroupByOrgUnit) {
 	
 	
 	//set message variable
@@ -46,6 +46,18 @@ appConfigProjectMSF.controller('projectController', ["$scope",'$filter',"commonv
 				  if (commonvariable.orgUnitGroupSet.ZxNjaKVXY1D!=undefined)
 					  OrgUnitGroupsOrgUnit.POST({uidgroup:commonvariable.orgUnitGroupSet.ZxNjaKVXY1D.id, uidorgunit:newOu.id});
 				  
+				  OrgUnitGroupByOrgUnit.get({uid:commonvariable.OrganisationUnit.id}).$promise.then(function(response) {
+						
+					  listOrgUnitGroups = response.organisationUnitGroups;
+					  
+					  
+					  for (var i=0;i<listOrgUnitGroups.length;i++)
+						  OrgUnitGroupsOrgUnit.POST({uidgroup:listOrgUnitGroups[i].id,uidorgunit:newOu.id});
+					  
+
+				  });
+
+
 				  
 				  
 				  FilterResource.GET({resource:'dataSets', filter:'code:eq:'+"DS_INFR_3"}).$promise
