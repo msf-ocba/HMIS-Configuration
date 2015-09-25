@@ -1,4 +1,4 @@
-appConfigProjectMSF.controller('healthSiteController', ["$scope",'$filter',"commonvariable", "OrgUnit", "OrgUnitGroupsOrgUnit", "loadjsonresource", "OrgUnitGroupByOrgUnit", function($scope, $filter,commonvariable, OrgUnit, OrgUnitGroupsOrgUnit, loadjsonresource, OrgUnitGroupByOrgUnit) {
+appConfigProjectMSF.controller('healthSiteController', ["$scope",'$filter',"commonvariable", "OrgUnit", "OrgUnitGroupsOrgUnit", "loadjsonresource", "OrgUnitGroupByOrgUnit", "FilterResource", function($scope, $filter,commonvariable, OrgUnit, OrgUnitGroupsOrgUnit, loadjsonresource, OrgUnitGroupByOrgUnit, FilterResource) {
 	var $translate = $filter('translate');
 	
 	//set message variable
@@ -36,6 +36,7 @@ appConfigProjectMSF.controller('healthSiteController', ["$scope",'$filter',"comm
 			
 		});
 		
+		
 		healthServiceCode=commonvariable.OrganisationUnit.code + "_" + healthServiceSuffix
 
 		var newOu={//payload
@@ -57,19 +58,35 @@ appConfigProjectMSF.controller('healthSiteController', ["$scope",'$filter',"comm
 				  
 				  if (commonvariable.orgUnitGroupSet.BtFXTpKRl6n!=undefined)
 					  OrgUnitGroupsOrgUnit.POST({uidgroup:commonvariable.orgUnitGroupSet.BtFXTpKRl6n.id, uidorgunit:newOu.id});
+				  
+				  var codeServiceType = undefined;
+				  
+				  loadjsonresource.get("servicebyservicetype").then(function(response) {
+					  
+					  codeServiceType = getServiceType(response.data.servicesByServiceType);
+					  
+					  FilterResource.GET({resource:'organisationUnitGroups', filter:'code:eq:'+codeServiceType}).$promise
+				  		.then(function(response){
+				  			
+				  			if (response.organisationUnitGroups.length>0) {
+				  				
+				  				var orgUnitGroup = response.organisationUnitGroups[0];
+								OrgUnitGroupsOrgUnit.POST({uidgroup:orgUnitGroup.id, uidorgunit:newOu.id});
 
-				  if (commonvariable.orgUnitGroupSet.akYeq1mMz2N!=undefined)
-					  OrgUnitGroupsOrgUnit.POST({uidgroup:commonvariable.orgUnitGroupSet.akYeq1mMz2N.id, uidorgunit:newOu.id});
+				  			}
+				  							  			
+				  		});
+
+					  
+				  });
 				  
 				  
 				  OrgUnitGroupByOrgUnit.get({uid:commonvariable.OrganisationUnit.id}).$promise.then(function(response) {
 						
-					  listOrgUnitGroups = response.organisationUnitGroups;
-					  
+					  listOrgUnitGroups = response.organisationUnitGroups;					  
 					  
 					  for (var i=0;i<listOrgUnitGroups.length;i++)
-						  OrgUnitGroupsOrgUnit.POST({uidgroup:listOrgUnitGroups[i].id,uidorgunit:newOu.id});
-					  
+						  OrgUnitGroupsOrgUnit.POST({uidgroup:listOrgUnitGroups[i].id,uidorgunit:newOu.id});					  
 
 				  });
 
@@ -95,6 +112,7 @@ appConfigProjectMSF.controller('healthSiteController', ["$scope",'$filter',"comm
 		
 		var services = healthserviceSuffix.service;
 		
+		
 		var serviceResult = {};
 		
 		for (var i=0; i<services.length; i++) {
@@ -108,6 +126,35 @@ appConfigProjectMSF.controller('healthSiteController', ["$scope",'$filter',"comm
 		
 		return serviceResult;
 		
+	}
+	
+	getServiceType = function(servicesByServiceType) {
+		
+		var serviceTypes=servicesByServiceType.serviceType;
+		
+		var codeResult;
+		
+		//I need to refactor this!!!!
+		
+		
+		for (var i=0; i<serviceTypes.length; i++) {
+			
+			var serviceType = serviceTypes[i];
+			
+			
+			for (var j=0; j<serviceType.services.length; j++) {
+				if (serviceType.services[j].code == commonvariable.orgUnitGroupSet.BtFXTpKRl6n.code) {
+					codeResult = serviceType.code;
+					break;
+				}
+					
+			}
+			
+			
+		}
+		
+		return codeResult;
+			
 	}
 	
 	
