@@ -9,19 +9,37 @@
 
 <div ng-hide="showfields" class="col-md-12">
 <div class="panel panel-default">
-	<div class="panel-heading">{{'HEALTHSERVICE_DETAILS' | translate}}</div>
+    <div class="panel-heading">
+        <div class="row">
+            <div class="col-md-10">
+               {{'HEALTHSERVICE_DETAILS' | translate}}
+            </div>
+
+            <div class="col-md-2">
+                <div class="text-right">
+                    <a href="#/HealthService" ng-click="enableforEdit()">
+                        <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                    </a>
+                    <a href="#/HealthService" ng-click="modalDelete()">
+                        <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
 	<div class="panel-body">
 		<div class="row">
 			<div class="col-md-12">
 				<div class="row">
 					<div class="col-md-6">
 						<label for="InputName2">{{'HEALTHSERVICE_NAME' | translate}}</label>
-						<input  ng-model="healthservicename" type="text" class="form-control" id="ProyectName" disabled>
+                        <d2-findorganisationunit field="name" value="{{healthservicename}}" operation="{{operation}}" placeholder="{{'HEALTHSERVICE_NAME' | translate}}"></d2-findorganisationunit>
 					</div>
 					
 					<div class="col-md-6">
 						<label for="sel12"> {{'HEALTHSERVICE_OPENING_DATE' | translate }} </label>
-						<input datepicker-popup="yyyy-MM-dd" ng-model="healthservicecreated" type="text" class="form-control" id="HealthServiceCreated" disabled>
+						<input datepicker-popup="yyyy-MM-dd" ng-model="healthservicecreated" type="text" class="form-control" id="HealthServiceCreated" ng-disabled="operation=='show'">
 					</div>
 					
 					
@@ -37,18 +55,18 @@
 				
 					<div class="col-md-4">
 						<label for="sel12"> {{'HEALTHSERVICE_CODE' | translate }} </label>
-						<input ng-model="healthservicecode" type="text" class="form-control" id="HealthServiceCode" disabled>
+                        <d2-findorganisationunit field="code" value="{{healthservicecode}}" operation="{{operation}}" placeholder="{{'HEALTHSERVICE_CODE' | translate}}"></d2-findorganisationunit>
 					</div>
 				
 				
 					<div class="col-md-4">
 						<label for="sel12"> {{'HEALTHSERVICE' | translate }} </label>
-						<d2-dropdownorgunitgroupset uidgroupSet="BtFXTpKRl6n" operation="show"></d2-dropdownorgunitgroupset>
+						<d2-dropdownorgunitgroupset uidgroupSet="BtFXTpKRl6n" operation="{{operation}}"></d2-dropdownorgunitgroupset>
 					</div>
 				
 					<div class="col-md-4">
 						<label for="sel12"> {{'HEALTHSERVICE_TYPE' | translate }} </label>
-						<d2-dropdownorgunitgroupset uidgroupSet="akYeq1mMz2N" operation="show"></d2-dropdownorgunitgroupset>
+						<d2-dropdownorgunitgroupset uidgroupSet="akYeq1mMz2N" operation="{{operation}}"></d2-dropdownorgunitgroupset>
 					</div>
 
 				</div>								
@@ -62,7 +80,17 @@
 		</div>
 	</div>
 </div>
+    <div class="row" ng-show="operation=='edit'">
+        <div class="col-md-6">
 
+        </div>
+
+        <div class="col-md-6 text-right">
+            <button ng-click="EditService()" type="button" class="btn btn-primary btn-sm">{{'SERVICE_SAVE' | translate}}</button>
+            <button type="button" class="btn btn-danger btn-sm" ng-click="enableforshow()">{{'SERVICE_CANCEL' | translate}}</button>
+        </div>
+
+    </div>
 
 <br/>
 
@@ -70,4 +98,17 @@
 </div>
 </div>
 </div>
+
+<script type="text/ng-template" id="modalDeleted.html">
+    <div class="modal-header">
+        <h3 class="modal-title">{{'MODAL_SERVICE_DELETE_TITLE'}}</h3>
+    </div>
+    <div class="modal-body">
+        <h4>{{'MODAL_SERVICE_DELETE_MESSAGE'}}</h4>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
+        <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+    </div>
+</script>
 

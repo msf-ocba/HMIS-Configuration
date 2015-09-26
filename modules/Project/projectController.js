@@ -1,4 +1,4 @@
-appConfigProjectMSF.controller('projectController', ["$scope",'$filter',"commonvariable", "OrgUnit","OrgUnitGroupsOrgUnit","FilterResource", "AddDataSetsToOrgUnit", "OrgUnitGroupByOrgUnit", function($scope, $filter,commonvariable,OrgUnit,OrgUnitGroupsOrgUnit,FilterResource,AddDataSetsToOrgUnit,OrgUnitGroupByOrgUnit) {
+appConfigProjectMSF.controller('projectController', ["$scope",'$filter',"commonvariable", "OrgUnit","OrgUnitGroupsOrgUnit","FilterResource", "AddDataSetsToOrgUnit", "OrgUnitGroupByOrgUnit","$modal", function($scope, $filter,commonvariable,OrgUnit,OrgUnitGroupsOrgUnit,FilterResource,AddDataSetsToOrgUnit,OrgUnitGroupByOrgUnit,$modal) {
 	
 	
 	//set message variable
@@ -138,6 +138,94 @@ appConfigProjectMSF.controller('projectController', ["$scope",'$filter',"commonv
 	  };
 	  
 	
+    ////////////////////////For Edit //////////////////////////////////////////
+
+    //set message variable
+	  $scope.closeAlertMessage = function (index) {
+	      $scope.messages.splice(index, 1);
+	  };
+
+	  $scope.messages = [];
+    ///enable textBox
+	  $scope.operation = 'show';
+	  $scope.enableforEdit = function () {
+	      $scope.operation = 'edit';
+	  }
+	  $scope.enableforshow = function () {
+	      $scope.operation = 'show';
+	  }
+
+    ////Edit PROJECT
+	  $scope.EditProject = function () {
+
+	      var newOu = {//payload
+	          name: commonvariable.ouDirective,
+	          level: commonvariable.OrganisationUnit.level,
+	          shortName: commonvariable.ouDirective,
+	          openingDate: $scope.mdopendate,
+	          parent: commonvariable.OrganisationUnitParentConf
+	      };
+
+	      ///
+	      $scope.messages.push({ type: "success", text: $translate('PROJECT_UPDATED') });
+
+
+	  }
+
+
+
+
+    ///Delete PROJECT
+	  $scope.DeleteProject = function () {
+
+	   
+
+	      ///
+	      $scope.messages.push({ type: "success", text: $translate('PROJECT_DELETED') });
+
+	  }
+
+
+
+    /////modal for delete message
+
+	  $scope.modalDelete = function (size) {
+
+	      var modalInstance = $modal.open({
+	          templateUrl: 'modalDeleted.html',
+	          controller: 'ModalDeleted',
+	          size: size,
+	          resolve: {
+	              items: function () {
+	                  return $scope.items;
+	              }
+	          }
+	      });
+
+	      modalInstance.result.then(function (option) {
+	          if (option) {
+	              //method for delete mission
+	              $scope.DeleteProject();
+	          }
+	      }, function () {
+	          console.log('Modal dismissed at: ' + new Date());
+	      });
+	  };
+
+
+
 }]);
 
+
+  appConfigProjectMSF.controller('ModalDeleted', function ($scope, $modalInstance) {
+
+
+      $scope.ok = function () {
+          $modalInstance.close(true);
+      };
+
+      $scope.cancel = function () {
+          $modalInstance.dismiss('cancel');
+      };
+  });
 

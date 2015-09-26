@@ -93,13 +93,34 @@ Dhis2Api.controller("d2DropdownorgunitgroupsetController", ['$q','$scope','$http
 	
 	$scope.prevOu = undefined;
 	$scope.$watch(function () {
+
+	    ///
+	    if ($scope.operation != $scope.prevOperation) {
+	       
+	        try {
+	            getOrgUnitGroup(commonvariable.OrganisationUnit.id, $scope.uidgroupset).then(function (data) { $scope.ougName = data.name })
+	        } catch (err) {
+	            console.log("Error, Organisation Unit doesn't selected");
+	        };
+	        if ($scope.operation == 'edit')
+	                $scope.disabled = false;
+	            else {
+	                $scope.disabled = true;
+	               
+	            }
+	            $scope.prevOperation = $scope.operation;
+
+
+	    }
+
 	    if (commonvariable.OrganisationUnit && commonvariable.OrganisationUnit.id != $scope.prevOu) {
 	        $scope.prevOu = commonvariable.OrganisationUnit.id;
-	        //function to call when change of OU
+
+	         //function to call when change of OU
 	        if ($scope.operation == "show") {
 	            $scope.disabled = true;
 	            try{
-	                getOrgUnitGroup(commonvariable.OrganisationUnit.id, $scope.uidgroupset).then(function (data) { $scope.ougName = data.name; })
+	                getOrgUnitGroup(commonvariable.OrganisationUnit.id, $scope.uidgroupset).then(function (data) { $scope.ougName = data.name })
 	            }catch(err){
 	                console.log("Error, Organisation Unit doesn't selected");
 	            };

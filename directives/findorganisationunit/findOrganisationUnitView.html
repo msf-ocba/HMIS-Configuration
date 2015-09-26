@@ -3,7 +3,9 @@
         <div class="col-md-9">
 
             <div class="input-group-btn {{ouExist}}" >
-                <input ng-model="mdname" type="text" class="form-control" id="exampleInputName2" ng-blur="findOu()" placeholder="{{placeholder}}"  class="form-control">
+                <input ng-model="mdname" type="text" class="form-control" ng-blur="findOu()" placeholder="{{placeholder}}" ng-disabled="isDisabled">
+            
+            
             </div>
         </div>
         <div class="col-md-3">

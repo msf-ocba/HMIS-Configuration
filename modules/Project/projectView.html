@@ -9,14 +9,32 @@
 
 <div ng-hide="showfields" class="col-md-12">
 <div class="panel panel-default">
-	<div class="panel-heading">{{'PROJECT_DETAILS' | translate}}</div>
+    <div class="panel-heading">
+        <div class="row">
+            <div class="col-md-10">
+                {{'PROJECT_DETAILS' | translate}}
+            </div>
+
+            <div class="col-md-2">
+                <div class="text-right">
+                    <a href="#/Project" ng-click="enableforEdit()">
+                        <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                    </a>
+                    <a href="#/Project" ng-click="modalDelete()">
+                        <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
 	<div class="panel-body">
 		<div class="row">
 			<div class="col-md-12">
 				<div class="row">
 					<div class="col-md-12">
 						<label for="InputName2">{{'PROJECT_NAME' | translate}}</label>
-						<input  ng-model="projectname" type="text" class="form-control" id="ProjectName" disabled>
+                        <d2-findorganisationunit field="name" value="{{projectname}}" operation="{{operation}}" placeholder="{{'PROJECT_NAME' | translate}}"></d2-findorganisationunit>
 					</div>
 				</div>
 				<br/>
@@ -24,12 +42,12 @@
 
 					<div class="col-md-6">
 						<label for="InputName3">{{'PROJECT_OPENING_DATE' | translate}}</label>
-						<input datepicker-popup="yyyy-MM-dd" ng-model="projectcreated" type="text" class="form-control" id="ProjectCreated" disabled>
+						<input datepicker-popup="yyyy-MM-dd" ng-model="projectcreated" type="text" class="form-control" id="ProjectCreated" ng-disabled="operation=='show'">
 					</div>
 					
 					<div class="col-md-6">
 						<label for="InputName4">{{'PROJECT_CODE' | translate}}</label>
-						<input  ng-model="projectcode" type="text" class="form-control" id="ProjectCode" disabled>
+                        <d2-findorganisationunit field="code" value="{{projectcode}}" operation="{{operation}}" placeholder="{{'PROJECT_CODE' | translate}}"></d2-findorganisationunit>
 					</div>
 					
 					
@@ -43,17 +61,17 @@
 				<div class="row">
 					<div class="col-md-4">
 						<label for="sel12"> {{'PROJECT_TYPE' | translate }} </label>
-						<d2-dropdownorgunitgroupset uidgroupSet="rQjuGZcxNxE" operation="show"></d2-dropdownorgunitgroupset>
+						<d2-dropdownorgunitgroupset uidgroupSet="rQjuGZcxNxE" operation="{{operation}}"></d2-dropdownorgunitgroupset>
 					</div>
 				
 					<div class="col-md-4">
 						<label for="sel12"> {{'POPULATION_TYPE' | translate }} </label>
-						<d2-dropdownorgunitgroupset uidgroupSet="iiFM3YudVxq" operation="show"></d2-dropdownorgunitgroupset>
+						<d2-dropdownorgunitgroupset uidgroupSet="iiFM3YudVxq" operation="{{operation}}"></d2-dropdownorgunitgroupset>
 					</div>
 
 					<div class="col-md-4">
 						<label for="sel12"> {{'TYPE_OF_MANAGEMENT' | translate }} </label>
-						<d2-dropdownorgunitgroupset uidgroupSet="ZximACPowCs" operation="show"></d2-dropdownorgunitgroupset>
+						<d2-dropdownorgunitgroupset uidgroupSet="ZximACPowCs" operation="{{operation}}"></d2-dropdownorgunitgroupset>
 					</div>
 				</div>								
 			
@@ -68,12 +86,12 @@
 				<div class="row">
 					<div class="col-md-4">
 						<label for="sel12"> {{'EVENTS' | translate }} </label>
-						<d2-dropdownorgunitgroupset uidgroupSet="DIYl9kZDij3" operation="show"></d2-dropdownorgunitgroupset>
+						<d2-dropdownorgunitgroupset uidgroupSet="DIYl9kZDij3" operation="{{operation}}"></d2-dropdownorgunitgroupset>
 					</div>
 				
 					<div class="col-md-4">
 						<label for="sel12"> {{'CONTEXT' | translate }} </label>
-						<d2-dropdownorgunitgroupset uidgroupSet="lR7GVB43jaX" operation="show"></d2-dropdownorgunitgroupset>
+						<d2-dropdownorgunitgroupset uidgroupSet="lR7GVB43jaX" operation="{{operation}}"></d2-dropdownorgunitgroupset>
 					</div>
 
 				</div>								
@@ -86,6 +104,22 @@
 		</div>
 	</div>
 </div>
+    <div class="row" ng-show="operation=='edit'">
+        <div class="col-md-6">
+
+        </div>
+
+        <div class="col-md-6 text-right">
+            <button ng-click="EditProject()" type="button" class="btn btn-primary btn-sm">{{'PROJECT_SAVE' | translate}}</button>
+            <button type="button" class="btn btn-danger btn-sm" ng-click="enableforshow()">{{'PROJECT_CANCEL' | translate}}</button>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <alert ng-repeat="message in messages" type="{{message.type}}" close="closeAlertMessage($index)">{{message.text}}</alert>
+        </div>
+    </div>
 
 		<div class="row">
 		<div class="col-md-12">
@@ -141,11 +175,11 @@
 			</div>
 		</div>
 	</div>
-		<div class="col-md-12">
-	<div class="row">
-		</div>
-	</div>
-	
+      <div class="col-md-12">
+          <div class="row">
+          </div>
+      </div>
+
 
 <br>
 <div class="row">
@@ -166,3 +200,15 @@
 </div>
 </div>
 
+<script type="text/ng-template" id="modalDeleted.html">
+    <div class="modal-header">
+        <h3 class="modal-title">{{'MODAL_PROJECT_DELETE_TITLE'}}</h3>
+    </div>
+    <div class="modal-body">
+        <h4>{{'MODAL_PROJECT_DELETE_MESSAGE'}}</h4>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
+        <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+    </div>
+</script>

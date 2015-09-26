@@ -1,4 +1,4 @@
-appConfigProjectMSF.controller('healthSiteController', ["$scope",'$filter',"commonvariable", "OrgUnit", "OrgUnitGroupsOrgUnit", "loadjsonresource", "OrgUnitGroupByOrgUnit", function($scope, $filter,commonvariable, OrgUnit, OrgUnitGroupsOrgUnit, loadjsonresource, OrgUnitGroupByOrgUnit) {
+appConfigProjectMSF.controller('healthSiteController', ["$scope",'$filter',"commonvariable", "OrgUnit", "OrgUnitGroupsOrgUnit", "loadjsonresource", "OrgUnitGroupByOrgUnit","$modal", function($scope, $filter,commonvariable, OrgUnit, OrgUnitGroupsOrgUnit, loadjsonresource, OrgUnitGroupByOrgUnit,$modal) {
 	var $translate = $filter('translate');
 	
 	//set message variable
@@ -148,6 +148,95 @@ appConfigProjectMSF.controller('healthSiteController', ["$scope",'$filter',"comm
 	  };
 
 	
+    ////////////////////////For Edit //////////////////////////////////////////
+
+    //set message variable
+	  $scope.closeAlertMessage = function (index) {
+	      $scope.messages.splice(index, 1);
+	  };
+
+	  $scope.messages = [];
+    ///enable textBox
+	  $scope.operation = 'show';
+	  $scope.enableforEdit = function () {
+	      $scope.operation = 'edit';
+	  }
+	  $scope.enableforshow = function () {
+	      $scope.operation = 'show';
+	  }
+
+    ////Edit SITE
+	  $scope.EditSite = function () {
+
+	      var newOu = {//payload
+	          name: commonvariable.ouDirective,
+	          level: commonvariable.OrganisationUnit.level,
+	          shortName: commonvariable.ouDirective,
+	          openingDate: $scope.mdopendate,
+	          parent: commonvariable.OrganisationUnitParentConf
+	      };
+
+	      ///
+	      $scope.messages.push({ type: "success", text: $translate('SITE_UPDATED') });
+
+
+	  }
+
+
+
+
+    ///Delete PROJECT
+	  $scope.DeleteSite = function () {
+
+
+
+	      ///
+	      $scope.messages.push({ type: "success", text: $translate('SITE_DELETED') });
+
+	  }
+
+
+
+    /////modal for delete message
+
+	  $scope.modalDelete = function (size) {
+
+	      var modalInstance = $modal.open({
+	          templateUrl: 'modalDeleted.html',
+	          controller: 'ModalDeleted',
+	          size: size,
+	          resolve: {
+	              items: function () {
+	                  return $scope.items;
+	              }
+	          }
+	      });
+
+	      modalInstance.result.then(function (option) {
+	          if (option) {
+	              //method for delete mission
+	              $scope.DeleteSite();
+	          }
+	      }, function () {
+	          console.log('Modal dismissed at: ' + new Date());
+	      });
+	  };
+
+
+
 }]);
+
+
+  appConfigProjectMSF.controller('ModalDeleted', function ($scope, $modalInstance) {
+
+
+      $scope.ok = function () {
+          $modalInstance.close(true);
+      };
+
+      $scope.cancel = function () {
+          $modalInstance.dismiss('cancel');
+      };
+  });
 
 

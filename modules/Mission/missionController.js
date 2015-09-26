@@ -1,9 +1,10 @@
-appConfigProjectMSF.controller('missionController', ["$scope", '$filter', "commonvariable", "OrgUnit", "OrgUnitGroupsOrgUnit", "DataSets", "OrgUnitChildren", "FilterResource", "AddDataSetsToOrgUnit", function ($scope, $filter, commonvariable, OrgUnit, OrgUnitGroupsOrgUnit, DataSets, OrgUnitChildren, FilterResource, AddDataSetsToOrgUnit) {
+appConfigProjectMSF.controller('missionController', ["$scope", '$filter', "commonvariable", "OrgUnit", "OrgUnitGroupsOrgUnit", "DataSets", "OrgUnitChildren", "FilterResource", "AddDataSetsToOrgUnit","$modal", function ($scope, $filter, commonvariable, OrgUnit, OrgUnitGroupsOrgUnit, DataSets, OrgUnitChildren, FilterResource, AddDataSetsToOrgUnit,$modal) {
     var $translate = $filter('translate');
     //Load Data of OU selected
     $scope.prevOu = "";
     $scope.showbutton = true;
     $scope.CreateDatasetVaccination = true;
+
     $scope.initValue = function () {
         $scope.vaccinationName = commonvariable.OrganisationUnit.name;
         $scope.vaccinationCode = commonvariable.OrganisationUnit.shortName;
@@ -53,8 +54,10 @@ appConfigProjectMSF.controller('missionController', ["$scope", '$filter', "commo
 	
 	$scope.showfields=false;
 
-	
-	
+
+    
+
+	///Save project
 	$scope.projectsave=function(){
 
 
@@ -232,8 +235,89 @@ appConfigProjectMSF.controller('missionController', ["$scope", '$filter', "commo
 	           };
 	       }
 	   });
+    
+    ////////////////////////For Edit //////////////////////////////////////////
+
+    ///enable textBox
+	   $scope.operation = 'show';
+	   $scope.enableforEdit = function () {
+	       $scope.operation = 'edit';
+	   }
+	   $scope.enableforshow = function () {
+	       $scope.operation = 'show';
+	   }
+
+    ////Edit mission
+	   $scope.EditMission = function () {
+
+	       var newOu = {//payload
+	           name: commonvariable.ouDirective,
+	           level: commonvariable.OrganisationUnit.level,
+	           shortName: commonvariable.ouDirective,
+	           openingDate: $scope.mdopendate,
+	           parent: commonvariable.OrganisationUnitParentConf
+	       };
+
+	       ///
+	       $scope.messages.push({ type: "success", text: $translate('MISSION_UPDATED') });
+
+
+	   }
+
+
+
+
+    ///Delete mission
+	   $scope.DeleteMission = function () {
+
+
+	       ///
+	       $scope.messages.push({ type: "success", text: $translate('MISSION_DELETED') });
+
+	   }
+
+
+
+    /////modal for delete message
+
+	   $scope.modalDelete = function (size) {
+
+	       var modalInstance = $modal.open({
+	           templateUrl: 'modalDeleted.html',
+	           controller: 'ModalDeleted',
+	           size: size,
+	           resolve: {
+	               items: function () {
+	                   return $scope.items;
+	               }
+	           }
+	       });
+
+	       modalInstance.result.then(function (option) {
+	           if (option) {
+                   //method for delete mission
+	               $scope.DeleteMission();
+	           }
+	       }, function () {
+	           console.log('Modal dismissed at: ' + new Date());
+	       });
+	   };
+
 	
   
 }]);
+
+
+appConfigProjectMSF.controller('ModalDeleted', function ($scope, $modalInstance) {
+
+
+    $scope.ok = function () {
+        $modalInstance.close(true);
+    };
+
+    $scope.cancel = function () {
+        $modalInstance.dismiss('cancel');
+    };
+});
 
 
