@@ -17,9 +17,11 @@ Dhis2Api.controller("findOrganisationUnitController", ['$scope','$http', 'Organi
 
                 if (data.organisationUnits.length > 0) {
 
-                    $scope.OrganisationUnitfound = data.organisationUnits;
-                    $scope.alertOu = true;
-                    $scope.ouExist = 'has-error';
+                    if ($scope.operation == 'edit' && $scope.value != $scope.mdname) {
+                        $scope.OrganisationUnitfound = data.organisationUnits;
+                        $scope.alertOu = true;
+                        $scope.ouExist = 'has-error';
+                    }
 
                 } else {
                     $scope.alertOu = false;
@@ -42,9 +44,9 @@ Dhis2Api.controller("findOrganisationUnitController", ['$scope','$http', 'Organi
             $scope.prevOu = commonvariable.OrganisationUnit.id;
             $scope.mdname = $scope.value;
         }
-        if (($scope.mdname == undefined || $scope.mdname == "") && ($scope.value != undefined || $scope.value != "")) {
-            $scope.mdname=$scope.value;
-        }
+        //if (($scope.mdname == undefined || $scope.mdname == "") && ($scope.value != undefined || $scope.value != "")) {
+           // $scope.mdname=$scope.value;
+        //}
 
         if($scope.operation =='show'){
             $scope.mdname = $scope.value;
