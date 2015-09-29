@@ -3,13 +3,13 @@
         <div class="col-md-9">
 
             <div class="input-group-btn {{ouExist}}" >
-                <input ng-model="mdname" type="text" class="form-control" ng-blur="findOu()" placeholder="{{placeholder}}" ng-disabled="isDisabled">
+                <input ng-model="mdname" type="text" class="form-control" ng-change="findOu()" placeholder="{{placeholder}}" ng-disabled="isDisabled">
             
             
             </div>
         </div>
         <div class="col-md-3">
-            <button type="button" class="btn btn-default btn-warning" aria-label="Advertencia" ng-show="alertOu" popover="{{ 'ALARM_EXIST' | translate }}"  popover-trigger="click" popover-placement="right">
+            <button type="button" class="btn btn-default btn-warning" aria-label="Advertencia" ng-show="alertOu" popover="{{ 'ALARM_EXIST' | translate }}"  popover-trigger="mouseenter" popover-placement="right">
                 <span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span>
             </button>
         </div>
