@@ -98,10 +98,23 @@ Dhis2Api.controller("d2DropdownorgunitgroupsetController", ['$q','$scope','$http
 	    if ($scope.operation != $scope.prevOperation) {
 	       
 	        try {
-	            getOrgUnitGroup(commonvariable.OrganisationUnit.id, $scope.uidgroupset).then(function (data) { $scope.ougName = data.name })
+	            getOrgUnitGroup(commonvariable.OrganisationUnit.id, $scope.uidgroupset).then(function (data) {
+	            	$scope.ougName = data.name;
+	            	if ($scope.operation=="show") {
+	            		commonvariable.orgUnitGroupSet[$scope.uidgroupset]=data;
+	            	}
+	            })
 	        } catch (err) {
 	            console.log("Error, Organisation Unit doesn't selected");
 	        };
+	        
+	        
+			OrgUnitGroupSet.get({uid:$scope.uidgroupset}).$promise.then(function(data) {
+				$scope.ListOrgUnitGroups=data.organisationUnitGroups;
+						
+			});
+
+	        
 	        if ($scope.operation == 'edit')
 	                $scope.disabled = false;
 	            else {

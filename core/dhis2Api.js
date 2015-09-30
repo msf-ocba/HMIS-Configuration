@@ -28,6 +28,12 @@ var ougroupsetId = { ProjectType: "rQjuGZcxNxE"
                     ,Event: "DIYl9kZDij3" 
                     ,Context: "lR7GVB43jaX"};
 
+var levelMSF = {OperationalCenter: "2"
+			 ,Mission: "3"
+			 ,Project: "4"
+			 ,HealthSite: "5"
+			 ,HealthService: "6"};
+
 var prefixVaccination = { vaccinationName: 'Vaccination_', vaccinationCode: 'DS_VAC_' };
 //Create all common variables of the apps 
 Dhis2Api.factory("commonvariable", function () {
@@ -45,6 +51,7 @@ Dhis2Api.factory("commonvariable", function () {
 			DataElementSelected: [],
 			VaccinationDatasetSelected: {},
 			ouGroupsetId: ougroupsetId,
+			level: levelMSF,
 			OrganisationUnitParentConf: {},
 		    ouDirective:"",
 			ouDirectiveCode:""
@@ -131,7 +138,6 @@ Dhis2Api.factory("OrgUnitGroupByOrgUnit",['$resource','commonvariable', function
 }]);
 
 
-
 Dhis2Api.factory("OrgUnitGroupsOrgUnit",['$resource','commonvariable', function ($resource,commonvariable) {
 	
 	return $resource(commonvariable.url+"organisationUnitGroups/:uidgroup/organisationUnits/:uidorgunit",
@@ -139,7 +145,9 @@ Dhis2Api.factory("OrgUnitGroupsOrgUnit",['$resource','commonvariable', function 
 		uidgroup:'@uidgroup',
 		uidorgunit: '@uidorgunit'
 		},
-		{ POST: { method: "POST"} });
+		{ POST: { method: "POST"},
+		  DELETE: {method: "DELETE"}	
+		});
 }]);
 
 
@@ -222,5 +230,15 @@ Dhis2Api.factory("AddDataSetsToOrgUnit",['$resource','commonvariable', function 
 		uiddataset: '@uiddataset'
 		},
 		{ POST: { method: "POST"} });
+}]);
+
+Dhis2Api.factory("OrganisationUnitChildren",['$resource','commonvariable', function ($resource,commonvariable) {
+	return $resource(commonvariable.url+"organisationUnits/:uid", 
+   {
+	uid:'@uid',
+	fields: 'name,id,code,level,openingDate,shortName',
+	includeDescendants: 'true'
+   }, 
+  { get: { method: "GET"} });
 }]);
 
