@@ -86,6 +86,11 @@
 	"HEALTHSERVICE_CREATE": "Create Health service",
 	"HEALTHSERVICE_SUFFIX": "Code suffix",
 	
+	"______________ Module_":" ORG UNIT DELETE_____________",
+	"ORGUNITDELETE_TITLE": "Delete Org Unit",
+	"ORGUNITDELETE_CLOSED_DATE": "Closed Date",
+	"ORGUNITDELETE_NAME": "Name",
+	
 	
 	"_______________ Directive ":" OrganisationUnit+tree_____________",
 	"ORGANISATIONUNIT":"Project",

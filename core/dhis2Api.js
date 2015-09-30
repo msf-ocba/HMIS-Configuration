@@ -45,6 +45,7 @@ Dhis2Api.factory("commonvariable", function () {
 			RefreshTreeOU:false,
 			NewOrganisationUnit:[],
 			orgUnitGroupSet:[],
+			preOrgUnitGroupSet:[],
 			urllocalresource:urlResource,
 			Listperiod: Listperioddhis,
 			prefixVaccination: prefixVaccination,

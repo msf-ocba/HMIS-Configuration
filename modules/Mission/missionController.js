@@ -249,7 +249,7 @@ appConfigProjectMSF.controller('missionController', ["$scope", '$filter', "commo
 
     ////Edit mission
 	   $scope.EditMission = function () {
-
+		   
 	       var newOu = {//payload
 	           name: commonvariable.ouDirective,
 	           level: commonvariable.OrganisationUnit.level,

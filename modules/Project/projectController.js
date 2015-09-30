@@ -1,4 +1,4 @@
-appConfigProjectMSF.controller('projectController', ["$scope",'$filter',"commonvariable", "OrgUnit","OrgUnitGroupsOrgUnit","FilterResource", "AddDataSetsToOrgUnit", "OrgUnitGroupByOrgUnit","$modal", function($scope, $filter,commonvariable,OrgUnit,OrgUnitGroupsOrgUnit,FilterResource,AddDataSetsToOrgUnit,OrgUnitGroupByOrgUnit,$modal) {
+appConfigProjectMSF.controller('projectController', ["$scope",'$filter',"commonvariable", "OrgUnit","OrgUnitGroupsOrgUnit","FilterResource", "AddDataSetsToOrgUnit", "OrgUnitGroupByOrgUnit","$modal", "OrganisationUnitChildren", function($scope, $filter,commonvariable,OrgUnit,OrgUnitGroupsOrgUnit,FilterResource,AddDataSetsToOrgUnit,OrgUnitGroupByOrgUnit,$modal, OrganisationUnitChildren) {
 	
 	
 	//set message variable
@@ -11,7 +11,6 @@ appConfigProjectMSF.controller('projectController', ["$scope",'$filter',"commonv
 	$scope.prevOu=undefined;
 	
 	var $translate = $filter('translate');
-	
 	
 	$scope.showfields=false;
 	console.log(commonvariable.OrganisationUnit);
@@ -150,14 +149,57 @@ appConfigProjectMSF.controller('projectController', ["$scope",'$filter',"commonv
 	  $scope.operation = 'show';
 	  $scope.enableforEdit = function () {
 	      $scope.operation = 'edit';
+	      
+	      //Getting the current org. unit groups
+	      
+	      
 	  }
+	  
+	  
 	  $scope.enableforshow = function () {
 	      $scope.operation = 'show';
 	  }
+	  
+	  $scope.updateOrgUnits = function (orgUnits) {
+		  
+		  for (var i=0; i<orgUnits.length; i++) {
+			  
+			  console.log(orgUnits[i]);
+			  
+			   OrgUnitGroupsOrgUnit.DELETE({ uidgroup: commonvariable.preOrgUnitGroupSet[commonvariable.ouGroupsetId.Context].id, uidorgunit: orgUnits[i].id });
+			   OrgUnitGroupsOrgUnit.POST({ uidgroup: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.Context].id, uidorgunit: orgUnits[i].id });
+
+			   OrgUnitGroupsOrgUnit.DELETE({ uidgroup: commonvariable.preOrgUnitGroupSet[commonvariable.ouGroupsetId.ProjectType].id, uidorgunit: orgUnits[i].id });
+			   OrgUnitGroupsOrgUnit.POST({ uidgroup: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.ProjectType].id, uidorgunit: orgUnits[i].id });
+
+			   OrgUnitGroupsOrgUnit.DELETE({ uidgroup: commonvariable.preOrgUnitGroupSet[commonvariable.ouGroupsetId.PopulationType].id, uidorgunit: orgUnits[i].id });
+			   OrgUnitGroupsOrgUnit.POST({ uidgroup: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.PopulationType].id, uidorgunit: orgUnits[i].id });
+
+			   OrgUnitGroupsOrgUnit.DELETE({ uidgroup: commonvariable.preOrgUnitGroupSet[commonvariable.ouGroupsetId.TypeManagement].id, uidorgunit: orgUnits[i].id });
+			   OrgUnitGroupsOrgUnit.POST({ uidgroup: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.TypeManagement].id, uidorgunit: orgUnits[i].id });
+
+			   OrgUnitGroupsOrgUnit.DELETE({ uidgroup: commonvariable.preOrgUnitGroupSet[commonvariable.ouGroupsetId.Event].id, uidorgunit: orgUnits[i].id });
+			   OrgUnitGroupsOrgUnit.POST({ uidgroup: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.Event].id, uidorgunit: orgUnits[i].id });
+			   
+		  }
+			  
+		  
+	  }
+	  
 
     ////Edit PROJECT
 	  $scope.EditProject = function () {
-
+		  
+		   
+		   OrganisationUnitChildren.get({uid:commonvariable.OrganisationUnit.id}).$promise.then(function(response){
+			   			   
+			   var children=response.organisationUnits;
+			   			
+			   $scope.updateOrgUnits(children);
+			   
+		   });	
+		   
+		   
 	      var newOu = {//payload
 	          name: commonvariable.ouDirective,
 	          level: commonvariable.OrganisationUnit.level,
@@ -173,13 +215,8 @@ appConfigProjectMSF.controller('projectController', ["$scope",'$filter',"commonv
 	  }
 
 
-
-
     ///Delete PROJECT
 	  $scope.DeleteProject = function () {
-
-	   
-
 	      ///
 	      $scope.messages.push({ type: "success", text: $translate('PROJECT_DELETED') });
 
