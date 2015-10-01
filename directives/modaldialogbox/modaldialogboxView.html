@@ -4,10 +4,28 @@
             <h3 class="modal-title">{{information.tittle}}</h3>
         </div>
         <div class="modal-body">
-            {{information.description}}
+
+            <div class="row">
+                <div class="col-md-12">
+                    <label for="exampleInputName2">{{'CLOSE_DATE' | translate}}</label>
+                    <p class="input-group">
+                        <input type="text" class="form-control" datepicker-popup="yyyy-MM-dd" ng-model="closedate" is-open="opened" min-date="minDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                        </span>
+                    </p>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-12">{{information.description}}</div>
+            </div>
+
+            
         </div>
         <div class="modal-footer">
             <button class="btn btn-primary" ng-click="ok()">{{"YES" | translate }}</button>
             <button class="btn btn-warning" ng-click="cancel()">{{"NO" | translate }}</button>
         </div>
   </script>
+    </div>

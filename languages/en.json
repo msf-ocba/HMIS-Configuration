@@ -4,8 +4,29 @@
   "YES": "Yes",
   "NO": "No",
   "CREATION_DATE": "Creation date",
-  "ALARM_EXIST" :"This object already exist",
-		
+  "ALARM_EXIST": "This object already exist",
+
+  "_____________MODAL": "modal for delete _____",
+  "CLOSE_DATE": "Close Date",
+  "MISSION_DELETE_TITTLE": " Delete mission",
+  "MISSION_DELETE_DESCRIPTION": "Are you sure to delete mission, then click in 'Yes'",
+   "MISSION_DELETED": "Mission Deleted",
+   "MISSION_NODELETED": "Mission doesn't deleted",
+   "HEALTHSITE_DELETE_TITTLE": "Delete Health Site",
+   "HEALTHSITE_DELETE_DESCRIPTION": "Are you sure to delete health site, then click in 'Yes'",
+   "HEALTHSITE_DELETED": "health site deleted",
+   "HEALTHSITE_NODELETED": "healt site doesn't deleted",
+   "PROJECT_DELETE_TITTLE": "Delete project",
+  "PROJECT_DELETE_DESCRIPTION": "Are you sure to delete project, then click in 'Yes'",
+   "PROJECT_DELETED": "Project Deleted",
+   "PROJECT_NODELETED": "Project  doesn't Deleted",
+   "HEALTHSERVICE_DELETE_TITTLE": "Delete Health service",
+   "HEALTHSERVICE_DELETE_DESCRIPTION": "Are you sure to delete health service, then click in 'Yes'",
+   "HEALTHSERVICE_DELETED": "Health service deleted",
+   "HEALTHSERVICE_NODELETED": "Health service doesn't deleted",
+
+
+
 	"_______________ Module ":"International _____________",
 	"INTERNATIONAL_TITLE": "Welcome to Configuration system",
 	

@@ -94,20 +94,22 @@ appConfigProjectMSF.controller('healthServiceController', ["$scope",'$filter',"c
 	$scope.modalDelete = function (size) {
 
 	    var modalInstance = $modal.open({
-	        templateUrl: 'modalDeleted.html',
-	        controller: 'ModalDeleted',
+	        templateUrl: 'ModalConfirm.html',
+	        controller: 'ModalConfirmCtrl',
 	        size: size,
 	        resolve: {
-	            items: function () {
-	                return $scope.items;
+	            information: function () {
+	                return { tittle: $translate('HEALTHSERVICE_DELETE_TITTLE'), description: $translate('HEALTHSERVICE_DELETE_DESCRIPTION'), id: commonvariable.OrganisationUnit.id };
 	            }
 	        }
 	    });
 
 	    modalInstance.result.then(function (option) {
-	        if (option) {
-	            //method for delete mission
-	            $scope.DeleteService();
+	        if (option == true) {
+	            $scope.messages.push({ type: "success", text: $translate('HEALTHSERVICE_DELETED') });
+	        }
+	        else {
+	            $scope.messages.push({ type: "error", text: $translate('HEALTHSERVICE_NODELETED') });
 	        }
 	    }, function () {
 	        console.log('Modal dismissed at: ' + new Date());
@@ -117,17 +119,4 @@ appConfigProjectMSF.controller('healthServiceController', ["$scope",'$filter',"c
 
 
 }]);
-
-
-appConfigProjectMSF.controller('ModalDeleted', function ($scope, $modalInstance) {
-
-
-    $scope.ok = function () {
-        $modalInstance.close(true);
-    };
-
-    $scope.cancel = function () {
-        $modalInstance.dismiss('cancel');
-    };
-});
 

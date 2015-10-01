@@ -229,20 +229,22 @@ appConfigProjectMSF.controller('projectController', ["$scope",'$filter',"commonv
 	  $scope.modalDelete = function (size) {
 
 	      var modalInstance = $modal.open({
-	          templateUrl: 'modalDeleted.html',
-	          controller: 'ModalDeleted',
+	          templateUrl: 'ModalConfirm.html',
+	          controller: 'ModalConfirmCtrl',
 	          size: size,
 	          resolve: {
-	              items: function () {
-	                  return $scope.items;
+	              information: function () {
+	                  return { tittle: $translate('PROJECT_DELETE_TITTLE'), description: $translate('PROJECT_DELETE_DESCRIPTION'), id: commonvariable.OrganisationUnit.id };
 	              }
 	          }
 	      });
 
 	      modalInstance.result.then(function (option) {
-	          if (option) {
-	              //method for delete mission
-	              $scope.DeleteProject();
+	          if (option == true) {
+	              $scope.messages.push({ type: "success", text: $translate('PROJECT_DELETED') });
+	          }
+	          else {
+	              $scope.messages.push({ type: "error", text: $translate('PROJECT_NODELETED') });
 	          }
 	      }, function () {
 	          console.log('Modal dismissed at: ' + new Date());
@@ -253,16 +255,4 @@ appConfigProjectMSF.controller('projectController', ["$scope",'$filter',"commonv
 
 }]);
 
-
-  appConfigProjectMSF.controller('ModalDeleted', function ($scope, $modalInstance) {
-
-
-      $scope.ok = function () {
-          $modalInstance.close(true);
-      };
-
-      $scope.cancel = function () {
-          $modalInstance.dismiss('cancel');
-      };
-  });
 

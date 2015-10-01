@@ -12,7 +12,7 @@ var Dhis2Api = angular.module("Dhis2Api", ['ngResource']);
 var urlApi = "http://localhost:8080/dhis/api/";
 var urlBase = "http://localhost:8080/dhis/";
 var urlResource ={"vaccination":{url:"resources/vaccinationDataset.json"},
-				"services":{url:"resources/datasetByService.json"},
+				"datasetbyservices":{url:"resources/datasetByService.json"},
 				"healthservice":{url:"resources/healthserviceSuffix.json"},
 				"servicebysite":{url:"resources/servicesBySiteType.json"},
 				"servicebyservicetype":{url:"resources/serviceByServiceType.json"}
