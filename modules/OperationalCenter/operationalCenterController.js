@@ -83,7 +83,7 @@ appConfigProjectMSF.controller('operationalCenterController', ["$scope", '$filte
 	       OrgUnitChildren.get({ uid: uidSelected })
            .$promise.then(function (dataChild) {
                $scope.ListChildren = dataChild.children;
-               console.log($scope.ListChildren);
+               //console.log($scope.ListChildren);
            });
 	   }
 	   $scope.getChildrenByOUID(commonvariable.OrganisationUnit.id);

@@ -62,14 +62,16 @@ Dhis2Api.controller("d2DropdownorgunitgroupsetController", ['$q','$scope','$http
 								
 				ougsOrgUnitGroups=data.organisationUnitGroups;
 				
-				for (var i=0; i<ouOrgUnitGroups.length; i++) 
-					for (var j=0; j<ougsOrgUnitGroups.length;j++) {
-						if (ouOrgUnitGroups[i].id==ougsOrgUnitGroups[j].id) {
-							
-							defered.resolve(ouOrgUnitGroups[i]);																																		
-							break;
-						}							
-					}
+			    try {
+			        for (var i = 0; i < ouOrgUnitGroups.length; i++)
+			            for (var j = 0; j < ougsOrgUnitGroups.length; j++) {
+			                if (ouOrgUnitGroups[i].id == ougsOrgUnitGroups[j].id) {
+
+			                    defered.resolve(ouOrgUnitGroups[i]);
+			                    break;
+			                }
+			            }
+			    } catch (err) { };
 			});
 			
 		});

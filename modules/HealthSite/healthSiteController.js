@@ -10,7 +10,7 @@ appConfigProjectMSF.controller('healthSiteController', ["$scope", '$filter', "co
 	
 	
 	$scope.showfields=false;
-	console.log(commonvariable.OrganisationUnit);
+	//console.log(commonvariable.OrganisationUnit);
 	
 	
 	$scope.servicesave=function(){

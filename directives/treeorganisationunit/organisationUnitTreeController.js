@@ -116,7 +116,7 @@ Dhis2Api.controller("d2TreeorganisationUnitController", ['$scope','$location','T
                         }
                     }
                 } catch (err) {
-                    console.log(err);
+                    //console.log(err);
                 };
             }
         );

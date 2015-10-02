@@ -13,7 +13,7 @@ appConfigProjectMSF.controller('projectController', ["$scope",'$filter',"commonv
 	var $translate = $filter('translate');
 	
 	$scope.showfields=false;
-	console.log(commonvariable.OrganisationUnit);
+	//console.log(commonvariable.OrganisationUnit);
 	
 	
 	$scope.sitesave=function(){
