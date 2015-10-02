@@ -1,27 +1,26 @@
 <div  ng-controller="d2ResourcejsondatasetController">
-<accordion close-others="true">
-<accordion-group is-open="status.open" ng-repeat="(skey, section) in sections">
-        <accordion-heading>
-            {{services.name}} <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
-        </accordion-heading>
-	     
-       <table class="table table-condensed">
-         <tbody>
-        <tr ng-repeat="(key, periods) in services.levels" class="{{style[skey][key]}}">
-          <td>{{periods.name}}</td>
-          <td>
-          <div class="btn-group-xs" role="group" aria-label="...">
-             <button type="button" class="btn btn-{{ListnameDataelement[dataElement.code].name?'default':'warning'}}"   tooltip-trigger="focus" tooltip-placement="right"  ng-repeat="dataElement in group.dataElements">{{ListnameDataelement[dataElement.code]?ListnameDataelement[dataElement.code].name:dataElement.code}}</button>
-          </div>
-          </td>
-          <td>
-       	 <button ng-click="selectgroup(key,skey)" type="button" class="btn btn-{{style[skey][key]}}" aria-label="Left Align">
-		  <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-		</button>
-          </td>
-        </tr>        
-      </tbody>
-    </table>
-    </accordion-group>
-  </accordion>
+
+    <tabset>
+        <tab ng-repeat="level in levels" heading="Level {{level.name}}" active="tab.active" disable="tab.disabled">
+            <accordion close-others="true">
+                <accordion-group is-open="status.open" ng-repeat="period in level.periods">
+                    <accordion-heading>
+                        {{period.name}} <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+                    </accordion-heading>
+
+                    <table class="table table-condensed">
+                        <tbody>
+                            <tr ng-repeat="dataset in period.datasets" class="{{style[dataset.code]}}">
+                                <td>{{dataset.name}}</td>
+                                <td>
+                                    <button ng-click="selectdataset(dataset.code)" type="button" class="btn btn-{{style[dataset.code]}}" aria-label="Left Align">
+                                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </accordion-group>
+            </accordion>
+        </tab>
 </div>
