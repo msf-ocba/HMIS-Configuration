@@ -187,8 +187,7 @@ appConfigProjectMSF.controller('projectController', ["$scope",'$filter',"commonv
 			   OrgUnitGroupsOrgUnit.DELETE({ uidgroup: commonvariable.preOrgUnitGroupSet[commonvariable.ouGroupsetId.Event].id, uidorgunit: orgUnits[i].id });
 			   OrgUnitGroupsOrgUnit.POST({ uidgroup: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.Event].id, uidorgunit: orgUnits[i].id });
 			   
-		  }
-			  
+		  }			  
 		  
 	  }
 	  
@@ -208,7 +207,7 @@ appConfigProjectMSF.controller('projectController', ["$scope",'$filter',"commonv
 	    	  
 	    	  if (data.status=="SUCCESS") {
 	    		  
-	   		   OrganisationUnitChildren.get({uid:commonvariable.OrganisationUnit.id}).$promise.then(function(response){
+	   		   OrganisationUnitChildren.get({uid:commonvariable.OrganisationUnit.id, fields:'name,id,code,level,openingDate,shortName'}).$promise.then(function(response){
 	   			   
 				   var children=response.organisationUnits;
 				   			

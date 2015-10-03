@@ -235,14 +235,15 @@ Dhis2Api.factory("AddDataSetsToOrgUnit",['$resource','commonvariable', function 
 		uidorgunit:'@uidorgunit',
 		uiddataset: '@uiddataset'
 		},
-		{ POST: { method: "POST"} });
+		{ POST: { method: "POST"},
+		  DELETE: {method: "DELETE"}});
 }]);
 
 Dhis2Api.factory("OrganisationUnitChildren",['$resource','commonvariable', function ($resource,commonvariable) {
 	return $resource(commonvariable.url+"organisationUnits/:uid", 
    {
 	uid:'@uid',
-	fields: 'name,id,code,level,openingDate,shortName',
+	//fields: 'name,id,code,level,openingDate,shortName',
 	includeDescendants: 'true'
    }, 
   { get: { method: "GET"} });

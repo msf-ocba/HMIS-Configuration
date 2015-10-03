@@ -4,21 +4,50 @@ Dhis2Api.directive('d2Modaldialogbox', function(){
 		templateUrl: 'directives/modaldialogbox/modaldialogboxView.html'
 	}
 	}); 
-Dhis2Api.controller("d2modaldialogboxController", ['$scope','$modal',function ($scope, $modal) {
+Dhis2Api.controller("d2modaldialogboxController", ['$scope','$modal', function ($scope, $modal) {
     
 }]);
 
-Dhis2Api.controller('ModalConfirmCtrl', function ($scope, $modalInstance,information) {
+Dhis2Api.controller('ModalConfirmCtrl', function ($scope, $modalInstance,information, OrgUnit, OrganisationUnitChildren, AddDataSetsToOrgUnit) {
 	$scope.information=information;
 	$scope.ok = function () {
 
 	    ////Jose este es el id de la OU para desencadenar el borrado
 	    console.log($scope.information.id);
+
+	    
 	    /////aqui todo el codigo de borrar
 	    //si se desea regresar algun valor por ejemplo si elimino perfectamente retrona true de lo contrario false dnetro de close()
-         $modalInstance.close(true);
 	    //$modalInstance.close(false);
 
+	    
+	   OrgUnit.PATCH({id:$scope.information.id},{closedDate:$scope.closedate}).$promise.then(function(data){
+	    	  
+	   if (data.response.status=="SUCCESS") {
+
+		    OrganisationUnitChildren.get({uid:$scope.information.id,fields:'name,id,code,level,openingDate,shortName,dataSets'}).$promise.then(function(response){
+	   			   
+				   var children=response.organisationUnits;
+				   			
+				   for (var i=0; i<children.length;i++) {
+					   
+					   var dataSets=children[i].dataSets;
+					   
+					   for (var j=0; j<dataSets.length; j++)
+							AddDataSetsToOrgUnit.DELETE({uidorgunit:children[i].id, uiddataset:dataSets[j].id});				   				 
+					   
+				   }
+			});	
+		   	       
+		    $modalInstance.close(true);		   		   
+	   }
+	   else $modalInstance.close(false);
+	   
+	   });
+	    
+	    
+	   
+	    	    	    
 	  };
 
 	  $scope.cancel = function () {
