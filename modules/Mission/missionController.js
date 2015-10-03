@@ -1,4 +1,4 @@
-appConfigProjectMSF.controller('missionController', ["$scope", '$filter', "commonvariable", "OrgUnit", "OrgUnitGroupsOrgUnit", "DataSets", "OrgUnitChildren", "FilterResource", "AddDataSetsToOrgUnit","$modal", function ($scope, $filter, commonvariable, OrgUnit, OrgUnitGroupsOrgUnit, DataSets, OrgUnitChildren, FilterResource, AddDataSetsToOrgUnit,$modal) {
+appConfigProjectMSF.controller('missionController', ["$scope", '$filter', "commonvariable", "OrgUnit", "OrgUnitGroupsOrgUnit", "DataSets", "OrgUnitChildren", "FilterResource", "DataSetsOrgUnit","$modal", function ($scope, $filter, commonvariable, OrgUnit, OrgUnitGroupsOrgUnit, DataSets, OrgUnitChildren, FilterResource, DataSetsOrgUnit,$modal) {
     var $translate = $filter('translate');
     //Load Data of OU selected
     $scope.prevOu = "";
@@ -96,7 +96,7 @@ appConfigProjectMSF.controller('missionController', ["$scope", '$filter', "commo
 				  			if (response.dataSets.length>0) {
 				  				
 				  				var dataSet = response.dataSets[0];
-				  				AddDataSetsToOrgUnit.POST({uidorgunit:newOu.id, uiddataset:dataSet.id});
+				  				DataSetsOrgUnit.POST({uidorgunit:newOu.id, uiddataset:dataSet.id});
 				  			}
 				  							  			
 				  		});
