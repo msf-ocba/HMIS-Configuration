@@ -7,10 +7,11 @@ Dhis2Api.directive('d2Resourcejsondataset', function(){
 		    }
 	}
 	}); 
-Dhis2Api.controller("d2ResourcejsondatasetController", ['$scope', '$interval', "commonvariable", "loadjsonresource", "DataElements", function ($scope, $interval, commonvariable, loadjsonresource, DataElements) {
+Dhis2Api.controller("d2ResourcejsondatasetController", ['$scope', '$interval', "commonvariable", "loadjsonresource", "OrgUnit", "DataSets", function ($scope, $interval, commonvariable, loadjsonresource, OrgUnit, DataSets) {
     $scope.style=[];
     $scope.datasetcodeSelected = [];
-	
+    $scope.operation = 'show';
+    $scope.pdatasets = commonvariable.OrganisationUnit.dataSets;
     var stop;
     $scope.prevOu = undefined;
 
@@ -25,10 +26,26 @@ Dhis2Api.controller("d2ResourcejsondatasetController", ['$scope', '$interval', "
     });
 
 
+    $scope.showedit = function () {
+        $scope.operation = 'edit';
+    }
+    $scope.editHealtServiceDataset = function () {
+        angular.forEach($scope.datasetforsave, function (dvalue,dkey) {
+            DataSets.Put({ uid: dvalue.id }, dvalue)
+         .$promise.then(function (data) {
+             if (data.response.status == "SUCCESS") {
+                 $scope.messages.push({ type: "success", text: $translate('VACCINATION_DATASET_SAVED') });
+                 $scope.hideForm();
+             }
+             else {
+                 $scope.messages.push({ type: "danger", text: $translate('VACCINATION_DATASET_NOSAVED') });
+             }
+         });
 
+        });
+    };
 
-
-    $scope.loadlevel=function(callBack){
+    $scope.loadlevel=function(){
         $scope.GroupDE=[];
        loadjsonresource.get($scope.id)
         .then(function(response){
@@ -53,8 +70,17 @@ Dhis2Api.controller("d2ResourcejsondatasetController", ['$scope', '$interval', "
             $scope.style[dcode] = 'success';
             $scope.datasetcodeSelected.push(dcode);
         }
+        $scope.datasetforsave = [];
+        angular.forEach($scope.datasetcodeSelected, function (value, key) {
+            DataSets.Get({ filter: 'code:eq:' + value })
+            .$promise.then(function (ds) {
+                //add the new OU to DataSet
+                ds.dataSets[0].organisationUnits.push(commonvariable.OrganisationUnitParentConf);
+                ///
+                $scope.datasetforsave.push(ds.dataSets[0]);
+            });
 
-        console.log($scope.datasetcodeSelected);
+        });
     };
 
    }]);

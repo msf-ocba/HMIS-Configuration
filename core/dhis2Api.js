@@ -98,15 +98,16 @@ Dhis2Api.factory("TreeOrganisationunit",['$resource','commonvariable', function 
 	return $resource(commonvariable.url+"organisationUnits/:uid", 
    {
 	uid:'@uid',
-	fields: 'name,id,code,level,openingDate,shortName,children[name,id,shortName,level,openingDate,code]'
+	fields: 'name,id,code,level,openingDate,shortName,children[name,id,shortName,level,openingDate,code,parent,dataSets]'
    }, 
   { get: { method: "GET"} });
 }]);
 
 Dhis2Api.factory("OrgUnit",['$resource','commonvariable', function ($resource,commonvariable) {
-	return $resource(commonvariable.url+"organisationUnits",
-		{},
-		{ POST: { method: "POST"} });
+	return $resource(commonvariable.url+"organisationUnits/:id",
+		{id:'@id'},
+		{ POST: { method: "POST"} ,
+		  PUT: { method: "PUT"} });
 }]);
 
 Dhis2Api.factory("OrgUnitGroupSet",['$resource','commonvariable', function ($resource,commonvariable) {
@@ -175,7 +176,10 @@ Dhis2Api.factory("DataElements",['$resource','commonvariable', function ($resour
 Dhis2Api.factory("DataSets", ['$resource', 'commonvariable', function ($resource, commonvariable) {
 
     return $resource(commonvariable.url + "dataSets/:uid",
-		{},
+		{
+		    uid: '@uid',
+		    fields: 'name,id,code,periodType,dataElements,organisationUnits'
+		},
 		{   Get:{method:"GET"},
 		Post: { method: "POST" },
 		Put: { method: "PUT" }
