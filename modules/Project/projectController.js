@@ -24,7 +24,6 @@ appConfigProjectMSF.controller('projectController', ["$scope",'$filter',"commonv
 		if (commonvariable.OrganisationUnit.code!=undefined && commonvariable.OrganisationUnit.code.length>=7)
 			codeOrgUnit = "OU_" + commonvariable.OrganisationUnit.code.slice(2,7) + $scope.siteprefix;
 		
-
 		var newOu={//payload
 				name:commonvariable.ouDirective,
 				level:(commonvariable.OrganisationUnit.level+1),
@@ -42,8 +41,10 @@ appConfigProjectMSF.controller('projectController', ["$scope",'$filter',"commonv
 				  newOu.id=data.lastImported;
 				  commonvariable.NewOrganisationUnit=newOu;
 				  
-				  if (commonvariable.orgUnitGroupSet.ZxNjaKVXY1D!=undefined)
+				  if (commonvariable.orgUnitGroupSet.ZxNjaKVXY1D!=undefined) {
+					  
 					  OrgUnitGroupsOrgUnit.POST({uidgroup:commonvariable.orgUnitGroupSet.ZxNjaKVXY1D.id, uidorgunit:newOu.id});
+				  }
 				  
 				  OrgUnitGroupByOrgUnit.get({uid:commonvariable.OrganisationUnit.id}).$promise.then(function(response) {
 						
@@ -164,10 +165,15 @@ appConfigProjectMSF.controller('projectController', ["$scope",'$filter',"commonv
 		  
 		  for (var i=0; i<orgUnits.length; i++) {
 			  
-			  console.log(orgUnits[i]);
+			   console.log(orgUnits[i]);
+			   
 			  
 			   OrgUnitGroupsOrgUnit.DELETE({ uidgroup: commonvariable.preOrgUnitGroupSet[commonvariable.ouGroupsetId.Context].id, uidorgunit: orgUnits[i].id });
 			   OrgUnitGroupsOrgUnit.POST({ uidgroup: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.Context].id, uidorgunit: orgUnits[i].id });
+			   
+			   console.log(commonvariable.preOrgUnitGroupSet[commonvariable.ouGroupsetId.ProjectType].id);
+			   console.log(commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.ProjectType].id);
+
 
 			   OrgUnitGroupsOrgUnit.DELETE({ uidgroup: commonvariable.preOrgUnitGroupSet[commonvariable.ouGroupsetId.ProjectType].id, uidorgunit: orgUnits[i].id });
 			   OrgUnitGroupsOrgUnit.POST({ uidgroup: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.ProjectType].id, uidorgunit: orgUnits[i].id });
@@ -189,27 +195,37 @@ appConfigProjectMSF.controller('projectController', ["$scope",'$filter',"commonv
 
     ////Edit PROJECT
 	  $scope.EditProject = function () {
-		  
+		  		   		   
 		   
-		   OrganisationUnitChildren.get({uid:commonvariable.OrganisationUnit.id}).$promise.then(function(response){
-			   			   
-			   var children=response.organisationUnits;
-			   			
-			   $scope.updateOrgUnits(children);
-			   
-		   });	
-		   
-		   
-	      var newOu = {//payload
+	      var editOu = {//payload
 	          name: commonvariable.ouDirective,
-	          level: commonvariable.OrganisationUnit.level,
 	          shortName: commonvariable.ouDirective,
-	          openingDate: $scope.mdopendate,
-	          parent: commonvariable.OrganisationUnitParentConf
+	          openingDate: $scope.projectcreated
 	      };
+	      
+	      
+	      OrgUnit.PATCH({id:commonvariable.OrganisationUnit.id},editOu).$promise.then(function(data){
+	    	  
+	    	  if (data.status=="SUCCESS") {
+	    		  
+	   		   OrganisationUnitChildren.get({uid:commonvariable.OrganisationUnit.id}).$promise.then(function(response){
+	   			   
+				   var children=response.organisationUnits;
+				   			
+				   $scope.updateOrgUnits(children);
+				   
+			   });	
+	    		  
+	 	      $scope.messages.push({ type: "success", text: $translate('PROJECT_UPDATED') });
+	    		  
+	    	  }
+	    	  else
+				$scope.messages.push({type:"danger",
+						text:"Project doesn't saved, review that the field name isn't empty"});
+
+	      });
 
 	      ///
-	      $scope.messages.push({ type: "success", text: $translate('PROJECT_UPDATED') });
 
 
 	  }
