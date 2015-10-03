@@ -31,6 +31,8 @@ Dhis2Api.controller('ModalConfirmCtrl', function ($scope, $modalInstance,informa
 				   			
 				   for (var i=0; i<children.length;i++) {
 					   
+					   OrgUnit.PATCH({id:children[i].id},{closedDate:$scope.closedate});					   
+					   
 					   var dataSets=children[i].dataSets;
 					   
 					   for (var j=0; j<dataSets.length; j++)
@@ -45,8 +47,7 @@ Dhis2Api.controller('ModalConfirmCtrl', function ($scope, $modalInstance,informa
 	   
 	   });
 	    
-	    
-	   
+	    	  
 	    	    	    
 	  };
 
