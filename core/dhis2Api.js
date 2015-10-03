@@ -228,7 +228,7 @@ Dhis2Api.factory("OrganisationUnitFind",['$resource','commonvariable', function 
 		{ get: { method: "GET"} });
 }]);
 
-Dhis2Api.factory("AddDataSetsToOrgUnit",['$resource','commonvariable', function ($resource,commonvariable) {
+Dhis2Api.factory("DataSetsOrgUnit",['$resource','commonvariable', function ($resource,commonvariable) {
 	
 	return $resource(commonvariable.url+"organisationUnits/:uidorgunit/dataSets/:uiddataset",
 		{	

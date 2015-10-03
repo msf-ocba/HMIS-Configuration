@@ -1,4 +1,4 @@
-appConfigProjectMSF.controller('healthSiteController', ["$scope", '$filter', "commonvariable", "OrgUnit", "OrgUnitGroupsOrgUnit", "loadjsonresource", "OrgUnitGroupByOrgUnit", "FilterResource", "$modal", function ($scope, $filter, commonvariable, OrgUnit, OrgUnitGroupsOrgUnit, loadjsonresource, OrgUnitGroupByOrgUnit, FilterResource,$modal) {
+appConfigProjectMSF.controller('healthSiteController', ["$scope", '$filter', "commonvariable", "OrgUnit", "OrgUnitGroupsOrgUnit", "loadjsonresource", "OrgUnitGroupByOrgUnit", "FilterResource", "$modal", "DataSetsOrgUnit", function ($scope, $filter, commonvariable, OrgUnit, OrgUnitGroupsOrgUnit, loadjsonresource, OrgUnitGroupByOrgUnit, FilterResource,$modal, DataSetsOrgUnit) {
 	var $translate = $filter('translate');
 	
 	//set message variable
@@ -58,6 +58,21 @@ appConfigProjectMSF.controller('healthSiteController', ["$scope", '$filter', "co
 				  
 				  if (commonvariable.orgUnitGroupSet.BtFXTpKRl6n!=undefined)
 					  OrgUnitGroupsOrgUnit.POST({uidgroup:commonvariable.orgUnitGroupSet.BtFXTpKRl6n.id, uidorgunit:newOu.id});
+				  
+				  
+				  
+				  FilterResource.GET({resource:'dataSets', filter:'code:eq:'+"DS_INFR_3"}).$promise
+			  		.then(function(response){
+			  			
+			  			if (response.dataSets.length>0) {
+			  				
+			  				var dataSet = response.dataSets[0];
+			  				DataSetsOrgUnit.POST({uidorgunit:newOu.id, uiddataset:dataSet.id});
+			  			}
+			  							  			
+			  		});
+
+				  
 
 				  var codeServiceType = undefined;
 				  

@@ -8,7 +8,7 @@ Dhis2Api.controller("d2modaldialogboxController", ['$scope','$modal', function (
     
 }]);
 
-Dhis2Api.controller('ModalConfirmCtrl', function ($scope, $modalInstance,information, OrgUnit, OrganisationUnitChildren, AddDataSetsToOrgUnit) {
+Dhis2Api.controller('ModalConfirmCtrl', function ($scope, $modalInstance,information, OrgUnit, OrganisationUnitChildren, DataSetsOrgUnit) {
 	$scope.information=information;
 	$scope.ok = function () {
 
@@ -34,7 +34,7 @@ Dhis2Api.controller('ModalConfirmCtrl', function ($scope, $modalInstance,informa
 					   var dataSets=children[i].dataSets;
 					   
 					   for (var j=0; j<dataSets.length; j++)
-							AddDataSetsToOrgUnit.DELETE({uidorgunit:children[i].id, uiddataset:dataSets[j].id});				   				 
+							DataSetsOrgUnit.DELETE({uidorgunit:children[i].id, uiddataset:dataSets[j].id});				   				 
 					   
 				   }
 			});	

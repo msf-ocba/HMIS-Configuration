@@ -1,4 +1,4 @@
-appConfigProjectMSF.controller('projectController', ["$scope",'$filter',"commonvariable", "OrgUnit","OrgUnitGroupsOrgUnit","FilterResource", "AddDataSetsToOrgUnit", "OrgUnitGroupByOrgUnit","$modal", "OrganisationUnitChildren", function($scope, $filter,commonvariable,OrgUnit,OrgUnitGroupsOrgUnit,FilterResource,AddDataSetsToOrgUnit,OrgUnitGroupByOrgUnit,$modal, OrganisationUnitChildren) {
+appConfigProjectMSF.controller('projectController', ["$scope",'$filter',"commonvariable", "OrgUnit","OrgUnitGroupsOrgUnit","FilterResource", "DataSetsOrgUnit", "OrgUnitGroupByOrgUnit","$modal", "OrganisationUnitChildren", function($scope, $filter,commonvariable,OrgUnit,OrgUnitGroupsOrgUnit,FilterResource,DataSetsOrgUnit,OrgUnitGroupByOrgUnit,$modal, OrganisationUnitChildren) {
 	
 	
 	//set message variable
@@ -66,7 +66,7 @@ appConfigProjectMSF.controller('projectController', ["$scope",'$filter',"commonv
 			  			if (response.dataSets.length>0) {
 			  				
 			  				var dataSet = response.dataSets[0];
-			  				AddDataSetsToOrgUnit.POST({uidorgunit:newOu.id, uiddataset:dataSet.id});
+			  				DataSetsOrgUnit.POST({uidorgunit:newOu.id, uiddataset:dataSet.id});
 			  			}
 			  							  			
 			  		});
