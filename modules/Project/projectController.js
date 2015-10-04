@@ -78,6 +78,8 @@ appConfigProjectMSF.controller('projectController', ["$scope",'$filter',"commonv
 
 				//clear txtbox
 				$scope.siteName="";
+				
+				$scope.frmSite = false;
 
 			}
 			else{

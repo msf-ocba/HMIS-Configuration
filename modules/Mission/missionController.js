@@ -55,8 +55,6 @@ appConfigProjectMSF.controller('missionController', ["$scope", '$filter', "commo
 	$scope.showfields=false;
 
 
-    
-
 	///Save project
 	$scope.projectsave=function(){
 
@@ -100,8 +98,7 @@ appConfigProjectMSF.controller('missionController', ["$scope", '$filter', "commo
 				  			}
 				  							  			
 				  		});
-				  
-				  
+				  				  
 				  
 				 //set message variable
 				  $scope.messages.push({ type: "success", text: $translate('PROJECT_SAVED') });

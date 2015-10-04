@@ -115,6 +115,9 @@ appConfigProjectMSF.controller('healthSiteController', ["$scope", '$filter', "co
 
 				//clear txtbox
 				$scope.healthServiceName="";
+				
+				$scope.frmService = false;
+
 
 			}
 			else{
@@ -179,10 +182,10 @@ appConfigProjectMSF.controller('healthSiteController', ["$scope", '$filter', "co
 	$scope.showForm=function(frm){
 		
 		if(frm==1){
-			$scope.frmSite=true;
+			$scope.frmService=true;
 		}
 		else{
-			$scope.frmSite=false;
+			$scope.frmService=false;
 		}
 
 		
@@ -246,8 +249,6 @@ appConfigProjectMSF.controller('healthSiteController', ["$scope", '$filter', "co
 
 	
 	  }
-
-
 
 
     ///Delete PROJECT
