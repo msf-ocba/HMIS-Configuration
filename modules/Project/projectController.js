@@ -167,6 +167,7 @@ appConfigProjectMSF.controller('projectController', ["$scope",'$filter',"commonv
 		  
 		  var defered = $q.defer();
 	      var promise = defered.promise;        
+
 	      
 	      angular.forEach(orgUnits, function(value, key){
 
@@ -245,6 +246,7 @@ appConfigProjectMSF.controller('projectController', ["$scope",'$filter',"commonv
 
     ////Edit PROJECT
 	  $scope.EditProject = function () {
+		  
 		  		   		   		   
 	      var editOu = {//payload
 	          name: commonvariable.ouDirective,
@@ -260,8 +262,13 @@ appConfigProjectMSF.controller('projectController', ["$scope",'$filter',"commonv
 	   		   OrganisationUnitChildren.get({uid:data.lastImported, fields:'name,id,code'}).$promise.then(function(response){
 	   			   
 				   var children=response.organisationUnits;
+				   
 				   			
 				   $scope.updateOrgUnits(children).then(function(data) {
+					   
+					   $scope.projectname =  commonvariable.ouDirective;
+					   $scope.projectcode = commonvariable.ouDirectiveCode;
+					   
 					   $scope.operation = 'show';					   					   
 				   });
 				   
