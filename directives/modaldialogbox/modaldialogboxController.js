@@ -28,8 +28,20 @@ Dhis2Api.controller('ModalConfirmCtrl', function ($scope, $modalInstance,informa
 		    OrganisationUnitChildren.get({uid:$scope.information.id,fields:'name,id,code,level,openingDate,shortName,dataSets'}).$promise.then(function(response){
 	   			   
 				   var children=response.organisationUnits;
+				   
+				   angular.forEach(children, function(valueOU, keyOU){
+
+					   OrgUnit.PATCH({id:valueOU.id},{closedDate:$scope.closedate});					   
+					   
+					   var dataSets=valueOU.dataSets;
+					   
+					   angular.forEach(dataSets, function(valueDS, keyDS){
+							DataSetsOrgUnit.DELETE({uidorgunit:valueOU.id, uiddataset:valueDS.id});				   				 						   
+					   })
+					   
+				   });
 				   			
-				   for (var i=0; i<children.length;i++) {
+				   /*for (var i=0; i<children.length;i++) {
 					   
 					   OrgUnit.PATCH({id:children[i].id},{closedDate:$scope.closedate});					   
 					   
@@ -38,7 +50,7 @@ Dhis2Api.controller('ModalConfirmCtrl', function ($scope, $modalInstance,informa
 					   for (var j=0; j<dataSets.length; j++)
 							DataSetsOrgUnit.DELETE({uidorgunit:children[i].id, uiddataset:dataSets[j].id});				   				 
 					   
-				   }
+				   }*/
 			});	
 		   	       
 		    $modalInstance.close(true);		   		   

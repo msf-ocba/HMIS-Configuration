@@ -71,9 +71,7 @@ appConfigProjectMSF.controller('healthSiteController', ["$scope", '$filter', "co
 			  			}
 			  							  			
 			  		});
-
-				  
-
+				
 				  var codeServiceType = undefined;
 				  
 				  loadjsonresource.get("servicebyservicetype").then(function(response) {
@@ -100,8 +98,12 @@ appConfigProjectMSF.controller('healthSiteController', ["$scope", '$filter', "co
 						
 					  listOrgUnitGroups = response.organisationUnitGroups;
 					  
-					  for (var i=0;i<listOrgUnitGroups.length;i++)
-						  OrgUnitGroupsOrgUnit.POST({uidgroup:listOrgUnitGroups[i].id,uidorgunit:newOu.id});
+					  angular.forEach(listOrgUnitGroups, function (value, key){
+						  OrgUnitGroupsOrgUnit.POST({uidgroup:value.id, uidorgunit:newOu.id});
+					  });
+					  
+					  /*for (var i=0;i<listOrgUnitGroups.length;i++)
+						  OrgUnitGroupsOrgUnit.POST({uidgroup:listOrgUnitGroups[i].id,uidorgunit:newOu.id});*/
 					  
 				  });
 
@@ -149,16 +151,17 @@ appConfigProjectMSF.controller('healthSiteController', ["$scope", '$filter', "co
 		
 		var codeResult;
 		
-		//I need to refactor this!!!!
-		
+		var find = false;
 		
 		for (var i=0; i<serviceTypes.length; i++) {
 			
 			var serviceType = serviceTypes[i];
 			
+			if (find == true ) break;
 			
 			for (var j=0; j<serviceType.services.length; j++) {
 				if (serviceType.services[j].code == commonvariable.orgUnitGroupSet.BtFXTpKRl6n.code) {
+					find = true;
 					codeResult = serviceType.code;
 					break;
 				}

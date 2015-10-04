@@ -50,16 +50,16 @@ appConfigProjectMSF.controller('projectController', ["$scope",'$filter',"commonv
 						
 					  listOrgUnitGroups = response.organisationUnitGroups;
 					  
+					  angular.forEach(listOrgUnitGroups, function(value, key){
+						  OrgUnitGroupsOrgUnit.POST({uidgroup:value.id, uidorgunit:newOu.id});
+					  });
 					  
-					  for (var i=0;i<listOrgUnitGroups.length;i++)
-						  OrgUnitGroupsOrgUnit.POST({uidgroup:listOrgUnitGroups[i].id,uidorgunit:newOu.id});
+					  /*for (var i=0;i<listOrgUnitGroups.length;i++)
+						  OrgUnitGroupsOrgUnit.POST({uidgroup:listOrgUnitGroups[i].id,uidorgunit:newOu.id});*/
 					  
 
 				  });
 
-
-				  
-				  
 				  FilterResource.GET({resource:'dataSets', filter:'code:eq:'+"DS_INFR_3"}).$promise
 			  		.then(function(response){
 			  			
@@ -165,9 +165,43 @@ appConfigProjectMSF.controller('projectController', ["$scope",'$filter',"commonv
 		  
 		  var defered = $q.defer();
 	      var promise = defered.promise;        
+	      
+	      angular.forEach(orgUnits, function(value, key){
+
+	    	  if (commonvariable.preOrgUnitGroupSet[commonvariable.ouGroupsetId.Context].id!=commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.Context].id) {
+				   
+				   OrgUnitOrgUnitGroups.DELETE({uidorgunit: value.id, uidgroup: commonvariable.preOrgUnitGroupSet[commonvariable.ouGroupsetId.Context].id });				   
+				   OrgUnitOrgUnitGroups.POST({uidorgunit: value.id, uidgroup: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.Context].id});
+			   }
+
+			   if (commonvariable.preOrgUnitGroupSet[commonvariable.ouGroupsetId.ProjectType].id!=commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.ProjectType].id) {
+			   
+				   OrgUnitOrgUnitGroups.DELETE({uidorgunit: value.id, uidgroup: commonvariable.preOrgUnitGroupSet[commonvariable.ouGroupsetId.ProjectType].id })				   
+				   OrgUnitOrgUnitGroups.POST({uidorgunit: value.id, uidgroup: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.ProjectType].id })
+			   }
+			   
+			   if (commonvariable.preOrgUnitGroupSet[commonvariable.ouGroupsetId.PopulationType].id!=commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.PopulationType].id) {
+
+				   OrgUnitOrgUnitGroups.DELETE({uidorgunit: value.id, uidgroup: commonvariable.preOrgUnitGroupSet[commonvariable.ouGroupsetId.PopulationType].id });				   
+				   OrgUnitOrgUnitGroups.POST({uidorgunit: value.id, uidgroup: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.PopulationType].id })
+			   }
+			   
+			   if (commonvariable.preOrgUnitGroupSet[commonvariable.ouGroupsetId.TypeManagement].id!=commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.TypeManagement].id) {
+
+				   OrgUnitOrgUnitGroups.DELETE({uidorgunit: value.id, uidgroup: commonvariable.preOrgUnitGroupSet[commonvariable.ouGroupsetId.TypeManagement].id  });				   
+				   OrgUnitOrgUnitGroups.POST({uidorgunit: value.id, uidgroup: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.TypeManagement].id })
+			   }
+			   
+			   if (commonvariable.preOrgUnitGroupSet[commonvariable.ouGroupsetId.Event].id!=commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.Event].id) {
+			   
+				   OrgUnitOrgUnitGroups.DELETE({uidorgunit: value.id, uidgroup: commonvariable.preOrgUnitGroupSet[commonvariable.ouGroupsetId.Event].id  });				   
+				   OrgUnitOrgUnitGroups.POST({uidorgunit: value.id, uidgroup: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.Event].id  })
+			   }
+	    	  
+	      });
 
 		  
-		  for (var i=0; i<orgUnits.length; i++) {
+		  /*for (var i=0; i<orgUnits.length; i++) {
 			  
 			   if (commonvariable.preOrgUnitGroupSet[commonvariable.ouGroupsetId.Context].id!=commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.Context].id) {
 			   
@@ -198,10 +232,8 @@ appConfigProjectMSF.controller('projectController', ["$scope",'$filter',"commonv
 				   OrgUnitOrgUnitGroups.DELETE({uidorgunit: orgUnits[i].id, uidgroup: commonvariable.preOrgUnitGroupSet[commonvariable.ouGroupsetId.Event].id  });				   
 				   OrgUnitOrgUnitGroups.POST({uidorgunit: orgUnits[i].id, uidgroup: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.Event].id  })
 			   }
-			   
-			   
-			   
-		  }			  
+			   			   			   
+		  }		*/	  
 		  
 		  defered.resolve(true);
 		  return promise;
