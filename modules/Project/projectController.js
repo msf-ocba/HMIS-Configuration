@@ -1,4 +1,4 @@
-appConfigProjectMSF.controller('projectController', ["$scope",'$filter',"commonvariable", "OrgUnit","OrgUnitGroupsOrgUnit","FilterResource", "DataSetsOrgUnit", "OrgUnitGroupByOrgUnit","$modal", "OrganisationUnitChildren", function($scope, $filter,commonvariable,OrgUnit,OrgUnitGroupsOrgUnit,FilterResource,DataSetsOrgUnit,OrgUnitGroupByOrgUnit,$modal, OrganisationUnitChildren) {
+appConfigProjectMSF.controller('projectController', ["$scope",'$filter',"commonvariable", "OrgUnit","OrgUnitGroupsOrgUnit","FilterResource", "DataSetsOrgUnit", "OrgUnitGroupByOrgUnit","$modal", "OrganisationUnitChildren", "OrgUnitOrgUnitGroups", "$q", function($scope, $filter,commonvariable,OrgUnit,OrgUnitGroupsOrgUnit,FilterResource,DataSetsOrgUnit,OrgUnitGroupByOrgUnit,$modal, OrganisationUnitChildren, OrgUnitOrgUnitGroups, $q) {
 	
 	
 	//set message variable
@@ -163,39 +163,55 @@ appConfigProjectMSF.controller('projectController', ["$scope",'$filter',"commonv
 	  
 	  $scope.updateOrgUnits = function (orgUnits) {
 		  
+		  var defered = $q.defer();
+	      var promise = defered.promise;        
+
+		  
 		  for (var i=0; i<orgUnits.length; i++) {
 			  
-			   console.log(orgUnits[i]);
+			   if (commonvariable.preOrgUnitGroupSet[commonvariable.ouGroupsetId.Context].id!=commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.Context].id) {
 			   
-			  
-			   OrgUnitGroupsOrgUnit.DELETE({ uidgroup: commonvariable.preOrgUnitGroupSet[commonvariable.ouGroupsetId.Context].id, uidorgunit: orgUnits[i].id });
-			   OrgUnitGroupsOrgUnit.POST({ uidgroup: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.Context].id, uidorgunit: orgUnits[i].id });
+				   OrgUnitOrgUnitGroups.DELETE({uidorgunit: orgUnits[i].id, uidgroup: commonvariable.preOrgUnitGroupSet[commonvariable.ouGroupsetId.Context].id });				   
+				   OrgUnitOrgUnitGroups.POST({uidorgunit: orgUnits[i].id, uidgroup: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.Context].id});
+			   }
+
+			   if (commonvariable.preOrgUnitGroupSet[commonvariable.ouGroupsetId.ProjectType].id!=commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.ProjectType].id) {
 			   
-			   console.log(commonvariable.preOrgUnitGroupSet[commonvariable.ouGroupsetId.ProjectType].id);
-			   console.log(commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.ProjectType].id);
+				   OrgUnitOrgUnitGroups.DELETE({uidorgunit: orgUnits[i].id, uidgroup: commonvariable.preOrgUnitGroupSet[commonvariable.ouGroupsetId.ProjectType].id })				   
+				   OrgUnitOrgUnitGroups.POST({uidorgunit: orgUnits[i].id, uidgroup: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.ProjectType].id })
+			   }
+			   
+			   if (commonvariable.preOrgUnitGroupSet[commonvariable.ouGroupsetId.PopulationType].id!=commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.PopulationType].id) {
 
+				   OrgUnitOrgUnitGroups.DELETE({uidorgunit: orgUnits[i].id, uidgroup: commonvariable.preOrgUnitGroupSet[commonvariable.ouGroupsetId.PopulationType].id });				   
+				   OrgUnitOrgUnitGroups.POST({uidorgunit: orgUnits[i].id, uidgroup: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.PopulationType].id })
+			   }
+			   
+			   if (commonvariable.preOrgUnitGroupSet[commonvariable.ouGroupsetId.TypeManagement].id!=commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.TypeManagement].id) {
 
-			   OrgUnitGroupsOrgUnit.DELETE({ uidgroup: commonvariable.preOrgUnitGroupSet[commonvariable.ouGroupsetId.ProjectType].id, uidorgunit: orgUnits[i].id });
-			   OrgUnitGroupsOrgUnit.POST({ uidgroup: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.ProjectType].id, uidorgunit: orgUnits[i].id });
-
-			   OrgUnitGroupsOrgUnit.DELETE({ uidgroup: commonvariable.preOrgUnitGroupSet[commonvariable.ouGroupsetId.PopulationType].id, uidorgunit: orgUnits[i].id });
-			   OrgUnitGroupsOrgUnit.POST({ uidgroup: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.PopulationType].id, uidorgunit: orgUnits[i].id });
-
-			   OrgUnitGroupsOrgUnit.DELETE({ uidgroup: commonvariable.preOrgUnitGroupSet[commonvariable.ouGroupsetId.TypeManagement].id, uidorgunit: orgUnits[i].id });
-			   OrgUnitGroupsOrgUnit.POST({ uidgroup: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.TypeManagement].id, uidorgunit: orgUnits[i].id });
-
-			   OrgUnitGroupsOrgUnit.DELETE({ uidgroup: commonvariable.preOrgUnitGroupSet[commonvariable.ouGroupsetId.Event].id, uidorgunit: orgUnits[i].id });
-			   OrgUnitGroupsOrgUnit.POST({ uidgroup: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.Event].id, uidorgunit: orgUnits[i].id });
+				   OrgUnitOrgUnitGroups.DELETE({uidorgunit: orgUnits[i].id, uidgroup: commonvariable.preOrgUnitGroupSet[commonvariable.ouGroupsetId.TypeManagement].id  });				   
+				   OrgUnitOrgUnitGroups.POST({uidorgunit: orgUnits[i].id, uidgroup: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.TypeManagement].id })
+			   }
+			   
+			   if (commonvariable.preOrgUnitGroupSet[commonvariable.ouGroupsetId.Event].id!=commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.Event].id) {
+			   
+				   OrgUnitOrgUnitGroups.DELETE({uidorgunit: orgUnits[i].id, uidgroup: commonvariable.preOrgUnitGroupSet[commonvariable.ouGroupsetId.Event].id  });				   
+				   OrgUnitOrgUnitGroups.POST({uidorgunit: orgUnits[i].id, uidgroup: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.Event].id  })
+			   }
+			   
+			   
 			   
 		  }			  
+		  
+		  defered.resolve(true);
+		  return promise;
 		  
 	  }
 	  
 
     ////Edit PROJECT
 	  $scope.EditProject = function () {
-		  		   		   
-		   
+		  		   		   		   
 	      var editOu = {//payload
 	          name: commonvariable.ouDirective,
 	          shortName: commonvariable.ouDirective,
@@ -207,11 +223,14 @@ appConfigProjectMSF.controller('projectController', ["$scope",'$filter',"commonv
 	    	  
 	    	  if (data.status=="SUCCESS") {
 	    		  
-	   		   OrganisationUnitChildren.get({uid:commonvariable.OrganisationUnit.id, fields:'name,id,code,level,openingDate,shortName'}).$promise.then(function(response){
+	   		   OrganisationUnitChildren.get({uid:data.lastImported, fields:'name,id,code'}).$promise.then(function(response){
 	   			   
 				   var children=response.organisationUnits;
 				   			
-				   $scope.updateOrgUnits(children);
+				   $scope.updateOrgUnits(children).then(function(data) {
+					   $scope.operation = 'show';					   					   
+				   });
+				   
 				   
 			   });	
 	    		  
@@ -225,8 +244,7 @@ appConfigProjectMSF.controller('projectController', ["$scope",'$filter',"commonv
 	      });
 
 	      ///
-
-
+	      
 	  }
 
 

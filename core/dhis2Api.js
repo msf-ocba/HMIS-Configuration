@@ -153,6 +153,19 @@ Dhis2Api.factory("OrgUnitGroupsOrgUnit",['$resource','commonvariable', function 
 		});
 }]);
 
+Dhis2Api.factory("OrgUnitOrgUnitGroups",['$resource','commonvariable', function ($resource,commonvariable) {
+	
+	return $resource(commonvariable.url+"organisationUnits/:uidorgunit/organisationUnitGroups/:uidgroup",
+		{	
+		uidorgunit: '@uidorgunit',
+		uidgroup:'@uidgroup'
+		},
+		{ POST: { method: "POST"},
+		  DELETE: {method: "DELETE"}	
+		});
+}]);
+
+
 
 Dhis2Api.factory("OrgUnitChildren",['$resource','commonvariable', function ($resource,commonvariable) {
 	
