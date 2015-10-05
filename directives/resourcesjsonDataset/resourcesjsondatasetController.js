@@ -17,11 +17,8 @@ Dhis2Api.controller("d2ResourcejsondatasetController", ['$scope', '$interval', "
 
     $scope.$watch(function () {
         if (commonvariable.OrganisationUnit && commonvariable.OrganisationUnit.id != $scope.prevOu) {
-
-            commonvariable.DataElementSelected = [];
             $scope.style = [];
- 
-            $scope.prevOu = commonvariable.OrganisationUnit.id;
+            $scope.prevOu = commonvariable.OrganisationUnit.id;            
         }
     });
 

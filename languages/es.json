@@ -5,6 +5,7 @@
   "NO":"No",
   "CREATION_DATE":"Fecha de creación",
   "ALARM_EXIST": "Este objeto ya existe en el sistema",
+  "DISABLED_TITLE": "La Unidad Organizativa seleccionada se encuentra desabilitada",
   
   "_____________MODAL": "modal for delete _____",
   "CLOSE_DATE": "Close Date",

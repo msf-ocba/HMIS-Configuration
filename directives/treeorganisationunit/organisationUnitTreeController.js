@@ -57,7 +57,15 @@ Dhis2Api.controller("d2TreeorganisationUnitController", ['$scope','$location','T
                        $scope.treeOrganisationUnitList=$scope.update($scope.treeOrganisationUnitList, $scope.OrganisationUnit.currentNode.id,commonvariable.NewOrganisationUnit,1);                                       
                        console.log($scope.treeOrganisationUnitList);
                    }
-                   	//redirect to correct url
+
+                try {
+
+                    if($scope.OrganisationUnit.currentNode.closedDate)
+                        $location.path('/Disabled');
+                } catch (err) {
+
+                };
+                    //redirect to correct url
                     if(typeof($scope.OrganisationUnit.currentNode)!="undefined" && $scope.currentlevel!=$scope.OrganisationUnit.currentNode.level){
                         $scope.currentlevel=$scope.OrganisationUnit.currentNode.level;
                         var url="/";
@@ -89,7 +97,12 @@ Dhis2Api.controller("d2TreeorganisationUnitController", ['$scope','$location','T
                     if($scope.OrganisationUnit.currentNode && $scope.currentid!=$scope.OrganisationUnit.currentNode.id && typeof($scope.OrganisationUnit.currentNode.children)=="undefined"){
             	   	    $scope.currentid=$scope.OrganisationUnit.currentNode.id;
 						TreeOrganisationunit.get({uid:$scope.OrganisationUnit.currentNode.id})
-						.$promise.then(function(data){
+						.$promise.then(function (data) {
+                            ////disable display children if it has close date  
+						    if ($scope.OrganisationUnit.currentNode.closedDate) {
+						        data.children = [];
+						    }
+                            ///
 							$scope.treeOrganisationUnitList=$scope.update($scope.treeOrganisationUnitList, $scope.OrganisationUnit.currentNode.id,data.children,0) 									  
 						});
                     }
@@ -116,7 +129,7 @@ Dhis2Api.controller("d2TreeorganisationUnitController", ['$scope','$location','T
                         }
                     }
                 } catch (err) {
-                    //console.log(err);
+                    $location.path('/InternationalMSF');
                 };
             }
         );

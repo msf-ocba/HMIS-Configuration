@@ -56,14 +56,14 @@
 				 else{
 					var check=""; 
 				 }
-				 //tree template
+			    //tree template
 				var template =
 					'<ul>' +
 						'<li data-ng-repeat="node in ' + treeModel + '">' +
 							'<i class="collapsed" data-ng-show="node.' + nodeChildren + '.length && node.collapsed" data-ng-click="' + treeId + '.selectNodeHead(node)"></i>' +
 							'<i class="expanded" data-ng-show="node.' + nodeChildren + '.length && !node.collapsed" data-ng-click="' + treeId + '.selectNodeHead(node)"></i>' +
 							'<i class="normal" data-ng-click="' + treeId + '.selectNodeLabel(node)" data-ng-hide="node.' + nodeChildren + '.length"></i> ' + check +
-							'<span data-ng-class="node.selected" data-ng-click="' + treeId + '.selectNodeLabel(node)"> {{node.' + nodeLabel + '}}</span>' +
+							'<span data-ng-class="node.selected" style= {{node.closedDate?"text-decoration:line-through;":""}} data-ng-click="' + treeId + '.selectNodeLabel(node)"> {{node.' + nodeLabel + '}}</span>' +
 							'<div data-ng-hide="node.collapsed" data-tree-id="' + treeId + '" data-tree-model="node.' + nodeChildren + '" data-node-id=' + nodeId + ' data-node-label=' + nodeLabel + ' data-node-children=' + nodeChildren + ' data-tree-type='+treeType+'></div>' +
 						'</li>' +
 					'</ul>';

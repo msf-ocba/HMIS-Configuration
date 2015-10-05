@@ -5,7 +5,11 @@ appConfigProjectMSF.config(function($routeProvider) {
 	  $routeProvider.when('/InternationalMSF', {
 		    templateUrl: "modules/InternationalMSF/internationalMSFView.html",
 		    controller: "internationalMSFController"
-		  });
+	  });
+	  $routeProvider.when('/Disabled', {
+	      templateUrl: "modules/disabledOU/disabledView.html",
+	      controller: "disabledController"
+	  });
 	  $routeProvider.when('/OperationalCenter', {
 		  	templateUrl: "modules/OperationalCenter/operationalCenterView.html",
 		  	controller: "operationalCenterController"
