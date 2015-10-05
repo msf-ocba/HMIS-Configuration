@@ -262,7 +262,9 @@ appConfigProjectMSF.controller('projectController', ["$scope",'$filter',"commonv
 	   		   OrganisationUnitChildren.get({uid:data.lastImported, fields:'name,id,code'}).$promise.then(function(response){
 	   			   
 				   var children=response.organisationUnits;
-				   
+
+	   		       ////
+				   commonvariable.RefreshTreeOU = true;
 				   			
 				   $scope.updateOrgUnits(children).then(function(data) {
 					   

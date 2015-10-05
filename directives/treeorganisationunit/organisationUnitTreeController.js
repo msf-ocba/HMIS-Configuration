@@ -55,7 +55,6 @@ Dhis2Api.controller("d2TreeorganisationUnitController", ['$scope','$location','T
                    if(commonvariable.RefreshTreeOU){
                         commonvariable.RefreshTreeOU=false;
                        $scope.treeOrganisationUnitList=$scope.update($scope.treeOrganisationUnitList, $scope.OrganisationUnit.currentNode.id,commonvariable.NewOrganisationUnit,1);                                       
-                       console.log($scope.treeOrganisationUnitList);
                    }
 
                 try {
