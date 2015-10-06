@@ -6,6 +6,7 @@
   "CREATION_DATE": "Creation date",
   "ALARM_EXIST": "This object already exist",
   "DISABLED_TITLE": "The Organsation Unit Selected is disabled",
+  "CANCEL": "Clear Form",
 
   "_____________MODAL": "modal for delete _____",
   "CLOSE_DATE": "Close Date",
@@ -109,7 +110,9 @@
   "HEALTHSERVICE_SUFFIX": "Code suffix",
   "DATASET_ADD": "Add or Edit DataSets",
   "DATASET_SAVE": "Associate DataSet",
-  "DATASET_SELECT_TITTLE":"DataSets Associated to Health Service",
+  "DATASET_SELECT_TITTLE": "DataSets Associated to Health Service",
+   "DATASET_LEVEL": "Level: ",
+  "DATASET_PERIOD":"Period: ",
 	
 	"_____________ Module_":" ORG UNIT DELETE_____________",
 	"ORGUNITDELETE_TITLE": "Delete Org Unit",

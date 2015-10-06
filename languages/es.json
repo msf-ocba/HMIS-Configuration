@@ -6,6 +6,7 @@
   "CREATION_DATE":"Fecha de creación",
   "ALARM_EXIST": "Este objeto ya existe en el sistema",
   "DISABLED_TITLE": "La Unidad Organizativa seleccionada se encuentra desabilitada",
+  "CANCEL": "Cancelar",
   
   "_____________MODAL": "modal for delete _____",
   "CLOSE_DATE": "Close Date",
@@ -108,7 +109,9 @@
   "HEALTHSERVICE_SUFFIX": "Sufijo",
   "DATASET_ADD": "Adicionar o Editar DataSet",
   "DATASET_SAVE": "Asociar DataSet",
-  "DATASET_SELECT_TITTLE":"DataSet Asociados a Servicio de Salud",
+  "DATASET_SELECT_TITTLE": "DataSet Asociados a Servicio de Salud",
+  "DATASET_LEVEL": "Nivel: ",
+  "DATASET_PERIOD":"Periodo: ",
 	
 	
 	
