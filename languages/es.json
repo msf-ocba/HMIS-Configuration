@@ -75,7 +75,7 @@
 	"VACCINATION_DATASET_PERIOD":"Periodo",
 	"VACCINATION_DATASET_DESCRIPTION":"Descripción",
   "VACCINATION_DATASET_SELECT_TITTLE": "Seleccione los elementos de datos para el DataSet",
-  "VACCINATION_DATASET_BUTTON_UPDATE": "Editar",
+  "VACCINATION_DATASET_BUTTON_UPDATE": "Aregar o Editar DataSet de vacunación",
   "VACCINATION_DATASET_LABEL_UPDATE": "DataSet de Vacunación",
   "VACCINATION_DATASET_SAVED": "El DataSet de Vacunación se ha guardado exitoramente",
   "VACCINATION_DATASET_NOSAVED": "El DataSet de Vacunación no pudo ser guardado, revise la descripción y periodo seleccionado",

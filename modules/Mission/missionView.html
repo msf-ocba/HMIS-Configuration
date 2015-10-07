@@ -68,7 +68,7 @@
     </div>
 
 	<div class="row" ng-show="showbutton">
-        <div class="col-md-6">
+        <div class="col-md-4">
            
             <form class="navbar-form navbar-left" role="search">
                 <div class="form-group well well-sm">
@@ -80,23 +80,9 @@
                 </div>
             </form>
         </div>
-        <div class="col-md-6">
-            <div ng-show="!CreateDatasetVaccination">
-
-                <form class="navbar-form navbar-left" role="search">
-                    <div class="form-group well well-sm">
-                        <label>{{'VACCINATION_DATASET_LABEL_UPDATE' | translate}}</label>
-                        <ul class="list-group">
-                            <li class="list-group-item">{{VaccinationDataset.name}}</li>
-
-                        </ul>
-                        <button type="button" class="btn btn-primary" ng-click="showDataSetforEdit()">{{'VACCINATION_DATASET_BUTTON_UPDATE' | translate}}</button>
-                    </div>
-                </form>
-
-            </div>
+        <div class="col-md-8">
             <div ng-show="CreateDatasetVaccination">
-                <button type="button" ng-click="showForm(2)" class="btn btn-primary">{{'VACCINATION_DATASET' | translate}} </button>                
+                <d2-resourcejsonvaccination id="vaccination"></d2-resourcejsonvaccination>             
             </div>
         </div>
         </div>
@@ -189,56 +175,7 @@
             </div>
         </div>
 
-        <div class="row" ng-show="frmVaccination">
-            <div class="col-md-12">
-                <div class="panel panel-default">
-                    <div class="panel-heading"> {{'VACCINATION_DATASET' | translate}}</div>
-                    <div class="panel-body">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label for="dataSetName">{{'VACCINATION_DATASET_NAME' | translate}}</label>
-                                <div class="input-group">
-                                    <span class="input-group-addon" id="basic-addon2">{{preName}}</span>
-                                    <label class="form-control">{{vaccinationName}}</label>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <label for="dataSetCode">{{'VACCINATION_DATASET_CODE' | translate}}</label>
-                                <div class="input-group">
-                                    <span class="input-group-addon" id="basic-addon2">{{preCode}}</span>
-                                    <label class="form-control">{{vaccinationCode}}</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label for="dataSetName">{{'VACCINATION_DATASET_PERIOD' | translate}}</label>
-                                <d2-periodtype selected="{{PeriodSelected}}"></d2-periodtype>
-                            </div>
-                            <div class="col-md-6">
-                                <label for="dataSetCode">{{'VACCINATION_DATASET_DESCRIPTION' | translate}}</label>
-                                <input type="text" class="form-control" ng-model="dataSetDescription" name='dataSetDescription'>
-                            </div>
-                        </div>
-                        <br>
-                        <label for="dataSetCode">{{'VACCINATION_DATASET_SELECT_TITTLE' | translate}}</label>
-                        <d2-resourcejson id="vaccination"></d2-resourcejson>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-
-                </div>
-                <div class="col-md-6">
-                    <button type="button" class="btn btn-default" ng-click="hideForm()">{{'PROJECT_CANCEL' | translate}} </button>
-                    
-                    <button ng-show="CreateDatasetVaccination" ng-click="saveDatasetVaccination()" type="button" class="btn btn-primary">{{'VACCINATION_DATASET_SAVE' | translate}} </button>
-                    <button ng-show="!CreateDatasetVaccination" ng-click="updateDatasetVaccination()" type="button" class="btn btn-primary">{{'VACCINATION_DATASET_UPDATE' | translate}} </button>
-                </div>
-            </div>
-
-        </div>
+    
     </div>
  </div>
  </div>

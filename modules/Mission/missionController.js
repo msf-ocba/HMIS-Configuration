@@ -6,10 +6,6 @@ appConfigProjectMSF.controller('missionController', ["$scope", '$filter', "commo
     $scope.CreateDatasetVaccination = true;
 
     $scope.initValue = function () {
-        $scope.vaccinationName = commonvariable.OrganisationUnit.name;
-        $scope.vaccinationCode = commonvariable.OrganisationUnit.shortName;
-        $scope.preName = commonvariable.prefixVaccination.vaccinationName;
-        $scope.preCode = commonvariable.prefixVaccination.vaccinationCode;
 
         ///OrgunitGroupSet 
         $scope.projectTypeId = commonvariable.ouGroupsetId.ProjectType;
@@ -19,25 +15,7 @@ appConfigProjectMSF.controller('missionController', ["$scope", '$filter', "commo
         $scope.gsContextID = commonvariable.ouGroupsetId.Context;
     }
     $scope.initValue();
-    ///get if there exist a Dataset for this Mission.
-    $scope.getDataset = function () {
-        $scope.initValue();
-        DataSets.Get({ filter: "name:eq:" + $scope.preName + $scope.vaccinationName, fields: 'id,name,code,description,periodType,dataElements' })
-               .$promise.then(function (data) {
-                   if (data.dataSets.length> 0) {
-                        $scope.CreateDatasetVaccination = false;
-                        $scope.VaccinationDataset = data.dataSets[0];
-                        commonvariable.VaccinationDatasetSelected = $scope.VaccinationDataset;
-                        $scope.vaccinationName = commonvariable.OrganisationUnit.name;
-                        $scope.vaccinationCode = commonvariable.OrganisationUnit.shortName;
-                        $scope.PeriodSelected = $scope.VaccinationDataset.periodType;
-                        $scope.dataSetDescription = $scope.VaccinationDataset.description;
-                        $scope.dataSetid = $scope.VaccinationDataset.id;
-                   }
-                   else
-                       $scope.CreateDatasetVaccination = true;
-               });
-    }
+   
 
     // if there exist Vaccination DataSet   then show the DataElements  
     $scope.showDataSetforEdit = function () {
@@ -136,7 +114,6 @@ appConfigProjectMSF.controller('missionController', ["$scope", '$filter', "commo
 		$scope.showbutton = true;
 
 		$scope.getChildrenByOUID(commonvariable.OrganisationUnit.id);
-		$scope.getDataset();
 		$scope.vaccinationName="";
 		$scope.vaccinationCode="";
 	    $scope.dataSetDescription=""
@@ -163,51 +140,7 @@ appConfigProjectMSF.controller('missionController', ["$scope", '$filter', "commo
 	  };
     /////////////////////////////////////////
 
-	   $scope.saveDatasetVaccination = function () {
-	       var newDataSet = {
-	           name: $scope.preName + $scope.vaccinationName,
-	           code: $scope.preCode + $scope.vaccinationCode,
-	           shortName: $scope.preCode + $scope.vaccinationCode,
-	           description: $scope.dataSetDescription,
-	           periodType: commonvariable.PeriodSelected.code,
-	           dataElements: commonvariable.DataElementSelected,
-	           organisationUnits: [{ id: commonvariable.OrganisationUnit.id }]
-	       };
-	       console.log(newDataSet);
-	       DataSets.Post({}, newDataSet)
-	        .$promise.then(function (data) {
-	            if (data.response.status == "SUCCESS") {
-	                $scope.messages.push({ type: "success", text: $translate('VACCINATION_DATASET_SAVED') });
-	                $scope.hideForm();
-	            }
-	            else {
-	                $scope.messages.push({ type: "danger", text: $translate('VACCINATION_DATASET_NOSAVED') });
-	            }
-	        });
-	   };
-
-	   $scope.updateDatasetVaccination = function () {
-	      var newDataSet = {
-	           name: $scope.preName + $scope.vaccinationName,
-	           code: $scope.preCode + $scope.vaccinationCode,
-	           shortName: $scope.preCode + $scope.vaccinationCode,
-	           description: $scope.dataSetDescription,
-	           periodType: commonvariable.PeriodSelected.code,
-	           dataElements: commonvariable.DataElementSelected,
-	           organisationUnits: [{ id: commonvariable.OrganisationUnit.id }]
-	       };
-	       DataSets.Put({ uid: $scope.dataSetid }, newDataSet)
-	        .$promise.then(function (data) {
-	            if (data.response.status == "SUCCESS") {
-	                $scope.messages.push({ type: "success", text: $translate('VACCINATION_DATASET_SAVED') });
-	                scope.hideForm();
-	            }
-	            else {
-	                $scope.messages.push({ type: "danger", text: $translate('VACCINATION_DATASET_NOSAVED') });
-	            }
-	        });
-	   };
-
+	 
 	   $scope.getChildrenByOUID = function (uidSelected) {
 	       OrgUnitChildren.get({ uid :uidSelected})
            .$promise.then(function (dataChild){
@@ -222,7 +155,6 @@ appConfigProjectMSF.controller('missionController', ["$scope", '$filter', "commo
 	               $scope.missionname = commonvariable.OrganisationUnit.name;
 	               $scope.missioncreated = commonvariable.OrganisationUnit.openingDate;
 	               $scope.prevOu = commonvariable.OrganisationUnit.id;
-	               $scope.getDataset();
 	               $scope.hideForm();
 	               //get Children for OU selected
 
