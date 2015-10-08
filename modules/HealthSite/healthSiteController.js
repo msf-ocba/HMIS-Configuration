@@ -54,8 +54,7 @@ appConfigProjectMSF.controller('healthSiteController', ["$scope", '$filter', "co
 					  
 					  if (commonvariable.orgUnitGroupSet.BtFXTpKRl6n!=undefined)
 						  OrgUnitGroupsOrgUnit.POST({uidgroup:commonvariable.orgUnitGroupSet.BtFXTpKRl6n.id, uidorgunit:newOu.id});
-					  				  
-					  
+					  				  					  
 					  FilterResource.GET({resource:'dataSets', filter:'code:eq:'+"DS_INFR_3"}).$promise
 				  		.then(function(response){
 				  			
@@ -112,7 +111,6 @@ appConfigProjectMSF.controller('healthSiteController', ["$scope", '$filter', "co
 					
 					$scope.frmService = false;
 
-
 				}
 				else{
 					$scope.messages.push({type:"danger",
@@ -120,12 +118,8 @@ appConfigProjectMSF.controller('healthSiteController', ["$scope", '$filter', "co
 				}
 	    	 });
 
-
-			
 			
 		});
-		
-		
 				
 	};
 	

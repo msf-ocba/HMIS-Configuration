@@ -36,9 +36,9 @@ appConfigProjectMSF.controller('projectController', ["$scope",'$filter',"commonv
 		OrgUnit.POST({},newOu)
 		.$promise.then(function(data){
     		  console.log(data);
-    		  if(data.status=="SUCCESS"){
+    		  if(data.response.status=="SUCCESS"){
     		  	  commonvariable.RefreshTreeOU=true;
-				  newOu.id=data.lastImported;
+				  newOu.id=data.response.lastImported;
 				  commonvariable.NewOrganisationUnit=newOu;
 				  
 				  if (commonvariable.orgUnitGroupSet.ZxNjaKVXY1D!=undefined) {
@@ -257,9 +257,9 @@ appConfigProjectMSF.controller('projectController', ["$scope",'$filter',"commonv
 	      
 	      OrgUnit.PATCH({id:commonvariable.OrganisationUnit.id},editOu).$promise.then(function(data){
 	    	  
-	    	  if (data.status=="SUCCESS") {
+	    	  if (data.response.status=="SUCCESS") {
 	    		  
-	   		   OrganisationUnitChildren.get({uid:data.lastImported, fields:'name,id,code'}).$promise.then(function(response){
+	   		   OrganisationUnitChildren.get({uid:data.response.lastImported, fields:'name,id,code'}).$promise.then(function(response){
 	   			   
 				   var children=response.organisationUnits;
 
@@ -274,6 +274,11 @@ appConfigProjectMSF.controller('projectController', ["$scope",'$filter',"commonv
 					   $scope.operation = 'show';					   					   
 				   });
 				   
+
+				   //Actaulza el arbol
+				   commonvariable.RefreshTreeOU=true;
+				   
+
 				   
 			   });	
 	    		  
