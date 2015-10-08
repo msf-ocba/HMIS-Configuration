@@ -23,38 +23,42 @@ Dhis2Api.controller("d2TreeorganisationUnitController", ['$scope','$location','T
     	 var type;
     	 var resultado;
     	 for (var i=0; i<json.length;i++){
-    		 type = typeof json[i].children;
-    	 		if (type=="undefined"){
-    				resultado = true;
-    			 	if (json[i].id==valorOrig){
-                        if(treeup==0)
-    			 		  json[i].children = valorDest;
-                        else
-                          json[i].children.push(valorDest);
-                        
-    			 	}
-    			}
-    			else{
-    				if (json[i].id==valorOrig){
-    					if(treeup==0)
-                          json[i].children = valorDest;
-                        else
-                          json[i].children.push(valorDest);
-    				}
-    				resultado = $scope.update(json[i].children, valorOrig, valorDest,treeup);
-    			}
-    		}
+    	     type = typeof json[i].children;
 
-    	 return json;
-    	 }
+    	     if (json[i].id == valorOrig) {
+    	         switch (treeup) {
+    	             case 0:
+    	                 json[i].children = valorDest;
+    	                 break;
+    	             case 1:
+    	                 json[i].children.push(valorDest);
+    	                 break;
+    	             case 2:
+    	                 json[i].name = valorDest.name;
+    	                 break;
+    	         }
+
+    	     }
+    	 	if (type=="undefined"){
+    			resultado = true; 
+    		}
+    		else{
+    			resultado = $scope.update(json[i].children, valorOrig, valorDest,treeup);
+    		}
+    	}
+   	 return json;
+   }
     
      
   $scope.$watch(
             function(OrganisationUnit) {
             	   //refresh if it is neccesary
                    if(commonvariable.RefreshTreeOU){
-                        commonvariable.RefreshTreeOU=false;
-                       $scope.treeOrganisationUnitList=$scope.update($scope.treeOrganisationUnitList, $scope.OrganisationUnit.currentNode.id,commonvariable.NewOrganisationUnit,1);                                       
+                       commonvariable.RefreshTreeOU = false;
+                       if (commonvariable.NewOrganisationUnit.length == 0)
+                           $scope.treeOrganisationUnitList = $scope.update($scope.treeOrganisationUnitList, $scope.OrganisationUnit.currentNode.id, commonvariable.EditOrganisationUnit, 2);
+                       else
+                            $scope.treeOrganisationUnitList=$scope.update($scope.treeOrganisationUnitList, $scope.OrganisationUnit.currentNode.id,commonvariable.NewOrganisationUnit,1);                                       
                    }
 
                 try {
