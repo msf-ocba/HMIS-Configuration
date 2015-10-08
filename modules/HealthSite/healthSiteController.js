@@ -47,9 +47,9 @@ appConfigProjectMSF.controller('healthSiteController', ["$scope", '$filter', "co
 			OrgUnit.POST({},newOu)
 			.$promise.then(function(data){
 	    		  console.log(data);
-	    		  if(data.status=="SUCCESS"){
+	    		  if(data.response.status=="SUCCESS"){
 	    		  	  commonvariable.RefreshTreeOU=true;
-					  newOu.id=data.lastImported;
+					  newOu.id=data.response.lastImported;
 					  commonvariable.NewOrganisationUnit=newOu;		
 					  
 					  if (commonvariable.orgUnitGroupSet.BtFXTpKRl6n!=undefined)
