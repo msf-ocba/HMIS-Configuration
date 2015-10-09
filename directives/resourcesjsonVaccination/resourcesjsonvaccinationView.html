@@ -1,0 +1,107 @@
+<div ng-controller="d2ResourcejsonvaccinationController">
+    <div class="row">
+        <div class="col-md-12">
+            <alert ng-repeat="message in messages" type="{{message.type}}" close="closeAlertMessage($index)">{{message.text}}</alert>
+        </div>
+    </div>
+            <div class="row" ng-show="!frmVaccination">
+                <div class="col-md-12">
+
+                    <div class="row">
+                        <div class="col-md-12"><label for="dataSetCode">{{'VACCINATION_DATASET_LABEL_UPDATE' | translate}}</label></div>
+                    </div>
+                    <div ng-show="!frmVaccination">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <table class="table table-condensed">
+                                    <tbody>
+                                        <tr>
+                                            <td>{{VaccinationDataset.name}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="col-md-6">
+                                <button type="button" class="btn btn-primary" ng-click="showFormvaccination()">{{'VACCINATION_DATASET_BUTTON_UPDATE' | translate}}</button>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="row" ng-show="frmVaccination">
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading"> {{'VACCINATION_DATASET' | translate}}</div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="dataSetName">{{'VACCINATION_DATASET_NAME' | translate}}</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon" id="basic-addon2">{{preName}}</span>
+                                        <label class="form-control">{{vaccinationName}}</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="dataSetCode">{{'VACCINATION_DATASET_CODE' | translate}}</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon" id="basic-addon2">{{preCode}}</span>
+                                        <label class="form-control">{{vaccinationCode}}</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="dataSetName">{{'VACCINATION_DATASET_PERIOD' | translate}}</label>
+                                    <d2-periodtype selected="{{PeriodSelected}}"></d2-periodtype>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="dataSetCode">{{'VACCINATION_DATASET_DESCRIPTION' | translate}}</label>
+                                    <input type="text" class="form-control" ng-model="dataSetDescription" name='dataSetDescription'>
+                                </div>
+                            </div>
+                            <br>
+                            <label for="dataSetCode">{{'VACCINATION_DATASET_SELECT_TITTLE' | translate}}</label>
+
+                            <accordion close-others="true">
+                                <accordion-group is-open="status.open" ng-repeat="(skey, section) in sections">
+                                    <accordion-heading>
+                                        {{section.name}} <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+                                    </accordion-heading>
+
+                                    <table class="table table-condensed">
+                                        <tbody>
+                                            <tr ng-repeat="(key, group) in section.dataElementGroup" class="{{style[skey][key]}}">
+                                                <td>{{group.name}}</td>
+                                                <td>
+                                                    <div class="btn-group-xs" role="group" aria-label="...">
+                                                        <button type="button" class="btn btn-{{ListnameDataelement[dataElement.code].name?'default':'warning'}}" tooltip-trigger="focus" tooltip-placement="right" ng-repeat="dataElement in group.dataElements">{{ListnameDataelement[dataElement.code]?ListnameDataelement[dataElement.code].name:dataElement.code}}</button>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <button ng-click="selectgroup(key,skey)" type="button" class="btn btn-{{style[skey][key]}}" aria-label="Left Align">
+                                                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </accordion-group>
+                            </accordion>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <button type="button" class="btn btn-default" ng-click="hideFormvaccination()">{{'PROJECT_CANCEL' | translate}} </button>
+
+                        <button ng-show="CreateDatasetVaccination" ng-click="saveDatasetVaccination()" type="button" class="btn btn-primary">{{'VACCINATION_DATASET_SAVE' | translate}} </button>
+                        <button ng-show="!CreateDatasetVaccination" ng-click="updateDatasetVaccination()" type="button" class="btn btn-primary">{{'VACCINATION_DATASET_UPDATE' | translate}} </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
