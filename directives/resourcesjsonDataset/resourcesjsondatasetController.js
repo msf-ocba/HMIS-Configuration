@@ -31,6 +31,7 @@ Dhis2Api.controller("d2ResourcejsondatasetController", ['$scope', '$interval', "
 
     $scope.showedit = function () {
         $scope.operation = 'edit';
+        $scope.loadlevel();
     }
     $scope.editHealtServiceDataset = function () {
         angular.forEach($scope.datasetforsave, function (dvalue,dkey) {
@@ -48,19 +49,23 @@ Dhis2Api.controller("d2ResourcejsondatasetController", ['$scope', '$interval', "
         });
     };
 
-    $scope.loadlevel=function(){
-        $scope.GroupDE=[];
+    $scope.loadlevel = function () {
+        $scope.levels = [];
+        $scope.GroupDE = [];
+       // $scope.serviceName = "No existen Dataset para " + commonvariable.OrganisationUnit.name;
        loadjsonresource.get($scope.id)
         .then(function(response){
             $scope.services = response.data.datasetByService[0].service;
               angular.forEach($scope.services, function (svalue, skey) {
-                if (svalue.name == commonvariable.OrganisationUnit.name) 
-                    $scope.levels = svalue.levels;
+                  if (svalue.name == commonvariable.OrganisationUnit.name) {
+                      $scope.levels = svalue.levels;
+                     // $scope.serviceName = svalue.name;
+                  }
                  });
          });
     }
 
-    $scope.loadlevel();
+    //$scope.loadlevel();
 
     $scope.loadDataSet = function () {
         
