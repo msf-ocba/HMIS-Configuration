@@ -170,84 +170,82 @@ appConfigProjectMSF.controller('projectController', ["$scope",'$filter',"commonv
 
 	      
 	      angular.forEach(orgUnits, function(value, key){
-
+	    	  
 	          try {
-	              if (commonvariable.preOrgUnitGroupSet[commonvariable.ouGroupsetId.Context].id != commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.Context].id) {
+	        	  if (typeof(commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.PopulationType])!="undefined") {
 
-	                  OrgUnitOrgUnitGroups.DELETE({ uidorgunit: value.id, uidgroup: commonvariable.preOrgUnitGroupSet[commonvariable.ouGroupsetId.Context].id });
-	                  OrgUnitOrgUnitGroups.POST({ uidorgunit: value.id, uidgroup: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.Context].id });
-	              }
+	        		  if (typeof(commonvariable.preOrgUnitGroupSet[commonvariable.ouGroupsetId.PopulationType])=="undefined")
+	        			  OrgUnitOrgUnitGroups.POST({ uidorgunit: value.id, uidgroup: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.PopulationType].id })
+	        	  
+	        		  else if (commonvariable.preOrgUnitGroupSet[commonvariable.ouGroupsetId.PopulationType].id != commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.PopulationType].id) {
+	        			  OrgUnitOrgUnitGroups.DELETE({ uidorgunit: value.id, uidgroup: commonvariable.preOrgUnitGroupSet[commonvariable.ouGroupsetId.PopulationType].id });
+	        			  OrgUnitOrgUnitGroups.POST({ uidorgunit: value.id, uidgroup: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.PopulationType].id })
+	        		  }
+	        	  }
 	          } catch (err) {
 	          };
-	          try {
 
-	              if (commonvariable.preOrgUnitGroupSet[commonvariable.ouGroupsetId.ProjectType].id != commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.ProjectType].id) {
+	    	  
+	          try {	        	 
+	        	  if (typeof(commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.Context])!="undefined") {
+	        		  
+	        		  if (typeof(commonvariable.preOrgUnitGroupSet[commonvariable.ouGroupsetId.Context])=="undefined" )
+	        			  OrgUnitOrgUnitGroups.POST({ uidorgunit: value.id, uidgroup: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.Context].id });
+	        	  
+	        		  else if (commonvariable.preOrgUnitGroupSet[commonvariable.ouGroupsetId.Context].id != commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.Context].id) {
 
-	                  OrgUnitOrgUnitGroups.DELETE({ uidorgunit: value.id, uidgroup: commonvariable.preOrgUnitGroupSet[commonvariable.ouGroupsetId.ProjectType].id })
-	                  OrgUnitOrgUnitGroups.POST({ uidorgunit: value.id, uidgroup: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.ProjectType].id })
-	              }
+	        			  OrgUnitOrgUnitGroups.DELETE({ uidorgunit: value.id, uidgroup: commonvariable.preOrgUnitGroupSet[commonvariable.ouGroupsetId.Context].id });
+	        			  OrgUnitOrgUnitGroups.POST({ uidorgunit: value.id, uidgroup: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.Context].id });
+	        		  }
+	        	  }
+	               
+
 	          } catch (err) {
 	          };
+	          
 	          try {
-	              if (commonvariable.preOrgUnitGroupSet[commonvariable.ouGroupsetId.PopulationType].id != commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.PopulationType].id) {
+	        	  if (typeof(commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.ProjectType])!="undefined") {
 
-	                  OrgUnitOrgUnitGroups.DELETE({ uidorgunit: value.id, uidgroup: commonvariable.preOrgUnitGroupSet[commonvariable.ouGroupsetId.PopulationType].id });
-	                  OrgUnitOrgUnitGroups.POST({ uidorgunit: value.id, uidgroup: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.PopulationType].id })
-	              }
+	        		  if (typeof(commonvariable.preOrgUnitGroupSet[commonvariable.ouGroupsetId.ProjectType])=="undefined")
+	        			  OrgUnitOrgUnitGroups.POST({ uidorgunit: value.id, uidgroup: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.ProjectType].id })
+
+	        		  else if (commonvariable.preOrgUnitGroupSet[commonvariable.ouGroupsetId.ProjectType].id != commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.ProjectType].id) {
+
+	        			  OrgUnitOrgUnitGroups.DELETE({ uidorgunit: value.id, uidgroup: commonvariable.preOrgUnitGroupSet[commonvariable.ouGroupsetId.ProjectType].id })
+	        			  OrgUnitOrgUnitGroups.POST({ uidorgunit: value.id, uidgroup: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.ProjectType].id })
+	        		  }
+	        	  }
 	          } catch (err) {
 	          };
+	          
+	          
 	          try {
-	              if (commonvariable.preOrgUnitGroupSet[commonvariable.ouGroupsetId.TypeManagement].id != commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.TypeManagement].id) {
+	        	  if (typeof(commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.TypeManagement])!="undefined") {
 
-	                  OrgUnitOrgUnitGroups.DELETE({ uidorgunit: value.id, uidgroup: commonvariable.preOrgUnitGroupSet[commonvariable.ouGroupsetId.TypeManagement].id });
-	                  OrgUnitOrgUnitGroups.POST({ uidorgunit: value.id, uidgroup: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.TypeManagement].id })
-	              }
+	        		  if (typeof(commonvariable.preOrgUnitGroupSet[commonvariable.ouGroupsetId.TypeManagement])=="undefined")
+	        			  OrgUnitOrgUnitGroups.POST({ uidorgunit: value.id, uidgroup: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.TypeManagement].id })
+	        		  else if (commonvariable.preOrgUnitGroupSet[commonvariable.ouGroupsetId.TypeManagement].id != commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.TypeManagement].id) {
+	        			  OrgUnitOrgUnitGroups.DELETE({ uidorgunit: value.id, uidgroup: commonvariable.preOrgUnitGroupSet[commonvariable.ouGroupsetId.TypeManagement].id });
+	        			  OrgUnitOrgUnitGroups.POST({ uidorgunit: value.id, uidgroup: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.TypeManagement].id })
+	        		  }
+	        	  }
 	          } catch (err) {
-	          };
+	          
 	          try {
-	              if (commonvariable.preOrgUnitGroupSet[commonvariable.ouGroupsetId.Event].id != commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.Event].id) {
+	        	  if (typeof(commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.Event])!="undefined") {
 
-	                  OrgUnitOrgUnitGroups.DELETE({ uidorgunit: value.id, uidgroup: commonvariable.preOrgUnitGroupSet[commonvariable.ouGroupsetId.Event].id });
-	                  OrgUnitOrgUnitGroups.POST({ uidorgunit: value.id, uidgroup: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.Event].id })
-	              }
+	        		  if (typeof(commonvariable.preOrgUnitGroupSet[commonvariable.ouGroupsetId.Event])=="undefined")
+	        			  OrgUnitOrgUnitGroups.POST({ uidorgunit: value.id, uidgroup: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.Event].id })
+	                  
+	        		  else if (commonvariable.preOrgUnitGroupSet[commonvariable.ouGroupsetId.Event].id != commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.Event].id) {
+	        			  OrgUnitOrgUnitGroups.DELETE({ uidorgunit: value.id, uidgroup: commonvariable.preOrgUnitGroupSet[commonvariable.ouGroupsetId.Event].id });
+	        			  OrgUnitOrgUnitGroups.POST({ uidorgunit: value.id, uidgroup: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.Event].id })
+	        		  }
+	        	  }
 	          } catch (err) {
 	          };
 	      });
 
-		  
-		  /*for (var i=0; i<orgUnits.length; i++) {
-			  
-			   if (commonvariable.preOrgUnitGroupSet[commonvariable.ouGroupsetId.Context].id!=commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.Context].id) {
-			   
-				   OrgUnitOrgUnitGroups.DELETE({uidorgunit: orgUnits[i].id, uidgroup: commonvariable.preOrgUnitGroupSet[commonvariable.ouGroupsetId.Context].id });				   
-				   OrgUnitOrgUnitGroups.POST({uidorgunit: orgUnits[i].id, uidgroup: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.Context].id});
-			   }
-
-			   if (commonvariable.preOrgUnitGroupSet[commonvariable.ouGroupsetId.ProjectType].id!=commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.ProjectType].id) {
-			   
-				   OrgUnitOrgUnitGroups.DELETE({uidorgunit: orgUnits[i].id, uidgroup: commonvariable.preOrgUnitGroupSet[commonvariable.ouGroupsetId.ProjectType].id })				   
-				   OrgUnitOrgUnitGroups.POST({uidorgunit: orgUnits[i].id, uidgroup: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.ProjectType].id })
-			   }
-			   
-			   if (commonvariable.preOrgUnitGroupSet[commonvariable.ouGroupsetId.PopulationType].id!=commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.PopulationType].id) {
-
-				   OrgUnitOrgUnitGroups.DELETE({uidorgunit: orgUnits[i].id, uidgroup: commonvariable.preOrgUnitGroupSet[commonvariable.ouGroupsetId.PopulationType].id });				   
-				   OrgUnitOrgUnitGroups.POST({uidorgunit: orgUnits[i].id, uidgroup: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.PopulationType].id })
-			   }
-			   
-			   if (commonvariable.preOrgUnitGroupSet[commonvariable.ouGroupsetId.TypeManagement].id!=commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.TypeManagement].id) {
-
-				   OrgUnitOrgUnitGroups.DELETE({uidorgunit: orgUnits[i].id, uidgroup: commonvariable.preOrgUnitGroupSet[commonvariable.ouGroupsetId.TypeManagement].id  });				   
-				   OrgUnitOrgUnitGroups.POST({uidorgunit: orgUnits[i].id, uidgroup: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.TypeManagement].id })
-			   }
-			   
-			   if (commonvariable.preOrgUnitGroupSet[commonvariable.ouGroupsetId.Event].id!=commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.Event].id) {
-			   
-				   OrgUnitOrgUnitGroups.DELETE({uidorgunit: orgUnits[i].id, uidgroup: commonvariable.preOrgUnitGroupSet[commonvariable.ouGroupsetId.Event].id  });				   
-				   OrgUnitOrgUnitGroups.POST({uidorgunit: orgUnits[i].id, uidgroup: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.Event].id  })
-			   }
-			   			   			   
-		  }		*/	  
 		  
 		  defered.resolve(true);
 		  return promise;
@@ -266,14 +264,17 @@ appConfigProjectMSF.controller('projectController', ["$scope",'$filter',"commonv
 	      };
 	      
 	      
+	      
 	      OrgUnit.PATCH({id:commonvariable.OrganisationUnit.id},editOu).$promise.then(function(data){
+	    	  
 	    	  
 	    	  if (data.response.status=="SUCCESS") {
 	    		  
-	    	      commonvariable.RefreshTreeOU = true;
+	    	      //commonvariable.RefreshTreeOU = true;
 	    	      commonvariable.EditOrganisationUnit = editOu;
 
 	    	   OrganisationUnitChildren.get({ uid: data.response.lastImported, fields: 'name,id,code' }).$promise.then(function (response) {
+	    		   
 	   			   
 				   var children=response.organisationUnits;
    			

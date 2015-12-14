@@ -98,6 +98,11 @@ appConfigProjectMSF.controller('missionController', ["$scope", '$filter', "commo
 		if(frm==1){
 			$scope.frmVaccination=false;
 			$scope.frmProject=true;
+			commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.ProjectType] = undefined
+			commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.PopulationType] = undefined
+			commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.TypeManagement] = undefined
+			commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.Event] = undefined
+			commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.Context] = undefined						
 		}
 		else{
 			$scope.frmVaccination=true;
