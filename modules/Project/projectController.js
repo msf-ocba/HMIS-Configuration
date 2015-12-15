@@ -171,7 +171,7 @@ appConfigProjectMSF.controller('projectController', ["$scope",'$filter',"commonv
 	      
 	      angular.forEach(orgUnits, function(value, key){
 	    	  
-	          try {
+	         try {
 	        	  if (typeof(commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.PopulationType])!="undefined") {
 
 	        		  if (typeof(commonvariable.preOrgUnitGroupSet[commonvariable.ouGroupsetId.PopulationType])=="undefined")
@@ -219,7 +219,7 @@ appConfigProjectMSF.controller('projectController', ["$scope",'$filter',"commonv
 	          };
 	          
 	          
-	          try {
+	         try {
 	        	  if (typeof(commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.TypeManagement])!="undefined") {
 
 	        		  if (typeof(commonvariable.preOrgUnitGroupSet[commonvariable.ouGroupsetId.TypeManagement])=="undefined")
@@ -230,6 +230,8 @@ appConfigProjectMSF.controller('projectController', ["$scope",'$filter',"commonv
 	        		  }
 	        	  }
 	          } catch (err) {
+	        	  
+	          };
 	          
 	          try {
 	        	  if (typeof(commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.Event])!="undefined") {

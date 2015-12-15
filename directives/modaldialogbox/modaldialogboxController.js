@@ -8,7 +8,7 @@ Dhis2Api.controller("d2modaldialogboxController", ['$scope','$modal', function (
     
 }]);
 
-Dhis2Api.controller('ModalConfirmCtrl', function ($scope, $modalInstance,information, OrgUnit, OrganisationUnitChildren, DataSetsOrgUnit) {
+Dhis2Api.controller('ModalConfirmCtrl', function ($scope, $modalInstance,information, OrgUnit, OrganisationUnitChildren, DataSetsOrgUnit, commonvariable) {
 	$scope.information=information;
 	$scope.ok = function () {
 
@@ -27,7 +27,9 @@ Dhis2Api.controller('ModalConfirmCtrl', function ($scope, $modalInstance,informa
 
 		    OrganisationUnitChildren.get({uid:$scope.information.id,fields:'name,id,code,level,openingDate,shortName,dataSets'}).$promise.then(function(response){
 	   			   
-				   var children=response.organisationUnits;
+		    	commonvariable.RefreshTreeOU = true;
+		    	
+		    	var children=response.organisationUnits;
 				   
 				   angular.forEach(children, function(valueOU, keyOU){
 
@@ -40,17 +42,8 @@ Dhis2Api.controller('ModalConfirmCtrl', function ($scope, $modalInstance,informa
 					   })
 					   
 				   });
+				   
 				   			
-				   /*for (var i=0; i<children.length;i++) {
-					   
-					   OrgUnit.PATCH({id:children[i].id},{closedDate:$scope.closedate});					   
-					   
-					   var dataSets=children[i].dataSets;
-					   
-					   for (var j=0; j<dataSets.length; j++)
-							DataSetsOrgUnit.DELETE({uidorgunit:children[i].id, uiddataset:dataSets[j].id});				   				 
-					   
-				   }*/
 			});	
 		   	       
 		    $modalInstance.close(true);		   		   
