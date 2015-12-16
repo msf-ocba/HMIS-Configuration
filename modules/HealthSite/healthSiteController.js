@@ -223,6 +223,7 @@ appConfigProjectMSF.controller('healthSiteController', ["$scope", '$filter', "co
 	  $scope.operation = 'show';
 	  $scope.enableforEdit = function () {
 	      $scope.operation = 'edit';
+	      commonvariable.NewOrganisationUnit = [];
 	  }
 	  $scope.enableforshow = function () {
 	      $scope.operation = 'show';

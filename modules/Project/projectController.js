@@ -152,6 +152,7 @@ appConfigProjectMSF.controller('projectController', ["$scope",'$filter',"commonv
 	  $scope.operation = 'show';
 	  $scope.enableforEdit = function () {
 	      $scope.operation = 'edit';
+	      commonvariable.NewOrganisationUnit = [];
 	      
 	      //Getting the current org. unit groups
 	      
@@ -272,7 +273,7 @@ appConfigProjectMSF.controller('projectController', ["$scope",'$filter',"commonv
 	    	  
 	    	  if (data.response.status=="SUCCESS") {
 	    		  
-	    	      //commonvariable.RefreshTreeOU = true;
+	    	      commonvariable.RefreshTreeOU = true;
 	    	      commonvariable.EditOrganisationUnit = editOu;
 
 	    	   OrganisationUnitChildren.get({ uid: data.response.lastImported, fields: 'name,id,code' }).$promise.then(function (response) {
