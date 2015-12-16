@@ -56,8 +56,10 @@ Dhis2Api.controller("d2ResourcejsondatasetController", ['$scope', '$interval', "
        loadjsonresource.get($scope.id)
         .then(function(response){
             $scope.services = response.data.datasetByService[0].service;
-              angular.forEach($scope.services, function (svalue, skey) {
-                  if (svalue.name == commonvariable.OrganisationUnit.name) {
+            angular.forEach($scope.services, function (svalue, skey) {
+                 var ouname = commonvariable.OrganisationUnit.name.split("_");
+                     ouname = ouname[ouname.length];
+                     if (svalue.name == ouname) {
                       $scope.levels = svalue.levels;
                      // $scope.serviceName = svalue.name;
                   }

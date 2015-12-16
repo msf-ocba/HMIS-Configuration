@@ -49,8 +49,9 @@ appConfigProjectMSF.controller('missionController', ["$scope", '$filter', "commo
 		OrgUnit.POST({},newOu)
 		.$promise.then(function(data){
     		  console.log(data);
-    		  if (data.response.status == "SUCCESS") { ///verificar que en la versi�n 2.19 y 2.20 sea data.response.status
-    		  	  commonvariable.RefreshTreeOU=true;
+    		 // if (data.response.status == "SUCCESS") { ///verificar que en la versi�n 2.19 y 2.20 sea data.response.status
+    		  if (data.response.importCount.imported >= 1) {
+    		      commonvariable.RefreshTreeOU=true;
 				  newOu.id=data.response.lastImported;
 				  commonvariable.NewOrganisationUnit=newOu;
 				 

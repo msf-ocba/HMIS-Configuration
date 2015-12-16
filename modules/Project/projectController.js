@@ -36,8 +36,9 @@ appConfigProjectMSF.controller('projectController', ["$scope",'$filter',"commonv
 		OrgUnit.POST({},newOu)
 		.$promise.then(function(data){
     		  console.log(data);
-    		  if(data.response.status=="SUCCESS"){
-    		  	  commonvariable.RefreshTreeOU=true;
+    		 // if(data.response.status=="SUCCESS"){
+    		  if(data.response.importCount.imported>=1){
+    		      commonvariable.RefreshTreeOU=true;
 				  newOu.id=data.response.lastImported;
 				  commonvariable.NewOrganisationUnit=newOu;
 				  
