@@ -264,6 +264,7 @@ appConfigProjectMSF.controller('projectController', ["$scope",'$filter',"commonv
 	      var editOu = {//payload
 	          name: commonvariable.ouDirective,
 	          shortName: commonvariable.ouDirective,
+	          code: commonvariable.ouDirectiveCode,
 	          openingDate: $scope.projectcreated
 	      };
 	      
