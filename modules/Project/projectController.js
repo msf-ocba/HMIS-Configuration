@@ -29,8 +29,8 @@ appConfigProjectMSF.controller('projectController', ["$scope",'$filter',"commonv
 				level:(commonvariable.OrganisationUnit.level+1),
 	            shortName:commonvariable.ouDirective,
 	            code:codeOrgUnit,
-	           	openingDate:$scope.siteDate,
-	            parent:commonvariable.OrganisationUnit
+	           	openingDate:$filter('date')($scope.siteDate,'yyyy-MM-dd'),
+	            parent:commonvariable.OrganisationUnitParentConf
 				};
 
 		OrgUnit.POST({},newOu)
@@ -265,7 +265,7 @@ appConfigProjectMSF.controller('projectController', ["$scope",'$filter',"commonv
 	          name: commonvariable.ouDirective,
 	          shortName: commonvariable.ouDirective,
 	          code: commonvariable.ouDirectiveCode,
-	          openingDate: $scope.projectcreated
+	          openingDate: $filter('date')($scope.projectcreated, 'yyyy-MM-dd')
 	      };
 	      
 	      

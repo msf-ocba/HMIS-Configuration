@@ -42,7 +42,7 @@ appConfigProjectMSF.controller('missionController', ["$scope", '$filter', "commo
 				level:(commonvariable.OrganisationUnit.level+1),
 				code:commonvariable.ouDirectiveCode,
 	            shortName:commonvariable.ouDirective,
-	           	openingDate:$scope.propendate,
+	            openingDate: $filter('date')($scope.propendate,'yyyy-MM-dd'),
 	           	parent: commonvariable.OrganisationUnitParentConf
 				};
 
