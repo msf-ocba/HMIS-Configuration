@@ -27,8 +27,11 @@ Dhis2Api.controller('ModalConfirmCtrl', function ($scope, $modalInstance,informa
 
 		    OrganisationUnitChildren.get({uid:$scope.information.id,fields:'name,id,code,level,openingDate,shortName,dataSets'}).$promise.then(function(response){
 	   			   
-		    	commonvariable.RefreshTreeOU = true;
 		    	
+		        commonvariable.EditOrganisationUnit = commonvariable.OrganisationUnit;
+		        commonvariable.EditOrganisationUnit["children"] = [];
+		    	commonvariable.EditOrganisationUnit["closedDate"] = $scope.closedate;
+		    	commonvariable.RefreshTreeOU = true;
 		    	var children=response.organisationUnits;
 				   
 				   angular.forEach(children, function(valueOU, keyOU){

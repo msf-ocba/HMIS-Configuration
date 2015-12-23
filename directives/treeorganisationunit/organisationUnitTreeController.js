@@ -69,7 +69,7 @@ Dhis2Api.controller("d2TreeorganisationUnitController", ['$scope','$location','T
 
                 };
                     //redirect to correct url
-                    if(typeof($scope.OrganisationUnit.currentNode)!="undefined" && $scope.currentlevel!=$scope.OrganisationUnit.currentNode.level){
+                if(typeof($scope.OrganisationUnit.currentNode)!="undefined" && !$scope.OrganisationUnit.currentNode.closedDate){//$scope.currentlevel!=$scope.OrganisationUnit.currentNode.level){
                         $scope.currentlevel=$scope.OrganisationUnit.currentNode.level;
                         var url="/";
                         switch($scope.currentlevel){
