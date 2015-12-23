@@ -7,11 +7,15 @@ Dhis2Api.directive('d2Resourcejsondataset', function(){
 		    }
 	}
 	}); 
-Dhis2Api.controller("d2ResourcejsondatasetController", ['$scope', '$interval', "commonvariable", "loadjsonresource", "OrgUnit", "DataSets", function ($scope, $interval, commonvariable, loadjsonresource, OrgUnit, DataSets) {
+Dhis2Api.controller("d2ResourcejsondatasetController", ['$scope', '$filter', '$interval', "commonvariable", "loadjsonresource", "OrgUnit", "DataSets", function ($scope,$filter, $interval, commonvariable, loadjsonresource, OrgUnit, DataSets) {
    
     
     var stop;
+    $scope.messages = [];
     $scope.prevOu = undefined;
+    var $translate = $filter('translate');
+
+
     $scope.initForm = function () {
         $scope.style = [];
         $scope.datasetcodeSelected = [];
@@ -38,11 +42,11 @@ Dhis2Api.controller("d2ResourcejsondatasetController", ['$scope', '$interval', "
             DataSets.Put({ uid: dvalue.id }, dvalue)
          .$promise.then(function (data) {
              if (data.response.status == "SUCCESS") {
-                 $scope.messages.push({ type: "success", text: $translate('VACCINATION_DATASET_SAVED') });
-                 $scope.hideForm();
+                 $scope.messages.push({ type: "success", text: $translate('DATASET_SAVED') });
+                 $scope.initForm();
              }
              else {
-                 $scope.messages.push({ type: "danger", text: $translate('VACCINATION_DATASET_NOSAVED') });
+                 $scope.messages.push({ type: "danger", text: $translate('DATASET_NOSAVED') });
              }
          });
 
@@ -56,11 +60,14 @@ Dhis2Api.controller("d2ResourcejsondatasetController", ['$scope', '$interval', "
        loadjsonresource.get($scope.id)
         .then(function(response){
             $scope.services = response.data.datasetByService[0].service;
+            var ouname = commonvariable.OrganisationUnit.name.split("_");
+            if (ouname == undefined)
+                ouname = commonvariable.OrganisationUnit.name
+            else
+                ouname = ouname[ouname.length-1];
             angular.forEach($scope.services, function (svalue, skey) {
-                 var ouname = commonvariable.OrganisationUnit.name.split("_");
-                     ouname = ouname[ouname.length];
-                     if (svalue.name == ouname) {
-                      $scope.levels = svalue.levels;
+               if (svalue.name == ouname) {
+                     $scope.levels = svalue.levels;
                      // $scope.serviceName = svalue.name;
                   }
                  });
