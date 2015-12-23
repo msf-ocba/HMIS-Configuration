@@ -275,8 +275,17 @@ appConfigProjectMSF.controller('projectController', ["$scope",'$filter',"commonv
 	    	  
 	    	  if (data.response.status=="SUCCESS") {
 	    		  
+	
+                  //asign OU selected 
+	    	      commonvariable.EditOrganisationUnit = commonvariable.OrganisationUnit;
+                  ///replace with new value
+	    	      commonvariable.EditOrganisationUnit.name = editOu.name;
+	    	      commonvariable.EditOrganisationUnit.shortName= editOu.codeshortName
+	    	      commonvariable.EditOrganisationUnit.code = editOu.code;
+	    	      commonvariable.EditOrganisationUnit.openingDate = editOu.openingDate;
+                  //refresh tree for show change
 	    	      commonvariable.RefreshTreeOU = true;
-	    	      commonvariable.EditOrganisationUnit = editOu;
+
 
 	    	   OrganisationUnitChildren.get({ uid: data.response.lastImported, fields: 'name,id,code' }).$promise.then(function (response) {
 	    		   

@@ -34,7 +34,8 @@ Dhis2Api.controller("d2TreeorganisationUnitController", ['$scope','$location','T
     	                 json[i].children.push(valorDest);
     	                 break;
     	             case 2:
-    	                 json[i].name = valorDest.name;
+    	                 //json[i].name = valorDest.name;
+    	                 json[i] = valorDest;
     	                 break;
     	         }
 
