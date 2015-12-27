@@ -66,7 +66,7 @@ Dhis2Api.controller("d2ResourcejsondatasetController", ['$scope', '$filter', '$i
             else
                 ouname = ouname[ouname.length-1];
             angular.forEach($scope.services, function (svalue, skey) {
-               if (svalue.name == ouname) {
+                if (svalue.code == commonvariable.healhservicesCodeOUG) {
                      $scope.levels = svalue.levels;
                      // $scope.serviceName = svalue.name;
                   }

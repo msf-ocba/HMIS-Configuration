@@ -146,7 +146,13 @@ Dhis2Api.controller("d2DropdownorgunitgroupsetController", ['$q','$scope','$http
 	        	//console.log("Voy a ejecutar esto de la directiva");	        	
 	            $scope.disabled = true;
 	            try{
-	                getOrgUnitGroup(commonvariable.OrganisationUnit.id, $scope.uidgroupset).then(function (data) { $scope.ougName = data.name })
+	                getOrgUnitGroup(commonvariable.OrganisationUnit.id, $scope.uidgroupset).then(function (data) {
+	                    $scope.ougName = data.name;
+	                    if ($scope.uidgroupset == "BtFXTpKRl6n") {
+	                        commonvariable.healhservicesCodeOUG = data.code;
+	                    }
+
+	                })
 	            }catch(err){
 	                console.log("Error, Organisation Unit doesn't selected");
 	            };
