@@ -7,7 +7,7 @@ Dhis2Api.directive('d2Resourcejsonvaccination', function(){
 		    }
 	}
 	}); 
-Dhis2Api.controller("d2ResourcejsonvaccinationController", ['$scope', '$filter', '$interval', "commonvariable", "loadjsonresource", "DataElements", "DataSets", function ($scope,$filter, $interval, commonvariable, loadjsonresource, DataElements, DataSets) {
+Dhis2Api.controller("d2ResourcejsonvaccinationController", ['$scope', '$filter', '$interval', "commonvariable", "loadjsonresource", "DataElements", "DataSets", "OrgUnit", function ($scope, $filter, $interval, commonvariable, loadjsonresource, DataElements, DataSets, OrgUnit) {
 	$scope.style=[];
 	var $translate = $filter('translate');
 	
@@ -60,11 +60,24 @@ Dhis2Api.controller("d2ResourcejsonvaccinationController", ['$scope', '$filter',
 	    }
 	});
 
-
+	$scope.GetChildrenOU = function () {
+	    $scope.childOU = [];
+	    OrgUnit.get({ id: commonvariable.OrganisationUnit.id, includeDescendants: true, fields: 'name,id,level,closedDate', filter: 'level:eq:' + commonvariable.level.HealthSite })
+          .$promise.then(function (childOU) {
+              angular.forEach(childOU.organisationUnits, function (ou, key) {
+                  if(ou.id!=commonvariable.OrganisationUnit.id && ou.closedDate==undefined){
+                      $scope.childOU.push({ id: ou.id });
+                  }
+                    
+              });
+             
+          });
+	}
 
 	$scope.showFormvaccination = function (frm) {
 	    $scope.initValue();
-        $scope.frmVaccination = true;
+	    $scope.frmVaccination = true;
+	    $scope.GetChildrenOU();
 	};
 
 	$scope.hideFormvaccination = function () {
@@ -116,7 +129,7 @@ Dhis2Api.controller("d2ResourcejsonvaccinationController", ['$scope', '$filter',
 	        description: $scope.dataSetDescription,
 	        periodType: commonvariable.PeriodSelected.code,
 	        dataElements: $scope.DataElementSelectedforPUT,
-	        organisationUnits: [{ id: commonvariable.OrganisationUnit.id }]
+	        organisationUnits: $scope.childOU
 	    };
 	    DataSets.Post({}, newDataSet)
          .$promise.then(function (data) {
@@ -142,7 +155,7 @@ Dhis2Api.controller("d2ResourcejsonvaccinationController", ['$scope', '$filter',
 	        description: $scope.dataSetDescription,
 	        periodType: commonvariable.PeriodSelected.code,
 	        dataElements: $scope.DataElementSelectedforPUT,
-	        organisationUnits: [{ id: commonvariable.OrganisationUnit.id }]
+	        organisationUnits: $scope.childOU
 	    };
 	    DataSets.Put({ uid: $scope.dataSetid }, newDataSet)
          .$promise.then(function (data) {
