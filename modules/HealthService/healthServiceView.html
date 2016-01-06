@@ -34,7 +34,7 @@
 				<div class="row">
 					<div class="col-md-6">
 						<label for="InputName2">{{'HEALTHSERVICE_NAME' | translate}}</label>
-                        <d2-findorganisationunit field="name" value="{{healthservicename}}" operation="{{operation}}" placeholder="{{'HEALTHSERVICE_NAME' | translate}}"></d2-findorganisationunit>
+                        <d2-findorganisationunit field="name" value="{{healthservicename}}" operation="show" placeholder="{{'HEALTHSERVICE_NAME' | translate}}"></d2-findorganisationunit>
 					</div>
 					
 					<div class="col-md-6">
@@ -60,7 +60,7 @@
 				
 					<div class="col-md-4">
 						<label for="sel12"> {{'HEALTHSERVICE_CODE' | translate }} </label>
-                        <d2-findorganisationunit field="code" value="{{healthservicecode}}" operation="{{operation}}" placeholder="{{'HEALTHSERVICE_CODE' | translate}}"></d2-findorganisationunit>
+                        <d2-findorganisationunit field="code" value="{{healthservicecode}}" operation="show" placeholder="{{'HEALTHSERVICE_CODE' | translate}}"></d2-findorganisationunit>
 					</div>
 				
 				
@@ -71,7 +71,7 @@
 				
 					<div class="col-md-4">
 						<label for="sel12"> {{'HEALTHSERVICE_TYPE' | translate }} </label>
-						<d2-dropdownorgunitgroupset uidgroupSet="akYeq1mMz2N" operation="{{operation}}"></d2-dropdownorgunitgroupset>
+						<d2-dropdownorgunitgroupset uidgroupSet="akYeq1mMz2N" operation="show"></d2-dropdownorgunitgroupset>
 					</div>
 
 				</div>								
@@ -98,6 +98,12 @@
     </div>
 
 <br/>
+
+    <div class="row">
+        <div class="col-md-12">
+            <alert ng-repeat="message in messages" type="{{message.type}}" close="closeAlertMessage($index)">{{message.text}}</alert>
+        </div>
+    </div>
 
 <d2-resourcejsondataset id="datasetbyservices"></d2-resourcejsondataset>
 

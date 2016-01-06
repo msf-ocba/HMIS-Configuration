@@ -95,6 +95,7 @@
 	"HEALTHSITE_CODE":"Código",
 	"SITE_SAVE": "Modificar establecimiento",
 	"SITE_CANCEL": "Cancelar",
+	"SITE_UPDATED": "El establecimiento de salud ha sido actualizado",
 	
 	
 	
@@ -117,6 +118,8 @@
   	"DATASET_PERIOD":"Periodo: ",
   	"SERVICE_SAVE": "Modificar servicio de salud",
   	"SERVICE_CANCEL": "Cancelar",
+  	"SERVICE_UPDATED": "El servicio de salud ha sido actualizado",
+  	
 	
 	
 	

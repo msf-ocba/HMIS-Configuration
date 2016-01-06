@@ -1,4 +1,4 @@
-appConfigProjectMSF.controller('healthServiceController', ["$scope",'$filter',"commonvariable","$modal", function($scope, $filter,commonvariable,$modal) {
+appConfigProjectMSF.controller('healthServiceController', ["$scope",'$filter',"commonvariable","$modal", "OrgUnit", function($scope, $filter,commonvariable,$modal, OrgUnit) {
 	var $translate = $filter('translate');
 	
 	//set message variable
@@ -38,6 +38,18 @@ appConfigProjectMSF.controller('healthServiceController', ["$scope",'$filter',"c
 			});
 
 	
+	// Date datepicker
+	  $scope.today = function() {
+	    datetoday = new Date();
+	    $scope.healthServiceDate=datetoday.getFullYear()+"-"+((datetoday.getMonth()+1)<=9?"0"+(datetoday.getMonth()+1):(datetoday.getMonth()+1))+"-"+(datetoday.getDate()<=9?"0"+datetoday.getDate():datetoday.getDate());
+	  };
+	  $scope.today();
+	  
+	  $scope.open = function($event) {
+		    $event.preventDefault();
+		    $event.stopPropagation();
+		    $scope.opened = true;
+	  };
 	
 	
     ////////////////////////For Edit //////////////////////////////////////////
@@ -61,16 +73,37 @@ appConfigProjectMSF.controller('healthServiceController', ["$scope",'$filter',"c
     ////Edit SERVICE
 	$scope.EditService = function () {
 
-	    var newOu = {//payload
-	        name: commonvariable.ouDirective,
-	        level: commonvariable.OrganisationUnit.level,
-	        shortName: commonvariable.ouDirective,
-	        openingDate: $filter('date')($scope.mdopendate,'yyyy-MM-dd'),
-	        parent: commonvariable.OrganisationUnitParentConf
+	    var editOu = {//payload
+	        openingDate: $filter('date')($scope.healthservicecreated,'yyyy-MM-dd')
 	    };
+	    
+	    OrgUnit.PATCH({id:commonvariable.OrganisationUnit.id},editOu).$promise.then(function(data){
+	    	  
+	    	  if (data.response.status=="SUCCESS") {
+	    		  
+	    			
+                  //asign OU selected 
+	    	      commonvariable.EditOrganisationUnit = commonvariable.OrganisationUnit;
+                  ///replace with new value
+	    	      commonvariable.EditOrganisationUnit.name = commonvariable.OrganisationUnit.name;
+	    	      commonvariable.EditOrganisationUnit.shortName= commonvariable.OrganisationUnit.shortName;
+	    	      commonvariable.EditOrganisationUnit.code = commonvariable.OrganisationUnit.code;
+	    	      commonvariable.EditOrganisationUnit.openingDate = editOu.openingDate;
+                  //refresh tree for show change
+	    	      commonvariable.RefreshTreeOU = true;
+	    	      
+	    	      $scope.messages.push({ type: "success", text: $translate('SERVICE_UPDATED') });
+	    	      
+	    	  }
+	    	  else
+					$scope.messages.push({type:"danger",
+							text:"Health site doesn't saved, review that the field name isn't empty"});
+
+	    	  $scope.operation = 'show';	
+	      
+	    });	    
 
 	    ///
-	    $scope.messages.push({ type: "success", text: $translate('SERVICE_UPDATED') });
 
 
 	}

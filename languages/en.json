@@ -96,6 +96,7 @@
 	"HEALTHSITE_CODE":"Code",
 	"SITE_SAVE": "Save Health Site",
 	"SITE_CANCEL": "Clear form",
+	"SITE_UPDATED": "The health site has been updated",
 	
 	
 	"______________ Module_":" HEALTH SERVICE_____________",
@@ -117,6 +118,7 @@
  	"DATASET_PERIOD":"Period: ",
   	"SERVICE_SAVE": "Save Health Service",
   	"SERVICE_CANCEL": "Clear form",
+  	"SERVICE_UPDATED": "The health service has been updated",
 	
 	"_____________ Module_":" ORG UNIT DELETE_____________",
 	"ORGUNITDELETE_TITLE": "Delete Org Unit",
