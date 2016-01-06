@@ -35,15 +35,16 @@ Dhis2Api.controller('ModalConfirmCtrl', function ($scope, $modalInstance,informa
 		    	var children=response.organisationUnits;
 				   
 				   angular.forEach(children, function(valueOU, keyOU){
+				       if ($scope.information.id != valueOU.id) {
+				           OrgUnit.PATCH({ id: valueOU.id }, { closedDate: $scope.closedate });
 
-					   OrgUnit.PATCH({id:valueOU.id},{closedDate:$scope.closedate});					   
-					   
-					   var dataSets=valueOU.dataSets;
-					   
-					   angular.forEach(dataSets, function(valueDS, keyDS){
-							DataSetsOrgUnit.DELETE({uidorgunit:valueOU.id, uiddataset:valueDS.id});				   				 						   
-					   })
-					   
+				           var dataSets = valueOU.dataSets;
+
+				           angular.forEach(dataSets, function (valueDS, keyDS) {
+				               DataSetsOrgUnit.DELETE({ uidorgunit: valueOU.id, uiddataset: valueDS.id });
+				           })
+				       }
+
 				   });
 				   
 				   			

@@ -56,11 +56,15 @@ Dhis2Api.controller("d2TreeorganisationUnitController", ['$scope','$location','T
             	   //refresh if it is neccesary
                    if(commonvariable.RefreshTreeOU){
                        commonvariable.RefreshTreeOU = false;
-                       if (commonvariable.NewOrganisationUnit.length == 0)
+                       if (commonvariable.NewOrganisationUnit.length == 0) {
                            $scope.treeOrganisationUnitList = $scope.update($scope.treeOrganisationUnitList, $scope.OrganisationUnit.currentNode.id, commonvariable.EditOrganisationUnit, 2);
-                       else
-                            $scope.treeOrganisationUnitList=$scope.update($scope.treeOrganisationUnitList, $scope.OrganisationUnit.currentNode.id,commonvariable.NewOrganisationUnit,1);                                       
-                   }
+                           commonvariable.EditOrganisationUnit = [];
+                       }
+                       else {
+                           $scope.treeOrganisationUnitList = $scope.update($scope.treeOrganisationUnitList, $scope.OrganisationUnit.currentNode.id, commonvariable.NewOrganisationUnit, 1);
+                           commonvariable.NewOrganisationUnit = [];
+                       }
+                    }
 
                 try {
 
