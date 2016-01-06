@@ -56,7 +56,8 @@ Dhis2Api.factory("commonvariable", function () {
 			level: levelMSF,
 			OrganisationUnitParentConf: {},
 		    ouDirective:"",
-			ouDirectiveCode:""
+		    ouDirectiveCode: "",
+	        healhservicesCodeOUG:""
 			};
 
    return Vari; 
