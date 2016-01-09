@@ -1,4 +1,4 @@
-appConfigProjectMSF.controller('healthServiceController', ["$scope",'$filter',"commonvariable","$modal", "OrgUnit", function($scope, $filter,commonvariable,$modal, OrgUnit) {
+appConfigProjectMSF.controller('healthServiceController', ["$scope",'$filter',"commonvariable","$modal", "OrgUnit", "OrgUnitOrgUnitGroups", "$q", function($scope, $filter,commonvariable,$modal, OrgUnit, OrgUnitOrgUnitGroups, $q) {
 	var $translate = $filter('translate');
 	
 	//set message variable
@@ -69,6 +69,32 @@ appConfigProjectMSF.controller('healthServiceController', ["$scope",'$filter',"c
 	$scope.enableforshow = function () {
 	    $scope.operation = 'show';
 	}
+	
+	
+	$scope.updateHealthService = function () {
+
+		  var defered = $q.defer();
+	      var promise = defered.promise;
+	      
+	      try {
+	        	  if (typeof(commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.HealthService])!="undefined") {
+
+	        		  if (typeof(commonvariable.preOrgUnitGroupSet[commonvariable.ouGroupsetId.HealthService])=="undefined")
+	        			  OrgUnitOrgUnitGroups.POST({ uidorgunit: commonvariable.OrganisationUnit.id, uidgroup: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.HealthService].id })
+	        	  
+	        		  else if (commonvariable.preOrgUnitGroupSet[commonvariable.ouGroupsetId.HealthService].id != commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.HealthService].id) {
+	        			  OrgUnitOrgUnitGroups.DELETE({ uidorgunit: commonvariable.OrganisationUnit.id, uidgroup: commonvariable.preOrgUnitGroupSet[commonvariable.ouGroupsetId.HealthService].id });
+	        			  OrgUnitOrgUnitGroups.POST({ uidorgunit: commonvariable.OrganisationUnit.id, uidgroup: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.HealthService].id })
+	        		  }
+	        	  }
+	          } catch (err) {
+	         };
+	      
+	      
+	      defered.resolve(true);
+		  return promise;
+		
+	}
 
     ////Edit SERVICE
 	$scope.EditService = function () {
@@ -92,6 +118,12 @@ appConfigProjectMSF.controller('healthServiceController', ["$scope",'$filter',"c
                   //refresh tree for show change
 	    	      commonvariable.RefreshTreeOU = true;
 	    	      
+
+	    	      $scope.updateHealthService().then(function(data) {
+	    	    	  $scope.operation = 'show';		    	    	  
+	    	      });
+	    	      	    	    	    	      
+	    	      
 	    	      $scope.messages.push({ type: "success", text: $translate('SERVICE_UPDATED') });
 	    	      
 	    	  }
@@ -99,7 +131,6 @@ appConfigProjectMSF.controller('healthServiceController', ["$scope",'$filter',"c
 					$scope.messages.push({type:"danger",
 							text:"Health site doesn't saved, review that the field name isn't empty"});
 
-	    	  $scope.operation = 'show';	
 	      
 	    });	    
 
