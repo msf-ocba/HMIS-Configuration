@@ -39,7 +39,7 @@ appConfigProjectMSF.controller('healthSiteController', ["$scope", '$filter', "co
 					name:healthServiceName,				
 					level:(commonvariable.OrganisationUnit.level+1),
 					code:healthServiceCode,
-		            shortName:commonvariable.ouDirective,
+		            shortName:healthServiceName,
 		           	openingDate:$filter('date')($scope.healthServiceDate, 'yyyy-MM-dd'),
 		           	parent: commonvariable.OrganisationUnitParentConf
 					};
