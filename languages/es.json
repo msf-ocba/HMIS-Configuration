@@ -93,6 +93,10 @@
 	"HEALTHSITE_PREFIX": "Prefijo",
 	"HEALTHSITE_DETAILS": "Detalles del puesto de salud",
 	"HEALTHSITE_CODE":"Código",
+	"SITE_SAVE": "Modificar establecimiento",
+	"SITE_CANCEL": "Cancelar",
+	"SITE_UPDATED": "El establecimiento de salud ha sido actualizado",
+	
 	
 	
 	"______________ Module":" HEALTH SERVICE_____________",
@@ -106,12 +110,16 @@
 	"HEALTHSERVICE_TYPE": "Tipo de servicio",
 	"HEALTHSERVICE_CODE": "Código",
 	"HEALTHSERVICE_CREATE": "Nuevo servicio de salud",
-  "HEALTHSERVICE_SUFFIX": "Sufijo",
-  "DATASET_ADD": "Adicionar o Editar DataSet",
-  "DATASET_SAVE": "Asociar DataSet",
-  "DATASET_SELECT_TITTLE": "DataSet Asociados a Servicio de Salud",
-  "DATASET_LEVEL": "Nivel: ",
-  "DATASET_PERIOD":"Periodo: ",
+  	"HEALTHSERVICE_SUFFIX": "Sufijo",
+  	"DATASET_ADD": "Adicionar o Editar DataSet",
+ 	"DATASET_SAVE": "Asociar DataSet",
+  	"DATASET_SELECT_TITTLE": "DataSet Asociados a Servicio de Salud",
+  	"DATASET_LEVEL": "Nivel: ",
+  	"DATASET_PERIOD":"Periodo: ",
+  	"SERVICE_SAVE": "Modificar servicio de salud",
+  	"SERVICE_CANCEL": "Cancelar",
+  	"SERVICE_UPDATED": "El servicio de salud ha sido actualizado",
+  	
 	
 	
 	

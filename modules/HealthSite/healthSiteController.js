@@ -39,7 +39,7 @@ appConfigProjectMSF.controller('healthSiteController', ["$scope", '$filter', "co
 					name:healthServiceName,				
 					level:(commonvariable.OrganisationUnit.level+1),
 					code:healthServiceCode,
-		            shortName:commonvariable.ouDirective,
+		            shortName:healthServiceName,
 		           	openingDate:$filter('date')($scope.healthServiceDate, 'yyyy-MM-dd'),
 		           	parent: commonvariable.OrganisationUnitParentConf
 					};
@@ -232,16 +232,38 @@ appConfigProjectMSF.controller('healthSiteController', ["$scope", '$filter', "co
     ////Edit SITE
 	  $scope.EditSite = function () {
 
-	      var newOu = {//payload
-	          name: commonvariable.ouDirective,
-	          level: commonvariable.OrganisationUnit.level,
+	      var editOu = {//payload
+	          name: commonvariable.ouDirective,	
 	          shortName: commonvariable.ouDirective,
-	          openingDate: $filter('date')($scope.mdopendate, 'yyyy-MM-dd'),
-	          parent: commonvariable.OrganisationUnitParentConf
+	          openingDate: $filter('date')($scope.healthsitecreated, 'yyyy-MM-dd')
 	      };
+	      
+	      OrgUnit.PATCH({id:commonvariable.OrganisationUnit.id},editOu).$promise.then(function(data){
+	    	  
+	    	  if (data.response.status=="SUCCESS") {
+	    		  
+	    			
+                  //asign OU selected 
+	    	      commonvariable.EditOrganisationUnit = commonvariable.OrganisationUnit;
+                  ///replace with new value
+	    	      commonvariable.EditOrganisationUnit.name = editOu.name;
+	    	      commonvariable.EditOrganisationUnit.shortName= editOu.name;
+	    	      commonvariable.EditOrganisationUnit.code = commonvariable.OrganisationUnit.code;
+	    	      commonvariable.EditOrganisationUnit.openingDate = editOu.openingDate;
+                  //refresh tree for show change
+	    	      commonvariable.RefreshTreeOU = true;
+	    	      
+	    	      $scope.messages.push({ type: "success", text: $translate('SITE_UPDATED') });
+	    	      
+	    	  }
+	    	  else
+					$scope.messages.push({type:"danger",
+							text:"Health site doesn't saved, review that the field name isn't empty"});
 
+	    	  $scope.operation = 'show';	
+	      
+	      });
 	      ///
-	      $scope.messages.push({ type: "success", text: $translate('SITE_UPDATED') });
 
 	
 	  }

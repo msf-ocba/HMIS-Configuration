@@ -17,11 +17,11 @@
 	<div class="panel panel-default">
         <div class="panel-heading">
             <div class="row">
-                <div class="col-md-10">
+                <div class="col-md-12">
                     {{'MISSION_DETAILS' | translate}}
                 </div>
 
-                <div class="col-md-2">
+        <!--          <div class="col-md-2">
                     <div class="text-right">
                         <a href="#/Mission" ng-click="enableforEdit()">
                             <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
@@ -30,7 +30,7 @@
                             <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>
                         </a>
                     </div>
-                </div>
+                </div> -->
 
             </div>
         </div>
@@ -41,12 +41,24 @@
                     <d2-findorganisationunit field="name" value="{{missionname}}" operation="{{operation}}" placeholder="{{'MISSION_NAME' | translate}}"></d2-findorganisationunit>
 
 				</div>
+
 				<div class="col-md-6">
 					<label for="InputName3">{{'CREATION_DATE' | translate}}</label>
 					<input datepicker-popup="yyyy-MM-dd" ng-model="missioncreated" type="text" class="form-control" id="MissionName" ng-disabled="operation=='show'">
 				</div>
 			</div>
-            <div class="row" ng-show="operation=='edit'">
+			
+			<br/>
+			
+			<div class="row" ng-show="showbutton">
+
+        		<div class="col-md-12">
+                	<d2-resourcejsonvaccination id="vaccination"></d2-resourcejsonvaccination>             
+            	</div>
+       	    </div>			
+			
+			</div>
+           <!--  <div class="row" ng-show="operation=='edit'">
                 <div class="col-md-6">
                     
                 </div>
@@ -56,9 +68,8 @@
                     <button type="button" class="btn btn-danger btn-sm" ng-click="enableforshow()">{{'MISSION_CANCEL' | translate}}</button>
                 </div>
 
-            </div>
+            </div> -->
 		</div>
-	</div>
 	</div>
 	</div>
     <div class="row">
@@ -67,8 +78,8 @@
         </div>
     </div>
 
-	<div class="row" ng-show="showbutton">
-        <div class="col-md-4">
+	<!--  <div class="row" ng-show="showbutton">
+         <div class="col-md-2">
            
             <form class="navbar-form navbar-left" role="search">
                 <div class="form-group well well-sm">
@@ -78,16 +89,24 @@
                     </ul>
                     <button type="button" ng-click="showForm(1)" class="btn btn-primary">{{'PROJECT_CREATE' | translate}} </button> 
                 </div>
-            </form>
-        </div>
-        <div class="col-md-8">
+            </form> 
+      	</div>
+        <div class="col-md-10">
             <div ng-show="CreateDatasetVaccination">
                 <d2-resourcejsonvaccination id="vaccination"></d2-resourcejsonvaccination>             
             </div>
         </div>
-        </div>
+        </div> -->
         
-    
+		<div class="row">
+		<div class="col-md-12">
+			<div class="col-md-9">
+			</div>
+			<div class="col-md-3">
+				<h2>	<button type="button" ng-click="showForm(1)" class="btn btn-primary">{{'PROJECT_CREATE' | translate}} </button></h2>
+			</div>
+		</div>
+		</div>    
  
         <br>
         <div class="row" ng-show="frmProject">
