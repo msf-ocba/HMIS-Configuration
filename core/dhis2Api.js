@@ -176,7 +176,7 @@ Dhis2Api.factory("OrgUnitChildren",['$resource','commonvariable', function ($res
 	return $resource(commonvariable.url+"organisationUnits/:uid",
 		{	
 		uid:'@uid',
-		fields:'children'
+		fields:'children[id, name, code, level]'
 		},
 		{ GET: { method: "GET"} });
 }]);

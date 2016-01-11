@@ -157,6 +157,8 @@ appConfigProjectMSF.controller('projectController', ["$scope",'$filter',"commonv
 	      
 	      //Getting the current org. unit groups
 	      
+	      commonvariable.ouDirective = $scope.projectname
+	      
 	      
 	  }
 	  
@@ -165,23 +167,17 @@ appConfigProjectMSF.controller('projectController', ["$scope",'$filter',"commonv
 	      $scope.operation = 'show';
 	  }
 	  
-	  $scope.updateOrgUnits = function (orgUnits) {
+	  $scope.updateOrgUnitGroups = function (orgUnit) {
 		  
-		  var defered = $q.defer();
-	      var promise = defered.promise;        
-
-	      
-	      angular.forEach(orgUnits, function(value, key){
-	    	  
 	         try {
 	        	  if (typeof(commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.PopulationType])!="undefined") {
 
 	        		  if (typeof(commonvariable.preOrgUnitGroupSet[commonvariable.ouGroupsetId.PopulationType])=="undefined")
-	        			  OrgUnitOrgUnitGroups.POST({ uidorgunit: value.id, uidgroup: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.PopulationType].id })
+	        			  OrgUnitOrgUnitGroups.POST({ uidorgunit: orgUnit.id, uidgroup: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.PopulationType].id })
 	        	  
 	        		  else if (commonvariable.preOrgUnitGroupSet[commonvariable.ouGroupsetId.PopulationType].id != commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.PopulationType].id) {
-	        			  OrgUnitOrgUnitGroups.DELETE({ uidorgunit: value.id, uidgroup: commonvariable.preOrgUnitGroupSet[commonvariable.ouGroupsetId.PopulationType].id });
-	        			  OrgUnitOrgUnitGroups.POST({ uidorgunit: value.id, uidgroup: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.PopulationType].id })
+	        			  OrgUnitOrgUnitGroups.DELETE({ uidorgunit: orgUnit.id, uidgroup: commonvariable.preOrgUnitGroupSet[commonvariable.ouGroupsetId.PopulationType].id });
+	        			  OrgUnitOrgUnitGroups.POST({ uidorgunit: orgUnit.id, uidgroup: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.PopulationType].id })
 	        		  }
 	        	  }
 	          } catch (err) {
@@ -192,12 +188,12 @@ appConfigProjectMSF.controller('projectController', ["$scope",'$filter',"commonv
 	        	  if (typeof(commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.Context])!="undefined") {
 	        		  
 	        		  if (typeof(commonvariable.preOrgUnitGroupSet[commonvariable.ouGroupsetId.Context])=="undefined" )
-	        			  OrgUnitOrgUnitGroups.POST({ uidorgunit: value.id, uidgroup: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.Context].id });
+	        			  OrgUnitOrgUnitGroups.POST({ uidorgunit: orgUnit.id, uidgroup: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.Context].id });
 	        	  
 	        		  else if (commonvariable.preOrgUnitGroupSet[commonvariable.ouGroupsetId.Context].id != commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.Context].id) {
 
-	        			  OrgUnitOrgUnitGroups.DELETE({ uidorgunit: value.id, uidgroup: commonvariable.preOrgUnitGroupSet[commonvariable.ouGroupsetId.Context].id });
-	        			  OrgUnitOrgUnitGroups.POST({ uidorgunit: value.id, uidgroup: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.Context].id });
+	        			  OrgUnitOrgUnitGroups.DELETE({ uidorgunit: orgUnit.id, uidgroup: commonvariable.preOrgUnitGroupSet[commonvariable.ouGroupsetId.Context].id });
+	        			  OrgUnitOrgUnitGroups.POST({ uidorgunit: orgUnit.id, uidgroup: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.Context].id });
 	        		  }
 	        	  }
 	               
@@ -209,12 +205,12 @@ appConfigProjectMSF.controller('projectController', ["$scope",'$filter',"commonv
 	        	  if (typeof(commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.ProjectType])!="undefined") {
 
 	        		  if (typeof(commonvariable.preOrgUnitGroupSet[commonvariable.ouGroupsetId.ProjectType])=="undefined")
-	        			  OrgUnitOrgUnitGroups.POST({ uidorgunit: value.id, uidgroup: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.ProjectType].id })
+	        			  OrgUnitOrgUnitGroups.POST({ uidorgunit: orgUnit.id, uidgroup: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.ProjectType].id })
 
 	        		  else if (commonvariable.preOrgUnitGroupSet[commonvariable.ouGroupsetId.ProjectType].id != commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.ProjectType].id) {
 
-	        			  OrgUnitOrgUnitGroups.DELETE({ uidorgunit: value.id, uidgroup: commonvariable.preOrgUnitGroupSet[commonvariable.ouGroupsetId.ProjectType].id })
-	        			  OrgUnitOrgUnitGroups.POST({ uidorgunit: value.id, uidgroup: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.ProjectType].id })
+	        			  OrgUnitOrgUnitGroups.DELETE({ uidorgunit: orgUnit.id, uidgroup: commonvariable.preOrgUnitGroupSet[commonvariable.ouGroupsetId.ProjectType].id })
+	        			  OrgUnitOrgUnitGroups.POST({ uidorgunit: orgUnit.id, uidgroup: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.ProjectType].id })
 	        		  }
 	        	  }
 	          } catch (err) {
@@ -225,10 +221,10 @@ appConfigProjectMSF.controller('projectController', ["$scope",'$filter',"commonv
 	        	  if (typeof(commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.TypeManagement])!="undefined") {
 
 	        		  if (typeof(commonvariable.preOrgUnitGroupSet[commonvariable.ouGroupsetId.TypeManagement])=="undefined")
-	        			  OrgUnitOrgUnitGroups.POST({ uidorgunit: value.id, uidgroup: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.TypeManagement].id })
+	        			  OrgUnitOrgUnitGroups.POST({ uidorgunit: orgUnit.id, uidgroup: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.TypeManagement].id })
 	        		  else if (commonvariable.preOrgUnitGroupSet[commonvariable.ouGroupsetId.TypeManagement].id != commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.TypeManagement].id) {
-	        			  OrgUnitOrgUnitGroups.DELETE({ uidorgunit: value.id, uidgroup: commonvariable.preOrgUnitGroupSet[commonvariable.ouGroupsetId.TypeManagement].id });
-	        			  OrgUnitOrgUnitGroups.POST({ uidorgunit: value.id, uidgroup: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.TypeManagement].id })
+	        			  OrgUnitOrgUnitGroups.DELETE({ uidorgunit: orgUnit.id, uidgroup: commonvariable.preOrgUnitGroupSet[commonvariable.ouGroupsetId.TypeManagement].id });
+	        			  OrgUnitOrgUnitGroups.POST({ uidorgunit: orgUnit.id, uidgroup: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.TypeManagement].id })
 	        		  }
 	        	  }
 	          } catch (err) {
@@ -239,16 +235,51 @@ appConfigProjectMSF.controller('projectController', ["$scope",'$filter',"commonv
 	        	  if (typeof(commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.Event])!="undefined") {
 
 	        		  if (typeof(commonvariable.preOrgUnitGroupSet[commonvariable.ouGroupsetId.Event])=="undefined")
-	        			  OrgUnitOrgUnitGroups.POST({ uidorgunit: value.id, uidgroup: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.Event].id })
+	        			  OrgUnitOrgUnitGroups.POST({ uidorgunit: orgUnit.id, uidgroup: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.Event].id })
 	                  
 	        		  else if (commonvariable.preOrgUnitGroupSet[commonvariable.ouGroupsetId.Event].id != commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.Event].id) {
-	        			  OrgUnitOrgUnitGroups.DELETE({ uidorgunit: value.id, uidgroup: commonvariable.preOrgUnitGroupSet[commonvariable.ouGroupsetId.Event].id });
-	        			  OrgUnitOrgUnitGroups.POST({ uidorgunit: value.id, uidgroup: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.Event].id })
+	        			  OrgUnitOrgUnitGroups.DELETE({ uidorgunit: orgUnit.id, uidgroup: commonvariable.preOrgUnitGroupSet[commonvariable.ouGroupsetId.Event].id });
+	        			  OrgUnitOrgUnitGroups.POST({ uidorgunit: orgUnit.id, uidgroup: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.Event].id })
 	        		  }
 	        	  }
 	          } catch (err) {
 	          };
-	      });
+		  
+	  }
+	  
+	  
+	  $scope.updateCodes = function (orgUnit) {
+		  
+		  if (orgUnit.level == commonvariable.level.HealthSite || orgUnit.level == commonvariable.level.HealthService) {
+			  
+			  var textToUpdate = "OU_" + commonvariable.ouDirectiveCode.slice(2, 7);
+			  var newCode = textToUpdate + orgUnit.code.slice(7);
+			  
+		      OrgUnit.PATCH({id:orgUnit.id},{code:newCode}).$promise.then(function(data){
+		    	  
+		    	  if (data.response.status!="SUCCESS")
+		    		  console.log("Eror");
+		    	  
+		      });			  
+			  
+		  }
+		  		  
+	  }
+	  
+	  
+	  $scope.updateOrgUnits = function (orgUnits) {
+		  
+		  var defered = $q.defer();
+	      var promise = defered.promise;        
+
+	      
+	      angular.forEach(orgUnits, function(orgUnit, key){
+	    	  
+	    	  $scope.updateOrgUnitGroups(orgUnit);
+	    	  
+	    	  $scope.updateCodes(orgUnit);	    	  	    	  
+	    	  
+		  });
 
 		  
 		  defered.resolve(true);
@@ -259,7 +290,7 @@ appConfigProjectMSF.controller('projectController', ["$scope",'$filter',"commonv
 
     ////Edit PROJECT
 	  $scope.EditProject = function () {
-		  
+		  		  		  
 		  		   		   		   
 	      var editOu = {//payload
 	          name: commonvariable.ouDirective,
@@ -287,7 +318,7 @@ appConfigProjectMSF.controller('projectController', ["$scope",'$filter',"commonv
 	    	      commonvariable.RefreshTreeOU = true;
 
 
-	    	   OrganisationUnitChildren.get({ uid: data.response.lastImported, fields: 'name,id,code' }).$promise.then(function (response) {
+	    	   OrganisationUnitChildren.get({ uid: data.response.lastImported, fields: 'name,id,code,level' }).$promise.then(function (response) {
 	    		   
 	   			   
 				   var children=response.organisationUnits;
