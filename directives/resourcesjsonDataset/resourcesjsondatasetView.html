@@ -24,6 +24,9 @@
 
             </div>
             <div class="row" ng-show="operation=='edit'">
+                <div class="col-md-12">
+                    <alert ng-repeat="message in messages" type="{{message.type}}" close="closeAlertMessage($index)">{{message.text}}</alert>
+                </div>
                 <tabset>
                     <tab ng-repeat="level in levels" heading="{{'DATASET_LEVEL' | translate}} {{level.name}}" active="tab.active" disable="tab.disabled">
                         <accordion close-others="true">
@@ -34,10 +37,10 @@
 
                                 <table class="table table-condensed">
                                     <tbody>
-                                        <tr ng-repeat="dataset in period.datasets" class="{{style[dataset.code]}}">
+                                        <tr ng-repeat="dataset in period.datasets" class="{{style[dataset.code.trim()]}}">
                                             <td>{{dataset.name}}</td>
                                             <td>
-                                                <button ng-click="selectdataset(dataset.code)" type="button" class="btn btn-{{style[dataset.code]}}" aria-label="Left Align">
+                                                <button ng-click="finddatasetSelected(dataset.code)" type="button" class="btn btn-{{style[dataset.code.trim()]}}" aria-label="Left Align">
                                                     <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
                                                 </button>
                                             </td>
