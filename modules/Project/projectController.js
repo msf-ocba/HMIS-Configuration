@@ -260,6 +260,8 @@ appConfigProjectMSF.controller('projectController', ["$scope",'$filter',"commonv
 		    	  if (data.response.status!="SUCCESS")
 		    		  console.log("Eror");
 		    	  
+		    	  //commonvariable.RefreshTreeOU = true;
+		    	  
 		      });			  
 			  
 		  }
