@@ -62,7 +62,7 @@ Dhis2Api.controller("d2ResourcejsonvaccinationController", ['$scope', '$filter',
 
 	$scope.GetChildrenOU = function () {
 	    $scope.childOU = [];
-	    OrgUnit.get({ id: commonvariable.OrganisationUnit.id, includeDescendants: true, fields: 'name,id,level,closedDate', filter: 'level:eq:' + commonvariable.level.HealthSite })
+	    OrgUnit.get({ id: commonvariable.OrganisationUnit.id, includeDescendants: true, fields: 'name,id,level,closedDate', filter: 'level:eq:' + commonvariable.level.HealthService })
           .$promise.then(function (childOU) {
               angular.forEach(childOU.organisationUnits, function (ou, key) {
                   if(ou.id!=commonvariable.OrganisationUnit.id && ou.closedDate==undefined){
