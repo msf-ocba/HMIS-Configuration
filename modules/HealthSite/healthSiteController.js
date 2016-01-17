@@ -1,4 +1,4 @@
-appConfigProjectMSF.controller('healthSiteController', ["$scope", '$filter', "commonvariable", "OrgUnit", "OrgUnitGroupsOrgUnit", "loadjsonresource", "OrgUnitGroupByOrgUnit", "FilterResource", "$modal", "DataSetsOrgUnit", function ($scope, $filter, commonvariable, OrgUnit, OrgUnitGroupsOrgUnit, loadjsonresource, OrgUnitGroupByOrgUnit, FilterResource,$modal, DataSetsOrgUnit) {
+appConfigProjectMSF.controller('healthSiteController', ["$scope", '$filter', "commonvariable", "OrgUnit", "OrgUnitGroupsOrgUnit", "loadjsonresource", "OrgUnitGroupByOrgUnit", "FilterResource", "$modal", "DataSetsOrgUnit", "GetMission", function ($scope, $filter, commonvariable, OrgUnit, OrgUnitGroupsOrgUnit, loadjsonresource, OrgUnitGroupByOrgUnit, FilterResource,$modal, DataSetsOrgUnit, GetMission) {
 	var $translate = $filter('translate');
 	
 	//set message variable
@@ -21,7 +21,7 @@ appConfigProjectMSF.controller('healthSiteController', ["$scope", '$filter', "co
 		
 		if (commonvariable.OrganisationUnit.code!=undefined) {
 
-			healthServiceName = commonvariable.OrganisationUnit.code.slice(7,10);
+			healthServiceName = commonvariable.OrganisationUnit.code.slice(8,11);
 		}
 		
 		healthServiceName = healthServiceName + commonvariable.orgUnitGroupSet.BtFXTpKRl6n.name;
@@ -54,6 +54,11 @@ appConfigProjectMSF.controller('healthSiteController', ["$scope", '$filter', "co
 					  
 					  if (commonvariable.orgUnitGroupSet.BtFXTpKRl6n!=undefined)
 						  OrgUnitGroupsOrgUnit.POST({uidgroup:commonvariable.orgUnitGroupSet.BtFXTpKRl6n.id, uidorgunit:newOu.id});
+					  
+					  console.log("Voy a crear la movida")
+					  
+					  console.log(commonvariable.orgUnitGroupSet.BtFXTpKRl6n.name)
+					  
 					  				  					  
 					  FilterResource.GET({resource:'dataSets', filter:'code:eq:'+"DS_INFR_3"}).$promise
 				  		.then(function(response){
@@ -64,7 +69,29 @@ appConfigProjectMSF.controller('healthSiteController', ["$scope", '$filter', "co
 				  				DataSetsOrgUnit.POST({uidorgunit:newOu.id, uiddataset:dataSet.id});
 				  			}
 				  							  			
-				  		});
+				  		});					  
+					  
+					  if (commonvariable.orgUnitGroupSet.BtFXTpKRl6n.name == "Vaccination") { //Assocate Vacc datasets 
+					  
+						  GetMission.get({uid:newOu.id}).$promise.then(function(data){
+						  
+							  var nameMission=data.parent.parent.parent.name
+						  
+							  var nameVacDataSet = "Vaccination_"+nameMission
+						  
+							  FilterResource.GET({resource:'dataSets', filter:'name:eq:'+nameVacDataSet}).$promise
+					  			.then(function(response){
+					  			
+					  			if (response.dataSets.length>0) {
+					  				
+					  				var dataSet = response.dataSets[0];
+					  				DataSetsOrgUnit.POST({uidorgunit:newOu.id, uiddataset:dataSet.id});
+					  			}
+					  							  			
+					  			});						  
+						  
+						  });					  
+					  }
 					
 					  var codeServiceType = undefined;
 					  
