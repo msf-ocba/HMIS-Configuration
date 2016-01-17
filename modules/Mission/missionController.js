@@ -1,4 +1,4 @@
-appConfigProjectMSF.controller('missionController', ["$scope", '$filter', "commonvariable", "OrgUnit", "OrgUnitGroupsOrgUnit", "DataSets", "OrgUnitChildren", "FilterResource", "DataSetsOrgUnit","$modal", function ($scope, $filter, commonvariable, OrgUnit, OrgUnitGroupsOrgUnit, DataSets, OrgUnitChildren, FilterResource, DataSetsOrgUnit,$modal) {
+appConfigProjectMSF.controller('missionController', ["$scope", '$filter', "commonvariable", "OrgUnit", "OrgUnitGroupsOrgUnit", "DataSets", "OrgUnitChildren", "FilterResource", "DataSetsOrgUnit","$modal", "User", function ($scope, $filter, commonvariable, OrgUnit, OrgUnitGroupsOrgUnit, DataSets, OrgUnitChildren, FilterResource, DataSetsOrgUnit,$modal, User) {
     var $translate = $filter('translate');
     //Load Data of OU selected
     $scope.prevOu = "";
@@ -31,7 +31,43 @@ appConfigProjectMSF.controller('missionController', ["$scope", '$filter', "commo
 	
 	
 	$scope.showfields=false;
-
+	
+	
+	$scope.saveusers=function(){
+		
+		var user
+		
+		for (var i=0; i<=10;i++) {
+			
+			user={}
+			user.surname = commonvariable.userDirective
+			user.userCredentials= {}
+			user.userCredentials.password=commonvariable.users.passwd
+			user.organisationUnits = [{"id":commonvariable.NewOrganisationUnit.id}]
+			user.dataViewOrganisationUnits = [{"id":commonvariable.NewOrganisationUnit.id}]
+			
+			if (i == 0) { //MFP User
+				user.firstName = commonvariable.users.postfix_mfp
+				user.userCredentials.userRoles = [{"id":commonvariable.users.uid_role_mfp}]
+				user.userCredentials.username=commonvariable.users.prefix + "-" + commonvariable.userDirective + "-" + commonvariable.users.postfix_mfp				
+			} else { //FIELD User
+				user.firstName = commonvariable.users.postfix_fielduser + i
+				user.userCredentials.userRoles = [{"id":commonvariable.users.uid_role_fielduser}]
+				user.userCredentials.username=commonvariable.users.prefix + "-" + commonvariable.userDirective + "-" + commonvariable.users.postfix_fielduser + i				
+			}
+			
+			console.log(user)
+			
+			User.POST(user).$promise.then(function (data) {
+				
+				console.log(data)
+				
+			});
+			
+		}
+		
+		
+	}
 
 	///Save project
 	$scope.projectsave=function(){
@@ -78,6 +114,8 @@ appConfigProjectMSF.controller('missionController', ["$scope", '$filter', "commo
 				  							  			
 				  		});
 				  				  
+				  
+				  $scope.saveusers();
 				  
 				 //set message variable
 				  $scope.messages.push({ type: "success", text: $translate('PROJECT_SAVED') });

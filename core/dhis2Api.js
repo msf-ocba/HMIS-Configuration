@@ -36,6 +36,14 @@ var levelMSF = {OperationalCenter: "2"
 			 ,HealthSite: "5"
 			 ,HealthService: "6"};
 
+var usersMSF = {prefix: "msfe",
+			 postfix_mfp: "mfp",
+			 postfix_fielduser:"user",
+			 uid_role_mfp: "gmOkgYI46ny",
+			 uid_role_fielduser: "N4dxeOVu7aN",
+			 passwd: "Temp1234"};
+			
+
 var prefixVaccination = { vaccinationName: 'Vaccination_', vaccinationCode: 'DS_VAC_' };
 //Create all common variables of the apps 
 Dhis2Api.factory("commonvariable", function () {
@@ -59,6 +67,8 @@ Dhis2Api.factory("commonvariable", function () {
 			OrganisationUnitParentConf: {},
 		    ouDirective:"",
 		    ouDirectiveCode: "",
+		    userDirective:"",
+		    users: usersMSF,
 	        healhservicesCodeOUG:""
 			};
 
@@ -113,6 +123,12 @@ Dhis2Api.factory("OrgUnit",['$resource','commonvariable', function ($resource,co
 		{ POST: { method: "POST"} ,
 		  PUT: { method: "PUT"},
 		  PATCH: {method: "PATCH"}});
+}]);
+
+Dhis2Api.factory("User",['$resource','commonvariable', function ($resource,commonvariable) {
+	return $resource(commonvariable.url+"users",
+		{},
+		{ POST: { method: "POST"} });
 }]);
 
 Dhis2Api.factory("OrgUnitGroupSet",['$resource','commonvariable', function ($resource,commonvariable) {
@@ -262,6 +278,15 @@ Dhis2Api.factory("OrganisationUnitChildren",['$resource','commonvariable', funct
 	uid:'@uid',
 	//fields: 'name,id,code,level,openingDate,shortName',
 	includeDescendants: 'true'
+   }, 
+  { get: { method: "GET"} });
+}]);
+
+Dhis2Api.factory("GetMission",['$resource','commonvariable', function ($resource,commonvariable) {
+	return $resource(commonvariable.url+"organisationUnits/:uid", 
+   {
+	uid:'@uid',
+	fields: 'parent[parent[parent]]'
    }, 
   { get: { method: "GET"} });
 }]);
