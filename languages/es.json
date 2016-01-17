@@ -80,7 +80,8 @@
   "VACCINATION_DATASET_SAVED": "El DataSet de Vacunación se ha guardado exitoramente",
   "VACCINATION_DATASET_NOSAVED": "El DataSet de Vacunación no pudo ser guardado, revise la descripción y periodo seleccionado",
   "VACCINATION_DATASET_SAVE": "Guardar DataSet de Vacunación",
-  "VACCINATION_DATASET_UPDATE": "Actualizar DataSet de Vacunación",	
+  "VACCINATION_DATASET_UPDATE": "Actualizar DataSet de Vacunación",
+  "PROJECT_USER": "Usuario",	
 	
 	"_______________ Module":" HEALTH SITE_____________",
 	"HEALTHSITE_TITLE":"Establecimiento de Salud",
@@ -120,9 +121,6 @@
   	"SERVICE_CANCEL": "Cancelar",
   	"SERVICE_UPDATED": "El servicio de salud ha sido actualizado",
   	
-	
-	
-	
 	"_______________ Directive ":" OrganisationUnit+tree_____________",
 	"ORGANISATIONUNIT":"Proyecto",
 	"ORGANISATIONUNIT_FIND":"Seleccione un proyecto",

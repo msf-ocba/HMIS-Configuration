@@ -1,0 +1,17 @@
+<div class="input-group" ng-controller="findUserController">
+    <div class="row">
+        <div class="col-md-9">
+
+            <div class="input-group-btn {{userExist}}" >
+                <input ng-model="user" type="text" class="form-control" ng-change="findUser()" placeholder="{{placeholder}}" ng-disabled="isDisabled">
+            
+            
+            </div>
+        </div>
+        <div class="col-md-3">
+            <button type="button" class="btn btn-default btn-warning" aria-label="Advertencia" ng-show="alertUser" popover="{{ 'ALARM_EXIST' | translate }}"  popover-trigger="mouseenter" popover-placement="right">
+                <span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span>
+            </button>
+        </div>
+    </div>
+</div>
