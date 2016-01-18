@@ -158,6 +158,7 @@ appConfigProjectMSF.controller('projectController', ["$scope",'$filter',"commonv
 	      //Getting the current org. unit groups
 	      
 	      commonvariable.ouDirective = $scope.projectname
+	      commonvariable.ouDirectiveCode = $scope.projectcode
 	      
 	      
 	  }
