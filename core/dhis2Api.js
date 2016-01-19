@@ -108,7 +108,8 @@ Dhis2Api.factory("TreeOrganisationunit",['$resource','commonvariable', function 
 Dhis2Api.factory("OrgUnit",['$resource','commonvariable', function ($resource,commonvariable) {
 	return $resource(commonvariable.url+"organisationUnits/:id",
 		{id:'@id'},
-		{ POST: { method: "POST"} ,
+		{Get: { method: "GET"},
+		    POST: { method: "POST" },
 		  PUT: { method: "PUT"},
 		  PATCH: {method: "PATCH"}});
 }]);
@@ -262,5 +263,12 @@ Dhis2Api.factory("OrganisationUnitChildren",['$resource','commonvariable', funct
 	includeDescendants: 'true'
    }, 
   { get: { method: "GET"} });
+}]);
+
+Dhis2Api.factory("meUser", ['$resource', 'commonvariable', function ($resource, commonvariable) {
+    return $resource(commonvariable.url + "me",
+		{},
+		{ get: { method: "GET" } });
+
 }]);
 

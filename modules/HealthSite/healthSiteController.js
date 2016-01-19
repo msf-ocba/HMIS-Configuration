@@ -1,4 +1,4 @@
-appConfigProjectMSF.controller('healthSiteController', ["$scope", '$filter', "commonvariable", "OrgUnit", "OrgUnitGroupsOrgUnit", "loadjsonresource", "OrgUnitGroupByOrgUnit", "FilterResource", "$modal", "DataSetsOrgUnit", function ($scope, $filter, commonvariable, OrgUnit, OrgUnitGroupsOrgUnit, loadjsonresource, OrgUnitGroupByOrgUnit, FilterResource,$modal, DataSetsOrgUnit) {
+appConfigProjectMSF.controller('healthSiteController', ["$scope", '$filter', "commonvariable", "OrgUnit", "OrgUnitGroupsOrgUnit", "loadjsonresource", "OrgUnitGroupByOrgUnit", "FilterResource", "$modal", "DataSetsOrgUnit", "DataSets", function ($scope, $filter, commonvariable, OrgUnit, OrgUnitGroupsOrgUnit, loadjsonresource, OrgUnitGroupByOrgUnit, FilterResource, $modal, DataSetsOrgUnit, DataSets) {
 	var $translate = $filter('translate');
 	
 	//set message variable
@@ -186,7 +186,31 @@ appConfigProjectMSF.controller('healthSiteController', ["$scope", '$filter', "co
 		
 	//	$scope.showfields=true;
 	};
+
+	$scope.getVaccinationdataSet=function(){
+	    OrgUnit.Get({ id: commonvariable.OrganisationUnit.id })
+         .$promise.then(function (ouData) {
+             var pathOU = ouData.path.split("/");
+             var parent = pathOU[3];
+             OrgUnit.Get({ id: parent })
+                 .$promise.then(function (ouParent) {
+                     ///get if there exist a Dataset for this Mission.
+                     $scope.preName = commonvariable.prefixVaccination.vaccinationName;
+                     DataSets.Get({ filter: "name:eq:" + $scope.preName + ouParent.name, fields: 'id,name,code,description,periodType,dataElements' })
+                              .$promise.then(function (data) {
+                                  if (data.dataSets.length > 0) {
+                                      $scope.VaccinationDataset = data.dataSets[0];
+                                      $scope.vaccinationName = $scope.VaccinationDataset.name;
+                                  }
+
+                              });
+                 });
+         });
+	    
+	    
 	
+	}
+	$scope.getVaccinationdataSet();
 	$scope.$watch(
 			function($scope) {
 				if(commonvariable.OrganisationUnit!=undefined){
