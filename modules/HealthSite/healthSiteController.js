@@ -24,7 +24,7 @@ appConfigProjectMSF.controller('healthSiteController', ["$scope", '$filter', "co
 			healthServiceName = commonvariable.OrganisationUnit.code.slice(8,11);
 		}
 		
-		healthServiceName = healthServiceName + commonvariable.orgUnitGroupSet.BtFXTpKRl6n.name;
+		healthServiceName = healthServiceName + "_" + commonvariable.orgUnitGroupSet.BtFXTpKRl6n.name;
 		//healthServiceName = healthServiceName+"_"+ commonvariable.orgUnitGroupSet.BtFXTpKRl6n.name;
 		loadjsonresource.get("healthservice").then(function(response) {
 					
