@@ -1,4 +1,4 @@
-appConfigProjectMSF.controller('projectController', ["$scope",'$filter',"commonvariable", "OrgUnit","OrgUnitGroupsOrgUnit","FilterResource", "DataSetsOrgUnit", "OrgUnitGroupByOrgUnit","$modal", "OrganisationUnitChildren", "OrgUnitOrgUnitGroups", "$q", function($scope, $filter,commonvariable,OrgUnit,OrgUnitGroupsOrgUnit,FilterResource,DataSetsOrgUnit,OrgUnitGroupByOrgUnit,$modal, OrganisationUnitChildren, OrgUnitOrgUnitGroups, $q) {
+appConfigProjectMSF.controller('projectController', ["$scope",'$filter',"commonvariable", "OrgUnit","OrgUnitGroupsOrgUnit","FilterResource", "DataSetsOrgUnit", "OrgUnitGroupByOrgUnit","$modal", "OrganisationUnitChildren", "OrgUnitOrgUnitGroups", "$q", "User", function($scope, $filter,commonvariable,OrgUnit,OrgUnitGroupsOrgUnit,FilterResource,DataSetsOrgUnit,OrgUnitGroupByOrgUnit,$modal, OrganisationUnitChildren, OrgUnitOrgUnitGroups, $q, User) {
 	
 	
 	//set message variable
@@ -14,6 +14,33 @@ appConfigProjectMSF.controller('projectController', ["$scope",'$filter',"commonv
 	
 	$scope.showfields=false;
 	//console.log(commonvariable.OrganisationUnit);
+	
+	
+	$scope.savesiteuser=function(){
+		
+		var user = {}
+					
+		user.surname = commonvariable.users.prefix + "-" + commonvariable.userDirective + "-" + commonvariable.users.postfix_siteuser
+		user.userCredentials= {}
+		user.userCredentials.password=commonvariable.users.passwd
+		user.organisationUnits = [{"id":commonvariable.NewOrganisationUnit.id}]
+		user.dataViewOrganisationUnits = [{"id":commonvariable.NewOrganisationUnit.id}]
+		user.userGroups = [{"id":commonvariable.users.uid_project_users_userGroup}]
+
+			
+		user.firstName = commonvariable.users.postfix_siteuser
+		user.userCredentials.userRoles = [{"id":commonvariable.users.uid_role_fielduser}]
+		user.userCredentials.username=commonvariable.users.prefix + "-" + commonvariable.userDirective + "-" + commonvariable.users.postfix_siteuser
+			
+		User.POST(user).$promise.then(function (data) {
+				
+				console.log(data)
+				
+		});
+			
+	}
+		
+		
 	
 	
 	$scope.sitesave=function(){
@@ -71,6 +98,9 @@ appConfigProjectMSF.controller('projectController', ["$scope",'$filter',"commonv
 			  			}
 			  							  			
 			  		});
+				  
+				  
+				  $scope.savesiteuser()
 				  				  				  				  
 
 				 //set message variable
