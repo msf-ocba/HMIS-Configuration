@@ -1,4 +1,4 @@
-appConfigProjectMSF.controller('healthSiteController', ["$scope", '$filter', "commonvariable", "OrgUnit", "OrgUnitGroupsOrgUnit", "loadjsonresource", "OrgUnitGroupByOrgUnit", "FilterResource", "$modal", "DataSetsOrgUnit", "DataSets", function ($scope, $filter, commonvariable, OrgUnit, OrgUnitGroupsOrgUnit, loadjsonresource, OrgUnitGroupByOrgUnit, FilterResource, $modal, DataSetsOrgUnit, DataSets) {
+appConfigProjectMSF.controller('healthSiteController', ["$scope", '$filter', "commonvariable", "OrgUnit", "OrgUnitGroupsOrgUnit", "loadjsonresource", "OrgUnitGroupByOrgUnit", "FilterResource", "$modal", "DataSetsOrgUnit", "GetMission", function ($scope, $filter, commonvariable, OrgUnit, OrgUnitGroupsOrgUnit, loadjsonresource, OrgUnitGroupByOrgUnit, FilterResource,$modal, DataSetsOrgUnit, GetMission) {
 	var $translate = $filter('translate');
 	
 	//set message variable
@@ -21,10 +21,10 @@ appConfigProjectMSF.controller('healthSiteController', ["$scope", '$filter', "co
 		
 		if (commonvariable.OrganisationUnit.code!=undefined) {
 
-			healthServiceName = commonvariable.OrganisationUnit.code.slice(7,10);
+			healthServiceName = commonvariable.OrganisationUnit.code.slice(8,11);
 		}
 		
-		healthServiceName = healthServiceName + commonvariable.orgUnitGroupSet.BtFXTpKRl6n.name;
+		healthServiceName = healthServiceName + "_" + commonvariable.orgUnitGroupSet.BtFXTpKRl6n.name;
 		//healthServiceName = healthServiceName+"_"+ commonvariable.orgUnitGroupSet.BtFXTpKRl6n.name;
 		loadjsonresource.get("healthservice").then(function(response) {
 					
@@ -39,7 +39,7 @@ appConfigProjectMSF.controller('healthSiteController', ["$scope", '$filter', "co
 					name:healthServiceName,				
 					level:(commonvariable.OrganisationUnit.level+1),
 					code:healthServiceCode,
-		            shortName:commonvariable.ouDirective,
+		            shortName:healthServiceName,
 		           	openingDate:$filter('date')($scope.healthServiceDate, 'yyyy-MM-dd'),
 		           	parent: commonvariable.OrganisationUnitParentConf
 					};
@@ -55,6 +55,11 @@ appConfigProjectMSF.controller('healthSiteController', ["$scope", '$filter', "co
 					  if (commonvariable.orgUnitGroupSet.BtFXTpKRl6n!=undefined)
 						  OrgUnitGroupsOrgUnit.POST({uidgroup:commonvariable.orgUnitGroupSet.BtFXTpKRl6n.id, uidorgunit:newOu.id});
 					  				  					  
+					  console.log("Voy a crear la movida")
+					  
+					  console.log(commonvariable.orgUnitGroupSet.BtFXTpKRl6n.name)
+					  
+					  				  					  
 					  FilterResource.GET({resource:'dataSets', filter:'code:eq:'+"DS_INFR_3"}).$promise
 				  		.then(function(response){
 				  			
@@ -65,6 +70,28 @@ appConfigProjectMSF.controller('healthSiteController', ["$scope", '$filter', "co
 				  			}
 				  							  			
 				  		});
+					
+					  if (commonvariable.orgUnitGroupSet.BtFXTpKRl6n.name == "Vaccination") { //Assocate Vacc datasets 
+					  
+						  GetMission.get({uid:newOu.id}).$promise.then(function(data){
+						  
+							  var nameMission=data.parent.parent.parent.name
+						  
+							  var nameVacDataSet = "Vaccination_"+nameMission
+						  
+							  FilterResource.GET({resource:'dataSets', filter:'name:eq:'+nameVacDataSet}).$promise
+					  			.then(function(response){
+					  			
+					  			if (response.dataSets.length>0) {
+					  				
+					  				var dataSet = response.dataSets[0];
+					  				DataSetsOrgUnit.POST({uidorgunit:newOu.id, uiddataset:dataSet.id});
+					  			}
+					  							  			
+					  			});						  
+						  
+						  });					  
+					  }
 					
 					  var codeServiceType = undefined;
 					  
@@ -186,34 +213,13 @@ appConfigProjectMSF.controller('healthSiteController', ["$scope", '$filter', "co
 		
 	//	$scope.showfields=true;
 	};
-
-	$scope.getVaccinationdataSet=function(){
-	    OrgUnit.Get({ id: commonvariable.OrganisationUnit.id })
-         .$promise.then(function (ouData) {
-             var pathOU = ouData.path.split("/");
-             var parent = pathOU[3];
-             OrgUnit.Get({ id: parent })
-                 .$promise.then(function (ouParent) {
-                     ///get if there exist a Dataset for this Mission.
-                     $scope.preName = commonvariable.prefixVaccination.vaccinationName;
-                     DataSets.Get({ filter: "name:eq:" + $scope.preName + ouParent.name, fields: 'id,name,code,description,periodType,dataElements' })
-                              .$promise.then(function (data) {
-                                  if (data.dataSets.length > 0) {
-                                      $scope.VaccinationDataset = data.dataSets[0];
-                                      $scope.vaccinationName = $scope.VaccinationDataset.name;
-                                  }
-
-                              });
-                 });
-         });
-	    
-	    
 	
-	}
-	$scope.getVaccinationdataSet();
 	$scope.$watch(
 			function($scope) {
-				if(commonvariable.OrganisationUnit!=undefined){
+				if(commonvariable.OrganisationUnit!=undefined && commonvariable.OrganisationUnit.id != $scope.prevOu){
+					
+					$scope.prevOu = commonvariable.OrganisationUnit.id;
+					
 					$scope.healthsitename=commonvariable.OrganisationUnit.name;
 					$scope.healthsitecreated=commonvariable.OrganisationUnit.openingDate;
 					$scope.healthsitecode=commonvariable.OrganisationUnit.code;
@@ -256,16 +262,38 @@ appConfigProjectMSF.controller('healthSiteController', ["$scope", '$filter', "co
     ////Edit SITE
 	  $scope.EditSite = function () {
 
-	      var newOu = {//payload
+	      var editOu = {//payload
 	          name: commonvariable.ouDirective,
-	          level: commonvariable.OrganisationUnit.level,
 	          shortName: commonvariable.ouDirective,
-	          openingDate: $filter('date')($scope.mdopendate, 'yyyy-MM-dd'),
-	          parent: commonvariable.OrganisationUnitParentConf
+	          openingDate: $filter('date')($scope.healthsitecreated, 'yyyy-MM-dd')
 	      };
 
+	      OrgUnit.PATCH({id:commonvariable.OrganisationUnit.id},editOu).$promise.then(function(data){
+	    	  
+	    	  if (data.response.status=="SUCCESS") {
+	    		  
+	    			
+                  //asign OU selected 
+	    	      commonvariable.EditOrganisationUnit = commonvariable.OrganisationUnit;
+                  ///replace with new value
+	    	      commonvariable.EditOrganisationUnit.name = editOu.name;
+	    	      commonvariable.EditOrganisationUnit.shortName= editOu.name;
+	    	      commonvariable.EditOrganisationUnit.code = commonvariable.OrganisationUnit.code;
+	    	      commonvariable.EditOrganisationUnit.openingDate = editOu.openingDate;
+                  //refresh tree for show change
+	    	      commonvariable.RefreshTreeOU = true;
+	    	      
+	    	      $scope.messages.push({ type: "success", text: $translate('SITE_UPDATED') });
+	    	      
+	    	  }
+	    	  else
+					$scope.messages.push({type:"danger",
+							text:"Health site doesn't saved, review that the field name isn't empty"});
+
+	    	  $scope.operation = 'show';	
+	      
+	      });
 	      ///
-	      $scope.messages.push({ type: "success", text: $translate('SITE_UPDATED') });
 
 	
 	  }
