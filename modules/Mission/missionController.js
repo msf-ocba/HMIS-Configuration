@@ -45,6 +45,7 @@ appConfigProjectMSF.controller('missionController', ["$scope", '$filter', "commo
 			user.userCredentials.password=commonvariable.users.passwd
 			user.organisationUnits = [{"id":commonvariable.NewOrganisationUnit.id}]
 			user.dataViewOrganisationUnits = [{"id":commonvariable.NewOrganisationUnit.id}]
+			user.userGroups = [{"id":commonvariable.users.uid_project_users_userGroup}]
 			
 			if (i == 0) { //MFP User
 				user.firstName = commonvariable.users.postfix_mfp
