@@ -144,7 +144,6 @@ appConfigProjectMSF.controller('projectController', ["$scope",'$filter',"commonv
 		//$scope.mdname="";
 		$scope.today();
 		$scope.showfields = false;
-		commonvariable.clearForm = true;
 	};
 	
 	$scope.$watch(
