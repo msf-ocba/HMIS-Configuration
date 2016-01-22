@@ -39,9 +39,11 @@ var levelMSF = {OperationalCenter: "2"
 var usersMSF = {prefix: "msfe",
 			 postfix_mfp: "mfp",
 			 postfix_fielduser:"user",
+			 postfix_siteuser:"app",
 			 uid_role_mfp: "gmOkgYI46ny",
 			 uid_role_fielduser: "N4dxeOVu7aN",
-			 passwd: "Temp1234"};
+			 passwd: "District123",
+			 uid_project_users_userGroup: "EmlkqPJLcAh"};
 			
 
 var prefixVaccination = { vaccinationName: 'Vaccination_', vaccinationCode: 'DS_VAC_' };
