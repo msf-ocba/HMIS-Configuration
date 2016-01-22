@@ -127,6 +127,9 @@ appConfigProjectMSF.controller('projectController', ["$scope",'$filter',"commonv
 		
 	    if (frm == 1) {
 	        commonvariable.clearForm["hsname"] = true;
+	        commonvariable.clearForm["healthsitetype"] = true;
+	        commonvariable.clearForm["usernameproject"] = true;
+	        $scope.siteDate = "";
 	        $scope.siteprefix = "";
 			$scope.frmSite=true;
 		}

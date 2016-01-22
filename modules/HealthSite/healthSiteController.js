@@ -204,7 +204,9 @@ appConfigProjectMSF.controller('healthSiteController', ["$scope", '$filter', "co
 	$scope.showForm=function(frm){
 		
 		if(frm==1){
-			$scope.frmService=true;
+		    $scope.frmService = true;
+		    commonvariable.clearForm["healthservice"] = true;
+		    $scope.healthServiceDate = "";
 		}
 		else{
 			$scope.frmService=false;
@@ -215,7 +217,8 @@ appConfigProjectMSF.controller('healthSiteController', ["$scope", '$filter', "co
 	};
 	
 	$scope.$watch(
-			function($scope) {
+			function ($scope) {
+
 				if(commonvariable.OrganisationUnit!=undefined && commonvariable.OrganisationUnit.id != $scope.prevOu){
 					
 					$scope.prevOu = commonvariable.OrganisationUnit.id;
