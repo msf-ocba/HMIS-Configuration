@@ -2,7 +2,7 @@ Dhis2Api.directive('d2Finduser', function(){
     return{
         restrict: 'E',
         templateUrl: 'directives/findUser/findUserView.html',
-        scope: {placeholder: '@'}
+        scope: {placeholder: '@',id:'@'}
     }
 });
 
@@ -29,6 +29,18 @@ Dhis2Api.controller("findUserController", ['$scope','$http', 'FilterResource',"c
 
 
     }
+
+    $scope.initValue = function () {
+        $scope.user = "";
+    }
+
+    $scope.$watch(function () {
+        //clear value 
+        if (commonvariable.clearForm[$scope.id] == true) {
+            $scope.initValue();
+            commonvariable.clearForm[$scope.id] = false;
+        }
+    });
 
 
 

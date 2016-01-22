@@ -8,15 +8,37 @@ Dhis2Api.directive('d2Treeorganisationunit', function(){
 		    }
 	}
 	}); 
-Dhis2Api.controller("d2TreeorganisationUnitController", ['$scope','$location','TreeOrganisationunit',"commonvariable", function ($scope,$location,TreeOrganisationunit,commonvariable) {
+Dhis2Api.controller("d2TreeorganisationUnitController", ['$scope', '$location', 'TreeOrganisationunit', "commonvariable", "meUser", function ($scope, $location, TreeOrganisationunit, commonvariable, meUser) {
 	$scope.currentid="";
 	 $scope.currentlevel=0;
-     $scope.loadOrganisationUnit=function(){
-         TreeOrganisationunit.get({filter:'level:eq:1'})
-    	 .$promise.then(function(data){
-    		  $scope.treeOrganisationUnitList = data.organisationUnits;
-    	 });
-    };
+    // $scope.loadOrganisationUnit=function(){
+    //     TreeOrganisationunit.get({filter:'level:eq:1'})
+    //	 .$promise.then(function(data){
+    //		  $scope.treeOrganisationUnitList = data.organisationUnits;
+    //	 });
+    //};
+	 $scope.loadOrganisationUnit = function () {
+	     meUser.get()
+            .$promise.then(function (data) {
+                $scope.treeOrganisationUnitList = [];
+                var kvalue = 0;
+                var numOU = 0;
+                angular.forEach(data.organisationUnits, function (value, key) {
+                    kvalue++;
+                    numOU = data.organisationUnits.length;
+                    TreeOrganisationunit.get({ uid: value.id })
+                             .$promise.then(function (data) {
+                                 $scope.treeOrganisationUnitList.push(data);
+                                 console.log(kvalue + " , " + numOU)
+                                 if (kvalue == numOU) {
+                                     $scope.loadingTree = false;
+                                 }
+                             });
+
+                });
+                //callBackAsync afer finish forecah
+            });
+	 };
     $scope.loadOrganisationUnit();
 	 
 	$scope.update = function (json, valorOrig, valorDest,treeup)		{

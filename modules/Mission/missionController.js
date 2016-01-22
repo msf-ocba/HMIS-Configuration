@@ -135,7 +135,21 @@ appConfigProjectMSF.controller('missionController', ["$scope", '$filter', "commo
 	
 	$scope.showForm = function (frm) {
 	    $scope.showbutton = false;
+
+	   
 		if(frm==1){
+		    ///Clear form /////////////
+		    commonvariable.clearForm["username"] = true;
+		    commonvariable.clearForm["contextid"] = true;
+		    commonvariable.clearForm["eventid"] = true;
+		    commonvariable.clearForm["typemanager"] = true;
+		    commonvariable.clearForm["populationtype"] = true;
+		    commonvariable.clearForm["projecttype"] = true;
+		    commonvariable.clearForm["projectcode"] = true;
+		    commonvariable.clearForm["projectname"] = true;
+		    $scope.propendate = "";
+
+            //////////////////////////
 			$scope.frmVaccination=false;
 			$scope.frmProject=true;
 			commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.ProjectType] = undefined
@@ -150,6 +164,7 @@ appConfigProjectMSF.controller('missionController', ["$scope", '$filter', "commo
 		}
 
 	};
+
 	$scope.hideForm=function(){
 		$scope.projectName="";
 		$scope.today();

@@ -54,7 +54,7 @@ appConfigProjectMSF.controller('healthSiteController', ["$scope", '$filter', "co
 					  
 					  if (commonvariable.orgUnitGroupSet.BtFXTpKRl6n!=undefined)
 						  OrgUnitGroupsOrgUnit.POST({uidgroup:commonvariable.orgUnitGroupSet.BtFXTpKRl6n.id, uidorgunit:newOu.id});
-					  
+					  				  					  
 					  console.log("Voy a crear la movida")
 					  
 					  console.log(commonvariable.orgUnitGroupSet.BtFXTpKRl6n.name)
@@ -69,8 +69,8 @@ appConfigProjectMSF.controller('healthSiteController', ["$scope", '$filter', "co
 				  				DataSetsOrgUnit.POST({uidorgunit:newOu.id, uiddataset:dataSet.id});
 				  			}
 				  							  			
-				  		});					  
-					  
+				  		});
+					
 					  if (commonvariable.orgUnitGroupSet.BtFXTpKRl6n.name == "Vaccination") { //Assocate Vacc datasets 
 					  
 						  GetMission.get({uid:newOu.id}).$promise.then(function(data){
@@ -204,7 +204,9 @@ appConfigProjectMSF.controller('healthSiteController', ["$scope", '$filter', "co
 	$scope.showForm=function(frm){
 		
 		if(frm==1){
-			$scope.frmService=true;
+		    $scope.frmService = true;
+		    commonvariable.clearForm["healthservice"] = true;
+		    $scope.healthServiceDate = "";
 		}
 		else{
 			$scope.frmService=false;
@@ -215,7 +217,8 @@ appConfigProjectMSF.controller('healthSiteController', ["$scope", '$filter', "co
 	};
 	
 	$scope.$watch(
-			function($scope) {
+			function ($scope) {
+
 				if(commonvariable.OrganisationUnit!=undefined && commonvariable.OrganisationUnit.id != $scope.prevOu){
 					
 					$scope.prevOu = commonvariable.OrganisationUnit.id;
@@ -263,11 +266,11 @@ appConfigProjectMSF.controller('healthSiteController', ["$scope", '$filter', "co
 	  $scope.EditSite = function () {
 
 	      var editOu = {//payload
-	          name: commonvariable.ouDirective,	
+	          name: commonvariable.ouDirective,
 	          shortName: commonvariable.ouDirective,
 	          openingDate: $filter('date')($scope.healthsitecreated, 'yyyy-MM-dd')
 	      };
-	      
+
 	      OrgUnit.PATCH({id:commonvariable.OrganisationUnit.id},editOu).$promise.then(function(data){
 	    	  
 	    	  if (data.response.status=="SUCCESS") {

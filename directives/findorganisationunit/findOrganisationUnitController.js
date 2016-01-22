@@ -2,12 +2,16 @@ Dhis2Api.directive('d2Findorganisationunit', function(){
     return{
         restrict: 'E',
         templateUrl: 'directives/findorganisationunit/findOrganisationUnitView.html',
-        scope: { field: '@', placeholder: '@', value: '@', operation: '@' }
+        scope: { field: '@', placeholder: '@', value: '@', operation: '@', id: '@' }
     }
 });
 
 Dhis2Api.controller("findOrganisationUnitController", ['$scope','$http', 'OrganisationUnitFind',"commonvariable",function ($scope, $http, OrganisationUnitFind, commonvariable) {
 
+
+    $scope.initValue = function () {
+        $scope.mdname = "";
+    }
 
 
     $scope.findOu = function () {
@@ -46,10 +50,14 @@ Dhis2Api.controller("findOrganisationUnitController", ['$scope','$http', 'Organi
     }
 
     $scope.$watch(function () {
-
-        if (commonvariable.OrganisationUnit && commonvariable.OrganisationUnit.id != $scope.prevOu) {
+        if (commonvariable.clearForm[$scope.id] == true) {
+            $scope.initValue();
+            commonvariable.clearForm[$scope.id] = false;
+        }
+         if (commonvariable.OrganisationUnit && commonvariable.OrganisationUnit.id != $scope.prevOu) {
             $scope.prevOu = commonvariable.OrganisationUnit.id;
             $scope.mdname = $scope.value;
+            
         }
         //if (($scope.mdname == undefined || $scope.mdname == "") && ($scope.value != undefined || $scope.value != "")) {
            // $scope.mdname=$scope.value;

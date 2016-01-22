@@ -125,7 +125,12 @@ appConfigProjectMSF.controller('projectController', ["$scope",'$filter',"commonv
 	
 	$scope.showForm=function(frm){
 		
-		if(frm==1){
+	    if (frm == 1) {
+	        commonvariable.clearForm["hsname"] = true;
+	        commonvariable.clearForm["healthsitetype"] = true;
+	        commonvariable.clearForm["usernameproject"] = true;
+	        $scope.siteDate = "";
+	        $scope.siteprefix = "";
 			$scope.frmSite=true;
 		}
 		else{
@@ -139,9 +144,9 @@ appConfigProjectMSF.controller('projectController', ["$scope",'$filter',"commonv
 	
 	
 	$scope.hideForm=function(){
-		$scope.mdname="";
+		//$scope.mdname="";
 		$scope.today();
-		$scope.showfields=false;
+		$scope.showfields = false;
 	};
 	
 	$scope.$watch(
