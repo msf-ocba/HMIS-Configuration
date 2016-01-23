@@ -288,6 +288,35 @@ appConfigProjectMSF.controller('healthSiteController', ["$scope", '$filter', "co
 	  $scope.enableforshow = function () {
 	      $scope.operation = 'show';
 	  }
+	  
+	  
+	  $scope.updateOrgUnits = function (orgUnits) {
+		  
+		  var defered = $q.defer();
+	      var promise = defered.promise;        
+
+	      
+	      angular.forEach(orgUnits, function(orgUnit, key){
+	    	  
+	    	  $scope.updateOrgUnitGroups(orgUnit);	    	  	    	  
+	      });
+	      		  
+		  defered.resolve(true);
+		  return promise;
+	  }
+	  
+	  $scope.updateOrgUnitGroups = function (orgUnit) {
+		  
+	         
+	        	 if (typeof(commonvariable.preOrgUnitGroupSet[commonvariable.ouGroupsetId.SiteType])=="undefined")
+	        		 OrgUnitOrgUnitGroups.POST({ uidorgunit: orgUnit.id, uidgroup: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.SiteType].id })
+	        	  
+	        	 else if (commonvariable.preOrgUnitGroupSet[commonvariable.ouGroupsetId.SiteType].id != commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.SiteType].id) {
+	        			  OrgUnitOrgUnitGroups.DELETE({ uidorgunit: orgUnit.id, uidgroup: commonvariable.preOrgUnitGroupSet[commonvariable.ouGroupsetId.SiteType].id });
+	        			  OrgUnitOrgUnitGroups.POST({ uidorgunit: orgUnit.id, uidgroup: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.SiteType].id })
+	        	 }
+	           		  
+	  }	  
 
     ////Edit SITE
 	  $scope.EditSite = function () {
