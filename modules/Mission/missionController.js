@@ -1,4 +1,4 @@
-appConfigProjectMSF.controller('missionController', ["$scope", '$filter', "commonvariable", "OrgUnit", "OrgUnitGroupsOrgUnit", "DataSets", "OrgUnitChildren", "FilterResource", "DataSetsOrgUnit","$modal", "User", function ($scope, $filter, commonvariable, OrgUnit, OrgUnitGroupsOrgUnit, DataSets, OrgUnitChildren, FilterResource, DataSetsOrgUnit,$modal, User) {
+appConfigProjectMSF.controller('missionController', ["$scope", '$filter', "commonvariable", "OrgUnit", "OrgUnitGroupsOrgUnit", "DataSets", "OrgUnitChildren", "FilterResource", "DataSetsOrgUnit", "$modal", "User", "validatorService", function ($scope, $filter, commonvariable, OrgUnit, OrgUnitGroupsOrgUnit, DataSets, OrgUnitChildren, FilterResource, DataSetsOrgUnit, $modal, User, validatorService) {
     var $translate = $filter('translate');
     //Load Data of OU selected
     $scope.prevOu = "";
@@ -82,6 +82,10 @@ appConfigProjectMSF.controller('missionController', ["$scope", '$filter', "commo
 	            openingDate: $filter('date')($scope.propendate,'yyyy-MM-dd'),
 	           	parent: commonvariable.OrganisationUnitParentConf
 				};
+	    ///validate if object is ok.
+		validatorService.emptyValue(newOu).then(function (result) {
+		    if (result == false)
+		    {
 
 		OrgUnit.POST({},newOu)
 		.$promise.then(function(data){
@@ -128,7 +132,18 @@ appConfigProjectMSF.controller('missionController', ["$scope", '$filter', "commo
 			else{
     		      $scope.messages.push({ type: "danger", text: $translate('PROJECT_NOSAVED') });
 			}
-    	 });
+		});
+		    }
+		    else {
+		        $scope.messages.push({
+		            type: "warning",
+		            text: $translate("FORM_MSG_EMPTYFIELD")
+		        });
+		    }
+
+
+		});
+
 				
 	};
 	
