@@ -28,7 +28,8 @@ var ougroupsetId = { ProjectType: "rQjuGZcxNxE"
                     ,Event: "DIYl9kZDij3" 
                     ,Context: "lR7GVB43jaX"
                     ,HealthService: "BtFXTpKRl6n"
-                    ,HealthServiceType: "akYeq1mMz2N"};
+                    ,HealthServiceType: "akYeq1mMz2N"
+                    ,SiteType: "ZxNjaKVXY1D"};
 
 var levelMSF = {OperationalCenter: "2"
 			 ,Mission: "3"

@@ -1,4 +1,4 @@
-appConfigProjectMSF.controller('healthSiteController', ["$scope", '$filter', "commonvariable", "OrgUnit", "OrgUnitGroupsOrgUnit", "loadjsonresource", "OrgUnitGroupByOrgUnit", "FilterResource", "$modal", "DataSetsOrgUnit", "GetMission", "validatorService", function ($scope, $filter, commonvariable, OrgUnit, OrgUnitGroupsOrgUnit, loadjsonresource, OrgUnitGroupByOrgUnit, FilterResource, $modal, DataSetsOrgUnit, GetMission, validatorService) {
+appConfigProjectMSF.controller('healthSiteController', ["$scope", '$filter', "commonvariable", "OrgUnit", "OrgUnitGroupsOrgUnit", "loadjsonresource", "OrgUnitGroupByOrgUnit", "FilterResource", "$modal", "DataSetsOrgUnit", "GetMission", "validatorService", "OrganisationUnitChildren","OrgUnitOrgUnitGroups", function ($scope, $filter, commonvariable, OrgUnit, OrgUnitGroupsOrgUnit, loadjsonresource, OrgUnitGroupByOrgUnit, FilterResource, $modal, DataSetsOrgUnit, GetMission, validatorService, OrganisationUnitChildren, OrgUnitOrgUnitGroups) {
 	var $translate = $filter('translate');
 	
 	//set message variable
@@ -68,7 +68,6 @@ appConfigProjectMSF.controller('healthSiteController', ["$scope", '$filter', "co
                             if (commonvariable.orgUnitGroupSet.BtFXTpKRl6n != undefined)
                                 OrgUnitGroupsOrgUnit.POST({ uidgroup: commonvariable.orgUnitGroupSet.BtFXTpKRl6n.id, uidorgunit: newOu.id });
 
-                            console.log("Voy a crear la movida")
 
                             console.log(commonvariable.orgUnitGroupSet.BtFXTpKRl6n.name)
 
@@ -284,10 +283,46 @@ appConfigProjectMSF.controller('healthSiteController', ["$scope", '$filter', "co
 	  $scope.enableforEdit = function () {
 	      $scope.operation = 'edit';
 	      commonvariable.NewOrganisationUnit = [];
+	      commonvariable.ouDirective = $scope.healthsitename
 	  }
 	  $scope.enableforshow = function () {
 	      $scope.operation = 'show';
 	  }
+	  
+	  
+	  $scope.updateOrgUnits = function (orgUnits) {
+		  
+	      angular.forEach(orgUnits, function(orgUnit, key){
+	    	  
+	    	  $scope.updateOrgUnitGroups(orgUnit);	    	  	    	  
+	      });
+	      		  
+	  }
+	  
+	  $scope.updateOrgUnitGroups = function (orgUnit) {
+		  
+		  var success=false
+	         
+		  if (typeof(commonvariable.preOrgUnitGroupSet[commonvariable.ouGroupsetId.SiteType])=="undefined")
+			  OrgUnitOrgUnitGroups.POST({ uidorgunit: orgUnit.id, uidgroup: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.SiteType].id }).$promise.then(function(data){
+				  if (data.$resolved==true)
+					  if (orgUnit.level == commonvariable.level.HealthSite)
+						  $scope.operation = 'show';
+						  
+			  })
+	        	  
+	      else if (commonvariable.preOrgUnitGroupSet[commonvariable.ouGroupsetId.SiteType].id != commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.SiteType].id) {
+	    	  OrgUnitOrgUnitGroups.DELETE({ uidorgunit: orgUnit.id, uidgroup: commonvariable.preOrgUnitGroupSet[commonvariable.ouGroupsetId.SiteType].id }).$promise.then(function(data){
+		    	  OrgUnitOrgUnitGroups.POST({ uidorgunit: orgUnit.id, uidgroup: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.SiteType].id }).$promise.then(function(data){
+					  if (data.$resolved==true)
+						  if (orgUnit.level == commonvariable.level.HealthSite)
+							  $scope.operation = 'show';
+		    		  
+		    	  })		    		  
+	    	  });
+	      }
+	           		  
+	  }	  
 
     ////Edit SITE
 	  $scope.EditSite = function () {
@@ -313,14 +348,23 @@ appConfigProjectMSF.controller('healthSiteController', ["$scope", '$filter', "co
                   //refresh tree for show change
 	    	      commonvariable.RefreshTreeOU = true;
 	    	      
+		    	  OrganisationUnitChildren.get({ uid: data.response.lastImported, fields: 'name,id,code,level' }).$promise.then(function (response) {
+		   			   
+					   var children=response.organisationUnits;
+	   			
+					   $scope.updateOrgUnits(children)
+						   
+					   $scope.healthsitename =  commonvariable.ouDirective;				   					   
+
+				   });	    	      
+
+	    	      
 	    	      $scope.messages.push({ type: "success", text: $translate('SITE_UPDATED') });
 	    	      
 	    	  }
 	    	  else
 					$scope.messages.push({type:"danger",
-							text:"Health site doesn't saved, review that the field name isn't empty"});
-
-	    	  $scope.operation = 'show';	
+							text:"Health site doesn't saved, review that the field name isn't empty"});	
 	      
 	      });
 	      ///
