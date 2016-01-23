@@ -39,10 +39,10 @@
 			<div class="col-md-4">
 				<label for="InputName3">{{'HEALTHSITE_OPENING_DATE' | translate}}</label>
 				<p class="input-group">
-				<input type="text" class="form-control" datepicker-popup="yyyy-MM-dd" ng-model="healthsitecreated" is-open="opened" min-date="minDate" datepicker-options="dateOptions" ng-disabled="operation=='show'" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+				<input type="text" class="form-control" datepicker-popup="yyyy-MM-dd" ng-model="healthsitecreated" is-open="openedsite" min-date="minDate" datepicker-options="dateOptions" ng-disabled="operation=='show'" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
 									
 				<span class="input-group-btn">
-                     <button type="button" class="btn btn-default" ng-click="open($event)" ng-disabled="operation=='show'"><i class="glyphicon glyphicon-calendar"></i></button>
+                     <button type="button" class="btn btn-default" ng-click="opensitedate($event)" ng-disabled="operation=='show'"><i class="glyphicon glyphicon-calendar"></i></button>
                      
                 </span>				
 				</p>
@@ -106,9 +106,9 @@
 				<div class="col-md-4">
 					<label for="InputName2">{{'HEALTHSERVICE_OPENING_DATE' | translate}}</label>
 					<p class="input-group">
-           		    <input type="text" class="form-control" datepicker-popup="yyyy-MM-dd" ng-model="healthServiceDate" is-open="opened" min-date="minDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+           		    <input type="text" class="form-control" datepicker-popup="yyyy-MM-dd" ng-model="healthServiceDate" is-open="openedservice" min-date="minDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
               		<span class="input-group-btn">
-                		<button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                		<button type="button" class="btn btn-default" ng-click="openservicedate($event)"><i class="glyphicon glyphicon-calendar"></i></button>
               		</span>
             		</p>
 				</div>

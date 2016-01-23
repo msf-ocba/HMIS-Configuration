@@ -263,11 +263,18 @@ appConfigProjectMSF.controller('healthSiteController', ["$scope", '$filter', "co
 	  };
 	  $scope.today();
 	  
-	  $scope.open = function($event) {
+	  $scope.opensitedate = function($event) {
 		    $event.preventDefault();
 		    $event.stopPropagation();
-		    $scope.opened = true;
+		    $scope.openedsite = true;
 	  };
+	  
+	  $scope.openservicedate = function($event) {
+		    $event.preventDefault();
+		    $event.stopPropagation();
+		    $scope.openedservice = true;
+	  };
+	  
 
 	
     ////////////////////////For Edit //////////////////////////////////////////
