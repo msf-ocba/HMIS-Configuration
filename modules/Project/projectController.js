@@ -44,7 +44,6 @@ appConfigProjectMSF.controller('projectController', ["$scope", '$filter', "commo
 	
 	$scope.sitesave = function () {
 
-
 	    var codeOrgUnit = undefined;
 
 	    if (commonvariable.OrganisationUnit.code != undefined && commonvariable.OrganisationUnit.code.length >= 7)
@@ -191,10 +190,16 @@ appConfigProjectMSF.controller('projectController', ["$scope", '$filter', "commo
 	  };
 	  $scope.today();
 	  
-	  $scope.open = function($event) {
+	  $scope.opensitedate = function($event) {
 		    $event.preventDefault();
 		    $event.stopPropagation();
-		    $scope.opened = true;
+		    $scope.openedsite = true;
+	  };
+	  
+	  $scope.openprojectdate = function($event) {
+		    $event.preventDefault();
+		    $event.stopPropagation();
+		    $scope.openedproject = true;
 	  };
 	  
 	
