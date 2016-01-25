@@ -17,12 +17,13 @@ Dhis2Api.controller("findUserController", ['$scope','$http', 'FilterResource',"c
             	
             	if (data.users.length>0) {
             	
-            		$scope.alertUser=true
-            		$scope.userExist = 'has-error'
+            	    $scope.alertUser = true;
+            		$scope.userExist = 'has-error';
+            		commonvariable.userDirective="";
             		
             	} else {
-            		$scope.alertUser = false
-            		commonvariable.userDirective = $scope.user
+            	    $scope.alertUser = false;
+            	    commonvariable.userDirective = $scope.user;
             		$scope.userExist = '';
             	}
        	});
