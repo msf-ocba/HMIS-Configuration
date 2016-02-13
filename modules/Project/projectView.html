@@ -85,17 +85,17 @@
 				<div class="row">
 					<div class="col-md-4">
 						<label for="sel12"> {{'PROJECT_TYPE' | translate }} </label>
-						<d2-dropdownorgunitgroupset uidgroupSet="rQjuGZcxNxE" operation="{{operation}}"></d2-dropdownorgunitgroupset>
+						<d2-dropdownorgunitgroupset uidgroupSet="{{projectTypeId}}" operation="{{operation}}"></d2-dropdownorgunitgroupset>
 					</div>
 				
 					<div class="col-md-4">
 						<label for="sel12"> {{'POPULATION_TYPE' | translate }} </label>
-						<d2-dropdownorgunitgroupset uidgroupSet="iiFM3YudVxq" operation="{{operation}}"></d2-dropdownorgunitgroupset>
+						<d2-dropdownorgunitgroupset uidgroupSet="{{populationTypeId}}" operation="{{operation}}"></d2-dropdownorgunitgroupset>
 					</div>
 
 					<div class="col-md-4">
 						<label for="sel12"> {{'TYPE_OF_MANAGEMENT' | translate }} </label>
-						<d2-dropdownorgunitgroupset uidgroupSet="ZximACPowCs" operation="{{operation}}"></d2-dropdownorgunitgroupset>
+						<d2-dropdownorgunitgroupset uidgroupSet="typeManagementID" operation="{{operation}}"></d2-dropdownorgunitgroupset>
 					</div>
 				</div>								
 			
@@ -110,12 +110,12 @@
 				<div class="row">
 					<div class="col-md-4">
 						<label for="sel12"> {{'EVENTS' | translate }} </label>
-						<d2-dropdownorgunitgroupset uidgroupSet="DIYl9kZDij3" operation="{{operation}}"></d2-dropdownorgunitgroupset>
+						<d2-dropdownorgunitgroupset uidgroupSet="{{gsEventID}}" operation="{{operation}}"></d2-dropdownorgunitgroupset>
 					</div>
 				
 					<div class="col-md-4">
 						<label for="sel12"> {{'CONTEXT' | translate }} </label>
-						<d2-dropdownorgunitgroupset uidgroupSet="lR7GVB43jaX" operation="{{operation}}"></d2-dropdownorgunitgroupset>
+						<d2-dropdownorgunitgroupset uidgroupSet="gsContextID" operation="{{operation}}"></d2-dropdownorgunitgroupset>
 					</div>
 
 				</div>								
@@ -192,7 +192,7 @@
 
 				<div class="col-md-6">
 					<label for="sel12"> {{'HEALTHSITE_TYPE' | translate }} </label>
-					<d2-dropdownorgunitgroupset uidgroupSet="ZxNjaKVXY1D" id="healthsitetype"></d2-dropdownorgunitgroupset>
+					<d2-dropdownorgunitgroupset uidgroupSet="{{siteTypeId}}" id="healthsitetype"></d2-dropdownorgunitgroupset>
 				</div>
 								
 			</div>

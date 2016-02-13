@@ -24,7 +24,6 @@ appConfigProjectMSF.controller('missionController', ["$scope", '$filter', "commo
     $scope.CreateDatasetVaccination = true;
 
     $scope.initValue = function () {
-
         ///OrgunitGroupSet 
         $scope.projectTypeId = commonvariable.ouGroupsetId.ProjectType;
         $scope.populationTypeId = commonvariable.ouGroupsetId.PopulationType;
