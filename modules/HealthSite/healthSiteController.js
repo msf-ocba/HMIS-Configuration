@@ -19,6 +19,13 @@
 appConfigProjectMSF.controller('healthSiteController', ["$scope", '$filter', "commonvariable", "OrgUnit", "OrgUnitGroupsOrgUnit", "loadjsonresource", "OrgUnitGroupByOrgUnit", "FilterResource", "$modal", "DataSetsOrgUnit", "GetMission", "validatorService", "OrganisationUnitChildren","OrgUnitOrgUnitGroups", function ($scope, $filter, commonvariable, OrgUnit, OrgUnitGroupsOrgUnit, loadjsonresource, OrgUnitGroupByOrgUnit, FilterResource, $modal, DataSetsOrgUnit, GetMission, validatorService, OrganisationUnitChildren, OrgUnitOrgUnitGroups) {
 	var $translate = $filter('translate');
 	
+    $scope.initValue = function () {
+        ///OrgunitGroupSet 
+        $scope.siteTypeId = commonvariable.ouGroupsetId.SiteType;
+        $scope.healthServiceId = commonvariable.ouGroupsetId.HealthService;
+    }
+    $scope.initValue();	
+	
 	//set message variable
 	$scope.closeAlertMessage = function(index) {
        $scope.messages.splice(index, 1);
@@ -42,15 +49,15 @@ appConfigProjectMSF.controller('healthSiteController', ["$scope", '$filter', "co
 			healthServiceName = commonvariable.OrganisationUnit.code.slice(8,11);
 		}
 		
-		healthServiceName = healthServiceName + "_" + commonvariable.orgUnitGroupSet.BtFXTpKRl6n.name;
-		//healthServiceName = healthServiceName+"_"+ commonvariable.orgUnitGroupSet.BtFXTpKRl6n.name;
+		healthServiceName = healthServiceName + "_" + commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.HealthService].name;
+
 		loadjsonresource.get("healthservice").then(function(response) {
 					
 			healthServiceSuffix = getServiceSuffix(response.data.healthserviceSuffix).suffix;
 			
 			
 			var prenewOu={//payload
-			        name: commonvariable.orgUnitGroupSet.BtFXTpKRl6n.name,
+			        name: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.HealthService].name,
 					level:(commonvariable.OrganisationUnit.level+1),
 					code: healthServiceSuffix,
 		            shortName:healthServiceName,
@@ -83,11 +90,11 @@ appConfigProjectMSF.controller('healthSiteController', ["$scope", '$filter', "co
                             newOu.id = data.response.lastImported;
                             commonvariable.NewOrganisationUnit = newOu;
 
-                            if (commonvariable.orgUnitGroupSet.BtFXTpKRl6n != undefined)
-                                OrgUnitGroupsOrgUnit.POST({ uidgroup: commonvariable.orgUnitGroupSet.BtFXTpKRl6n.id, uidorgunit: newOu.id });
+                            if (commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.HealthService] != undefined)
+                                OrgUnitGroupsOrgUnit.POST({ uidgroup: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.HealthService].id, uidorgunit: newOu.id });
 
 
-                            console.log(commonvariable.orgUnitGroupSet.BtFXTpKRl6n.name)
+                            console.log(commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.HealthService].name)
 
 
                             FilterResource.GET({ resource: 'dataSets', filter: 'code:eq:' + "DS_INFR_3" }).$promise
@@ -101,7 +108,7 @@ appConfigProjectMSF.controller('healthSiteController', ["$scope", '$filter', "co
 
                               });
 
-                            if (commonvariable.orgUnitGroupSet.BtFXTpKRl6n.name == "Vaccination") { //Assocate Vacc datasets 
+                            if (commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.HealthService].name == "Vaccination") { //Assocate Vacc datasets 
 
                                 GetMission.get({ uid: newOu.id }).$promise.then(function (data) {
 
@@ -203,7 +210,7 @@ appConfigProjectMSF.controller('healthSiteController', ["$scope", '$filter', "co
 		
 		for (var i=0; i<services.length; i++) {
 			
-			if (services[i].code==commonvariable.orgUnitGroupSet.BtFXTpKRl6n.code) {
+			if (services[i].code==commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.HealthService].code) {
 				serviceResult = services[i];
 				break;
 			}
@@ -229,7 +236,7 @@ appConfigProjectMSF.controller('healthSiteController', ["$scope", '$filter', "co
 			if (find == true ) break;
 			
 			for (var j=0; j<serviceType.services.length; j++) {
-				if (serviceType.services[j].code == commonvariable.orgUnitGroupSet.BtFXTpKRl6n.code) {
+				if (serviceType.services[j].code == commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.HealthService].code) {
 					find = true;
 					codeResult = serviceType.code;
 					break;

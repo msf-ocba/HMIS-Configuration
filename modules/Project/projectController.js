@@ -18,6 +18,16 @@
 
 appConfigProjectMSF.controller('projectController', ["$scope", '$filter', "commonvariable", "OrgUnit", "OrgUnitGroupsOrgUnit", "FilterResource", "DataSetsOrgUnit", "OrgUnitGroupByOrgUnit", "$modal", "OrganisationUnitChildren", "OrgUnitOrgUnitGroups", "$q", "User", "validatorService", function ($scope, $filter, commonvariable, OrgUnit, OrgUnitGroupsOrgUnit, FilterResource, DataSetsOrgUnit, OrgUnitGroupByOrgUnit, $modal, OrganisationUnitChildren, OrgUnitOrgUnitGroups, $q, User, validatorService) {
 	
+    $scope.initValue = function () {
+        ///OrgunitGroupSet 
+        $scope.projectTypeId = commonvariable.ouGroupsetId.ProjectType;
+        $scope.populationTypeId = commonvariable.ouGroupsetId.PopulationType;
+        $scope.typeManagementId = commonvariable.ouGroupsetId.TypeManagement;
+        $scope.gsEventId = commonvariable.ouGroupsetId.Event;
+        $scope.gsContextId = commonvariable.ouGroupsetId.Context;
+        $scope.siteTypeId = commonvariable.ouGroupsetId.SiteType;
+    }
+    $scope.initValue();	
 	
 	//set message variable
 	$scope.closeAlertMessage = function(index) {
@@ -97,9 +107,9 @@ appConfigProjectMSF.controller('projectController', ["$scope", '$filter', "commo
                         newOu.id = data.response.lastImported;
                         commonvariable.NewOrganisationUnit = newOu;
 
-                        if (commonvariable.orgUnitGroupSet.ZxNjaKVXY1D != undefined) {
+                        if (commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.SiteType] != undefined) {
 
-                            OrgUnitGroupsOrgUnit.POST({ uidgroup: commonvariable.orgUnitGroupSet.ZxNjaKVXY1D.id, uidorgunit: newOu.id });
+                            OrgUnitGroupsOrgUnit.POST({ uidgroup: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.SiteType].id, uidorgunit: newOu.id });
                         }
 
                         OrgUnitGroupByOrgUnit.get({ uid: commonvariable.OrganisationUnit.id }).$promise.then(function (response) {
@@ -109,10 +119,6 @@ appConfigProjectMSF.controller('projectController', ["$scope", '$filter', "commo
                             angular.forEach(listOrgUnitGroups, function (value, key) {
                                 OrgUnitGroupsOrgUnit.POST({ uidgroup: value.id, uidorgunit: newOu.id });
                             });
-
-                            /*for (var i=0;i<listOrgUnitGroups.length;i++)
-                                OrgUnitGroupsOrgUnit.POST({uidgroup:listOrgUnitGroups[i].id,uidorgunit:newOu.id});*/
-
 
                         });
 

@@ -18,6 +18,14 @@
 
 appConfigProjectMSF.controller('healthServiceController', ["$scope",'$filter',"commonvariable","$modal", "OrgUnit", "OrgUnitOrgUnitGroups", "OrgUnitGroupByOrgUnit", "loadjsonresource", "FilterResource", "OrgUnitGroupsOrgUnit", function($scope, $filter,commonvariable,$modal, OrgUnit, OrgUnitOrgUnitGroups, OrgUnitGroupByOrgUnit, loadjsonresource, FilterResource, OrgUnitGroupsOrgUnit) {
 	var $translate = $filter('translate');
+
+	
+	$scope.initValue = function () {
+        $scope.healthServiceId = commonvariable.ouGroupsetId.HealthService;
+        $scope.healthServiceTypeId = commonvariable.ouGroupsetId.HealthServiceType;
+	}
+	
+	$scope.initValue();
 	
 	//set message variable
 	$scope.closeAlertMessage = function(index) {
@@ -225,7 +233,7 @@ appConfigProjectMSF.controller('healthServiceController', ["$scope",'$filter',"c
 		
 		for (var i=0; i<services.length; i++) {
 			
-			if (services[i].code==commonvariable.orgUnitGroupSet.BtFXTpKRl6n.code) {
+			if (services[i].code==commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.HealthService].code) {
 				serviceResult = services[i];
 				break;
 			}

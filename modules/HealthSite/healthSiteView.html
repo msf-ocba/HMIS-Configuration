@@ -74,7 +74,7 @@
 			
 			<div class="col-md-4">
 				<label for="sel12"> {{'HEALTHSITE_TYPE' | translate }} </label>
-				<d2-dropdownorgunitgroupset uidgroupSet="ZxNjaKVXY1D" operation="{{operation}}"></d2-dropdownorgunitgroupset>
+				<d2-dropdownorgunitgroupset uidgroupSet="{{siteTypeId}}" operation="{{operation}}"></d2-dropdownorgunitgroupset>
 			</div>				
 		
 		</div>
@@ -134,7 +134,7 @@
 				
 				<div class="col-md-4">
 					<label for="sel12"> {{'HEALTHSERVICE' | translate }} </label>
-					<d2-dropdownorgunitgroupset uidgroupSet="BtFXTpKRl6n" uidgroupsetfilterby="ZxNjaKVXY1D" file="servicebysite" id="healthservice"></d2-dropdownorgunitgroupset>
+					<d2-dropdownorgunitgroupset uidgroupSet="{{healthServiceId}}" uidgroupsetfilterby="{{siteTypeId}}" file="servicebysite" id="healthservice"></d2-dropdownorgunitgroupset>
 				</div>
                 <div class="col-md-4">
                     <label for=""> {{'HEALTHSERVICE_DATASET' | translate }} </label>
