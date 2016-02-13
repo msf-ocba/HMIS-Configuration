@@ -22,9 +22,9 @@ appConfigProjectMSF.controller('projectController', ["$scope", '$filter', "commo
         ///OrgunitGroupSet 
         $scope.projectTypeId = commonvariable.ouGroupsetId.ProjectType;
         $scope.populationTypeId = commonvariable.ouGroupsetId.PopulationType;
-        $scope.typeManagementID = commonvariable.ouGroupsetId.TypeManagement;
-        $scope.gsEventID = commonvariable.ouGroupsetId.Event;
-        $scope.gsContextID = commonvariable.ouGroupsetId.Context;
+        $scope.typeManagementId = commonvariable.ouGroupsetId.TypeManagement;
+        $scope.gsEventId = commonvariable.ouGroupsetId.Event;
+        $scope.gsContextId = commonvariable.ouGroupsetId.Context;
         $scope.siteTypeId = commonvariable.ouGroupsetId.SiteType;
     }
     $scope.initValue();	

@@ -21,8 +21,8 @@ appConfigProjectMSF.controller('healthSiteController', ["$scope", '$filter', "co
 	
     $scope.initValue = function () {
         ///OrgunitGroupSet 
-        $scope.siteTypeID = commonvariable.ouGroupsetId.SiteType;
-        $scope.healthServiceID = commonvariable.ouGroupsetId.HealthService;
+        $scope.siteTypeId = commonvariable.ouGroupsetId.SiteType;
+        $scope.healthServiceId = commonvariable.ouGroupsetId.HealthService;
     }
     $scope.initValue();	
 	
