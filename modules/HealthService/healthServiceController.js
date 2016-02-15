@@ -16,16 +16,18 @@
    You should have received a copy of the GNU General Public License
    along with Project Configuration.  If not, see <http://www.gnu.org/licenses/>. */
 
-appConfigProjectMSF.controller('healthServiceController', ["$scope",'$filter',"commonvariable","$modal", "OrgUnit", "OrgUnitOrgUnitGroups", "OrgUnitGroupByOrgUnit", "loadjsonresource", "FilterResource", "OrgUnitGroupsOrgUnit", function($scope, $filter,commonvariable,$modal, OrgUnit, OrgUnitOrgUnitGroups, OrgUnitGroupByOrgUnit, loadjsonresource, FilterResource, OrgUnitGroupsOrgUnit) {
+appConfigProjectMSF.controller('healthServiceController', ["$scope",'$filter',"commonvariable","$modal", "OrgUnit", "OrgUnitOrgUnitGroups", "OrgUnitGroupByOrgUnit", "loadjsonresource", "FilterResource", "OrgUnitGroupsOrgUnit", "healthserviceService", function($scope, $filter,commonvariable,$modal, OrgUnit, OrgUnitOrgUnitGroups, OrgUnitGroupByOrgUnit, loadjsonresource, FilterResource, OrgUnitGroupsOrgUnit, healthserviceService) {
 	var $translate = $filter('translate');
 
 	
-	$scope.initValue = function () {
+	/*$scope.initValue = function () {
         $scope.healthServiceId = commonvariable.ouGroupsetId.HealthService;
         $scope.healthServiceTypeId = commonvariable.ouGroupsetId.HealthServiceType;
 	}
 	
-	$scope.initValue();
+	$scope.initValue();*/
+	
+	healthserviceService.initValue($scope);
 	
 	//set message variable
 	$scope.closeAlertMessage = function(index) {

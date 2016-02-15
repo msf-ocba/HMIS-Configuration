@@ -16,15 +16,16 @@
    You should have received a copy of the GNU General Public License
    along with Project Configuration.  If not, see <http://www.gnu.org/licenses/>. */
 
-appConfigProjectMSF.controller('healthSiteController', ["$scope", '$filter', "commonvariable", "OrgUnit", "OrgUnitGroupsOrgUnit", "loadjsonresource", "OrgUnitGroupByOrgUnit", "FilterResource", "$modal", "DataSetsOrgUnit", "GetMission", "validatorService", "OrganisationUnitChildren","OrgUnitOrgUnitGroups", function ($scope, $filter, commonvariable, OrgUnit, OrgUnitGroupsOrgUnit, loadjsonresource, OrgUnitGroupByOrgUnit, FilterResource, $modal, DataSetsOrgUnit, GetMission, validatorService, OrganisationUnitChildren, OrgUnitOrgUnitGroups) {
+appConfigProjectMSF.controller('healthSiteController', ["$scope", '$filter', "commonvariable", "OrgUnit", "OrgUnitGroupsOrgUnit", "loadjsonresource", "OrgUnitGroupByOrgUnit", "FilterResource", "$modal", "DataSetsOrgUnit", "GetMission", "validatorService", "OrganisationUnitChildren","OrgUnitOrgUnitGroups", "healthsiteService", function ($scope, $filter, commonvariable, OrgUnit, OrgUnitGroupsOrgUnit, loadjsonresource, OrgUnitGroupByOrgUnit, FilterResource, $modal, DataSetsOrgUnit, GetMission, validatorService, OrganisationUnitChildren, OrgUnitOrgUnitGroups, healthsiteService) {
 	var $translate = $filter('translate');
 	
-    $scope.initValue = function () {
+/*    $scope.initValue = function () {
         ///OrgunitGroupSet 
         $scope.siteTypeId = commonvariable.ouGroupsetId.SiteType;
         $scope.healthServiceId = commonvariable.ouGroupsetId.HealthService;
-    }
-    $scope.initValue();	
+    }*/
+	
+    healthsiteService.initValue($scope);	
 	
 	//set message variable
 	$scope.closeAlertMessage = function(index) {
