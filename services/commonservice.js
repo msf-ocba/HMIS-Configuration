@@ -16,7 +16,8 @@
    You should have received a copy of the GNU General Public License
    along with Project Configuration.  If not, see <http://www.gnu.org/licenses/>. */
 
-Dhis2Api.service('commonService', ['$q', 'commonvariable', function ($q, commonvariable) {
+Dhis2Api.service('commonService', ['$q', 'commonvariable', 'OrgUnitGroupByOrgUnit', 'OrgUnitGroupSet', 'OrgUnitOrgUnitGroups',
+                                   function ($q, commonvariable, OrgUnitGroupByOrgUnit, OrgUnitGroupSet, OrgUnitOrgUnitGroups) {
 	
 
 	this.getServiceSuffix = function(healthserviceSuffix) {
@@ -32,10 +33,46 @@ Dhis2Api.service('commonService', ['$q', 'commonvariable', function ($q, commonv
 				break;
 			}
 			
-		}
-		
+		}		
 		return serviceResult;
 		
+	};
+	
+	this.deleteOrgUnitGroup = function (uidOrgUnit, uidOrgUnitGroupSet) {
+		
+		OrgUnitGroupByOrgUnit.get({uid:uidOrgUnit}).$promise.then(function(data) {
+			
+			ouOrgUnitGroups=data.organisationUnitGroups;
+			
+			OrgUnitGroupSet.get({uid:uidOrgUnitGroupSet}).$promise.then(function(data) {
+								
+				ougsOrgUnitGroups=data.organisationUnitGroups;
+				
+			    try {
+			    	
+			    	var find = false;
+			    	
+			        for (var i = 0; i < ouOrgUnitGroups.length; i++) {
+			        
+			        	if (find == true) break;
+			        
+			            for (var j = 0; j < ougsOrgUnitGroups.length; j++) {
+			                if (ouOrgUnitGroups[i].id == ougsOrgUnitGroups[j].id) {
+			                	find = true;
+			      			  	OrgUnitOrgUnitGroups.DELETE({uidorgunit: uidOrgUnit, uidgroup: ouOrgUnitGroups[i].id});
+
+			                    break;
+			                }
+			            }
+			            
+			        }
+			    } catch (err) { };
+			    
+			});
+			
+		});
+		
+	
 	}
 
 
