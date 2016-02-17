@@ -1,3 +1,21 @@
+/* 
+   Copyright (c) 2016.
+ 
+   This file is part of Project Configuration for MSF.
+ 
+   Project Configuration is free software: you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation, either version 3 of the License, or
+   (at your option) any later version.
+ 
+   Project Configuration is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+ 
+   You should have received a copy of the GNU General Public License
+   along with Project Configuration.  If not, see <http://www.gnu.org/licenses/>. */
+
 /*
  *	Architeture 
  * 	Helder Yesid Castrillón
@@ -7,6 +25,7 @@
  * It is the persistence in the FrontEnd
  * 
  * */
+
 var Dhis2Api = angular.module("Dhis2Api", ['ngResource']);
 
 var urlApi = "http://localhost:8080/dhis/api/";
@@ -28,7 +47,8 @@ var ougroupsetId = { ProjectType: "rQjuGZcxNxE"
                     ,Event: "DIYl9kZDij3" 
                     ,Context: "lR7GVB43jaX"
                     ,HealthService: "BtFXTpKRl6n"
-                    ,HealthServiceType: "akYeq1mMz2N"};
+                    ,HealthServiceType: "akYeq1mMz2N"
+                    ,SiteType: "ZxNjaKVXY1D"};
 
 var levelMSF = {OperationalCenter: "2"
 			 ,Mission: "3"

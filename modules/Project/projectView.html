@@ -1,3 +1,22 @@
+<!--   
+   Copyright (c) 2016.
+ 
+   This file is part of Project Configuration for MSF.
+ 
+   Project Configuration is free software: you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation, either version 3 of the License, or
+   (at your option) any later version.
+ 
+   Project Configuration is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+ 
+   You should have received a copy of the GNU General Public License
+   along with Project Configuration.  If not, see <http://www.gnu.org/licenses/>. -->
+
+
 <br/>
 
 <div class="row">
@@ -42,10 +61,10 @@
 						<label for="InputName3">{{'PROJECT_OPENING_DATE' | translate}}</label>
 						<p class="input-group">												
 						
-						<input type="text" class="form-control" datepicker-popup="yyyy-MM-dd" ng-model="projectcreated" is-open="opened" min-date="minDate" datepicker-options="dateOptions" ng-disabled="operation=='show'" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+						<input type="text" class="form-control" datepicker-popup="yyyy-MM-dd" ng-model="projectcreated" is-open="openedproject" min-date="minDate" datepicker-options="dateOptions" ng-disabled="operation=='show'" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
 						
 						<span class="input-group-btn">
-                        	<button type="button" class="btn btn-default" ng-click="open($event)" ng-disabled="operation=='show'"><i class="glyphicon glyphicon-calendar"></i></button>
+                        	<button type="button" class="btn btn-default" ng-click="openprojectdate($event)" ng-disabled="operation=='show'"><i class="glyphicon glyphicon-calendar"></i></button>
                         </span>
                         </p>
 					</div>
@@ -66,17 +85,17 @@
 				<div class="row">
 					<div class="col-md-4">
 						<label for="sel12"> {{'PROJECT_TYPE' | translate }} </label>
-						<d2-dropdownorgunitgroupset uidgroupSet="rQjuGZcxNxE" operation="{{operation}}"></d2-dropdownorgunitgroupset>
+						<d2-dropdownorgunitgroupset uidgroupSet="{{projectTypeId}}" operation="{{operation}}"></d2-dropdownorgunitgroupset>
 					</div>
 				
 					<div class="col-md-4">
 						<label for="sel12"> {{'POPULATION_TYPE' | translate }} </label>
-						<d2-dropdownorgunitgroupset uidgroupSet="iiFM3YudVxq" operation="{{operation}}"></d2-dropdownorgunitgroupset>
+						<d2-dropdownorgunitgroupset uidgroupSet="{{populationTypeId}}" operation="{{operation}}"></d2-dropdownorgunitgroupset>
 					</div>
 
 					<div class="col-md-4">
 						<label for="sel12"> {{'TYPE_OF_MANAGEMENT' | translate }} </label>
-						<d2-dropdownorgunitgroupset uidgroupSet="ZximACPowCs" operation="{{operation}}"></d2-dropdownorgunitgroupset>
+						<d2-dropdownorgunitgroupset uidgroupSet="{{typeManagementId}}" operation="{{operation}}"></d2-dropdownorgunitgroupset>
 					</div>
 				</div>								
 			
@@ -91,12 +110,12 @@
 				<div class="row">
 					<div class="col-md-4">
 						<label for="sel12"> {{'EVENTS' | translate }} </label>
-						<d2-dropdownorgunitgroupset uidgroupSet="DIYl9kZDij3" operation="{{operation}}"></d2-dropdownorgunitgroupset>
+						<d2-dropdownorgunitgroupset uidgroupSet="{{gsEventId}}" operation="{{operation}}"></d2-dropdownorgunitgroupset>
 					</div>
 				
 					<div class="col-md-4">
 						<label for="sel12"> {{'CONTEXT' | translate }} </label>
-						<d2-dropdownorgunitgroupset uidgroupSet="lR7GVB43jaX" operation="{{operation}}"></d2-dropdownorgunitgroupset>
+						<d2-dropdownorgunitgroupset uidgroupSet="{{gsContextId}}" operation="{{operation}}"></d2-dropdownorgunitgroupset>
 					</div>
 
 				</div>								
@@ -159,9 +178,9 @@
 				<div class="col-md-4">
 					<label for="InputName2">{{'HEALTHSITE_OPENING_DATE' | translate}}</label>
 					<p class="input-group">
-           		    <input type="text" class="form-control" datepicker-popup="yyyy-MM-dd" ng-model="siteDate" is-open="opened" min-date="minDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+           		    <input type="text" class="form-control" datepicker-popup="yyyy-MM-dd" ng-model="siteDate" is-open="openedsite" min-date="minDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
               		<span class="input-group-btn">
-                		<button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                		<button type="button" class="btn btn-default" ng-click="opensitedate($event)"><i class="glyphicon glyphicon-calendar"></i></button>
               		</span>
             		</p>
 				</div>
@@ -173,7 +192,7 @@
 
 				<div class="col-md-6">
 					<label for="sel12"> {{'HEALTHSITE_TYPE' | translate }} </label>
-					<d2-dropdownorgunitgroupset uidgroupSet="ZxNjaKVXY1D" id="healthsitetype"></d2-dropdownorgunitgroupset>
+					<d2-dropdownorgunitgroupset uidgroupSet="{{siteTypeId}}" id="healthsitetype"></d2-dropdownorgunitgroupset>
 				</div>
 								
 			</div>
