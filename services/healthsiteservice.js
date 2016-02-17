@@ -155,31 +155,24 @@ Dhis2Api.service('healthsiteService', ['$q', 'commonvariable', 'OrgUnit', 'Filte
 	         
 		  if (typeof(commonvariable.preOrgUnitGroupSet[commonvariable.ouGroupsetId.SiteType])=="undefined")
 			  OrgUnitOrgUnitGroups.POST({ uidorgunit: orgUnit.id, uidgroup: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.SiteType].id }).$promise.then(function(data){
-				  if (data.$resolved==true)
+				  /*if (data.$resolved==true)
 					  if (orgUnit.level == commonvariable.level.HealthSite)
-						  $scope.operation = 'show';
+						  $scope.operation = 'show';*/
 						  
 			  })
 	        	  
 	      else if (commonvariable.preOrgUnitGroupSet[commonvariable.ouGroupsetId.SiteType].id != commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.SiteType].id) {
 	    	  OrgUnitOrgUnitGroups.DELETE({ uidorgunit: orgUnit.id, uidgroup: commonvariable.preOrgUnitGroupSet[commonvariable.ouGroupsetId.SiteType].id }).$promise.then(function(data){
 		    	  OrgUnitOrgUnitGroups.POST({ uidorgunit: orgUnit.id, uidgroup: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.SiteType].id }).$promise.then(function(data){
-					  if (data.$resolved==true)
+					  /*if (data.$resolved==true)
 						  if (orgUnit.level == commonvariable.level.HealthSite)
-							  $scope.operation = 'show';
+							  $scope.operation = 'show';*/
 		    		  
 		    	  })		    		  
 	    	  });
 	      }		
 	};
 
-	updateOrgUnits = function (orgUnits) {
-		  
-	      angular.forEach(orgUnits, function(orgUnit, key){	    	  
-	    	  updateOrgUnitGroups(orgUnit);	    	  	    	  
-	      });
-	      		  
-	 };
 
 	 this.editHealthSite = function(idOu, editOu) {
 		 
@@ -191,7 +184,7 @@ Dhis2Api.service('healthsiteService', ['$q', 'commonvariable', 'OrgUnit', 'Filte
 	    	  
 	    	  if (data.response.status=="SUCCESS") {
 	    		  
-	    		  siteEdited = true;
+	    		  
 	    		  
                   //asign OU selected 
 	    	      commonvariable.EditOrganisationUnit = commonvariable.OrganisationUnit;
@@ -200,21 +193,48 @@ Dhis2Api.service('healthsiteService', ['$q', 'commonvariable', 'OrgUnit', 'Filte
 	    	      commonvariable.EditOrganisationUnit.shortName= editOu.name;
 	    	      commonvariable.EditOrganisationUnit.code = commonvariable.OrganisationUnit.code;
 	    	      commonvariable.EditOrganisationUnit.openingDate = editOu.openingDate;
+	    	      
                   //refresh tree for show change
 	    	      
-		    	  OrganisationUnitChildren.get({ uid: data.response.lastImported, fields: 'name,id,code,level' }).$promise.then(function (response) {
+	    	      if ( typeof commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.SiteType] != "undefined") {
+	    	      
+	    	    	  OrganisationUnitChildren.get({ uid: data.response.lastImported, fields: 'name,id,code,level' }).$promise.then(function (response) {
 		   			   
-					   var children=response.organisationUnits;
-	   			
-					   updateOrgUnits(children)
+	    	    		  var children=response.organisationUnits;
+	   				    	    		  
+	    	    	      angular.forEach(children, function(orgUnit, key){	    	  
+	    	    	    	  //updateOrgUnitGroups(orgUnit)
+	    	    	    	  
+	    	    			  /*if (typeof(commonvariable.preOrgUnitGroupSet[commonvariable.ouGroupsetId.SiteType])=="undefined")
+	    	    				  OrgUnitOrgUnitGroups.POST({ uidorgunit: orgUnit.id, uidgroup: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.SiteType].id }).$promise.then(function(data){
+	    	    					  if (data.$resolved==true)
+	    	    						  if (orgUnit.level == commonvariable.level.HealthSite)
+	    	    							  siteEdited = true;
+	    	    							  
+	    	    				  })*/
+	    	    		        	  
+	    	    		      if (commonvariable.preOrgUnitGroupSet[commonvariable.ouGroupsetId.SiteType].id != commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.SiteType].id) {
+	    	    		    	  OrgUnitOrgUnitGroups.DELETE({ uidorgunit: orgUnit.id, uidgroup: commonvariable.preOrgUnitGroupSet[commonvariable.ouGroupsetId.SiteType].id }).$promise.then(function(data){
+	    	    			    	  OrgUnitOrgUnitGroups.POST({ uidorgunit: orgUnit.id, uidgroup: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.SiteType].id }).$promise.then(function(data){
+	    	    						  if (data.$resolved==true)
+	    	    							  if (orgUnit.level == commonvariable.level.HealthSite) {	    	    								  
+	    	    								  siteEdited = true;
+	    	    						    	  defered.resolve(siteEdited);
+	    	    							  }
+	    	    			    		  
+	    	    			    	  })		    		  
+	    	    		    	  });
+	    	    		      }		
+	    	    	      });
+
 						   
-					   //$scope.healthsitename =  commonvariable.ouDirective;				   					   
-				   });	    	      
+	    	    		  //$scope.healthsitename =  commonvariable.ouDirective;				   					   
+	    	    	  });	    	      
+	    	      } else { siteEdited = true; defered.resolve(siteEdited); }
 	    	  }
 	    	  else
 	    		  siteEdited = false;
 	    	  
-	    	  defered.resolve(siteEdited);
 	      
 	      });		 
 	     
