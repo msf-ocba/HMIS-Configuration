@@ -1,5 +1,3 @@
-<d2-authorization menuoption="F_APPROVE_DATA"></d2-authorization>
-
 <br/>
 
 <div class="row">
@@ -21,7 +19,7 @@
                         <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                     </a>
                     <a href="#/Project" ng-click="modalDelete()">
-                        <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>
+                        <span class="glyphicon glyphicon-ban-circle" aria-hidden="true"></span>
                     </a>
                 </div>
             </div>
@@ -151,7 +149,7 @@
 			<div class="row">
 				<div class="col-md-12">
 					<label for="InputName2">{{'HEALTHSITE_NAME' | translate}}</label>
-					<d2-findorganisationunit field="name" placeholder="{{'HEALTHSITE_NAME' | translate}}" ></d2-findorganisationunit>
+					<d2-findorganisationunit field="name" placeholder="{{'HEALTHSITE_NAME' | translate}}" id="hsname" ></d2-findorganisationunit>
 				</div>
 			</div>
 			
@@ -175,11 +173,22 @@
 
 				<div class="col-md-6">
 					<label for="sel12"> {{'HEALTHSITE_TYPE' | translate }} </label>
-					<d2-dropdownorgunitgroupset uidgroupSet="ZxNjaKVXY1D" ></d2-dropdownorgunitgroupset>
+					<d2-dropdownorgunitgroupset uidgroupSet="ZxNjaKVXY1D" id="healthsitetype"></d2-dropdownorgunitgroupset>
 				</div>
-				
-				
+								
 			</div>
+			
+            <div class="row">
+                       		 
+            	<div class="col-md-6">
+                	<label for="InputName2">{{'SITE_USER' | translate}}</label>
+		            	<d2-finduser placeholder="{{'PROJECT_USER' | translate}}" id="usernameproject"></d2-finduser>
+		        </div>                        
+                        
+            </div>
+			
+			
+			
 		</div>
 	</div>
       <div class="col-md-12">

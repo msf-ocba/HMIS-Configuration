@@ -6,14 +6,19 @@ Dhis2Api.directive('d2Dropdownorgunitgroupset', function(){
 	        uidgroupset: '@',
 	        operation: '@',
 	        uidgroupsetfilterby: '@',
-	        file: '@'
+	        file: '@',
+            id:'@'
 	      }
 		}
 	}); 
 
 Dhis2Api.controller("d2DropdownorgunitgroupsetController", ['$q','$scope','$http', 'OrgUnitGroupSet',"commonvariable", "OrgUnitGroupByOrgUnit", "loadjsonresource", "getIDOUG", function ($q, $scope, $http, OrgUnitGroupSet, commonvariable, OrgUnitGroupByOrgUnit, loadjsonresource, getIDOUG) {
 	
-	if ($scope.operation!="show") {
+    $scope.initValue = function () {
+        $scope.ougName = "";
+    }
+
+    if ($scope.operation != "show") {
 		
 		$scope.disabled=false;
 		
@@ -105,6 +110,11 @@ Dhis2Api.controller("d2DropdownorgunitgroupsetController", ['$q','$scope','$http
 	$scope.prevOu = undefined;
 	$scope.$watch(function () {
 
+        //clear value 
+	    if (commonvariable.clearForm[$scope.id] == true) {
+	        $scope.initValue();
+	        commonvariable.clearForm[$scope.id] = false;
+	    }
 	    ///
 	    if ($scope.operation != $scope.prevOperation) {
 			//console.log("Ejecuto este Watch");

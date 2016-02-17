@@ -1,4 +1,4 @@
-appConfigProjectMSF.controller('projectController', ["$scope",'$filter',"commonvariable", "OrgUnit","OrgUnitGroupsOrgUnit","FilterResource", "DataSetsOrgUnit", "OrgUnitGroupByOrgUnit","$modal", "OrganisationUnitChildren", "OrgUnitOrgUnitGroups", "$q", function($scope, $filter,commonvariable,OrgUnit,OrgUnitGroupsOrgUnit,FilterResource,DataSetsOrgUnit,OrgUnitGroupByOrgUnit,$modal, OrganisationUnitChildren, OrgUnitOrgUnitGroups, $q) {
+appConfigProjectMSF.controller('projectController', ["$scope", '$filter', "commonvariable", "OrgUnit", "OrgUnitGroupsOrgUnit", "FilterResource", "DataSetsOrgUnit", "OrgUnitGroupByOrgUnit", "$modal", "OrganisationUnitChildren", "OrgUnitOrgUnitGroups", "$q", "User", "validatorService", function ($scope, $filter, commonvariable, OrgUnit, OrgUnitGroupsOrgUnit, FilterResource, DataSetsOrgUnit, OrgUnitGroupByOrgUnit, $modal, OrganisationUnitChildren, OrgUnitOrgUnitGroups, $q, User, validatorService) {
 	
 	
 	//set message variable
@@ -16,86 +16,143 @@ appConfigProjectMSF.controller('projectController', ["$scope",'$filter',"commonv
 	//console.log(commonvariable.OrganisationUnit);
 	
 	
-	$scope.sitesave=function(){
+	$scope.savesiteuser=function(){
 		
-		
-		var codeOrgUnit = undefined;
-		
-		if (commonvariable.OrganisationUnit.code!=undefined && commonvariable.OrganisationUnit.code.length>=7)
-			codeOrgUnit = "OU_" + commonvariable.OrganisationUnit.code.slice(2,7) + $scope.siteprefix;
-		
-		var newOu={//payload
-				name:commonvariable.ouDirective,
-				level:(commonvariable.OrganisationUnit.level+1),
-	            shortName:commonvariable.ouDirective,
-	            code:codeOrgUnit,
-	           	openingDate:$filter('date')($scope.siteDate,'yyyy-MM-dd'),
-	            parent:commonvariable.OrganisationUnitParentConf
-				};
+		var user = {}
+					
+		user.surname = commonvariable.users.prefix + "-" + commonvariable.userDirective + "-" + commonvariable.users.postfix_siteuser
+		user.userCredentials= {}
+		user.userCredentials.password=commonvariable.users.passwd
+		user.organisationUnits = [{"id":commonvariable.NewOrganisationUnit.id}]
+		user.dataViewOrganisationUnits = [{"id":commonvariable.NewOrganisationUnit.id}]
+		user.userGroups = [{"id":commonvariable.users.uid_project_users_userGroup}]
 
-		OrgUnit.POST({},newOu)
-		.$promise.then(function(data){
-    		  console.log(data);
-    		 // if(data.response.status=="SUCCESS"){
-    		  if(data.response.importCount.imported>=1){
-    		      commonvariable.RefreshTreeOU=true;
-				  newOu.id=data.response.lastImported;
-				  commonvariable.NewOrganisationUnit=newOu;
-				  
-				  if (commonvariable.orgUnitGroupSet.ZxNjaKVXY1D!=undefined) {
-					  
-					  OrgUnitGroupsOrgUnit.POST({uidgroup:commonvariable.orgUnitGroupSet.ZxNjaKVXY1D.id, uidorgunit:newOu.id});
-				  }
-				  
-				  OrgUnitGroupByOrgUnit.get({uid:commonvariable.OrganisationUnit.id}).$promise.then(function(response) {
-						
-					  listOrgUnitGroups = response.organisationUnitGroups;
-					  
-					  angular.forEach(listOrgUnitGroups, function(value, key){
-						  OrgUnitGroupsOrgUnit.POST({uidgroup:value.id, uidorgunit:newOu.id});
-					  });
-					  
-					  /*for (var i=0;i<listOrgUnitGroups.length;i++)
-						  OrgUnitGroupsOrgUnit.POST({uidgroup:listOrgUnitGroups[i].id,uidorgunit:newOu.id});*/
-					  
-
-				  });
-
-				  FilterResource.GET({resource:'dataSets', filter:'code:eq:'+"DS_INFR_3"}).$promise
-			  		.then(function(response){
-			  			
-			  			if (response.dataSets.length>0) {
-			  				
-			  				var dataSet = response.dataSets[0];
-			  				DataSetsOrgUnit.POST({uidorgunit:newOu.id, uiddataset:dataSet.id});
-			  			}
-			  							  			
-			  		});
-				  				  				  				  
-
-				 //set message variable
-				$scope.messages.push({type:"success",
-				text:"Health site saved"});
-
-				//clear txtbox
-				$scope.siteName="";
+			
+		user.firstName = commonvariable.users.postfix_siteuser
+		user.userCredentials.userRoles = [{"id":commonvariable.users.uid_role_fielduser}]
+		user.userCredentials.username=commonvariable.users.prefix + "-" + commonvariable.userDirective + "-" + commonvariable.users.postfix_siteuser
+			
+		User.POST(user).$promise.then(function (data) {
 				
-				$scope.frmSite = false;
-
-			}
-			else{
-				$scope.messages.push({type:"danger",
-				text:"Health site doesn't saved, review that the field name isn't empty"});
-			}
-    	 });
+				console.log(data)
 				
+		});
+			
+	}
+		
+		
+	
+	$scope.sitesave = function () {
+
+
+	    var codeOrgUnit = undefined;
+
+	    if (commonvariable.OrganisationUnit.code != undefined && commonvariable.OrganisationUnit.code.length >= 7)
+	        codeOrgUnit = "OU_" + commonvariable.OrganisationUnit.code.slice(2, 7) + $scope.siteprefix;
+
+	    var newOu = {//payload for validate
+	        name: commonvariable.ouDirective,
+	        level: (commonvariable.OrganisationUnit.level + 1),
+	        shortName: commonvariable.ouDirective,
+	        code: $scope.siteprefix,
+	        openingDate: $filter('date')($scope.siteDate, 'yyyy-MM-dd'),
+	        parent: commonvariable.OrganisationUnitParentConf
+	    };
+        ///validate if object is ok.
+	    validatorService.emptyValue(newOu).then(function (result) {
+	        if (result == false) {
+
+	            var newOu = {//payload
+	                name: commonvariable.ouDirective,
+	                level: (commonvariable.OrganisationUnit.level + 1),
+	                shortName: commonvariable.ouDirective,
+	                code: codeOrgUnit,
+	                openingDate: $filter('date')($scope.siteDate, 'yyyy-MM-dd'),
+	                parent: commonvariable.OrganisationUnitParentConf
+	            };
+
+	            OrgUnit.POST({}, newOu)
+                .$promise.then(function (data) {
+                    console.log(data);
+                    // if(data.response.status=="SUCCESS"){
+                    if (data.response.importCount.imported >= 1) {
+                        commonvariable.RefreshTreeOU = true;
+                        newOu.id = data.response.lastImported;
+                        commonvariable.NewOrganisationUnit = newOu;
+
+                        if (commonvariable.orgUnitGroupSet.ZxNjaKVXY1D != undefined) {
+
+                            OrgUnitGroupsOrgUnit.POST({ uidgroup: commonvariable.orgUnitGroupSet.ZxNjaKVXY1D.id, uidorgunit: newOu.id });
+                        }
+
+                        OrgUnitGroupByOrgUnit.get({ uid: commonvariable.OrganisationUnit.id }).$promise.then(function (response) {
+
+                            listOrgUnitGroups = response.organisationUnitGroups;
+
+                            angular.forEach(listOrgUnitGroups, function (value, key) {
+                                OrgUnitGroupsOrgUnit.POST({ uidgroup: value.id, uidorgunit: newOu.id });
+                            });
+
+                            /*for (var i=0;i<listOrgUnitGroups.length;i++)
+                                OrgUnitGroupsOrgUnit.POST({uidgroup:listOrgUnitGroups[i].id,uidorgunit:newOu.id});*/
+
+
+                        });
+
+                        FilterResource.GET({ resource: 'dataSets', filter: 'code:eq:' + "DS_INFR_3" }).$promise
+                          .then(function (response) {
+
+                              if (response.dataSets.length > 0) {
+
+                                  var dataSet = response.dataSets[0];
+                                  DataSetsOrgUnit.POST({ uidorgunit: newOu.id, uiddataset: dataSet.id });
+                              }
+
+                          });
+
+
+                        $scope.savesiteuser()
+
+
+                        //set message variable
+                        $scope.messages.push({
+                            type: "success",
+                            text: "Health site saved"
+                        });
+
+                        //clear txtbox
+                        $scope.siteName = "";
+
+                        $scope.frmSite = false;
+
+                    }
+                    else {
+                        $scope.messages.push({
+                            type: "danger",
+                            text: "Health site doesn't saved, review that the field name isn't empty"
+                        });
+                    }
+                });
+	        }
+	        else {
+	            $scope.messages.push({
+	                type: "warning",
+	                text: $translate("FORM_MSG_EMPTYFIELD")
+	            });
+	        }
+	    });
 	};
 		
 	
 	
 	$scope.showForm=function(frm){
 		
-		if(frm==1){
+	    if (frm == 1) {
+	        commonvariable.clearForm["hsname"] = true;
+	        commonvariable.clearForm["healthsitetype"] = true;
+	        commonvariable.clearForm["usernameproject"] = true;
+	        $scope.siteDate = "";
+	        $scope.siteprefix = "";
 			$scope.frmSite=true;
 		}
 		else{
@@ -109,9 +166,9 @@ appConfigProjectMSF.controller('projectController', ["$scope",'$filter',"commonv
 	
 	
 	$scope.hideForm=function(){
-		$scope.mdname="";
+		//$scope.mdname="";
 		$scope.today();
-		$scope.showfields=false;
+		$scope.showfields = false;
 	};
 	
 	$scope.$watch(
@@ -158,6 +215,7 @@ appConfigProjectMSF.controller('projectController', ["$scope",'$filter',"commonv
 	      //Getting the current org. unit groups
 	      
 	      commonvariable.ouDirective = $scope.projectname
+	      commonvariable.ouDirectiveCode = $scope.projectcode
 	      
 	      
 	  }

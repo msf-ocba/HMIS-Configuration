@@ -39,9 +39,11 @@ var levelMSF = {OperationalCenter: "2"
 var usersMSF = {prefix: "msfe",
 			 postfix_mfp: "mfp",
 			 postfix_fielduser:"user",
+			 postfix_siteuser:"app",
 			 uid_role_mfp: "gmOkgYI46ny",
 			 uid_role_fielduser: "N4dxeOVu7aN",
-			 passwd: "Temp1234"};
+			 passwd: "District123",
+			 uid_project_users_userGroup: "EmlkqPJLcAh"};
 			
 
 var prefixVaccination = { vaccinationName: 'Vaccination_', vaccinationCode: 'DS_VAC_' };
@@ -69,7 +71,8 @@ Dhis2Api.factory("commonvariable", function () {
 		    ouDirectiveCode: "",
 		    userDirective:"",
 		    users: usersMSF,
-	        healhservicesCodeOUG:""
+		    healhservicesCodeOUG: "",
+		    clearForm:[]
 			};
 
    return Vari; 
@@ -120,7 +123,8 @@ Dhis2Api.factory("TreeOrganisationunit",['$resource','commonvariable', function 
 Dhis2Api.factory("OrgUnit",['$resource','commonvariable', function ($resource,commonvariable) {
 	return $resource(commonvariable.url+"organisationUnits/:id",
 		{id:'@id'},
-		{ POST: { method: "POST"} ,
+		{Get: { method: "GET"},
+		    POST: { method: "POST" },
 		  PUT: { method: "PUT"},
 		  PATCH: {method: "PATCH"}});
 }]);
@@ -289,5 +293,12 @@ Dhis2Api.factory("GetMission",['$resource','commonvariable', function ($resource
 	fields: 'parent[parent[parent]]'
    }, 
   { get: { method: "GET"} });
+}]);
+
+Dhis2Api.factory("meUser", ['$resource', 'commonvariable', function ($resource, commonvariable) {
+    return $resource(commonvariable.url + "me",
+		{},
+		{ get: { method: "GET" } });
+
 }]);
 

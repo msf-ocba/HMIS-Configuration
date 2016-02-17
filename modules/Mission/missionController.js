@@ -1,4 +1,4 @@
-appConfigProjectMSF.controller('missionController', ["$scope", '$filter', "commonvariable", "OrgUnit", "OrgUnitGroupsOrgUnit", "DataSets", "OrgUnitChildren", "FilterResource", "DataSetsOrgUnit","$modal", "User", function ($scope, $filter, commonvariable, OrgUnit, OrgUnitGroupsOrgUnit, DataSets, OrgUnitChildren, FilterResource, DataSetsOrgUnit,$modal, User) {
+appConfigProjectMSF.controller('missionController', ["$scope", '$filter', "commonvariable", "OrgUnit", "OrgUnitGroupsOrgUnit", "DataSets", "OrgUnitChildren", "FilterResource", "DataSetsOrgUnit", "$modal", "User", "validatorService", function ($scope, $filter, commonvariable, OrgUnit, OrgUnitGroupsOrgUnit, DataSets, OrgUnitChildren, FilterResource, DataSetsOrgUnit, $modal, User, validatorService) {
     var $translate = $filter('translate');
     //Load Data of OU selected
     $scope.prevOu = "";
@@ -45,6 +45,7 @@ appConfigProjectMSF.controller('missionController', ["$scope", '$filter', "commo
 			user.userCredentials.password=commonvariable.users.passwd
 			user.organisationUnits = [{"id":commonvariable.NewOrganisationUnit.id}]
 			user.dataViewOrganisationUnits = [{"id":commonvariable.NewOrganisationUnit.id}]
+			user.userGroups = [{"id":commonvariable.users.uid_project_users_userGroup}]
 			
 			if (i == 0) { //MFP User
 				user.firstName = commonvariable.users.postfix_mfp
@@ -81,6 +82,10 @@ appConfigProjectMSF.controller('missionController', ["$scope", '$filter', "commo
 	            openingDate: $filter('date')($scope.propendate,'yyyy-MM-dd'),
 	           	parent: commonvariable.OrganisationUnitParentConf
 				};
+	    ///validate if object is ok.
+		validatorService.emptyValue(newOu).then(function (result) {
+		    if (result == false)
+		    {
 
 		OrgUnit.POST({},newOu)
 		.$promise.then(function(data){
@@ -127,14 +132,39 @@ appConfigProjectMSF.controller('missionController', ["$scope", '$filter', "commo
 			else{
     		      $scope.messages.push({ type: "danger", text: $translate('PROJECT_NOSAVED') });
 			}
-    	 });
+		});
+		    }
+		    else {
+		        $scope.messages.push({
+		            type: "warning",
+		            text: $translate("FORM_MSG_EMPTYFIELD")
+		        });
+		    }
+
+
+		});
+
 				
 	};
 	
 	
 	$scope.showForm = function (frm) {
 	    $scope.showbutton = false;
+
+	   
 		if(frm==1){
+		    ///Clear form /////////////
+		    commonvariable.clearForm["username"] = true;
+		    commonvariable.clearForm["contextid"] = true;
+		    commonvariable.clearForm["eventid"] = true;
+		    commonvariable.clearForm["typemanager"] = true;
+		    commonvariable.clearForm["populationtype"] = true;
+		    commonvariable.clearForm["projecttype"] = true;
+		    commonvariable.clearForm["projectcode"] = true;
+		    commonvariable.clearForm["projectname"] = true;
+		    $scope.propendate = "";
+
+            //////////////////////////
 			$scope.frmVaccination=false;
 			$scope.frmProject=true;
 			commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.ProjectType] = undefined
@@ -149,6 +179,7 @@ appConfigProjectMSF.controller('missionController', ["$scope", '$filter', "commo
 		}
 
 	};
+
 	$scope.hideForm=function(){
 		$scope.projectName="";
 		$scope.today();

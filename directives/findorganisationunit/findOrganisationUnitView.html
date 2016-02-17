@@ -1,13 +1,10 @@
 <div class="input-group" ng-controller="findOrganisationUnitController">
     <div class="row">
         <div class="col-md-9">
-
-            <div class="input-group-btn {{ouExist}}" >
+             <div class="input-group-btn {{ouExist}}" >
                 <input ng-model="mdname" type="text" class="form-control" ng-change="findOu()" placeholder="{{placeholder}}" ng-disabled="isDisabled">
-            
-            
-            </div>
-        </div>
+               </div>
+          </div>
         <div class="col-md-3">
             <button type="button" class="btn btn-default btn-warning" aria-label="Advertencia" ng-show="alertOu" popover="{{ 'ALARM_EXIST' | translate }}"  popover-trigger="mouseenter" popover-placement="right">
                 <span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span>

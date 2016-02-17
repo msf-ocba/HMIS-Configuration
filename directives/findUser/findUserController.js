@@ -2,7 +2,7 @@ Dhis2Api.directive('d2Finduser', function(){
     return{
         restrict: 'E',
         templateUrl: 'directives/findUser/findUserView.html',
-        scope: {placeholder: '@'}
+        scope: {placeholder: '@',id:'@'}
     }
 });
 
@@ -17,18 +17,31 @@ Dhis2Api.controller("findUserController", ['$scope','$http', 'FilterResource',"c
             	
             	if (data.users.length>0) {
             	
-            		$scope.alertUser=true
-            		$scope.userExist = 'has-error'
+            	    $scope.alertUser = true;
+            		$scope.userExist = 'has-error';
+            		commonvariable.userDirective="";
             		
             	} else {
-            		$scope.alertUser = false
-            		commonvariable.userDirective = $scope.user
+            	    $scope.alertUser = false;
+            	    commonvariable.userDirective = $scope.user;
             		$scope.userExist = '';
             	}
        	});
 
 
     }
+
+    $scope.initValue = function () {
+        $scope.user = "";
+    }
+
+    $scope.$watch(function () {
+        //clear value 
+        if (commonvariable.clearForm[$scope.id] == true) {
+            $scope.initValue();
+            commonvariable.clearForm[$scope.id] = false;
+        }
+    });
 
 
 
