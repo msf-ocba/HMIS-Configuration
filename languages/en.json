@@ -83,7 +83,9 @@
   "VACCINATION_DATASET_NOSAVED": "Vaccination DataSet could not be saved, please verify the description and period selected",
   "VACCINATION_DATASET_SAVE": "Save Vaccination DataSet",
   "VACCINATION_DATASET_UPDATE": "Update Vaccination DataSet",
-   "PROJECT_USER": "User",
+  "PROJECT_USER": "User",
+  "PROJECT_UPDATED": "Project Updated",
+  "PROJECT_UPDATED_MSG": "Project doesn't saved, review that the field name isn't empty",
 		
 	"_______________ Module":" HEALTH SITE_____________",
 	"HEALTHSITE_TITLE":"Health Site",

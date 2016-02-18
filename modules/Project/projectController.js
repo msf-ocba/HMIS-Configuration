@@ -211,7 +211,7 @@ appConfigProjectMSF.controller('projectController', ["$scope", '$filter', "commo
 	    	      
 	    	  } else
 					$scope.messages.push({type:"danger",
-						text:"Project doesn't saved, review that the field name isn't empty"});	    		  
+					    text: $translate('PROJECT_UPDATED_MSG')});	    		  
 	    	  
 	      });
 	      

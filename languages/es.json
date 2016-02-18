@@ -82,7 +82,10 @@
   "VACCINATION_DATASET_NOSAVED": "El DataSet de Vacunación no pudo ser guardado, revise la descripción y periodo seleccionado",
   "VACCINATION_DATASET_SAVE": "Guardar DataSet de Vacunación",
   "VACCINATION_DATASET_UPDATE": "Actualizar DataSet de Vacunación",
-  "PROJECT_USER": "Usuario",	
+  "PROJECT_USER": "Usuario",
+  "PROJECT_UPDATED": "Proyecto actualizado",
+  "PROJECT_UPDATED_MSG":"proyecto no guardado revise que no existan campos en blanco",
+    	
 	
 	"_______________ Module":" HEALTH SITE_____________",
 	"HEALTHSITE_TITLE":"Establecimiento de Salud",
