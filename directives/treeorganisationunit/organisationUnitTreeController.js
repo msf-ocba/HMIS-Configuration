@@ -26,7 +26,7 @@ Dhis2Api.directive('d2Treeorganisationunit', function(){
 		    }
 	}
 	}); 
-Dhis2Api.controller("d2TreeorganisationUnitController", ['$scope', '$location', 'TreeOrganisationunit', "commonvariable", "meUser", function ($scope, $location, TreeOrganisationunit, commonvariable, meUser) {
+Dhis2Api.controller("d2TreeorganisationUnitController", ['$scope','$q', '$location', 'TreeOrganisationunit', "commonvariable", "meUser", function ($scope,$q, $location, TreeOrganisationunit, commonvariable, meUser) {
 	$scope.currentid="";
 	 $scope.currentlevel=0;
     // $scope.loadOrganisationUnit=function(){
@@ -90,15 +90,35 @@ Dhis2Api.controller("d2TreeorganisationUnitController", ['$scope', '$location', 
    	 return json;
    }
     
-     
+	$scope.updateChildren = function (currentid) {
+	    var defered = $q.defer();
+	    var promise = defered.promise;
+
+	    TreeOrganisationunit.get({ uid: currentid })
+                            .$promise.then(function (data) {
+                                ////disable display children if it has close date  
+                                if ($scope.OrganisationUnit.currentNode.closedDate) {
+                                    data.children = [];
+                                }
+                                ///
+                                defered.resolve(data.children);
+                            });
+	    
+	    return promise;
+	};
   $scope.$watch(
             function(OrganisationUnit) {
             	   //refresh if it is neccesary
                    if(commonvariable.RefreshTreeOU){
                        commonvariable.RefreshTreeOU = false;
                        if (commonvariable.NewOrganisationUnit.length == 0) {
-                           $scope.treeOrganisationUnitList = $scope.update($scope.treeOrganisationUnitList, $scope.OrganisationUnit.currentNode.id, commonvariable.EditOrganisationUnit, 2);
-                           commonvariable.EditOrganisationUnit = [];
+                           
+                           $scope.updateChildren($scope.OrganisationUnit.currentNode.id).then(function (dataChildren) {
+                               commonvariable.EditOrganisationUnit.children = dataChildren;
+                               $scope.treeOrganisationUnitList = $scope.update($scope.treeOrganisationUnitList, $scope.OrganisationUnit.currentNode.id, commonvariable.EditOrganisationUnit, 2);
+                               commonvariable.EditOrganisationUnit = [];
+                           });
+                           
                        }
                        else {
                            $scope.treeOrganisationUnitList = $scope.update($scope.treeOrganisationUnitList, $scope.OrganisationUnit.currentNode.id, commonvariable.NewOrganisationUnit, 1);

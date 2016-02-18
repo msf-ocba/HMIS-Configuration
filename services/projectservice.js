@@ -137,32 +137,45 @@ Dhis2Api.service('projectService', ['$q', 'commonvariable', 'User', 'OrgUnitOrgU
 	  };
     
 	  updateCodes = function (orgUnit) {
-		  
+	      var defered = $q.defer();
+	      var promise = defered.promise;
 		  if (orgUnit.level == commonvariable.level.HealthSite || orgUnit.level == commonvariable.level.HealthService) {
 			  
 			  var textToUpdate = "OU_" + commonvariable.ouDirectiveCode.slice(2, 7);
 			  var newCode = textToUpdate + orgUnit.code.slice(7);
 			  
 		      OrgUnit.PATCH({id:orgUnit.id},{code:newCode}).$promise.then(function(data){
-		    	  
+		          defered.resolve(data);
 		    	  if (data.response.status!="SUCCESS")
 		    		  console.log("Eror");
 		    	  
 		      });			  
 			  
 		  }
-		  		  
+		
+		  return promise;
 	  };
 	  
 	  updateOrgUnits = function (orgUnits) {
+	      var defered = $q.defer();
+	      var promise = defered.promise;
 
 	      angular.forEach(orgUnits, function(orgUnit, key){
 	    	  
 	    	  updateOrgUnitGroups(orgUnit);
 	    	  
-	    	  updateCodes(orgUnit);	    	  	    	  
+	    	  if (typeof orgUnit.code != 'undefined')
 	    	  
-		  });
+	    		  updateCodes(orgUnit).then(function (data) {
+
+	    		  });
+
+	    	  if (orgUnits.length - 1 == key) {
+	    	      defered.resolve(true);
+	    	  }
+	    	  
+	      });	     
+	      return promise;
 		  
 	  };
 	  
@@ -233,7 +246,7 @@ Dhis2Api.service('projectService', ['$q', 'commonvariable', 'User', 'OrgUnitOrgU
 	    	  	    	  
 	    	  if (data.response.status=="SUCCESS") {
 	    		  
-	    		  projectEdited=true;
+	    		  //projectEdited=true;
 	    		  //asign OU selected 
 	    	      commonvariable.EditOrganisationUnit = commonvariable.OrganisationUnit;
                   ///replace with new value
@@ -246,15 +259,17 @@ Dhis2Api.service('projectService', ['$q', 'commonvariable', 'User', 'OrgUnitOrgU
 	    	      OrganisationUnitChildren.get({ uid: data.response.lastImported, fields: 'name,id,code,level' }).$promise.then(function (response) {
 	    		   	   			   
 	    	    	  var children=response.organisationUnits;	    	    	  
-	    	    	  updateOrgUnits(children);
+	    	    	  updateOrgUnits(children).then(function (upData) {
+	    	    	      defered.resolve(true);
+	    	    	  });
 	    	  
 	    	      });	
 	    		  	    		  
 	    	  }
 	    	  else
-	    		  projectEdited = false;
+	    	      defered.resolve(false);
 
-	    	  defered.resolve(projectEdited);
+	    	  
 	      });
 	      
 	      return promise;
