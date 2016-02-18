@@ -50,9 +50,21 @@ appConfigProjectMSF.controller('missionController', ["$scope", '$filter', "commo
 	            openingDate: $filter('date')($scope.propendate,'yyyy-MM-dd'),
 	           	parent: commonvariable.OrganisationUnitParentConf
 				};
-
+		var newOuforValid = {//payload
+		    name: commonvariable.ouDirective,
+		    level: (commonvariable.OrganisationUnit.level + 1),
+		    code: commonvariable.ouDirectiveCode,
+		    shortName: commonvariable.ouDirective,
+		    openingDate: $filter('date')($scope.propendate, 'yyyy-MM-dd'),
+		    parent: commonvariable.OrganisationUnitParentConf,
+		    projecttype: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.ProjectType],
+		    populationtype: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.PopulationType],
+		    typemanager: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.TypeManagement],
+		    eventid: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.Event],
+		    contextid: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.Context]
+		};
 		///validate if object is ok.
-		validatorService.emptyValue(newOu).then(function (result) {
+		validatorService.emptyValue(newOuforValid).then(function (result) {
 		    if (result == false) {
 		    	
 		    	missionService.saveProject(newOu).then(function(imported){
