@@ -164,9 +164,11 @@ Dhis2Api.service('projectService', ['$q', 'commonvariable', 'User', 'OrgUnitOrgU
 	    	  
 	    	  updateOrgUnitGroups(orgUnit);
 	    	  
-	    	  updateCodes(orgUnit).then(function (data) {
+	    	  if (typeof orgUnit.code != 'undefined')
+	    	  
+	    		  updateCodes(orgUnit).then(function (data) {
 
-	    	  });
+	    		  });
 
 	    	  if (orgUnits.length - 1 == key) {
 	    	      defered.resolve(true);
