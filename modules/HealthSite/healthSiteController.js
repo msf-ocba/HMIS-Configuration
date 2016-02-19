@@ -42,25 +42,43 @@ appConfigProjectMSF.controller('healthSiteController', ["$scope", '$filter', "co
 		if (commonvariable.OrganisationUnit.code!=undefined) 
 			healthServiceName = commonvariable.OrganisationUnit.code.slice(8,11);
 		
-		healthServiceName = healthServiceName + "_" + commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.HealthService].name;
-
+	
 		loadjsonresource.get("healthservice").then(function(response) {
-					
-			healthServiceSuffix = commonService.getServiceSuffix(response.data.healthserviceSuffix).suffix;
-			
-			var prenewOu={//payload
-			        name: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.HealthService].name,
-					level:(commonvariable.OrganisationUnit.level+1),
-					code: healthServiceSuffix,
-		            shortName:healthServiceName,
-		           	openingDate:$filter('date')($scope.healthServiceDate, 'yyyy-MM-dd'),
-		           	parent: commonvariable.OrganisationUnitParentConf
-					};
-			
+
+		    try {
+		        var nameforValidate = commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.HealthService].name;
+		    } catch (err) {
+		        var nameforValidate = undefined;
+		    }
+		    
+
+			var prenewOuValidate = {//payload
+			    name: nameforValidate,
+			    level: (commonvariable.OrganisationUnit.level + 1),
+			    healthServiceSuffix: response.data.healthserviceSuffix,
+		        openingDate: $filter('date')($scope.healthServiceDate, 'yyyy-MM-dd'),
+			    parent: commonvariable.OrganisationUnitParentConf,
+			    healthServiceId: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.healthServiceId]
+			};
 		    ///validate if object is ok.
-			validatorService.emptyValue(prenewOu).then(function (result) {
+			validatorService.emptyValue(prenewOuValidate).then(function (result) {
 				
 			    if (result == false) {
+
+			        healthServiceSuffix = commonService.getServiceSuffix(response.data.healthserviceSuffix).suffix;
+			        healthServiceName = healthServiceName + "_" + commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.HealthService].name;
+			       
+
+			        var prenewOu = {//payload
+			            name: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.HealthService].name,
+			            level: (commonvariable.OrganisationUnit.level + 1),
+			            code: healthServiceSuffix,
+			            shortName: healthServiceName,
+			            openingDate: $filter('date')($scope.healthServiceDate, 'yyyy-MM-dd'),
+			            parent: commonvariable.OrganisationUnitParentConf
+			        };
+
+
 			        healthServiceCode = commonvariable.OrganisationUnit.code + "_" + healthServiceSuffix;
 
 			        if (commonvariable.OrganisationUnit.children.length > 0)

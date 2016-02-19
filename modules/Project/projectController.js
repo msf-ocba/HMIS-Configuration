@@ -51,8 +51,19 @@ appConfigProjectMSF.controller('projectController', ["$scope", '$filter', "commo
 	        openingDate: $filter('date')($scope.siteDate, 'yyyy-MM-dd'),
 	        parent: commonvariable.OrganisationUnitParentConf
 	    };
+
+	    var newOuValitate = {//payload for validate
+	        name: commonvariable.ouDirective,
+	        level: (commonvariable.OrganisationUnit.level + 1),
+	        shortName: commonvariable.ouDirective,
+	        code: $scope.siteprefix,
+	        openingDate: $filter('date')($scope.siteDate, 'yyyy-MM-dd'),
+	        parent: commonvariable.OrganisationUnitParentConf,
+	        healthsitetype: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.SiteType],
+	        user: commonvariable.userDirective
+	    };
         ///validate if object is ok.
-	    validatorService.emptyValue(newOu).then(function (result) {
+	    validatorService.emptyValue(newOuValitate).then(function (result) {
 	        if (result == false) {
 
 	            var newOu = {//payload

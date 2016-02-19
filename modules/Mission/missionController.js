@@ -61,7 +61,8 @@ appConfigProjectMSF.controller('missionController', ["$scope", '$filter', "commo
 		    populationtype: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.PopulationType],
 		    typemanager: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.TypeManagement],
 		    eventid: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.Event],
-		    contextid: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.Context]
+		    contextid: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.Context],
+		    user: commonvariable.userDirective
 		};
 		///validate if object is ok.
 		validatorService.emptyValue(newOuforValid).then(function (result) {
