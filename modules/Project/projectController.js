@@ -43,16 +43,8 @@ appConfigProjectMSF.controller('projectController', ["$scope", '$filter', "commo
 	    if (commonvariable.OrganisationUnit.code != undefined && commonvariable.OrganisationUnit.code.length >= 7)
 	        codeOrgUnit = "OU_" + commonvariable.OrganisationUnit.code.slice(2, 7) + $scope.siteprefix;
 
-	    var newOu = {//payload for validate
-	        name: commonvariable.ouDirective,
-	        level: (commonvariable.OrganisationUnit.level + 1),
-	        shortName: commonvariable.ouDirective,
-	        code: $scope.siteprefix,
-	        openingDate: $filter('date')($scope.siteDate, 'yyyy-MM-dd'),
-	        parent: commonvariable.OrganisationUnitParentConf
-	    };
 
-	    var newOuValitate = {//payload for validate
+	    var newOu = {//payload and other validate for Validate
 	        name: commonvariable.ouDirective,
 	        level: (commonvariable.OrganisationUnit.level + 1),
 	        shortName: commonvariable.ouDirective,
@@ -60,22 +52,12 @@ appConfigProjectMSF.controller('projectController', ["$scope", '$filter', "commo
 	        openingDate: $filter('date')($scope.siteDate, 'yyyy-MM-dd'),
 	        parent: commonvariable.OrganisationUnitParentConf,
 	        healthsitetype: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.SiteType],
-	        user: commonvariable.userDirective
+	        userforValidate: commonvariable.userDirective
 	    };
         ///validate if object is ok.
-	    validatorService.emptyValue(newOuValitate).then(function (result) {
+	    validatorService.emptyValue(newOu).then(function (result) {
 	        if (result == false) {
-
-	            var newOu = {//payload
-	                name: commonvariable.ouDirective,
-	                level: (commonvariable.OrganisationUnit.level + 1),
-	                shortName: commonvariable.ouDirective,
-	                code: codeOrgUnit,
-	                openingDate: $filter('date')($scope.siteDate, 'yyyy-MM-dd'),
-	                parent: commonvariable.OrganisationUnitParentConf
-	            };
-
-	            
+           
 	            projectService.saveHealthSite(newOu).then(function (result) {
 	            	if (result == true) {
 
@@ -84,17 +66,14 @@ appConfigProjectMSF.controller('projectController', ["$scope", '$filter', "commo
 
                         //set message variable
                         $scope.messages.push({
-                            type: "success", text: "Health site saved"
+                            type: "success", text: $translate("SITE_SAVED")
                         });
 
-                        //clear txtbox
-                        $scope.siteName = "";
-                        $scope.frmSite = false;
-
-	            	}
+                        $scope.hideForm();
+                        	            	}
 	            	else 
                         $scope.messages.push({
-                            type: "danger",text: "Health site doesn't saved, review that the field name isn't empty"
+                            type: "danger", text: $translate("SITE_NOSAVED")
                         });	            		
 	            });
 
@@ -132,17 +111,31 @@ appConfigProjectMSF.controller('projectController', ["$scope", '$filter', "commo
 		//$scope.mdname="";
 		$scope.today();
 		$scope.showfields = false;
+
+	    //clear txtbox
+		$scope.siteName = "";
+		$scope.frmSite = false;
+
+	    //Clear Common Variables
+		commonvariable.PeriodSelected = [];
+		commonvariable.DataElementSelected = [];
+		commonvariable.ouDirective = "";
+		commonvariable.ouDirectiveCode = "";
+		commonvariable.userDirective = "";
 	};
+
 	
 	$scope.$watch(
 			function($scope) {
 				if(commonvariable.OrganisationUnit!=undefined && commonvariable.OrganisationUnit.id != $scope.prevOu){
 					
 			        $scope.prevOu = commonvariable.OrganisationUnit.id;
-
+			        
 					$scope.projectname=commonvariable.OrganisationUnit.name;
 					$scope.projectcode=commonvariable.OrganisationUnit.code;
-					$scope.projectcreated=commonvariable.OrganisationUnit.openingDate;
+					$scope.projectcreated = commonvariable.OrganisationUnit.openingDate;
+
+					$scope.hideForm();
 			}
 			});
 	

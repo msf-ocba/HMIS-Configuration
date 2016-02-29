@@ -42,15 +42,7 @@ appConfigProjectMSF.controller('missionController', ["$scope", '$filter', "commo
 	///Save project
 	$scope.projectsave=function(){
 
-		var newOu={//payload
-				name:commonvariable.ouDirective,
-				level:(commonvariable.OrganisationUnit.level+1),
-				code:commonvariable.ouDirectiveCode,
-	            shortName:commonvariable.ouDirective,
-	            openingDate: $filter('date')($scope.propendate,'yyyy-MM-dd'),
-	           	parent: commonvariable.OrganisationUnitParentConf
-				};
-		var newOuforValid = {//payload
+		var newOu = {//payload
 		    name: commonvariable.ouDirective,
 		    level: (commonvariable.OrganisationUnit.level + 1),
 		    code: commonvariable.ouDirectiveCode,
@@ -62,10 +54,10 @@ appConfigProjectMSF.controller('missionController', ["$scope", '$filter', "commo
 		    typemanager: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.TypeManagement],
 		    eventid: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.Event],
 		    contextid: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.Context],
-		    user: commonvariable.userDirective
+		    userForValidate: commonvariable.userDirective
 		};
 		///validate if object is ok.
-		validatorService.emptyValue(newOuforValid).then(function (result) {
+		validatorService.emptyValue(newOu).then(function (result) {
 		    if (result == false) {
 		    	
 		    	missionService.saveProject(newOu).then(function(imported){
@@ -134,8 +126,15 @@ appConfigProjectMSF.controller('missionController', ["$scope", '$filter', "commo
 		$scope.vaccinationName="";
 		$scope.vaccinationCode="";
 	    $scope.dataSetDescription=""
-	    commonvariable.PeriodSelected=[];
+	  
+
+	    //Clear Common Variables
+	    commonvariable.PeriodSelected = [];
 	    commonvariable.DataElementSelected = [];
+	    commonvariable.ouDirective = "";
+	    commonvariable.ouDirectiveCode = "";
+	    commonvariable.userDirective = "";
+
 	};
 
     // Date datepicker
@@ -172,6 +171,7 @@ appConfigProjectMSF.controller('missionController', ["$scope", '$filter', "commo
 	               $scope.missionname = commonvariable.OrganisationUnit.name;
 	               $scope.missioncreated = commonvariable.OrganisationUnit.openingDate;
 	               $scope.prevOu = commonvariable.OrganisationUnit.id;
+
 	               $scope.hideForm();
 	               //get Children for OU selected
 

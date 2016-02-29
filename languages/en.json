@@ -101,8 +101,9 @@
 	"SITE_SAVE": "Save Health Site",
 	"SITE_CANCEL": "Clear form",
 	"SITE_UPDATED": "The health site has been updated",
-    "SITE_USER": "User",
-	
+  "SITE_USER": "User",
+  "SITE_SAVED": "Health site saved",
+	"SITE_NOSAVED": "Health site doesn't saved, review that the field name isn't empty",
 	
 	
 	"______________ Module_":" HEALTH SERVICE_____________",
@@ -124,7 +125,9 @@
  	"DATASET_PERIOD":"Period: ",
   	"SERVICE_SAVE": "Save Health Service",
   	"SERVICE_CANCEL": "Clear form",
-  	"SERVICE_UPDATED": "The health service has been updated",
+  "SERVICE_UPDATED": "The health service has been updated",
+  "SERVICE_SAVED": "Health service saved",
+  "SERVICE_NOSAVED": "Health service doesn't saved, review that the field name  or code doesn't exist",
 	
 	"_____________ Module_":" ORG UNIT DELETE_____________",
 	"ORGUNITDELETE_TITLE": "Delete Org Unit",
