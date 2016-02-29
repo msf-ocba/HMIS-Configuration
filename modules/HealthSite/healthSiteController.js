@@ -68,17 +68,6 @@ appConfigProjectMSF.controller('healthSiteController', ["$scope", '$filter', "co
 			        healthServiceSuffix = commonService.getServiceSuffix(response.data.healthserviceSuffix).suffix;
 			        healthServiceName = healthServiceName + "_" + commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.HealthService].name;
 			       
-
-			        var prenewOu = {//payload
-			            name: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.HealthService].name,
-			            level: (commonvariable.OrganisationUnit.level + 1),
-			            code: healthServiceSuffix,
-			            shortName: healthServiceName,
-			            openingDate: $filter('date')($scope.healthServiceDate, 'yyyy-MM-dd'),
-			            parent: commonvariable.OrganisationUnitParentConf
-			        };
-
-
 			        healthServiceCode = commonvariable.OrganisationUnit.code + "_" + healthServiceSuffix;
 
 			        if (commonvariable.OrganisationUnit.children.length > 0)
@@ -101,17 +90,18 @@ appConfigProjectMSF.controller('healthSiteController', ["$scope", '$filter', "co
 	                        //set message variable
 	                        $scope.messages.push({
 	                            type: "success",
-	                            text: "Health service saved"
+	                            text: $translate("SERVICE_SAVED")
 	                        });
 
 	                        //clear txtbox
 	                        $scope.healthServiceName = "";
 
-	                        $scope.frmService = false;			        		
+	                        $scope.hideForm();
+
 			        	} else
                             $scope.messages.push({
                                 type: "danger",
-                                text: "Health service doesn't saved, review that the field name isn't empty"
+                                text: $translate("SERVICE_NOSAVED")
                             });			        	
 			        });
 
@@ -139,6 +129,8 @@ appConfigProjectMSF.controller('healthSiteController', ["$scope", '$filter', "co
 		    $scope.frmService = true;
 		    commonvariable.clearForm["healthservice"] = true;
 		    $scope.healthServiceDate = "";
+		    commonvariable.orgUnitGroupSet = [];
+		    $scope.healthsitecreated = "";
 		}
 		else{
 			$scope.frmService=false;
@@ -146,6 +138,13 @@ appConfigProjectMSF.controller('healthSiteController', ["$scope", '$filter', "co
 
 		
 	//	$scope.showfields=true;
+	};
+
+	$scope.hideForm = function () {
+
+	    $scope.frmService = false;
+	    //commonvariable.orgUnitGroupSet = [];
+	    $scope.healthsitecreated = "";
 	};
 	
 	$scope.$watch(
@@ -157,7 +156,9 @@ appConfigProjectMSF.controller('healthSiteController', ["$scope", '$filter', "co
 					
 					$scope.healthsitename=commonvariable.OrganisationUnit.name;
 					$scope.healthsitecreated=commonvariable.OrganisationUnit.openingDate;
-					$scope.healthsitecode=commonvariable.OrganisationUnit.code;
+					$scope.healthsitecode = commonvariable.OrganisationUnit.code;
+
+					$scope.hideForm();
 			}
 			});
 	

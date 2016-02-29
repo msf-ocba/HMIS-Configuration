@@ -43,14 +43,21 @@ Dhis2Api.controller("findOrganisationUnitController", ['$scope','$http', 'Organi
                         $scope.OrganisationUnitfound = data.organisationUnits;
                         $scope.alertOu = true;
                         $scope.ouExist = 'has-error';
-                        commonvariable.ouDirective = "";
+
+                        if ($scope.field == "name")
+                            commonvariable.ouDirective = "";
+                        else
+                            commonvariable.ouDirectiveCode = "";
                     }
                     else {
                         if ($scope.operation != 'edit') {
                             $scope.OrganisationUnitfound = data.organisationUnits;
                             $scope.alertOu = true;
                             $scope.ouExist = 'has-error';
-                            commonvariable.ouDirective = "";
+                            if ($scope.field == "name")
+                                commonvariable.ouDirective = "";
+                            else
+                                commonvariable.ouDirectiveCode = "";
                         }                       
                     }
 
