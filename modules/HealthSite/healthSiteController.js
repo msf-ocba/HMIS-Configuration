@@ -58,7 +58,7 @@ appConfigProjectMSF.controller('healthSiteController', ["$scope", '$filter', "co
 			    healthServiceSuffix: response.data.healthserviceSuffix,
 		        openingDate: $filter('date')($scope.healthServiceDate, 'yyyy-MM-dd'),
 			    parent: commonvariable.OrganisationUnitParentConf,
-			    healthServiceId: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.healthServiceId]
+			    healthServiceId: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.HealthService]
 			};
 		    ///validate if object is ok.
 			validatorService.emptyValue(prenewOuValidate).then(function (result) {
