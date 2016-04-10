@@ -130,7 +130,7 @@ appConfigProjectMSF.controller('healthSiteController', ["$scope", '$filter', "co
 		    commonvariable.clearForm["healthservice"] = true;
 		    $scope.healthServiceDate = "";
 		    commonvariable.orgUnitGroupSet = [];
-		    $scope.healthsitecreated = "";
+		    //$scope.healthsitecreated = "";
 		}
 		else{
 			$scope.frmService=false;
@@ -144,7 +144,7 @@ appConfigProjectMSF.controller('healthSiteController', ["$scope", '$filter', "co
 
 	    $scope.frmService = false;
 	    //commonvariable.orgUnitGroupSet = [];
-	    $scope.healthsitecreated = "";
+	    //$scope.healthsitecreated = "";
 	};
 	
 	$scope.$watch(
