@@ -82,7 +82,10 @@
   "VACCINATION_DATASET_NOSAVED": "El DataSet de Vacunación no pudo ser guardado, revise la descripción y periodo seleccionado",
   "VACCINATION_DATASET_SAVE": "Guardar DataSet de Vacunación",
   "VACCINATION_DATASET_UPDATE": "Actualizar DataSet de Vacunación",
-  "PROJECT_USER": "Usuario",	
+  "PROJECT_USER": "Usuario",
+  "PROJECT_UPDATED": "Proyecto actualizado",
+  "PROJECT_UPDATED_MSG":"proyecto no guardado revise que no existan campos en blanco",
+    	
 	
 	"_______________ Module":" HEALTH SITE_____________",
 	"HEALTHSITE_TITLE":"Establecimiento de Salud",
@@ -98,12 +101,12 @@
 	"SITE_SAVE": "Modificar establecimiento",
 	"SITE_CANCEL": "Cancelar",
 	"SITE_UPDATED": "El establecimiento de salud ha sido actualizado",
-	"SITE_USER": "Usuario",
+  "SITE_USER": "Usuario",
+  "SITE_SAVED": "establecimiento de salud guardado",
+  "SITE_NOSAVED": "establecimiento de salud no guardado, revise que no existan cambios vacios",
 	
 	
-	
-	
-	"______________ Module":" HEALTH SERVICE_____________",
+		"______________ Module":" HEALTH SERVICE_____________",
 	"HEALTHSERVICE_TITLE":"Servicio de salud",
 	"HEALTHSERVICE_DETAILS": "Detalles del servicio de salud",
 	"HEALTHSERVICE_SAVE": "Guardar",
@@ -122,7 +125,9 @@
   	"DATASET_PERIOD":"Periodo: ",
   	"SERVICE_SAVE": "Modificar servicio de salud",
   	"SERVICE_CANCEL": "Cancelar",
-  	"SERVICE_UPDATED": "El servicio de salud ha sido actualizado",
+  "SERVICE_UPDATED": "El servicio de salud ha sido actualizado",
+  "SERVICE_SAVED": "Servicio de salud Guardado",
+  "SERVICE_NOSAVED": "Servicio de salud no guardado, revise que el nombre o código ya existan",
   	
 	"_______________ Directive ":" OrganisationUnit+tree_____________",
 	"ORGANISATIONUNIT":"Proyecto",

@@ -1,5 +1,27 @@
-appConfigProjectMSF.controller('healthServiceController', ["$scope",'$filter',"commonvariable","$modal", "OrgUnit", "OrgUnitOrgUnitGroups", "OrgUnitGroupByOrgUnit", "loadjsonresource", "FilterResource", "OrgUnitGroupsOrgUnit", function($scope, $filter,commonvariable,$modal, OrgUnit, OrgUnitOrgUnitGroups, OrgUnitGroupByOrgUnit, loadjsonresource, FilterResource, OrgUnitGroupsOrgUnit) {
+/* 
+   Copyright (c) 2016.
+ 
+   This file is part of Project Configuration for MSF.
+ 
+   Project Configuration is free software: you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation, either version 3 of the License, or
+   (at your option) any later version.
+ 
+   Project Configuration is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+ 
+   You should have received a copy of the GNU General Public License
+   along with Project Configuration.  If not, see <http://www.gnu.org/licenses/>. */
+
+appConfigProjectMSF.controller('healthServiceController', ["$scope",'$filter',"commonvariable","$modal", "healthserviceService",  
+                                                           function($scope, $filter,commonvariable,$modal, healthserviceService) {
 	var $translate = $filter('translate');
+
+	
+	healthserviceService.initValue($scope);
 	
 	//set message variable
 	$scope.closeAlertMessage = function(index) {
@@ -102,168 +124,25 @@ appConfigProjectMSF.controller('healthServiceController', ["$scope",'$filter',"c
 	    
 	    
   	  if (typeof(commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.HealthService])!="undefined") {
+  		  
+  		  healthserviceService.editHealthService(commonvariable.OrganisationUnit.id, editOu).then(function(updated){
+  			 if (updated) {
+  			      commonvariable.RefreshTreeOU = true;  				
+  			      $scope.operation = 'show';
+  			      
+  			      $scope.messages.push({ type: "success", text: $translate('SERVICE_UPDATED') });
+  			 } else $scope.messages.push({type:"danger", text:"Health service doesn't saved, review that the field name isn't empty"});
+  		  });
 	  
-	 
-
-  		  /*if (typeof(commonvariable.preOrgUnitGroupSet[commonvariable.ouGroupsetId.HealthService])=="undefined")
-			  OrgUnitOrgUnitGroups.POST({ uidorgunit: commonvariable.OrganisationUnit.id, uidgroup: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.HealthService].id })*/
-	  
-		  if (commonvariable.preOrgUnitGroupSet[commonvariable.ouGroupsetId.HealthService].id != commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.HealthService].id) {
-			  OrgUnitOrgUnitGroups.DELETE({ uidorgunit: commonvariable.OrganisationUnit.id, uidgroup: commonvariable.preOrgUnitGroupSet[commonvariable.ouGroupsetId.HealthService].id });
-			  //OrgUnitOrgUnitGroups.DELETE({uidorgunit: commonvariable.OrganisationUnit.id, uidgroup: commonvariable.preOrgUnitGroupSet[commonvariable.ouGroupsetId.HealthServiceType].id});
-			  deleteOrgUnitGroup(commonvariable.OrganisationUnit.id, commonvariable.ouGroupsetId.HealthServiceType)
-			  OrgUnitOrgUnitGroups.POST({ uidorgunit: commonvariable.OrganisationUnit.id, uidgroup: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.HealthService].id });
-			  
-			  var sitePrefix = commonvariable.OrganisationUnit.name.slice(0,3)
-			  var healthServiceName = sitePrefix + commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.HealthService].name
-				 
-			  editOu.name = healthServiceName
-				 
-			  loadjsonresource.get("healthservice").then(function(response) {
-						
-				  healthServiceSuffix = getServiceSuffix(response.data.healthserviceSuffix).suffix;
-						
-				  healthServiceCode=commonvariable.OrganisationUnit.parent.code + "_" + healthServiceSuffix;
-			  
-				  if (commonvariable.OrganisationUnit.children.length>0)
-					  healthServiceCode = healthServiceCode +"_" + (commonvariable.OrganisationUnit.parent.children.length + 1);
-
-				  editOu.code = healthServiceCode		
-				  
-				  var codeServiceType = undefined;
-				  
-				  loadjsonresource.get("servicebyservicetype").then(function(response) {
-				  
-					  codeServiceType = getServiceType(response.data.servicesByServiceType);
-					  
-					  FilterResource.GET({resource:'organisationUnitGroups', filter:'code:eq:'+codeServiceType}).$promise
-				  		.then(function(response){
-				  			
-				  			if (response.organisationUnitGroups.length>0) {
-				  				
-				  				var orgUnitGroup = response.organisationUnitGroups[0];
-								OrgUnitGroupsOrgUnit.POST({uidgroup:orgUnitGroup.id, uidorgunit:commonvariable.OrganisationUnit.id});
-
-				  			}
-				  							  			
-				  		});
-
-					  
-				  });
-
-				  
-				  OrgUnit.PATCH({id:commonvariable.OrganisationUnit.id},editOu).$promise.then(function(data){
-
-				    	  if (data.response.status=="SUCCESS") {
-				    		  
-				    			
-			                  $scope.updateEditOrgUnit(editOu)
-			                  
-				    	      $scope.messages.push({ type: "success", text: $translate('SERVICE_UPDATED') });
-
-				    	  }
-				    	
-				   });
-												
-			   });	
-			  
-			  
-		  }
-		  else{
-			    OrgUnit.PATCH({id:commonvariable.OrganisationUnit.id},editOu).$promise.then(function(data){
-			    	  
-			    	  if (data.response.status=="SUCCESS") {
-			    		  
-		                  $scope.updateEditOrgUnit(editOu)
-			    	      
-			    	      	    	    	    	      
-			    	      
-			    	      $scope.messages.push({ type: "success", text: $translate('SERVICE_UPDATED') });
-			    	      
-			    	  }
-			    	  else
-							$scope.messages.push({type:"danger",
-									text:"Health site doesn't saved, review that the field name isn't empty"});
-
-			      
-			    });	    
-			  
-			  
-		  }
-		  
-			  
 		  
   	  }
   	  
 
-	}
+	};
 	
-	getServiceSuffix = function(healthserviceSuffix) {
-		
-		var services = healthserviceSuffix.service;
-		
-		
-		var serviceResult = {};
-		
-		for (var i=0; i<services.length; i++) {
-			
-			if (services[i].code==commonvariable.orgUnitGroupSet.BtFXTpKRl6n.code) {
-				serviceResult = services[i];
-				break;
-			}
-			
-		}
-		
-		return serviceResult;
-		
-	}
-	
-	function deleteOrgUnitGroup (uidOrgUnit, uidOrgUnitGroupSet) {
-		
-		OrgUnitGroupByOrgUnit.get({uid:uidOrgUnit}).$promise.then(function(data) {
-			
-			ouOrgUnitGroups=data.organisationUnitGroups;
-			
-			OrgUnitGroupSet.get({uid:uidOrgUnitGroupSet}).$promise.then(function(data) {
-								
-				ougsOrgUnitGroups=data.organisationUnitGroups;
-				
-			    try {
-			    	
-			    	var find = false;
-			    	
-			        for (var i = 0; i < ouOrgUnitGroups.length; i++) {
-			        
-			        	if (find == true) break;
-			        
-			            for (var j = 0; j < ougsOrgUnitGroups.length; j++) {
-			                if (ouOrgUnitGroups[i].id == ougsOrgUnitGroups[j].id) {
-			                	find = true;
-			      			  	OrgUnitOrgUnitGroups.DELETE({uidorgunit: uidOrgUnit, uidgroup: ouOrgUnitGroups[i].id});
-
-			                    break;
-			                }
-			            }
-			            
-			        }
-			    } catch (err) { };
-			    
-			});
-			
-		});
-		
-	
-	}
-	
-
-
-
-
 
     ///Delete PROJECT
 	$scope.DeleteService = function () {
-
-
 
 	    ///
 	    $scope.messages.push({ type: "success", text: $translate('SERVICE_DELETED') });
