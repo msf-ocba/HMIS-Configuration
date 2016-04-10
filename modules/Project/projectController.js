@@ -48,7 +48,7 @@ appConfigProjectMSF.controller('projectController', ["$scope", '$filter', "commo
 	        name: commonvariable.ouDirective,
 	        level: (commonvariable.OrganisationUnit.level + 1),
 	        shortName: commonvariable.ouDirective,
-	        code: $scope.siteprefix,
+	        code: codeOrgUnit,
 	        openingDate: $filter('date')($scope.siteDate, 'yyyy-MM-dd'),
 	        parent: commonvariable.OrganisationUnitParentConf,
 	        healthsitetype: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.SiteType],
@@ -56,7 +56,7 @@ appConfigProjectMSF.controller('projectController', ["$scope", '$filter', "commo
 	    };
         ///validate if object is ok.
 	    validatorService.emptyValue(newOu).then(function (result) {
-	        if (result == false) {
+	        if (result == false && $scope.siteprefix!="") {
            
 	            projectService.saveHealthSite(newOu).then(function (result) {
 	            	if (result == true) {
