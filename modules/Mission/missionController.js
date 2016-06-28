@@ -169,7 +169,7 @@ appConfigProjectMSF.controller('missionController', ["$scope", '$filter', "commo
 	           try {
 
 	               $scope.missionname = commonvariable.OrganisationUnit.name;
-	               $scope.missioncreated = commonvariable.OrganisationUnit.openingDate;
+	               //$scope.missioncreated = commonvariable.OrganisationUnit.openingDate;
 	               $scope.prevOu = commonvariable.OrganisationUnit.id;
 
 	               $scope.hideForm();
