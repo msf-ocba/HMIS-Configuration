@@ -75,6 +75,7 @@ Dhis2Api.factory("commonvariable", function () {
 	var Vari={
 			url: urlApi,
 			urlbase: urlBase,
+			codedatasets: codeDataSets,
 			OrganisationUnitList:[],
 			OrganisationUnit:"",
 			RefreshTreeOU:false,
