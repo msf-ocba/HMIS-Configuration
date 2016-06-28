@@ -211,7 +211,7 @@ Dhis2Api.service('projectService', ['$q', 'commonvariable', 'User', 'OrgUnitOrgU
 
                   });
 
-                  FilterResource.GET({ resource: 'dataSets', filter: 'code:eq:' + "DS_INFR_3" }).$promise
+                  FilterResource.GET({ resource: 'dataSets', filter: 'code:eq:' + commonvariable.codeDataSets.codeDataSetSite }).$promise
                     .then(function (response) {
 
                         if (response.dataSets.length > 0) {
