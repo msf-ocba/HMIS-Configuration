@@ -51,8 +51,8 @@ appConfigProjectMSF.controller('projectController', ["$scope", '$filter', "commo
 	        code: codeOrgUnit,
 	        openingDate: $filter('date')($scope.siteDate, 'yyyy-MM-dd'),
 	        parent: commonvariable.OrganisationUnitParentConf,
-	        healthsitetype: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.SiteType]
-	        //userforValidate: commonvariable.userDirective
+	        healthsitetype: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.SiteType],
+	        userforValidate: commonvariable.userDirective
 	    };
         ///validate if object is ok.
 	    validatorService.emptyValue(newOu).then(function (result) {
@@ -62,9 +62,7 @@ appConfigProjectMSF.controller('projectController', ["$scope", '$filter', "commo
 	            	if (result == true) {
 
 	            		commonvariable.RefreshTreeOU = true;
-	            		
-	            		if (commonvariable.userDirective.trim() != "")
-	            			projectService.saveSiteUser();
+	            		projectService.saveSiteUser();
 
                         //set message variable
                         $scope.messages.push({
