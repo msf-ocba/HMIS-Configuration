@@ -25,7 +25,8 @@ Dhis2Api.directive('d2Resourcejsonvaccination', function(){
 		    }
 	}
 	}); 
-Dhis2Api.controller("d2ResourcejsonvaccinationController", ['$scope', '$filter', '$interval', "commonvariable", "loadjsonresource", "DataElements", "DataSets", "OrgUnit", function ($scope, $filter, $interval, commonvariable, loadjsonresource, DataElements, DataSets, OrgUnit) {
+Dhis2Api.controller("d2ResourcejsonvaccinationController", ['$scope', '$filter', '$interval', "commonvariable", "loadjsonresource", "DataElements", "DataSets", "OrgUnit", "validatorService",
+                                                            function ($scope, $filter, $interval, commonvariable, loadjsonresource, DataElements, DataSets, OrgUnit, validatorService) {
 	$scope.style=[];
 	var $translate = $filter('translate');
 	
@@ -149,16 +150,25 @@ Dhis2Api.controller("d2ResourcejsonvaccinationController", ['$scope', '$filter',
 	        dataElements: $scope.DataElementSelectedforPUT,
 	        organisationUnits: $scope.childOU
 	    };
-	    DataSets.Post({}, newDataSet)
-         .$promise.then(function (data) {
-             if (data.response.status == "SUCCESS") {
-                 $scope.messages.push({ type: "success", text: $translate('VACCINATION_DATASET_SAVED') });
-                 $scope.hideFormvaccination();
-             }
-             else {
-                 $scope.messages.push({ type: "danger", text: $translate('VACCINATION_DATASET_NOSAVED') });
-             }
-         });
+	    
+	    validatorService.emptyValue(newDataSet).then(function (result) {
+	    	
+	    	if (result == false){
+	    	    DataSets.Post({}, newDataSet)
+	            .$promise.then(function (data) {
+	                if (data.response.status == "SUCCESS") {
+	                    $scope.messages.push({ type: "success", text: $translate('VACCINATION_DATASET_SAVED') });
+	                    $scope.hideFormvaccination();
+	                }
+	                else {
+	                    $scope.messages.push({ type: "danger", text: $translate('VACCINATION_DATASET_NOSAVED') });
+	                }
+	            });	    		
+	    	}
+	    	else
+	    		$scope.messages.push({type: "warning", text: $translate("FORM_MSG_EMPTYFIELD")});
+	    });
+	    
 	};
 
 	$scope.updateDatasetVaccination = function () {
