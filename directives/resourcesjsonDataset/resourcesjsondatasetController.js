@@ -25,7 +25,8 @@ Dhis2Api.directive('d2Resourcejsondataset', function(){
 		    }
 	}
 	}); 
-Dhis2Api.controller("d2ResourcejsondatasetController", ['$scope', '$filter', '$interval', "commonvariable", "loadjsonresource", "OrgUnit", "DataSets", function ($scope,$filter, $interval, commonvariable, loadjsonresource, OrgUnit, DataSets) {
+Dhis2Api.controller("d2ResourcejsondatasetController", ['$scope', '$filter', '$interval', "commonvariable", "loadjsonresource", "OrgUnit", "DataSets", "commonService",
+                                                        function ($scope,$filter, $interval, commonvariable, loadjsonresource, OrgUnit, DataSets, commonService) {
    
     
     var stop;
@@ -108,7 +109,11 @@ Dhis2Api.controller("d2ResourcejsondatasetController", ['$scope', '$filter', '$i
                 if ($scope.services.length == skey + 1 && $scope.levels.length == 0){
                     $scope.messages.push({ type: "danger", text: "code " + commonvariable.healhservicesCodeOUG + " not found in file" });
                 }
+                
              });
+            
+            $scope.levels = commonService.sortByKey($scope.levels, 'name');
+            
          });
     }
 
