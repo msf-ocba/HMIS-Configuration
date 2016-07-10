@@ -8,7 +8,12 @@
   "DISABLED_TITLE": "La Unidad Organizativa seleccionada se encuentra desabilitada",
   "CANCEL": "Cancelar",
   "FORM_MSG_EMPTYFIELD": "Verifique que el formulario no contenga campos vacios",
-  
+  "PERIOD_LIST": "Seleccione un periodo",
+  "PERIODTYPE_DAILY":"Diariamente",
+	"PERIODTYPE_WEEKLY":"Semanalmente",
+	"PERIODTYPE_MONTHLY":"Mensualmente",
+  "PERIODTYPE_YEARLY": "Anualmente",  
+
   "_____________MODAL": "modal for delete _____",
   "CLOSE_DATE": "Close Date",
   "MISSION_DELETE_TITTLE": " Delete mission",
