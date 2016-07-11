@@ -8,6 +8,11 @@
   "DISABLED_TITLE": "The Organsation Unit Selected is disabled",
   "CANCEL": "Clear Form",
   "FORM_MSG_EMPTYFIELD": "verify that the form does not have empty fields",
+  "PERIOD_LIST": "Select period",
+  "PERIODTYPE_DAILY":"Daily",
+	"PERIODTYPE_WEEKLY":"Weekly",
+	"PERIODTYPE_MONTHLY":"Monthly",
+  "PERIODTYPE_YEARLY": "Yearly",  
 
   "_____________MODAL": "modal for delete _____",
   "CLOSE_DATE": "Close Date",

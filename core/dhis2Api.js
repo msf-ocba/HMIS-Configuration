@@ -50,6 +50,9 @@ var ougroupsetId = { ProjectType: "rQjuGZcxNxE"
                     ,HealthServiceType: "akYeq1mMz2N"
                     ,SiteType: "ZxNjaKVXY1D"};
 
+var codeDataSets = {codeDataSetProject:"DS_VST_3"
+    				,codeDataSetSite:"DS_DEM"};
+
 var levelMSF = {OperationalCenter: "2"
 			 ,Mission: "3"
 			 ,Project: "4"
@@ -72,6 +75,7 @@ Dhis2Api.factory("commonvariable", function () {
 	var Vari={
 			url: urlApi,
 			urlbase: urlBase,
+			codedatasets: codeDataSets,
 			OrganisationUnitList:[],
 			OrganisationUnit:"",
 			RefreshTreeOU:false,
