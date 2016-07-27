@@ -52,7 +52,10 @@ appConfigProjectMSF.controller('healthServiceController', ["$scope",'$filter',"c
 	$scope.$watch(
 			function($scope) {
 				if(commonvariable.OrganisationUnit!=undefined && commonvariable.OrganisationUnit.id != $scope.prevOu){
-					
+
+				    $scope.operation = 'show';
+				    $scope.messages = [];
+
 					$scope.prevOu = commonvariable.OrganisationUnit.id;
 					
 					$scope.healthservicename=commonvariable.OrganisationUnit.name;

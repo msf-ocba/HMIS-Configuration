@@ -5,6 +5,7 @@
   "NO": "No",
   "CREATION_DATE": "Creation date",
   "ALARM_EXIST": "This object already exist",
+  "ALARM_LENGTH": "It is allowed Only six characters",
   "DISABLED_TITLE": "The Organsation Unit Selected is disabled",
   "CANCEL": "Clear Form",
   "FORM_MSG_EMPTYFIELD": "verify that the form does not have empty fields",
@@ -140,6 +141,10 @@
 	"ORGUNITDELETE_NAME": "Name",
 	
 	
+  "_______________Module": " Operational Center_________________",
+  "OPERATIONALCENTER_NOSELECTED": "Please select an operational center",
+
+
 	"_______________ Directive ":" OrganisationUnit+tree_____________",
 	"ORGANISATIONUNIT":"Project",
 	"ORGANISATIONUNIT_FIND":"Select a project",

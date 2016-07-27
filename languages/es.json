@@ -5,6 +5,7 @@
   "NO":"No",
   "CREATION_DATE":"Fecha de creación",
   "ALARM_EXIST": "Este objeto ya existe en el sistema",
+  "ALARM_LENGTH": "Solo se permiten hasta seis caracteres",
   "DISABLED_TITLE": "La Unidad Organizativa seleccionada se encuentra desabilitada",
   "CANCEL": "Cancelar",
   "FORM_MSG_EMPTYFIELD": "Verifique que el formulario no contenga campos vacios",
@@ -111,7 +112,7 @@
   "SITE_NOSAVED": "establecimiento de salud no guardado, revise que no existan cambios vacios",
 	
 	
-		"______________ Module":" HEALTH SERVICE_____________",
+	"______________ Module":" HEALTH SERVICE_____________",
 	"HEALTHSERVICE_TITLE":"Servicio de salud",
 	"HEALTHSERVICE_DETAILS": "Detalles del servicio de salud",
 	"HEALTHSERVICE_SAVE": "Guardar",
@@ -122,19 +123,22 @@
 	"HEALTHSERVICE_TYPE": "Tipo de servicio",
 	"HEALTHSERVICE_CODE": "Código",
 	"HEALTHSERVICE_CREATE": "Nuevo servicio de salud",
-  	"HEALTHSERVICE_SUFFIX": "Sufijo",
-  	"DATASET_ADD": "Adicionar o Editar DataSet",
+  "HEALTHSERVICE_SUFFIX": "Sufijo",
+  "DATASET_ADD": "Adicionar o Editar DataSet",
  	"DATASET_SAVE": "Asociar DataSet",
-  	"DATASET_SELECT_TITTLE": "DataSet Asociados a Servicio de Salud",
-  	"DATASET_LEVEL": "Nivel: ",
-  	"DATASET_PERIOD":"Periodo: ",
-  	"SERVICE_SAVE": "Modificar servicio de salud",
-  	"SERVICE_CANCEL": "Cancelar",
+  "DATASET_SELECT_TITTLE": "DataSet Asociados a Servicio de Salud",
+  "DATASET_LEVEL": "Nivel: ",
+  "DATASET_PERIOD":"Periodo: ",
+  "SERVICE_SAVE": "Modificar servicio de salud",
+  "SERVICE_CANCEL": "Cancelar",
   "SERVICE_UPDATED": "El servicio de salud ha sido actualizado",
   "SERVICE_SAVED": "Servicio de salud Guardado",
   "SERVICE_NOSAVED": "Servicio de salud no guardado, revise que el nombre o código ya existan",
-  	
-	"_______________ Directive ":" OrganisationUnit+tree_____________",
+
+  "_______________Module": " Operational Center_________________",
+  "OPERATIONALCENTER_NOSELECTED": "Por favor, seleccione un centro de operaciones",
+
+  "_______________ Directive ":" OrganisationUnit+tree_____________",
 	"ORGANISATIONUNIT":"Proyecto",
 	"ORGANISATIONUNIT_FIND":"Seleccione un proyecto",
 	

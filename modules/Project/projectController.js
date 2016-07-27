@@ -35,7 +35,18 @@ appConfigProjectMSF.controller('projectController', ["$scope", '$filter', "commo
 	
 	$scope.showfields=false;
 	
-	
+	$scope.validateLength = function () {
+	    if ($scope.siteprefix.length > 6) {
+	        $scope.alertlength = true;
+	        $scope.lengthmax = 'has-error';
+	        $scope.siteprefix = $scope.siteprefix.substring(0, 7);
+	    }
+	    else {
+	        $scope.alertlength = false;
+	        $scope.lengthmax = '';
+	    }
+
+	};
 	$scope.sitesave = function () {
 
 	    var codeOrgUnit = undefined;
@@ -127,11 +138,16 @@ appConfigProjectMSF.controller('projectController', ["$scope", '$filter', "commo
 
 	
 	$scope.$watch(
-			function($scope) {
+			function ($scope) {
+
+                
 				if(commonvariable.OrganisationUnit!=undefined && commonvariable.OrganisationUnit.id != $scope.prevOu){
-					
-			        $scope.prevOu = commonvariable.OrganisationUnit.id;
-			        
+
+				    $scope.operation = 'show';
+				    $scope.messages = [];
+
+				    $scope.prevOu = commonvariable.OrganisationUnit.id;
+
 					$scope.projectname=commonvariable.OrganisationUnit.name;
 					$scope.projectcode=commonvariable.OrganisationUnit.code;
 					$scope.projectcreated = commonvariable.OrganisationUnit.openingDate;
