@@ -224,7 +224,7 @@ appConfigProjectMSF.controller('healthSiteController', ["$scope", '$filter', "co
 		    	  $scope.messages.push({ type: "success", text: $translate('SITE_UPDATED') });
 	    	  } else
 	    		  $scope.messages.push({type:"danger",
-						text:"Health site doesn't saved, review that the field name isn't empty"});	
+	    		      text:$translate('SITE_NOUPDATED')});	
 	      }); 
 	
 	  }

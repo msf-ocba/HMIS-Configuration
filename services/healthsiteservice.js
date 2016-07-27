@@ -190,18 +190,22 @@ Dhis2Api.service('healthsiteService', ['$q', 'commonvariable', 'OrgUnit', 'Filte
 	    	    							  
 	    	    				  })*/
 	    	    		        	  
-	    	    		      if (commonvariable.preOrgUnitGroupSet[commonvariable.ouGroupsetId.SiteType].id != commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.SiteType].id) {
-	    	    		    	  OrgUnitOrgUnitGroups.DELETE({ uidorgunit: orgUnit.id, uidgroup: commonvariable.preOrgUnitGroupSet[commonvariable.ouGroupsetId.SiteType].id }).$promise.then(function(data){
-	    	    			    	  OrgUnitOrgUnitGroups.POST({ uidorgunit: orgUnit.id, uidgroup: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.SiteType].id }).$promise.then(function(data){
-	    	    						  if (data.$resolved==true)
-	    	    							  if (orgUnit.level == commonvariable.level.HealthSite) {	    	    								  
-	    	    								  siteEdited = true;
-	    	    						    	  defered.resolve(siteEdited);
-	    	    							  }
-	    	    			    		  
-	    	    			    	  })		    		  
-	    	    		    	  });
-	    	    		      }		
+	    	    	          if (commonvariable.preOrgUnitGroupSet[commonvariable.ouGroupsetId.SiteType].id != commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.SiteType].id) {
+	    	    	              OrgUnitOrgUnitGroups.DELETE({ uidorgunit: orgUnit.id, uidgroup: commonvariable.preOrgUnitGroupSet[commonvariable.ouGroupsetId.SiteType].id }).$promise.then(function (data) {
+	    	    	                  OrgUnitOrgUnitGroups.POST({ uidorgunit: orgUnit.id, uidgroup: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.SiteType].id }).$promise.then(function (data) {
+	    	    	                      if (data.$resolved == true)
+	    	    	                          if (orgUnit.level == commonvariable.level.HealthSite) {
+	    	    	                              siteEdited = true;
+	    	    	                              defered.resolve(siteEdited);
+	    	    	                          }
+
+	    	    	                  })
+	    	    	              });
+	    	    	          }
+	    	    	          else {
+	    	    	              siteEdited = true;
+	    	    	              defered.resolve(siteEdited);
+	    	    	          }
 	    	    	      });
 
 						   

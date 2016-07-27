@@ -107,6 +107,7 @@
 	"SITE_SAVE": "Modificar establecimiento",
 	"SITE_CANCEL": "Cancelar",
 	"SITE_UPDATED": "El establecimiento de salud ha sido actualizado",
+  "SITE_NOUPDATED": "Establecimiento de salud no actualizado, revise que no existan campos vacios",
   "SITE_USER": "Usuario",
   "SITE_SAVED": "establecimiento de salud guardado",
   "SITE_NOSAVED": "establecimiento de salud no guardado, revise que no existan cambios vacios",
