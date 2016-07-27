@@ -5,7 +5,7 @@
   "NO": "No",
   "CREATION_DATE": "Creation date",
   "ALARM_EXIST": "This object already exist",
-  "ALARM_LENGTH": "It is allowed Only six characters",
+  "ALARM_LENGTH": "It is allowed Only three characters",
   "DISABLED_TITLE": "The Organsation Unit Selected is disabled",
   "CANCEL": "Clear Form",
   "FORM_MSG_EMPTYFIELD": "verify that the form does not have empty fields",

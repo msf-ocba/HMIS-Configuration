@@ -5,7 +5,7 @@
   "NO":"No",
   "CREATION_DATE":"Fecha de creación",
   "ALARM_EXIST": "Este objeto ya existe en el sistema",
-  "ALARM_LENGTH": "Solo se permiten hasta seis caracteres",
+  "ALARM_LENGTH": "Solo se permiten hasta tres caracteres",
   "DISABLED_TITLE": "La Unidad Organizativa seleccionada se encuentra desabilitada",
   "CANCEL": "Cancelar",
   "FORM_MSG_EMPTYFIELD": "Verifique que el formulario no contenga campos vacios",

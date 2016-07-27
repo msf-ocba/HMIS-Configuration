@@ -36,10 +36,10 @@ appConfigProjectMSF.controller('projectController', ["$scope", '$filter', "commo
 	$scope.showfields=false;
 	
 	$scope.validateLength = function () {
-	    if ($scope.siteprefix.length > 6) {
+	    if ($scope.siteprefix.length > 3) {
 	        $scope.alertlength = true;
 	        $scope.lengthmax = 'has-error';
-	        $scope.siteprefix = $scope.siteprefix.substring(0, 7);
+	        $scope.siteprefix = $scope.siteprefix.substring(0, 4);
 	    }
 	    else {
 	        $scope.alertlength = false;
