@@ -16,8 +16,8 @@
    You should have received a copy of the GNU General Public License
    along with Project Configuration.  If not, see <http://www.gnu.org/licenses/>. */
 
-appConfigProjectMSF.controller('projectController', ["$scope", '$filter', "commonvariable", "$modal", "validatorService", "projectService", 
-                                                     function ($scope, $filter, commonvariable, $modal, validatorService, projectService) {
+appConfigProjectMSF.controller('projectController', ["$scope", "$timeout", '$filter', "commonvariable", "$modal", "validatorService", "projectService",
+                                                     function ($scope, $timeout, $filter, commonvariable, $modal, validatorService, projectService) {
 	
 	
 	projectService.initValue($scope);
@@ -38,6 +38,7 @@ appConfigProjectMSF.controller('projectController', ["$scope", '$filter', "commo
 	$scope.validateLength = function () {
 	    if ($scope.siteprefix.length > 3) {
 	        $scope.alertlength = true;
+	        $timeout(function () { $scope.alertlength = false }, 1500);
 	        $scope.lengthmax = 'has-error';
 	        $scope.siteprefix = $scope.siteprefix.substring(0, 3);
 	    }

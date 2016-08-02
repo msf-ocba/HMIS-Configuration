@@ -199,7 +199,7 @@
                             <input ng-model="siteprefix" type="text" class="form-control" id="SitePrefix" ng-change="validateLength()">
                         </div>
                         <div class="col-md-5">
-                            <button type="button" class="btn btn-default btn-warning" aria-label="Advertencia" ng-show="alertlength">
+                            <button type="button" class="btn btn-default btn-warning" aria-label="Advertencia" ng-show="alertlength" ng-click="alertlength = false">
                                 <span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span>
                                 {{ 'ALARM_LENGTH' | translate }}
                             </button>
