@@ -39,7 +39,7 @@ appConfigProjectMSF.controller('projectController', ["$scope", '$filter', "commo
 	    if ($scope.siteprefix.length > 3) {
 	        $scope.alertlength = true;
 	        $scope.lengthmax = 'has-error';
-	        $scope.siteprefix = $scope.siteprefix.substring(0, 4);
+	        $scope.siteprefix = $scope.siteprefix.substring(0, 3);
 	    }
 	    else {
 	        $scope.alertlength = false;
