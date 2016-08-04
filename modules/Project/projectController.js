@@ -36,11 +36,12 @@ appConfigProjectMSF.controller('projectController', ["$scope", "$timeout", '$fil
 	$scope.showfields=false;
 	
 	$scope.validateLength = function () {
-	    if ($scope.siteprefix.length > 3) {
+	    $scope.siteprefix = $scope.siteprefix.substring(0, 3);
+	    if ($scope.siteprefix.length != 3) {
 	        $scope.alertlength = true;
 	        $timeout(function () { $scope.alertlength = false }, 1500);
 	        $scope.lengthmax = 'has-error';
-	        $scope.siteprefix = $scope.siteprefix.substring(0, 3);
+	       
 	    }
 	    else {
 	        $scope.alertlength = false;
@@ -124,7 +125,7 @@ appConfigProjectMSF.controller('projectController', ["$scope", "$timeout", '$fil
 		//$scope.mdname="";
 		$scope.today();
 		$scope.showfields = false;
-
+		$scope.alertlength = true;
 	    //clear txtbox
 		$scope.siteName = "";
 		$scope.frmSite = false;
