@@ -148,6 +148,8 @@ Dhis2Api.controller("d2ResourcejsonvaccinationController", ['$scope', '$filter',
 	        description: $scope.dataSetDescription,
 	        periodType: commonvariable.PeriodSelected.code,
 	        dataElements: $scope.DataElementSelectedforPUT,
+	        renderAsTabs: true,
+	        dataElementDecoration: true,
 	        organisationUnits: $scope.childOU
 	    };
 	    
@@ -183,6 +185,8 @@ Dhis2Api.controller("d2ResourcejsonvaccinationController", ['$scope', '$filter',
 	        description: $scope.dataSetDescription,
 	        periodType: commonvariable.PeriodSelected.code,
 	        dataElements: $scope.DataElementSelectedforPUT,
+	        renderAsTabs: true,
+	        dataElementDecoration: true,
 	        organisationUnits: $scope.childOU
 	    };
 	    DataSets.Put({ uid: $scope.dataSetid }, newDataSet)
