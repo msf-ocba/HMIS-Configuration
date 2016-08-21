@@ -40,6 +40,11 @@ Dhis2Api.service('commonService', ['$q', 'commonvariable', 'OrgUnitGroupByOrgUni
 	
 	this.deleteOrgUnitGroup = function (uidOrgUnit, uidOrgUnitGroupSet) {
 		
+	    var defered = $q.defer();
+	    var promise = defered.promise;
+	    var find = false;
+	    var idgroup = false;
+		
 		OrgUnitGroupByOrgUnit.get({uid:uidOrgUnit}).$promise.then(function(data) {
 			
 			ouOrgUnitGroups=data.organisationUnitGroups;
@@ -50,8 +55,6 @@ Dhis2Api.service('commonService', ['$q', 'commonvariable', 'OrgUnitGroupByOrgUni
 				
 			    try {
 			    	
-			    	var find = false;
-			    	
 			        for (var i = 0; i < ouOrgUnitGroups.length; i++) {
 			        
 			        	if (find == true) break;
@@ -59,7 +62,8 @@ Dhis2Api.service('commonService', ['$q', 'commonvariable', 'OrgUnitGroupByOrgUni
 			            for (var j = 0; j < ougsOrgUnitGroups.length; j++) {
 			                if (ouOrgUnitGroups[i].id == ougsOrgUnitGroups[j].id) {
 			                	find = true;
-			      			  	OrgUnitOrgUnitGroups.DELETE({uidorgunit: uidOrgUnit, uidgroup: ouOrgUnitGroups[i].id});
+			                	idgroup=ouOrgUnitGroups[i].id;
+//			      			  	OrgUnitOrgUnitGroups.DELETE({uidorgunit: uidOrgUnit, uidgroup: ouOrgUnitGroups[i].id});
 
 			                    break;
 			                }
@@ -68,12 +72,18 @@ Dhis2Api.service('commonService', ['$q', 'commonvariable', 'OrgUnitGroupByOrgUni
 			        }
 			    } catch (err) { };
 			    
+			    if (find) {
+			    	OrgUnitOrgUnitGroups.DELETE({uidorgunit: uidOrgUnit, uidgroup: idgroup}).$promise.then(function(data){
+			    		defered.resolve(find);
+			    	});
+			    }		    
 			});
 			
 		});
 		
-	
+		return promise;
 	}
+	
 	
 	this.sortByKey = function (array, key) {
 	    return array.sort(function(a, b) {
