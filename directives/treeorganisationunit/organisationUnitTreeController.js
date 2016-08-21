@@ -184,6 +184,7 @@ Dhis2Api.controller("d2TreeorganisationUnitController", ['$scope','$q', '$locati
                                 $scope.PreOrganisationUnitId = $scope.OrganisationUnit.currentNode.id;
                                 commonvariable.OrganisationUnitParentConf = {
                                     id: $scope.OrganisationUnit.currentNode.id,
+                                    code: $scope.OrganisationUnit.currentNode.code,
                                     level: $scope.OrganisationUnit.currentNode.level,
                                     name: $scope.OrganisationUnit.currentNode.name,
                                     openingDate: $scope.OrganisationUnit.currentNode.openingDate,
