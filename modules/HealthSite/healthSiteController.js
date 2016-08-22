@@ -13,11 +13,11 @@
    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
    GNU General Public License for more details.
  
-   You should have received a copy of the GNU General Public License
+   You should have received a copy of the GNU General Public LicenseOrgUnitChildren
    along with Project Configuration.  If not, see <http://www.gnu.org/licenses/>. */
 
-appConfigProjectMSF.controller('healthSiteController', ["$scope", '$filter', "commonvariable", "loadjsonresource", "$modal", "DataSetsOrgUnit", "validatorService", "healthsiteService", "commonService",
-                                                        function ($scope, $filter, commonvariable, loadjsonresource, $modal, DataSetsOrgUnit, validatorService, healthsiteService, commonService) {
+appConfigProjectMSF.controller('healthSiteController', ["$scope", '$filter', "commonvariable", "loadjsonresource", "$modal", "DataSetsOrgUnit", "validatorService", "healthsiteService", "commonService", "OrgUnitChildren",
+                                                        function ($scope, $filter, commonvariable, loadjsonresource, $modal, DataSetsOrgUnit, validatorService, healthsiteService, commonService, OrgUnitChildren) {
 	var $translate = $filter('translate');
 		
     healthsiteService.initValue($scope);	
@@ -215,6 +215,54 @@ appConfigProjectMSF.controller('healthSiteController', ["$scope", '$filter', "co
 	          shortName: commonvariable.ouDirective,
 	          openingDate: $filter('date')($scope.healthsitecreated, 'yyyy-MM-dd')
 	      };
+	      
+	      var ougroup = commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.SiteType];
+	      var servicesAllowed = undefined; 
+	      var compatible = true;
+	      
+	      loadjsonresource.get("servicebysite").then(function(response) { 
+				
+	    	  angular.forEach(response.data.servicesBySite.siteType, function (site, key){
+	    		 
+	    		  if (site.code == ougroup.code) {
+	    			  servicesAllowed = site.services;
+	    		  }	    		  
+	    		  	    		  
+	    	  });
+	    	  
+	    	  
+	    	  
+	    	  console.log(servicesAllowed);
+	    	  
+
+	    	  
+	    	  OrgUnitChildren.GET({ uid: commonvariable.OrganisationUnit.id }).$promise.then(function (response) {
+
+            	  console.log(response);
+            	  
+            	  angular.forEach(response.children, function (child, key) {
+            		 
+            		  commonService.selectOrgUnitGroup(child.id, commonvariable.ouGroupsetId.HealthService).then (function(healthService) {
+            			  console.log(healthService);
+            			  
+            			  if (!commonService.existOrgUnitGroup(healthService, servicesAllowed))
+            				  
+            				  compatible=false;
+            			  
+            			  
+            		  });
+            		             		  
+            	  });
+            	  
+           		  console.log("Esto ye " + compatible);
+           		 
+            	  
+              });	    	  
+	    	  
+	    	  
+	    	  
+				
+	      });
 	      
 	      healthsiteService.editHealthSite(commonvariable.OrganisationUnit.id, editOu).then(function(result){
 	    	  if (result == true) {
