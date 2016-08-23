@@ -48,6 +48,7 @@ Dhis2Api.controller("d2ResourcejsonvaccinationController", ['$scope', '$filter',
 	    $scope.vaccinationCode = commonvariable.OrganisationUnit.shortName;
 	    $scope.preName = commonvariable.prefixVaccination.vaccinationName;
 	    $scope.preCode = commonvariable.prefixVaccination.vaccinationCode;
+		$scope.VaccinationDataset={	code:"",dataElements:[],description:"",id:"",name:"",periodType:""};
 	}
 
     //waiting for dataset of OU selected
