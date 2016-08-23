@@ -39,7 +39,7 @@ Dhis2Api.service('commonService', ['$q', 'commonvariable', 'OrgUnitGroupByOrgUni
 	};
 	
 	
-	this.existOrgUnitGroup = function(orgUnitGroup, orgUnitGroups) {
+	existOrgUnitGroup = function(orgUnitGroup, orgUnitGroups) {
 		
 		var find = false;
 		
@@ -53,9 +53,9 @@ Dhis2Api.service('commonService', ['$q', 'commonvariable', 'OrgUnitGroupByOrgUni
 		return find;
 		
 	};
+
 	
-	
-	this.selectOrgUnitGroup = function (uidOrgUnit, uidOrgUnitGroupSet) {
+	selectOrgUnitGroup = function (uidOrgUnit, uidOrgUnitGroupSet) {
 		
 	    var defered = $q.defer();
 	    var promise = defered.promise;
@@ -96,6 +96,51 @@ Dhis2Api.service('commonService', ['$q', 'commonvariable', 'OrgUnitGroupByOrgUni
 		
 		return promise;
 	}	
+
+	
+	this.checkServicesOrgUnitGroups = function (orgUnits, servicesAllowed) {
+		
+	    //var defered = $q.defer();
+	    //var promise = defered.promise;
+	    //var compatible = true;	   
+	    
+	    /*angular.forEach(orgUnits, function (orgUnit, key) {
+	    	
+	    	  selectOrgUnitGroup(orgUnit.id, commonvariable.ouGroupsetId.HealthService).then (function(healthService) {
+	    		  console.log(healthService);
+			  
+	    		  if (!existOrgUnitGroup(healthService, servicesAllowed)){				  
+	    			  compatible=false;		
+	    			  return compatible;
+	    		  }
+
+			  //defered.resolve(compatible);
+		  });
+	    	
+	    });*/
+	    
+		
+		var promises = [];
+	    
+	    angular.forEach(orgUnits, function (orgUnit, key) {
+	    	
+	    	var deferred = $q.defer();
+	    	promises.push(deferred.promise);
+	    	
+	    	selectOrgUnitGroup(orgUnit.id, commonvariable.ouGroupsetId.HealthService).then (function(healthService) {
+	    	  
+	    		deferred.resolve(healthService)
+	    	  
+	    	});
+	      	    	
+	    });	    
+	      
+	    return $q.all(promises);
+		
+	}
+	
+	
+	
 	
 	this.deleteOrgUnitGroup = function (uidOrgUnit, uidOrgUnitGroupSet) {
 		

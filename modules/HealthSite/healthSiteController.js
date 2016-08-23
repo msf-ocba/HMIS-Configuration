@@ -240,7 +240,7 @@ appConfigProjectMSF.controller('healthSiteController', ["$scope", '$filter', "co
 
             	  console.log(response);
             	  
-            	  angular.forEach(response.children, function (child, key) {
+            	  /*angular.forEach(response.children, function (child, key) {
             		 
             		  commonService.selectOrgUnitGroup(child.id, commonvariable.ouGroupsetId.HealthService).then (function(healthService) {
             			  console.log(healthService);
@@ -252,9 +252,17 @@ appConfigProjectMSF.controller('healthSiteController', ["$scope", '$filter', "co
             			  
             		  });
             		             		  
+            	  });*/
+            	  
+            	  
+            	  commonService.checkServicesOrgUnitGroups(response.children, servicesAllowed).then(function(data){
+            		  console.log(data);
             	  });
             	  
-           		  console.log("Esto ye " + compatible);
+            	  /*data = commonService.checkServicesOrgUnitGroups(response.children, servicesAllowed);
+            	  
+            	  console.log(data);*/
+            	  
            		 
             	  
               });	    	  
