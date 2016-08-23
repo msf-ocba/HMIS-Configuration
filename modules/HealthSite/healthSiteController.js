@@ -257,6 +257,14 @@ appConfigProjectMSF.controller('healthSiteController', ["$scope", '$filter', "co
             	  
             	  commonService.checkServicesOrgUnitGroups(response.children, servicesAllowed).then(function(data){
             		  console.log(data);
+            		  
+            		  if (data.length>0){
+            			  
+            			  $scope.openWindow();
+            			  
+            			  
+            		  }
+            			  
             	  });
             	  
             	  /*data = commonService.checkServicesOrgUnitGroups(response.children, servicesAllowed);
@@ -320,6 +328,50 @@ appConfigProjectMSF.controller('healthSiteController', ["$scope", '$filter', "co
 	          console.log('Modal dismissed at: ' + new Date());
 	      });
 	  };
+	  
+///// Controlador
+	  
+	  $scope.items = ['item1', 'item2', 'item3'];
+
+	  $scope.openWindow = function (size) {
+
+	    var modalInstance = $modal.open({
+	      templateUrl: 'ConfirmationEdition.html',
+	      controller: 'ConfirmationInstanceCtrl',
+	      size: size,
+	      resolve: {
+	        items: function () {
+	          return $scope.items;
+	        }
+	      }
+	    });
+
+	    modalInstance.result.then(function (selectedItem) {
+	      $scope.selected = selectedItem;
+	    }, function () {
+	      console.log('Modal dismissed at: ' + new Date());
+	    });
+	  };
+
+	  
 
 
 }]);
+
+
+appConfigProjectMSF.controller('ConfirmationInstanceCtrl', function ($scope, $modalInstance, items) {
+
+	  $scope.items = items;
+	  $scope.selected = {
+	    item: $scope.items[0]
+	  };
+
+	  $scope.ok = function () {
+	    $modalInstance.close($scope.selected.item);
+	  };
+
+	  $scope.cancel = function () {
+	    $modalInstance.dismiss('cancel');
+	  };
+	});
+
