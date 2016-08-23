@@ -100,26 +100,6 @@ Dhis2Api.service('commonService', ['$q', 'commonvariable', 'OrgUnitGroupByOrgUni
 	
 	this.checkServicesOrgUnitGroups = function (orgUnits, servicesAllowed) {
 		
-	    //var defered = $q.defer();
-	    //var promise = defered.promise;
-	    //var compatible = true;	   
-	    
-	    /*angular.forEach(orgUnits, function (orgUnit, key) {
-	    	
-	    	  selectOrgUnitGroup(orgUnit.id, commonvariable.ouGroupsetId.HealthService).then (function(healthService) {
-	    		  console.log(healthService);
-			  
-	    		  if (!existOrgUnitGroup(healthService, servicesAllowed)){				  
-	    			  compatible=false;		
-	    			  return compatible;
-	    		  }
-
-			  //defered.resolve(compatible);
-		  });
-	    	
-	    });*/
-	    
-		
 		var promises = [];
 	    
 	    angular.forEach(orgUnits, function (orgUnit, key) {
@@ -128,8 +108,10 @@ Dhis2Api.service('commonService', ['$q', 'commonvariable', 'OrgUnitGroupByOrgUni
 	    	promises.push(deferred.promise);
 	    	
 	    	selectOrgUnitGroup(orgUnit.id, commonvariable.ouGroupsetId.HealthService).then (function(healthService) {
+	    		
+	    		if (!existOrgUnitGroup(healthService, servicesAllowed))
 	    	  
-	    		deferred.resolve(healthService)
+	    			deferred.resolve(healthService)
 	    	  
 	    	});
 	      	    	
@@ -138,7 +120,6 @@ Dhis2Api.service('commonService', ['$q', 'commonvariable', 'OrgUnitGroupByOrgUni
 	    return $q.all(promises);
 		
 	}
-	
 	
 	
 	
