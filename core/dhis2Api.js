@@ -326,3 +326,13 @@ Dhis2Api.factory("meUser", ['$resource', 'commonvariable', function ($resource, 
 
 }]);
 
+Dhis2Api.factory("Section",['$resource','commonvariable', function ($resource,commonvariable) {
+	return $resource(commonvariable.url+"sections/:id",
+		{id:'@id'},
+		{ Get: { method: "GET"},
+	      Delete: {method: "DELETE"},
+		  POST: { method: "POST" },
+		  PUT: { method: "PUT"},
+		  PATCH: {method: "PATCH"}});
+}]);
+
