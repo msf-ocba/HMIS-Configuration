@@ -131,40 +131,13 @@ Dhis2Api.service('commonService', ['$q', 'commonvariable', 'OrgUnitGroupByOrgUni
 					});
 					
 			    	if (!existOrgUnitGroup(healthService, servicesAllowed))  
-		    			deferred.resolve(healthService);
+		    			deferred.resolve(orgUnit);
 					
-					
-					
-/*				    for (var i = 0; i < ouOrgUnitGroups.length; i++) {
-				        
-				    	if (find == true) break;
-				        
-				        for (var j = 0; j < ougsOrgUnitGroups.length; j++) {
-				        	if (ouOrgUnitGroups[i].id == ougsOrgUnitGroups[j].id) {
-				        		find = true;
-				                healthService=ouOrgUnitGroups[i];
-				                break;
-				            }
-				        }
-				            
-				    }
-
-				    if (find) {
-				    	if (!existOrgUnitGroup(healthService, servicesAllowed))  
-			    			deferred.resolve(healthService);
-				    }*/
-			    	
+								    	
 			    	
 				});
 				
 			});
-	    	/*selectOrgUnitGroup(orgUnit.id, commonvariable.ouGroupsetId.HealthService).then (function(healthService) {
-	    		
-	    		if (!existOrgUnitGroup(healthService, servicesAllowed))
-	    	  
-	    			deferred.resolve(healthService)
-	    	  
-	    	});*/
 	      	    	
 	    });	    
 	      
