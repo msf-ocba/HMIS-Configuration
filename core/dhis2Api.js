@@ -50,8 +50,8 @@ var ougroupsetId = { ProjectType: "rQjuGZcxNxE"
                     ,HealthServiceType: "akYeq1mMz2N"
                     ,SiteType: "ZxNjaKVXY1D"};
 
-var codeDataSets = {codeDataSetProject:"DS_VST_3"
-    				,codeDataSetSite:"DS_DEM"};
+var codeDataSets = {codeDSVacStaff:"DS_VST_3"
+    				,codeDSDemographic:"DS_DEM"};
 
 var levelMSF = {OperationalCenter: "2"
 			 ,Mission: "3"
