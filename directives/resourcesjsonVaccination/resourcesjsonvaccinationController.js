@@ -26,8 +26,8 @@ Dhis2Api.directive('d2Resourcejsonvaccination', function(){
 	}
 	}); 
 
-Dhis2Api.controller("d2ResourcejsonvaccinationController", ['$scope', '$filter', '$interval', "commonvariable", "loadjsonresource", "DataElements", "DataSets", "OrgUnit", "validatorService", "Section",
-                                                            function ($scope, $filter, $interval, commonvariable, loadjsonresource, DataElements, DataSets, OrgUnit, validatorService, Section) {
+Dhis2Api.controller("d2ResourcejsonvaccinationController", ['$scope', '$filter', '$interval', "commonvariable", "loadjsonresource", "DataElements", "DataSets", "OrgUnit", "validatorService", "Section", "$q",
+                                                            function ($scope, $filter, $interval, commonvariable, loadjsonresource, DataElements, DataSets, OrgUnit, validatorService, Section, $q) {
 	$scope.style=[];
 	var $translate = $filter('translate');
 	
@@ -35,7 +35,7 @@ Dhis2Api.controller("d2ResourcejsonvaccinationController", ['$scope', '$filter',
 	$scope.prevOu = undefined;
 	$scope.dataSetUid = undefined;
 	$scope.dhisSections = [];
-	$scope.dhisSectionsToRemove = [];
+	//$scope.dhisSectionsToRemove = [];
 
     //set message variable
 	$scope.closeAlertMessage = function (index) {
@@ -100,6 +100,8 @@ Dhis2Api.controller("d2ResourcejsonvaccinationController", ['$scope', '$filter',
 	
 	$scope.getSections = function (sections) {
 		
+		$scope.dhisSections = [];
+		
 		angular.forEach(sections, function (section, key) {
 			
 			var dataElements = [];
@@ -152,15 +154,30 @@ Dhis2Api.controller("d2ResourcejsonvaccinationController", ['$scope', '$filter',
 	}	
 	
 	$scope.removeSectionsFromDataSet = function() {
+		var promises = [];
+		var variable = {};
 		angular.forEach($scope.dhisSectionsToRemove, function(section, key) {
-			Section.Delete({id:section.id});
+			var deferred = $q.defer();
+	    	promises.push(deferred.promise);
+
+	    	Section.Delete({id:section.id}).$promise.then(function (data) {
+	    		variable=data;
+	    		deferred.resolve(variable);
+			});
 		});
+		
+		return $q.all(promises);
 	}
 	
 	$scope.createSectionsToDataSet = function() {
+		var promises = [];
+		var variable = {};
+		
 		angular.forEach($scope.dhisSections, function(section, key){
-			
+	    	
 			if (section.dataElements.length > 0) {
+				var deferred = $q.defer();
+		    	promises.push(deferred.promise);
 				
 				var sec = {};
 				sec.name = section.name;
@@ -173,12 +190,15 @@ Dhis2Api.controller("d2ResourcejsonvaccinationController", ['$scope', '$filter',
 				})
 				
 				Section.POST(sec).$promise.then(function(data){
-					console.log(data);
+		    		variable=data;
+		    		deferred.resolve(variable);
 				})
 				
 			}
 			
 		});
+		
+		return $q.all(promises);
 	}
 
 	$scope.showFormvaccination = function (frm) {
@@ -250,9 +270,12 @@ Dhis2Api.controller("d2ResourcejsonvaccinationController", ['$scope', '$filter',
 	            .$promise.then(function (data) {
 	                if (data.response.status == "SUCCESS") {
 	                	$scope.dataSetUid = data.response.lastImported;
-	                	$scope.createSectionsToDataSet();
-	                    $scope.messages.push({ type: "success", text: $translate('VACCINATION_DATASET_SAVED') });
-	                    $scope.hideFormvaccination();
+	                	$scope.createSectionsToDataSet().then(function(data){
+		                	$scope.dhisSectionsToRemove=$scope.dhisSections;
+		                	$scope.dhisSections=[];
+		                    $scope.messages.push({ type: "success", text: $translate('VACCINATION_DATASET_SAVED') });
+		                    $scope.hideFormvaccination();	                		
+	                	});
 	                }
 	                else {
 	                    $scope.messages.push({ type: "danger", text: $translate('VACCINATION_DATASET_NOSAVED') });
@@ -285,10 +308,15 @@ Dhis2Api.controller("d2ResourcejsonvaccinationController", ['$scope', '$filter',
          .$promise.then(function (data) {
              if (data.response.status == "SUCCESS") {
                	 $scope.dataSetUid = data.response.lastImported;
-            	 $scope.removeSectionsFromDataSet();
-            	 $scope.createSectionsToDataSet();
-                 $scope.messages.push({ type: "success", text: $translate('VACCINATION_DATASET_SAVED') });
-                 $scope.hideFormvaccination();
+            	 $scope.removeSectionsFromDataSet().then(function(data) {
+                	 $scope.createSectionsToDataSet().then(function(data){
+                    	 $scope.dhisSectionsToRemove=$scope.dhisSections;
+                    	 $scope.dhisSections=[];
+                         $scope.messages.push({ type: "success", text: $translate('VACCINATION_DATASET_SAVED') });
+                         $scope.hideFormvaccination();
+                		 
+                	 });
+            	 });
              }
              else {
                  $scope.messages.push({ type: "danger", text: $translate('VACCINATION_DATASET_NOSAVED') });
