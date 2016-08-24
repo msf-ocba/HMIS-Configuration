@@ -101,19 +101,70 @@ Dhis2Api.service('commonService', ['$q', 'commonvariable', 'OrgUnitGroupByOrgUni
 	this.checkServicesOrgUnitGroups = function (orgUnits, servicesAllowed) {
 		
 		var promises = [];
-	    
+		var healthService = {};
+		var ouOrgUnitGroups = {};
+		var ougsOrgUnitGroups = {};
+		
 	    angular.forEach(orgUnits, function (orgUnit, key) {
 	    	
 	    	var deferred = $q.defer();
 	    	promises.push(deferred.promise);
-	    	
-	    	selectOrgUnitGroup(orgUnit.id, commonvariable.ouGroupsetId.HealthService).then (function(healthService) {
+	    		    	
+			OrgUnitGroupByOrgUnit.get({uid:orgUnit.id}).$promise.then(function(data) {
+
+				
+				ouOrgUnitGroups=data.organisationUnitGroups;
+				
+				OrgUnitGroupSet.get({uid:commonvariable.ouGroupsetId.HealthService}).$promise.then(function(data) {
+
+					
+					ougsOrgUnitGroups=data.organisationUnitGroups;
+					
+					angular.forEach(ouOrgUnitGroups, function (orgGroupOU, key){
+					
+						angular.forEach(ougsOrgUnitGroups, function (orgGroupOGS, key) {
+							
+							if (orgGroupOU.id == orgGroupOGS.id)
+								healthService = orgGroupOU;
+						});
+						
+					});
+					
+			    	if (!existOrgUnitGroup(healthService, servicesAllowed))  
+		    			deferred.resolve(healthService);
+					
+					
+					
+/*				    for (var i = 0; i < ouOrgUnitGroups.length; i++) {
+				        
+				    	if (find == true) break;
+				        
+				        for (var j = 0; j < ougsOrgUnitGroups.length; j++) {
+				        	if (ouOrgUnitGroups[i].id == ougsOrgUnitGroups[j].id) {
+				        		find = true;
+				                healthService=ouOrgUnitGroups[i];
+				                break;
+				            }
+				        }
+				            
+				    }
+
+				    if (find) {
+				    	if (!existOrgUnitGroup(healthService, servicesAllowed))  
+			    			deferred.resolve(healthService);
+				    }*/
+			    	
+			    	
+				});
+				
+			});
+	    	/*selectOrgUnitGroup(orgUnit.id, commonvariable.ouGroupsetId.HealthService).then (function(healthService) {
 	    		
 	    		if (!existOrgUnitGroup(healthService, servicesAllowed))
 	    	  
 	    			deferred.resolve(healthService)
 	    	  
-	    	});
+	    	});*/
 	      	    	
 	    });	    
 	      

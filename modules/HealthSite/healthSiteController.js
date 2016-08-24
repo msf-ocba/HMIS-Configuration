@@ -206,11 +206,13 @@ appConfigProjectMSF.controller('healthSiteController', ["$scope", '$filter', "co
 	      $scope.operation = 'show';
 	  }
 	  
+	  $scope.editOu = {};
+	  
 	  
     ////Edit SITE
 	  $scope.EditSite = function () {
 
-	      var editOu = {//payload
+	      $scope.editOu = {//payload
 	          name: commonvariable.ouDirective,
 	          shortName: commonvariable.ouDirective,
 	          openingDate: $filter('date')($scope.healthsitecreated, 'yyyy-MM-dd')
@@ -229,50 +231,40 @@ appConfigProjectMSF.controller('healthSiteController', ["$scope", '$filter', "co
 	    		  }	    		  
 	    		  	    		  
 	    	  });
-	    	  
-	    	  
-	    	  
 	    	  console.log(servicesAllowed);
-	    	  
 
-	    	  
 	    	  OrgUnitChildren.GET({ uid: commonvariable.OrganisationUnit.id }).$promise.then(function (response) {
 
-            	  console.log(response);
-            	  
-            	  /*angular.forEach(response.children, function (child, key) {
-            		 
-            		  commonService.selectOrgUnitGroup(child.id, commonvariable.ouGroupsetId.HealthService).then (function(healthService) {
-            			  console.log(healthService);
+            	  commonService.checkServicesOrgUnitGroups(response.children, servicesAllowed).then(function(services){
+
+            		  if (services.length>0){
             			  
-            			  if (!commonService.existOrgUnitGroup(healthService, servicesAllowed))
-            				  
-            				  compatible=false;
+            			  $scope.healthServices = []
             			  
+            			  angular.forEach (services, function(service, key){
+            				 $scope.healthServices.push({"key":key,"name":service.name}); 
+            			  });
             			  
-            		  });
-            		             		  
-            	  });*/
-            	  
-            	  
-            	  commonService.checkServicesOrgUnitGroups(response.children, servicesAllowed).then(function(data){
-            		  console.log(data);
-            		  
-            		  if (data.length>0){
+            			  $scope.openWindow();            			  
             			  
-            			  $scope.openWindow();
+            		  } else {
             			  
+            		      healthsiteService.editHealthSite(commonvariable.OrganisationUnit.id, $scope.editOu).then(function(result){
+            		    	  if (result == true) {
+            		    	      commonvariable.RefreshTreeOU = true;
+            					  $scope.healthsitename =  commonvariable.ouDirective;		
+            					  $scope.operation = 'show';
+            			    	  $scope.messages.push({ type: "success", text: $translate('SITE_UPDATED') });
+            		    	  } else
+            		    		  $scope.messages.push({type:"danger",
+            		    		      text:$translate('SITE_NOUPDATED')});	
+            		      }); 
+            			              			  
             			  
             		  }
             			  
             	  });
-            	  
-            	  /*data = commonService.checkServicesOrgUnitGroups(response.children, servicesAllowed);
-            	  
-            	  console.log(data);*/
-            	  
-           		 
-            	  
+            	              	  
               });	    	  
 	    	  
 	    	  
@@ -280,16 +272,6 @@ appConfigProjectMSF.controller('healthSiteController', ["$scope", '$filter', "co
 				
 	      });
 	      
-	      healthsiteService.editHealthSite(commonvariable.OrganisationUnit.id, editOu).then(function(result){
-	    	  if (result == true) {
-	    	      commonvariable.RefreshTreeOU = true;
-				  $scope.healthsitename =  commonvariable.ouDirective;		
-				  $scope.operation = 'show';
-		    	  $scope.messages.push({ type: "success", text: $translate('SITE_UPDATED') });
-	    	  } else
-	    		  $scope.messages.push({type:"danger",
-	    		      text:$translate('SITE_NOUPDATED')});	
-	      }); 
 	
 	  }
 
@@ -331,30 +313,44 @@ appConfigProjectMSF.controller('healthSiteController', ["$scope", '$filter', "co
 	  
 ///// Controlador
 	  
-	  $scope.items = ['item1', 'item2', 'item3'];
-
 	  $scope.openWindow = function (size) {
-
+		  
+		  		  
 	    var modalInstance = $modal.open({
 	      templateUrl: 'ConfirmationEdition.html',
 	      controller: 'ConfirmationInstanceCtrl',
 	      size: size,
 	      resolve: {
 	        items: function () {
-	          return $scope.items;
+	          return $scope.healthServices;
 	        }
 	      }
 	    });
 
-	    modalInstance.result.then(function (selectedItem) {
-	      $scope.selected = selectedItem;
+	    modalInstance.result.then(function () {
+	      console.log("Hago algo");
+	      
+	      
+	      healthsiteService.editHealthSite(commonvariable.OrganisationUnit.id, $scope.editOu).then(function(result){
+	    	  if (result == true) {
+	    	      commonvariable.RefreshTreeOU = true;
+				  $scope.healthsitename =  commonvariable.ouDirective;		
+				  $scope.operation = 'show';
+		    	  $scope.messages.push({ type: "success", text: $translate('SITE_UPDATED') });
+	    	  } else
+	    		  $scope.messages.push({type:"danger",
+	    		      text:$translate('SITE_NOUPDATED')});	
+	      }); 
+	      
+	      
+	      
 	    }, function () {
 	      console.log('Modal dismissed at: ' + new Date());
+		  $scope.messages.push({type:"danger",
+		      text:$translate('SITE_NOUPDATED')});	
+
 	    });
 	  };
-
-	  
-
 
 }]);
 
@@ -362,12 +358,11 @@ appConfigProjectMSF.controller('healthSiteController', ["$scope", '$filter', "co
 appConfigProjectMSF.controller('ConfirmationInstanceCtrl', function ($scope, $modalInstance, items) {
 
 	  $scope.items = items;
-	  $scope.selected = {
-	    item: $scope.items[0]
-	  };
 
 	  $scope.ok = function () {
-	    $modalInstance.close($scope.selected.item);
+		  
+		//Llamar una función del otro controlador  
+	    $modalInstance.close();
 	  };
 
 	  $scope.cancel = function () {

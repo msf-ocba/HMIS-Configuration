@@ -111,6 +111,9 @@
   "SITE_USER": "Usuario",
   "SITE_SAVED": "establecimiento de salud guardado",
   "SITE_NOSAVED": "establecimiento de salud no guardado, revise que no existan cambios vacios",
+  	"HEALTHSITE_WARNING": "Incompatibilidad con los servicios de salud. ¿Desea editar el Establecimiento de Salud?",
+  	"HEALTHSITE_WARNING_YES": "Sí",
+  	"HEALTHSITE_WARNING_NO": "No",
 	
 	
 	"______________ Module":" HEALTH SERVICE_____________",
