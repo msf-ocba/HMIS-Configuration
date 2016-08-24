@@ -24,7 +24,8 @@ Dhis2Api.service('healthserviceService', ['$q', 'commonvariable', 'OrgUnitOrgUni
 	
     this.initValue=function($scope) {
         $scope.healthServiceId = commonvariable.ouGroupsetId.HealthService;
-        $scope.healthServiceTypeId = commonvariable.ouGroupsetId.HealthServiceType;
+        //$scope.healthServiceTypeId = commonvariable.ouGroupsetId.HealthServiceType;
+        $scope.servicetype = commonvariable.ouGroupsetId.HealthServiceType;
    	
     };
     
