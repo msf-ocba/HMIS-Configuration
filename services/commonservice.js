@@ -38,6 +38,48 @@ Dhis2Api.service('commonService', ['$q', 'commonvariable', 'OrgUnitGroupByOrgUni
 		
 	};
 	
+	this.selectOrgUnitGroup = function (uidOrgUnit, uidOrgUnitGroupSet) {
+		
+	    var defered = $q.defer();
+	    var promise = defered.promise;
+	    var find = false;
+	    var ougroup = false;
+		
+		OrgUnitGroupByOrgUnit.get({uid:uidOrgUnit}).$promise.then(function(data) {
+			
+			ouOrgUnitGroups=data.organisationUnitGroups;
+			
+			OrgUnitGroupSet.get({uid:uidOrgUnitGroupSet}).$promise.then(function(data) {
+								
+				ougsOrgUnitGroups=data.organisationUnitGroups;
+				
+			    try {
+			    	
+			        for (var i = 0; i < ouOrgUnitGroups.length; i++) {
+			        
+			        	if (find == true) break;
+			        
+			            for (var j = 0; j < ougsOrgUnitGroups.length; j++) {
+			                if (ouOrgUnitGroups[i].id == ougsOrgUnitGroups[j].id) {
+			                	find = true;
+			                	ougroup=ouOrgUnitGroups[i];
+			                    break;
+			                }
+			            }
+			            
+			        }
+			    } catch (err) { };
+			    
+			    if (find) {
+		    		defered.resolve(ougroup);
+			    }		    
+			});
+			
+		});
+		
+		return promise;
+	}
+	
 	this.deleteOrgUnitGroup = function (uidOrgUnit, uidOrgUnitGroupSet) {
 		
 	    var defered = $q.defer();

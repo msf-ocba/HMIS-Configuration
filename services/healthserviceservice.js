@@ -24,7 +24,9 @@ Dhis2Api.service('healthserviceService', ['$q', 'commonvariable', 'OrgUnitOrgUni
 	
     this.initValue=function($scope) {
         $scope.healthServiceId = commonvariable.ouGroupsetId.HealthService;
-        $scope.healthServiceTypeId = commonvariable.ouGroupsetId.HealthServiceType;
+        commonService.selectOrgUnitGroup(commonvariable.OrganisationUnit.id, commonvariable.ouGroupsetId.HealthServiceType).then(function(ouGroup){
+        	$scope.servicetype = ouGroup.name;
+        });
    	
     };
     
@@ -88,7 +90,7 @@ Dhis2Api.service('healthserviceService', ['$q', 'commonvariable', 'OrgUnitOrgUni
 								    	      //asign OU selected 
 								    		  updateOUVariable(editOu);				    	      
 											  $scope.code = editOu.code;
-
+											  $scope.name = editOu.name;
 								    	  }
 										  defered.resolve(healthServiceEdited);				  
 								   });
