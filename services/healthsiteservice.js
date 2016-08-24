@@ -75,7 +75,7 @@ Dhis2Api.service('healthsiteService', ['$q', 'commonvariable', 'OrgUnit', 'Filte
 
                 console.log(commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.HealthService].name)
 
-                FilterResource.GET({ resource: 'dataSets', filter: 'code:eq:' + "DS_INFR_3" }).$promise
+                FilterResource.GET({ resource: 'dataSets', filter: 'code:eq:' + commonvariable.codedatasets.codeDSDemographic }).$promise
                   .then(function (response) {
 
                       if (response.dataSets.length > 0) {
