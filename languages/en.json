@@ -111,6 +111,9 @@
   "SITE_USER": "User",
   "SITE_SAVED": "Health site saved",
 	"SITE_NOSAVED": "Health site doesn't saved, review that the field name isn't empty",
+	"HEALTHSITE_WARNING": "Incompatiblities with the following Health Services. Do you want to continue?",
+	"HEALTHSITE_WARNING_YES": "Yes",
+	"HEALTHSITE_WARNING_NO": "No",
 	
 	
 	"______________ Module_":" HEALTH SERVICE_____________",

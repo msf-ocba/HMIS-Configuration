@@ -153,6 +153,16 @@ Dhis2Api.factory("OrgUnit",['$resource','commonvariable', function ($resource,co
 		  PATCH: {method: "PATCH"}});
 }]);
 
+Dhis2Api.factory("OrgUnitGroup",['$resource','commonvariable', function ($resource,commonvariable) {
+	return $resource(commonvariable.url+"organisationUnitGroups/:id",
+		{id:'@id'},
+		{Get: { method: "GET"},
+		    POST: { method: "POST" },
+		  PUT: { method: "PUT"},
+		  PATCH: {method: "PATCH"}});
+}]);
+
+
 Dhis2Api.factory("User",['$resource','commonvariable', function ($resource,commonvariable) {
 	return $resource(commonvariable.url+"users",
 		{},
