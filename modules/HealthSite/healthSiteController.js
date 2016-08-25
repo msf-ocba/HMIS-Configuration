@@ -234,10 +234,12 @@ appConfigProjectMSF.controller('healthSiteController', ["$scope", '$filter', "co
 	    	  console.log(servicesAllowed);
 
 	    	  OrgUnitChildren.GET({ uid: commonvariable.OrganisationUnit.id }).$promise.then(function (response) {
-
-            	  commonService.checkServicesOrgUnitGroups(response.children, servicesAllowed).then(function(services){
-
+	   
+	    		  commonService.checkServicesOrgUnitGroups(response.children, servicesAllowed).then(function(services){
+            		  
             		  if (services.length>0){
+            			  
+            			  compatible = false;
             			  
             			  $scope.healthServices = []
             			  
@@ -247,7 +249,7 @@ appConfigProjectMSF.controller('healthSiteController', ["$scope", '$filter', "co
             			  
             			  $scope.openWindow();            			  
             			  
-            		  } else {
+            		  } /*else {
             			  
             		      healthsiteService.editHealthSite(commonvariable.OrganisationUnit.id, $scope.editOu).then(function(result){
             		    	  if (result == true) {
@@ -258,21 +260,32 @@ appConfigProjectMSF.controller('healthSiteController', ["$scope", '$filter', "co
             		    	  } else
             		    		  $scope.messages.push({type:"danger",
             		    		      text:$translate('SITE_NOUPDATED')});	
-            		      }); 
-            			              			  
+            		      });*/ 
             			  
-            		  }
+            			  
+            			  
+            		  }, function (error) {
+            			  consola.log("Funciona!!!");
+            		  
             			  
             	  });
-            	              	  
+            	  
+            	  
+/*            	  if (compatible) {
+        		      healthsiteService.editHealthSite(commonvariable.OrganisationUnit.id, $scope.editOu).then(function(result){
+        		    	  if (result == true) {
+        		    	      commonvariable.RefreshTreeOU = true;
+        					  $scope.healthsitename =  commonvariable.ouDirective;		
+        					  $scope.operation = 'show';
+        			    	  $scope.messages.push({ type: "success", text: $translate('SITE_UPDATED') });
+        		    	  } else
+        		    		  $scope.messages.push({type:"danger",
+        		    		      text:$translate('SITE_NOUPDATED')});	
+        		      }); 
+           		  
+            	  }*/
               });	    	  
-	    	  
-	    	  
-	    	  
-				
 	      });
-	      
-	
 	  }
 
 

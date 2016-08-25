@@ -104,7 +104,7 @@ Dhis2Api.service('commonService', ['$q', 'commonvariable', 'OrgUnitGroupByOrgUni
 		var healthService = {};
 		var ouOrgUnitGroups = {};
 		var ougsOrgUnitGroups = {};
-		
+				
 	    angular.forEach(orgUnits, function (orgUnit, key) {
 	    	
 	    	var deferred = $q.defer();
