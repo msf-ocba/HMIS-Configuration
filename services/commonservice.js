@@ -100,15 +100,17 @@ Dhis2Api.service('commonService', ['$q', 'commonvariable', 'OrgUnitGroupByOrgUni
 	
 	this.checkServicesOrgUnitGroups = function (orgUnits, servicesAllowed) {
 		
-		var promises = [];
+		var deferred = $q.defer();
+    	var promises = deferred.promise;
+		
 		var healthService = {};
 		var ouOrgUnitGroups = {};
 		var ougsOrgUnitGroups = {};
 				
 	    angular.forEach(orgUnits, function (orgUnit, key) {
 	    	
-	    	var deferred = $q.defer();
-	    	promises.push(deferred.promise);
+	    	
+	    	
 	    		    	
 			OrgUnitGroupByOrgUnit.get({uid:orgUnit.id}).$promise.then(function(data) {
 
@@ -133,15 +135,17 @@ Dhis2Api.service('commonService', ['$q', 'commonvariable', 'OrgUnitGroupByOrgUni
 			    	if (!existOrgUnitGroup(healthService, servicesAllowed))  
 		    			deferred.resolve(orgUnit);
 					
-								    	
-			    	
-				});
+	 		});
 				
 			});
+
+			if(key==orgUnits.length-1){
+				deferred.resolve({});
+			}
 	      	    	
 	    });	    
 	      
-	    return $q.all(promises);
+	    return promises;
 		
 	}
 	
