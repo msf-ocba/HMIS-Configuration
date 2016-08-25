@@ -58,7 +58,7 @@ appConfigProjectMSF.controller('healthServiceController', ["$scope",'$filter',"c
 
 					$scope.prevOu = commonvariable.OrganisationUnit.id;
 					
-					$scope.healthservicename=commonvariable.OrganisationUnit.name;
+					$scope.name=commonvariable.OrganisationUnit.name;
 					$scope.healthservicecreated=commonvariable.OrganisationUnit.openingDate;
 					$scope.code=commonvariable.OrganisationUnit.code;
 					
@@ -130,7 +130,8 @@ appConfigProjectMSF.controller('healthServiceController', ["$scope",'$filter',"c
   		  
   		  healthserviceService.editHealthService(commonvariable.OrganisationUnit.id, editOu, $scope).then(function(updated){
   			 if (updated) {
-  			      commonvariable.RefreshTreeOU = true;  				
+  			      commonvariable.RefreshTreeOU = true;  
+  			      healthserviceService.initValue($scope);
   			      $scope.operation = 'show';
   			      
   			      $scope.messages.push({ type: "success", text: $translate('SERVICE_UPDATED') });

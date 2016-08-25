@@ -50,8 +50,8 @@ var ougroupsetId = { ProjectType: "rQjuGZcxNxE"
                     ,HealthServiceType: "akYeq1mMz2N"
                     ,SiteType: "ZxNjaKVXY1D"};
 
-var codeDataSets = {codeDataSetProject:"DS_VST_3"
-    				,codeDataSetSite:"DS_DEM"};
+var codeDataSets = {codeDSVacStaff:"DS_VST_3"
+    				,codeDSDemographic:"DS_DEM"};
 
 var levelMSF = {OperationalCenter: "2"
 			 ,Mission: "3"
@@ -334,5 +334,15 @@ Dhis2Api.factory("meUser", ['$resource', 'commonvariable', function ($resource, 
 		{},
 		{ get: { method: "GET" } });
 
+}]);
+
+Dhis2Api.factory("Section",['$resource','commonvariable', function ($resource,commonvariable) {
+	return $resource(commonvariable.url+"sections/:id",
+		{id:'@id'},
+		{ Get: { method: "GET"},
+	      Delete: {method: "DELETE"},
+		  POST: { method: "POST" },
+		  PUT: { method: "PUT"},
+		  PATCH: {method: "PATCH"}});
 }]);
 
