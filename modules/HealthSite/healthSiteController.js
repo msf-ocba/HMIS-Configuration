@@ -208,6 +208,16 @@ appConfigProjectMSF.controller('healthSiteController', ["$scope", '$filter', "co
 	  
 	  $scope.editOu = {};
 	  
+	  $scope.removeEmptyServices = function(services) {
+		  var realServices = [];
+		  angular.forEach(services, function(service, key){
+			  if (service!=-1)
+				  realServices.push(service);
+		  });
+		  
+		  return realServices;
+	  }
+	  
 	  
     ////Edit SITE
 	  $scope.EditSite = function () {
@@ -237,19 +247,21 @@ appConfigProjectMSF.controller('healthSiteController', ["$scope", '$filter', "co
 	   
 	    		  commonService.checkServicesOrgUnitGroups(response.children, servicesAllowed).then(function(services){
             		  
-            		  if (services.length>0){
+	    			  realServices = $scope.removeEmptyServices(services);
+	    			  
+            		  if (realServices.length>0){
             			  
             			  compatible = false;
             			  
             			  $scope.healthServices = []
             			  
-            			  angular.forEach (services, function(service, key){
+            			  angular.forEach (realServices, function(service, key){
             				 $scope.healthServices.push({"key":key,"name":service.name}); 
             			  });
             			  
             			  $scope.openWindow();            			  
             			  
-            		  } /*else {
+            		  } else {
             			  
             		      healthsiteService.editHealthSite(commonvariable.OrganisationUnit.id, $scope.editOu).then(function(result){
             		    	  if (result == true) {
@@ -260,30 +272,12 @@ appConfigProjectMSF.controller('healthSiteController', ["$scope", '$filter', "co
             		    	  } else
             		    		  $scope.messages.push({type:"danger",
             		    		      text:$translate('SITE_NOUPDATED')});	
-            		      });*/ 
+            		      }); 
             			  
-            			  
-            			  
-            		  }, function (error) {
-            			  consola.log("Funciona!!!");
-            		  
+            		  }
             			  
             	  });
-            	  
-            	  
-/*            	  if (compatible) {
-        		      healthsiteService.editHealthSite(commonvariable.OrganisationUnit.id, $scope.editOu).then(function(result){
-        		    	  if (result == true) {
-        		    	      commonvariable.RefreshTreeOU = true;
-        					  $scope.healthsitename =  commonvariable.ouDirective;		
-        					  $scope.operation = 'show';
-        			    	  $scope.messages.push({ type: "success", text: $translate('SITE_UPDATED') });
-        		    	  } else
-        		    		  $scope.messages.push({type:"danger",
-        		    		      text:$translate('SITE_NOUPDATED')});	
-        		      }); 
-           		  
-            	  }*/
+            	              	  
               });	    	  
 	      });
 	  }
