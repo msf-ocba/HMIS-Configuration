@@ -16,8 +16,8 @@
    You should have received a copy of the GNU General Public License
    along with Project Configuration.  If not, see <http://www.gnu.org/licenses/>. */
 
-appConfigProjectMSF.controller('healthServiceController', ["$scope",'$filter',"commonvariable","$modal", "healthserviceService",
-                                                           function($scope, $filter,commonvariable,$modal, healthserviceService) {
+appConfigProjectMSF.controller('healthServiceController', ["$scope",'$filter',"commonvariable","$modal", "healthserviceService", "commonService", "OrgUnit",
+                                                           function($scope, $filter,commonvariable,$modal, healthserviceService, commonService, OrgUnit) {
 	var $translate = $filter('translate');
 
 	
@@ -130,9 +130,21 @@ appConfigProjectMSF.controller('healthServiceController', ["$scope",'$filter',"c
   		  
   		  healthserviceService.editHealthService(commonvariable.OrganisationUnit.id, editOu, $scope).then(function(updated){
   			 if (updated) {
+  				 
+  				 OrgUnit.Get({id:commonvariable.OrganisationUnit.id}).$promise.then(function(orgUnit){
+  	  				  commonService.removeAllDataSetsOrgUnit(orgUnit).then(function (data){
+  	  	  			      healthserviceService.initValue($scope);
+  	  	  			      
+  	   	                  if (commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.HealthService].name == "Vaccination") { //Assocate Vacc datasets
+  	   	                	  
+  	   	                	  commonService.assignVaccinationDataSet(orgUnit);
+  	   	                  }
+  	   	                   	  	  			      
+  	  				  });
+  					 
+  				 });  				 
   			      commonvariable.RefreshTreeOU = true;  
-  			      healthserviceService.initValue($scope);
-  			      $scope.operation = 'show';
+	  			  $scope.operation = 'show';  					  
   			      
   			      
   			      
