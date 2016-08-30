@@ -16,8 +16,8 @@
    You should have received a copy of the GNU General Public License
    along with Project Configuration.  If not, see <http://www.gnu.org/licenses/>. */
 
-Dhis2Api.service('commonService', ['$q', 'commonvariable', 'OrgUnitGroupByOrgUnit', 'OrgUnitGroupSet', 'OrgUnitOrgUnitGroups',
-                                   function ($q, commonvariable, OrgUnitGroupByOrgUnit, OrgUnitGroupSet, OrgUnitOrgUnitGroups) {
+Dhis2Api.service('commonService', ['$q', 'commonvariable', 'OrgUnitGroupByOrgUnit', 'OrgUnitGroupSet', 'OrgUnitOrgUnitGroups', 'OrgUnit', 'DataSetsOrgUnit', 'GetMission', 'FilterResource',
+                                   function ($q, commonvariable, OrgUnitGroupByOrgUnit, OrgUnitGroupSet, OrgUnitOrgUnitGroups, OrgUnit, DataSetsOrgUnit, GetMission, FilterResource) {
 	
 
 	this.getServiceSuffix = function(healthserviceSuffix) {
@@ -190,6 +190,49 @@ Dhis2Api.service('commonService', ['$q', 'commonvariable', 'OrgUnitGroupByOrgUni
 		});
 		
 		return promise;
+	}
+	
+	this.removeAllDataSetsOrgUnit = function (orgUnit) {
+		var promises = [];
+		var variable = {};
+		
+		angular.forEach(orgUnit.dataSets, function (ds, key){
+			var deferred = $q.defer();
+			promises.push(deferred.promise);
+				
+			if (ds.code != "DS_DEM") {
+				DataSetsOrgUnit.DELETE({uidorgunit:orgUnit.id, uiddataset:ds.id}).$promise.then(function (data){
+					variable=data;
+					deferred.resolve(variable);
+				});
+			} else deferred.resolve(-1);
+						
+		});
+		
+		return $q.all(promises);
+	}
+	
+
+	this.assignVaccinationDataSet = function (orgUnit) {
+		
+        GetMission.get({ uid: orgUnit.id }).$promise.then(function (data) {
+
+            var nameMission = data.parent.parent.parent.name
+
+            var nameVacDataSet = "Vaccination_" + nameMission
+
+            FilterResource.GET({ resource: 'dataSets', filter: 'name:eq:' + nameVacDataSet }).$promise
+              .then(function (response) {
+
+                  if (response.dataSets.length > 0) {
+                      var dataSet = response.dataSets[0];
+                      DataSetsOrgUnit.POST({ uidorgunit: orgUnit.id, uiddataset: dataSet.id });
+                  }
+
+              });
+
+        });
+		
 	}
 	
 	this.deleteOrgUnitGroup = function (uidOrgUnit, uidOrgUnitGroupSet) {

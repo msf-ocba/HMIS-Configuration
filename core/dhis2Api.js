@@ -146,7 +146,8 @@ Dhis2Api.factory("TreeOrganisationunit",['$resource','commonvariable', function 
 
 Dhis2Api.factory("OrgUnit",['$resource','commonvariable', function ($resource,commonvariable) {
 	return $resource(commonvariable.url+"organisationUnits/:id",
-		{id:'@id'},
+		{id:'@id',
+		fields:'@fields'},
 		{Get: { method: "GET"},
 		    POST: { method: "POST" },
 		  PUT: { method: "PUT"},
@@ -307,6 +308,7 @@ Dhis2Api.factory("DataSetsOrgUnit",['$resource','commonvariable', function ($res
 		uiddataset: '@uiddataset'
 		},
 		{ POST: { method: "POST"},
+		  GET: {method: "GET"},
 		  DELETE: {method: "DELETE"}});
 }]);
 
