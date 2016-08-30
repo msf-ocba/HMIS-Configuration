@@ -16,7 +16,7 @@
    You should have received a copy of the GNU General Public License
    along with Project Configuration.  If not, see <http://www.gnu.org/licenses/>. */
 
-appConfigProjectMSF.controller('healthServiceController', ["$scope",'$filter',"commonvariable","$modal", "healthserviceService",  
+appConfigProjectMSF.controller('healthServiceController', ["$scope",'$filter',"commonvariable","$modal", "healthserviceService",
                                                            function($scope, $filter,commonvariable,$modal, healthserviceService) {
 	var $translate = $filter('translate');
 
@@ -133,6 +133,8 @@ appConfigProjectMSF.controller('healthServiceController', ["$scope",'$filter',"c
   			      commonvariable.RefreshTreeOU = true;  
   			      healthserviceService.initValue($scope);
   			      $scope.operation = 'show';
+  			      
+  			      
   			      
   			      $scope.messages.push({ type: "success", text: $translate('SERVICE_UPDATED') });
   			 } else $scope.messages.push({type:"danger", text:"Health service doesn't saved, review that the field name isn't empty"});
