@@ -63,9 +63,9 @@ Dhis2Api.service('healthserviceService', ['$q', 'commonvariable', 'OrgUnitOrgUni
 				  healthServiceSuffix = commonService.getServiceSuffix(response.data.healthserviceSuffix).suffix;
 						
 				  healthServiceCode=commonvariable.OrganisationUnit.parent.code + "_" + healthServiceSuffix;
-			  
-				  if (commonvariable.OrganisationUnit.children.length>0)
-					  healthServiceCode = healthServiceCode +"_" + (commonvariable.OrganisationUnit.parent.children.length + 1);
+			  				  
+				  //if (commonvariable.OrganisationUnit.children.length>0)
+					//  healthServiceCode = healthServiceCode +"_" + (commonvariable.OrganisationUnit.parent.children.length + 1);
 
 				  editOu.code = healthServiceCode;	
 				  

@@ -259,11 +259,13 @@ Dhis2Api.controller("d2ResourcejsonvaccinationController", ['$scope', '$filter',
 	        periodType: commonvariable.PeriodSelected.code,
 	        dataElements: $scope.DataElementSelectedforPUT,
 	        renderAsTabs: true,
-	        dataElementDecoration: true,
-	        organisationUnits: $scope.childOU
+	        dataElementDecoration: true//,
+	        //organisationUnits: $scope.childOU
 	    };
 	    
 	    validatorService.emptyValue(newDataSet).then(function (result) {
+	    	
+	    	newDataSet.organisationUnits = $scope.childOU;
 	    	
 	    	if (result == false){
 	    	    DataSets.Post({}, newDataSet)
