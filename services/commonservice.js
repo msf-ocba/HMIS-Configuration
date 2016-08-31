@@ -196,6 +196,8 @@ Dhis2Api.service('commonService', ['$q', 'commonvariable', 'OrgUnitGroupByOrgUni
 		var promises = [];
 		var variable = {};
 		
+		commonvariable.OrganisationUnit.dataSets = [];
+		
 		angular.forEach(orgUnit.dataSets, function (ds, key){
 			var deferred = $q.defer();
 			promises.push(deferred.promise);
@@ -205,7 +207,7 @@ Dhis2Api.service('commonService', ['$q', 'commonvariable', 'OrgUnitGroupByOrgUni
 					variable=data;
 					deferred.resolve(variable);
 				});
-			} else deferred.resolve(-1);
+			} else { commonvariable.OrganisationUnit.dataSets.push(ds); deferred.resolve(-1); }
 						
 		});
 		
@@ -226,6 +228,7 @@ Dhis2Api.service('commonService', ['$q', 'commonvariable', 'OrgUnitGroupByOrgUni
 
                   if (response.dataSets.length > 0) {
                       var dataSet = response.dataSets[0];
+                	  commonvariable.OrganisationUnit.dataSets.push(dataSet);
                       DataSetsOrgUnit.POST({ uidorgunit: orgUnit.id, uiddataset: dataSet.id });
                   }
 

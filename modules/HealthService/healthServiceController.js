@@ -137,8 +137,12 @@ appConfigProjectMSF.controller('healthServiceController', ["$scope",'$filter',"c
   	  	  			      
   	   	                  if (commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.HealthService].name == "Vaccination") { //Assocate Vacc datasets
   	   	                	  
-  	   	                	  commonService.assignVaccinationDataSet(orgUnit);
-  	   	                  }
+  	   	                	  commonService.assignVaccinationDataSet(orgUnit).$promise.then(function(data){
+  	   	                		
+  	   	                		  commonvariable.refreshDataSets = true;
+  	   	                		  
+  	   	                	  });
+  	   	                  } else commonvariable.refreshDataSets = true;
   	   	                   	  	  			      
   	  				  });
   					 

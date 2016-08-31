@@ -41,6 +41,7 @@ Dhis2Api.controller("d2ResourcejsondatasetController", ['$scope', '$filter', '$i
         $scope.operation = 'show';
         $scope.prevOu = undefined;
     }
+    
     $scope.editOrgUnit = function (datasets) {
         try {
             commonvariable.OrganisationUnit.dataSets = datasets;
@@ -56,11 +57,13 @@ Dhis2Api.controller("d2ResourcejsondatasetController", ['$scope', '$filter', '$i
     }
 
     $scope.$watch(function () {
-        if (commonvariable.OrganisationUnit && commonvariable.OrganisationUnit.id != $scope.prevOu) {
+        if ((commonvariable.OrganisationUnit && commonvariable.OrganisationUnit.id != $scope.prevOu) ||
+        		commonvariable.refreshDataSets) {
             $scope.initForm();
             $scope.prevOu = commonvariable.OrganisationUnit.id;
             $scope.pdatasets = commonvariable.OrganisationUnit.dataSets;
             $scope.loadDataSet();
+            commonvariable.refreshDataSets = false;
             //$scope.finddatasetSelected();
         }
     });

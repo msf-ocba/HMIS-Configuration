@@ -96,6 +96,7 @@ Dhis2Api.factory("commonvariable", function () {
 		    userDirective:"",
 		    users: usersMSF,
 		    healhservicesCodeOUG: "",
+		    refreshDataSets:false,
 		    clearForm:[]
 			};
 
