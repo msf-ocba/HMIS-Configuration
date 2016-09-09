@@ -796,15 +796,6 @@
               "name": "1",
               "periods": [
                 {
-                  "name": "weekly",
-                  "datasets": [
-                    {
-                      "name": "Emergency Room - Weekly (Level 1)",
-                      "code": "DS_ERw_1"
-                    }
-                  ]
-                },
-                {
                   "name": "monthly",
                   "datasets": [
                     {
@@ -814,6 +805,15 @@
                     {
                       "name": "Emergency Room - Monthly (Level 1)",
                       "code": "DS_ERm_1"
+                    }
+                  ]
+                },
+                {
+                  "name": "weekly",
+                  "datasets": [
+                    {
+                      "name": "Emergency Room - Weekly (Level 1)",
+                      "code": "DS_ERw_1"
                     }
                   ]
                 }
@@ -998,17 +998,45 @@
           "code": "OUG_HSV_MOEC",
           "levels": [
             {
+              "name": "2",
+              "periods": [
+                {
+                  "name": "weekly",
+                  "datasets": [
+                    {
+                      "name": "Malaria Outbreak/Surveillance Ext. Consultations 2",
+                      "code": "DS_MOEC_2"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
               "name": "1",
               "periods": [
                 {
                   "name": "weekly",
                   "datasets": [
                     {
-                      "name": "Diagnostic Malaria Surveillance RDT - Weekly",
-                      "code": "DS_DTMOS_1"
+                      "name": "Diagnostic Malaria RDT - Weekly",
+                      "code": "DS_DTMO_1"
                     },
                     {
-                      "name": "Malaria Outbreak/Surveillance Ext. Consultations",
+                      "name": " Malaria Outbreak/Surveillance Ext. Consultations 1",
+                      "code": " DS_MOEC_1"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "3",
+              "periods": [
+                {
+                  "name": "weekly",
+                  "datasets": [
+                    {
+                      "name": "Malaria Outbreak/Surveillance Ext. Consultations 3",
                       "code": "DS_MOEC_3"
                     }
                   ]
@@ -1028,12 +1056,40 @@
                   "name": "weekly",
                   "datasets": [
                     {
-                      "name": "Diagnostic Malaria Surveillance RDT - Weekly",
-                      "code": "DS_DTMOS_1"
+                      "name": "Diagnostic Malaria RDT - Weekly",
+                      "code": "DS_DTMO_1"
                     },
                     {
-                      "name": "Malaria Outbreak/Surveillance Hospital Ward",
+                      "name": " Malaria Outbreak/Surveillance Hospital Ward 1",
+                      "code": " DS_MOHW_1"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "3",
+              "periods": [
+                {
+                  "name": "weekly",
+                  "datasets": [
+                    {
+                      "name": "Malaria Outbreak/Surveillance Hospital Ward 3",
                       "code": "DS_MOHW_3"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "2",
+              "periods": [
+                {
+                  "name": "weekly",
+                  "datasets": [
+                    {
+                      "name": "Malaria Outbreak/Surveillance Hospital Ward 2",
+                      "code": "DS_MOHW_2"
                     }
                   ]
                 }
