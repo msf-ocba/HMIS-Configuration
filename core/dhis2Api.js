@@ -28,8 +28,25 @@
 
 var Dhis2Api = angular.module("Dhis2Api", ['ngResource']);
 
-var urlApi = "http://localhost:8080/dhis/api/";
-var urlBase = "http://localhost:8080/dhis/";
+var urlBase = window.location.href.split('/api/apps/')[0];
+var urlApi = urlBase + '/api/';
+
+
+//Auxiliary variable to parse the url
+var urlAuxLink = document.createElement('a');
+urlAuxLink.href = urlBase;
+
+//Delete initial and final slash
+var auxBaseUrl = urlAuxLink.pathname;
+if (auxBaseUrl.startsWith("/")) auxBaseUrl = auxBaseUrl.substring(1);
+if (auxBaseUrl.endsWith("/")) auxBaseUrl = auxBaseUrl.substring(0, auxBaseUrl.length - 2);
+
+//Dhis related variables
+window.dhis2 = window.dhis2 || {};
+dhis2.settings = dhis2.settings || {};
+dhis2.settings.baseUrl = auxBaseUrl;
+
+
 var urlResource ={"vaccination":{url:"resources/vaccinationDataset.json"},
 				"datasetbyservices":{url:"resources/datasetByService.json"},
 				"healthservice":{url:"resources/healthserviceSuffix.json"},
