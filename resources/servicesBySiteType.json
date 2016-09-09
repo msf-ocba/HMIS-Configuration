@@ -35,7 +35,7 @@
 				},
 				{
 				"name": "Outbreak Cholera",
-				"code": "OUG_HSV_CH"
+				"code": "OUG_HSV_CHO"
 				},
 				{
 				"name": "Outbreak Dengue",
@@ -51,11 +51,11 @@
 				},
 				{
 				"name": "Outbreak Malaria OPD",
-				"code": "OUG_HSV_MOEC"
+				"code": "OUG_HSV_MALOPD"
 				},
 				{
 				"name": "Sexual & Rep. Health OPD",
-				"code": "OUG_HSV_SRHEC"
+				"code": "OUG_HSV_SRHOPD"
 				},
 				{
 				"name": "Surveillance Epid",
@@ -67,7 +67,7 @@
 				},
 				{
 				"name": "Surveillance Nutrition",
-				"code": "OUG_HSV_NS"
+				"code": "OUG_HSV_NUT"
 				},
 				{
 				"name": "TB",
@@ -108,11 +108,11 @@
 				},
 				{
 				"name": "Hospitalization Ward",
-				"code": "OUG_HSV_HW"
+				"code": "OUG_HSV_IPD"
 				},
 				{
 				"name": "Hospitalization Ward (children)",
-				"code": "OUG_HSV_HWp"
+				"code": "OUG_HSV_IPDp"
 				},
 				{
 				"name": "Mental Health",
@@ -140,7 +140,7 @@
 				},
 				{
 				"name": "Outbreak Cholera",
-				"code": "OUG_HSV_CH"
+				"code": "OUG_HSV_CHO"
 				},
 				{
 				"name": "Outbreak Dengue",
@@ -156,19 +156,19 @@
 				},
 				{
 				"name": "Outbreak Malaria IPD",
-				"code": "OUG_HSV_MOHW"
+				"code": "OUG_HSV_MALIPD"
 				},
 				{
 				"name": "Outbreak Malaria OPD",
-				"code": "OUG_HSV_MOEC"
+				"code": "OUG_HSV_MALOPD"
 				},
 				{
 				"name": "Sexual & Rep. Health IPD",
-				"code": "OUG_HSV_SRHHW"
+				"code": "OUG_HSV_SRHIPD"
 				},
 				{
 				"name": "Sexual & Rep. Health OPD",
-				"code": "OUG_HSV_SRHEC"
+				"code": "OUG_HSV_SRHOPD"
 				},
 				{
 				"name": "Surveillance Epid",
@@ -180,7 +180,7 @@
 				},
 				{
 				"name": "Surveillance Nutrition",
-				"code": "OUG_HSV_NS"
+				"code": "OUG_HSV_NUT"
 				},
 				{
 				"name": "TB",
@@ -225,7 +225,7 @@
 				},
 				{
 				"name": "Outbreak Cholera",
-				"code": "OUG_HSV_CH"
+				"code": "OUG_HSV_CHO"
 				},
 				{
 				"name": "Outbreak Dengue",
@@ -241,11 +241,11 @@
 				},
 				{
 				"name": "Outbreak Malaria OPD",
-				"code": "OUG_HSV_MOEC"
+				"code": "OUG_HSV_MALOPD"
 				},
 				{
 				"name": "Sexual & Rep. Health OPD",
-				"code": "OUG_HSV_SRHEC"
+				"code": "OUG_HSV_SRHOPD"
 				},
 				{
 				"name": "Surveillance Epid",
@@ -257,7 +257,7 @@
 				},
 				{
 				"name": "Surveillance Nutrition",
-				"code": "OUG_HSV_NS"
+				"code": "OUG_HSV_NUT"
 				},
 				{
 				"name": "TB",
@@ -274,7 +274,7 @@
 			"services": [
 				{
 				"name": "Outbreak Cholera",
-				"code": "OUG_HSV_CH"
+				"code": "OUG_HSV_CHO"
 				},
 				{
 				"name": "Outbreak Dengue",
@@ -327,11 +327,11 @@
 				},
 				{
 				"name": "Hospitalization Ward",
-				"code": "OUG_HSV_HW"
+				"code": "OUG_HSV_IPD"
 				},
 				{
 				"name": "Hospitalization Ward (children)",
-				"code": "OUG_HSV_HWp"
+				"code": "OUG_HSV_IPDp"
 				},
 				{
 				"name": "Mental Health",
@@ -363,7 +363,7 @@
 				},
 				{
 				"name": "Outbreak Cholera",
-				"code": "OUG_HSV_CH"
+				"code": "OUG_HSV_CHO"
 				},
 				{
 				"name": "Outbreak Dengue",
@@ -379,19 +379,19 @@
 				},
 				{
 				"name": "Outbreak Malaria IPD",
-				"code": "OUG_HSV_MOHW"
+				"code": "OUG_HSV_MALIPD"
 				},
 				{
 				"name": "Outbreak Malaria OPD",
-				"code": "OUG_HSV_MOEC"
+				"code": "OUG_HSV_MALOPD"
 				},
 				{
 				"name": "Sexual & Rep. Health IPD",
-				"code": "OUG_HSV_SRHHW"
+				"code": "OUG_HSV_SRHIPD"
 				},
 				{
 				"name": "Sexual & Rep. Health OPD",
-				"code": "OUG_HSV_SRHEC"
+				"code": "OUG_HSV_SRHOPD"
 				},
 				{
 				"name": "Surgical Ward",
@@ -407,7 +407,7 @@
 				},
 				{
 				"name": "Surveillance Nutrition",
-				"code": "OUG_HSV_NS"
+				"code": "OUG_HSV_NUT"
 				},
 				{
 				"name": "TB",
@@ -452,7 +452,7 @@
 				},
 				{
 				"name": "Outbreak Cholera",
-				"code": "OUG_HSV_CH"
+				"code": "OUG_HSV_CHO"
 				},
 				{
 				"name": "Outbreak Dengue",
@@ -468,11 +468,11 @@
 				},
 				{
 				"name": "Outbreak Malaria OPD",
-				"code": "OUG_HSV_MOEC"
+				"code": "OUG_HSV_MALOPD"
 				},
 				{
 				"name": "Sexual & Rep. Health OPD",
-				"code": "OUG_HSV_SRHEC"
+				"code": "OUG_HSV_SRHOPD"
 				},
 				{
 				"name": "Surveillance Epid",
@@ -484,7 +484,7 @@
 				},
 				{
 				"name": "Surveillance Nutrition",
-				"code": "OUG_HSV_NS"
+				"code": "OUG_HSV_NUT"
 				},
 				{
 				"name": "TB",
@@ -529,7 +529,7 @@
 				},
 				{
 				"name": "Outbreak Cholera",
-				"code": "OUG_HSV_CH"
+				"code": "OUG_HSV_CHO"
 				},
 				{
 				"name": "Outbreak Dengue",
@@ -545,11 +545,11 @@
 				},
 				{
 				"name": "Outbreak Malaria OPD",
-				"code": "OUG_HSV_MOEC"
+				"code": "OUG_HSV_MALOPD"
 				},
 				{
 				"name": "Sexual & Rep. Health OPD",
-				"code": "OUG_HSV_SRHEC"
+				"code": "OUG_HSV_SRHOPD"
 				},
 				{
 				"name": "Surveillance Epid",
@@ -561,7 +561,7 @@
 				},
 				{
 				"name": "Surveillance Nutrition",
-				"code": "OUG_HSV_NS"
+				"code": "OUG_HSV_NUT"
 				},
 				{
 				"name": "TB",
@@ -606,7 +606,7 @@
 				},
 				{
 				"name": "Outbreak Cholera",
-				"code": "OUG_HSV_CH"
+				"code": "OUG_HSV_CHO"
 				},
 				{
 				"name": "Outbreak Dengue",
@@ -622,11 +622,11 @@
 				},
 				{
 				"name": "Outbreak Malaria OPD",
-				"code": "OUG_HSV_MOEC"
+				"code": "OUG_HSV_MALOPD"
 				},
 				{
 				"name": "Sexual & Rep. Health OPD",
-				"code": "OUG_HSV_SRHEC"
+				"code": "OUG_HSV_SRHOPD"
 				},
 				{
 				"name": "Surveillance Epid",
@@ -638,7 +638,7 @@
 				},
 				{
 				"name": "Surveillance Nutrition",
-				"code": "OUG_HSV_NS"
+				"code": "OUG_HSV_NUT"
 				},
 				{
 				"name": "TB",
