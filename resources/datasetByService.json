@@ -753,17 +753,8 @@
                   "name": "weekly",
                   "datasets": [
                     {
-                      "name": "Emergency Room - Weekly (Level 2)",
-                      "code": "DS_ERw_2"
-                    }
-                  ]
-                },
-                {
-                  "name": "monthly",
-                  "datasets": [
-                    {
-                      "name": "Emergency Room - Monthly (Level 2)",
-                      "code": "DS_ERm_2"
+                      "name": "Emergency Room 2",
+                      "code": "DS_ER_2"
                     }
                   ]
                 }
@@ -776,17 +767,8 @@
                   "name": "weekly",
                   "datasets": [
                     {
-                      "name": "Emergency Room - Weekly (Level 3)",
-                      "code": "DS_ERw_3"
-                    }
-                  ]
-                },
-                {
-                  "name": "montlhy",
-                  "datasets": [
-                    {
-                      "name": "Emergency Room - Monthly (Level 3)",
-                      "code": "DS_ERm_3"
+                      "name": "Emergency Room 3",
+                      "code": "DS_ER_3"
                     }
                   ]
                 }
@@ -801,10 +783,6 @@
                     {
                       "name": "Diagnostic ER - Monthly",
                       "code": "DS_DTER_1"
-                    },
-                    {
-                      "name": "Emergency Room - Monthly (Level 1)",
-                      "code": "DS_ERm_1"
                     }
                   ]
                 },
@@ -812,8 +790,8 @@
                   "name": "weekly",
                   "datasets": [
                     {
-                      "name": "Emergency Room - Weekly (Level 1)",
-                      "code": "DS_ERw_1"
+                      "name": "Emergency Room 1",
+                      "code": "DS_ER_1"
                     }
                   ]
                 }
