@@ -47,7 +47,7 @@
 				},
 				{
 				"name": "Sexual & Rep. Health OPD",
-				"code": "OUG_HSV_SRHOPD"
+				"code": "OUG_HSV_SRHEC"
 				},
 				{
 				"name": "TB",
@@ -60,11 +60,11 @@
 			"services": [
 				{
 				"name": "Hospitalization Ward",
-				"code": "OUG_HSV_IPD"
+				"code": "OUG_HSV_HW"
 				},
 				{
 				"name": "Hospitalization Ward (children)",
-				"code": "OUG_HSV_IPDp"
+				"code": "OUG_HSV_HWp"
 				},
 				{
 				"name": "Neonatology",
@@ -76,7 +76,7 @@
 				},
 				{
 				"name": "Sexual & Rep. Health IPD",
-				"code": "OUG_HSV_SRHIPD"
+				"code": "OUG_HSV_SRHHW"
 				},
 				{
 				"name": "Surgical Ward",
@@ -89,7 +89,7 @@
 			"services": [
 				{
 				"name": "Outbreak Cholera",
-				"code": "OUG_HSV_CHO"
+				"code": "OUG_HSV_CH"
 				},
 				{
 				"name": "Outbreak Dengue",
@@ -105,11 +105,11 @@
 				},
 				{
 				"name": "Outbreak Malaria IPD",
-				"code": "OUG_HSV_MALIPD"
+				"code": "OUG_HSV_MOHW"
 				},
 				{
 				"name": "Outbreak Malaria OPD",
-				"code": "OUG_HSV_MALOPD"
+				"code": "OUG_HSV_MOHW"
 				},
 				{
 				"name": "Surveillance Epid",
@@ -121,7 +121,7 @@
 				},
 				{
 				"name": "Surveillance Nutrition",
-				"code": "OUG_HSV_NUT"
+				"code": "OUG_HSV_NS"
 				}
 			]},
 			{
