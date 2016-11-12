@@ -75,7 +75,9 @@ Dhis2Api.controller("d2ResourcejsondatasetController", ['$scope', '$filter', '$i
     }
     $scope.editHealtServiceDataset = function () {
         angular.forEach($scope.datasetforsave, function (dvalue,dkey) {
-            DataSets.Put({ uid: dvalue.id }, dvalue)
+        	
+          if (dvalue.code != "DS_DEM"){
+          DataSets.Put({ uid: dvalue.id }, dvalue)
          .$promise.then(function (data) {
 
              if (data.response.status == "SUCCESS") {
@@ -87,6 +89,7 @@ Dhis2Api.controller("d2ResourcejsondatasetController", ['$scope', '$filter', '$i
                 $scope.messages.push({ type: "danger", text: $translate('DATASET_NOSAVED') });
              }
          });
+          }
 
         });
     };
