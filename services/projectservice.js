@@ -142,7 +142,7 @@ Dhis2Api.service('projectService', ['$q', 'commonvariable', 'User', 'OrgUnitOrgU
 		  if (orgUnit.level == commonvariable.level.HealthSite || orgUnit.level == commonvariable.level.HealthService) {
 			  
 			  var textToUpdate = "OU_" + commonvariable.ouDirectiveCode.slice(2, 7);
-			  var newCode = textToUpdate + orgUnit.code.slice(7);
+			  var newCode = textToUpdate + orgUnit.code.slice(8);
 			  
 		      OrgUnit.PATCH({id:orgUnit.id},{code:newCode}).$promise.then(function(data){
 		          defered.resolve(data);
@@ -241,11 +241,10 @@ Dhis2Api.service('projectService', ['$q', 'commonvariable', 'User', 'OrgUnitOrgU
 	      var defered = $q.defer();
 	      var promise = defered.promise;
 	      var projectEdited = false;		  
-		  
+	      
 	      OrgUnit.PATCH({id:idOu},editOu).$promise.then(function(data){
 	    	  	    	  
 	    	  if (data.response.status=="SUCCESS") {
-	    		  
 	    		  //projectEdited=true;
 	    		  //asign OU selected 
 	    	      commonvariable.EditOrganisationUnit = commonvariable.OrganisationUnit;
