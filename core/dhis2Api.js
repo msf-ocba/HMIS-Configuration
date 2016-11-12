@@ -332,6 +332,32 @@ Dhis2Api.factory("DataSetsOrgUnit",['$resource','commonvariable', function ($res
 		  DELETE: {method: "DELETE"}});
 }]);
 
+Dhis2Api.factory("UserRoles", ['$resource', 'commonvariable', function ($resource, commonvariable) {
+
+    return $resource(commonvariable.url + "userRoles/:uid",
+		{
+		    uid: '@uid'
+		},
+		{   Get:{method:"GET"},
+		Post: { method: "POST" },
+		Put: { method: "PUT" },
+		Patch: {method: "PATCH"}
+		});
+}]);
+
+
+Dhis2Api.factory("DataSetUserRole",['$resource','commonvariable', function ($resource,commonvariable) {
+	
+	return $resource(commonvariable.url+"userRoles/:uiduserrole/dataSets/:uiddataset",
+		{	
+		uiduserrole:'@uiduserrole',
+		uiddataset: '@uiddataset'
+		},
+		{ POST: { method: "POST"},
+		  GET: {method: "GET"},
+		  DELETE: {method: "DELETE"}});
+}]);
+
 Dhis2Api.factory("OrganisationUnitChildren",['$resource','commonvariable', function ($resource,commonvariable) {
 	return $resource(commonvariable.url+"organisationUnits/:uid", 
    {
