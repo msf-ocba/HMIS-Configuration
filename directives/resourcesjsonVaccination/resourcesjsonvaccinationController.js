@@ -26,8 +26,8 @@ Dhis2Api.directive('d2Resourcejsonvaccination', function(){
 	}
 	}); 
 
-Dhis2Api.controller("d2ResourcejsonvaccinationController", ['$scope', '$filter', '$interval', "commonvariable", "loadjsonresource", "DataElements", "DataSets", "OrgUnit", "validatorService", "Section", "$q",
-                                                            function ($scope, $filter, $interval, commonvariable, loadjsonresource, DataElements, DataSets, OrgUnit, validatorService, Section, $q) {
+Dhis2Api.controller("d2ResourcejsonvaccinationController", ['$scope', '$filter', '$interval', "commonvariable", "loadjsonresource", "DataElements", "DataSets", "OrgUnit", "validatorService", "Section", "$q", "UserRoles", "DataSetUserRole",  
+                                                            function ($scope, $filter, $interval, commonvariable, loadjsonresource, DataElements, DataSets, OrgUnit, validatorService, Section, $q, UserRoles, DataSetUserRole) {
 	$scope.style=[];
 	var $translate = $filter('translate');
 	
@@ -242,6 +242,18 @@ Dhis2Api.controller("d2ResourcejsonvaccinationController", ['$scope', '$filter',
                        $scope.CreateDatasetVaccination = true;
                });
 	}
+	
+	$scope.assignUserRoles = function (uidDataSet) {
+		
+		UserRoles.Get({}).$promise.then (function(data){
+			
+			angular.forEach(data.userRoles, function(userRole, key) {
+				DataSetUserRole.POST({uiduserrole:userRole.id,uiddataset:uidDataSet});
+			});
+			
+		});
+		
+	}
 
     //
 	$scope.saveDatasetVaccination = function () {
@@ -272,6 +284,7 @@ Dhis2Api.controller("d2ResourcejsonvaccinationController", ['$scope', '$filter',
 	            .$promise.then(function (data) {
 	                if (data.response.status == "SUCCESS") {
 	                	$scope.dataSetUid = data.response.lastImported;
+	                	$scope.assignUserRoles(data.response.lastImported);
 	                	$scope.createSectionsToDataSet().then(function(data){
 		                	$scope.dhisSectionsToRemove=$scope.dhisSections;
 		                	$scope.dhisSections=[];
