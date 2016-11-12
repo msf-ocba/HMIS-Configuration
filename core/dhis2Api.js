@@ -269,11 +269,13 @@ Dhis2Api.factory("DataSets", ['$resource', 'commonvariable', function ($resource
     return $resource(commonvariable.url + "dataSets/:uid",
 		{
 		    uid: '@uid',
-		    fields: 'name,id,code,periodType,dataElements,organisationUnits'
+		    fields: ':all'
+		    //fields: 'name,id,code,periodType,dataElements,organisationUnits'
 		},
 		{   Get:{method:"GET"},
 		Post: { method: "POST" },
-		Put: { method: "PUT" }
+		Put: { method: "PUT" },
+		Patch: {method: "PATCH"}
 		});
 }]);
 
