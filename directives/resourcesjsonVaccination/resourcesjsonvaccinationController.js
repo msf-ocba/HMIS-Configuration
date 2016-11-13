@@ -378,7 +378,7 @@ Dhis2Api.controller("d2ResourcejsonvaccinationController", ['$scope', '$filter',
 
      $scope.GetDataelement=function(codes){
         $scope.ListnameDataelement=[];
-        DataElements.Get({filter:'code:in:['+codes+"]"})
+        DataElements.Get({paging:'no',filter:'code:in:'+codes})
         .$promise.then(function(response){
             angular.forEach(response.dataElements, function(dvalue,dkey){
                 $scope.ListnameDataelement[dvalue.code] = { id: dvalue.id, name: dvalue.name };
