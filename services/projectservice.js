@@ -242,12 +242,8 @@ Dhis2Api.service('projectService', ['$q', 'commonvariable', 'User', 'OrgUnitOrgU
 	      var promise = defered.promise;
 	      var projectEdited = false;		  
 	      
-	      OrgUnit.PATCH({id:idOu},editOu).$promise.then(function(data){
-			  console.log(data);
-	    	  	    	  
-	    	  if (data.response.status=="SUCCESS") {
-	    		  //projectEdited=true;
-	    		  //asign OU selected 
+	      OrgUnit.PATCH({id:idOu},editOu).$promise.then(
+			  function(data){
 	    	      commonvariable.EditOrganisationUnit = commonvariable.OrganisationUnit;
                   ///replace with new value
 	    	      commonvariable.EditOrganisationUnit.name = editOu.name;
@@ -256,23 +252,20 @@ Dhis2Api.service('projectService', ['$q', 'commonvariable', 'User', 'OrgUnitOrgU
 	    	      commonvariable.EditOrganisationUnit.openingDate = editOu.openingDate;
                   //refresh tree for show change
 
-	    	      OrganisationUnitChildren.get({ uid: data.response.lastImported, fields: 'name,id,code,level' }).$promise.then(function (response) {
+	    	      OrganisationUnitChildren.get({ uid: idOu, fields: 'name,id,code,level' }).$promise.then(function (response) {
 	    		   	   			   
-	    	    	  var children=response.organisationUnits;	    	    	  
+	    	    	  var children = response.organisationUnits;
 	    	    	  updateOrgUnits(children).then(function (upData) {
 	    	    	      defered.resolve(true);
 	    	    	  });
-	    	  
-	    	      });	
-	    		  	    		  
-	    	  }
-	    	  else
-	    	      defered.resolve(false);
 
-	    	  
-	      });
-	      
-	      return promise;
+				  });
+			  },
+			  function (error) {
+				  defered.resolve(false);
+			  });
+
+		  return promise;
 		  
 	  };
 
