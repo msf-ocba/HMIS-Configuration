@@ -191,8 +191,9 @@ Dhis2Api.factory("User",['$resource','commonvariable', function ($resource,commo
 Dhis2Api.factory("OrgUnitGroupSet",['$resource','commonvariable', function ($resource,commonvariable) {
 			
 	return $resource(commonvariable.url+"organisationUnitGroupSets/:uid",
-		{	
-		uid:'@uid'
+		{
+		uid:'@uid',
+		fields:'displayName,id,code,organisationUnitGroups[id,code,displayName]'	
 		},
 		{ get: { method: "GET"} });
 }]);
@@ -212,7 +213,7 @@ Dhis2Api.factory("OrgUnitGroupByOrgUnit",['$resource','commonvariable', function
 	return $resource(commonvariable.url+"organisationUnits/:uid",
 		{	
 		uid:'@uid',
-		fields:'organisationUnitGroups'
+		fields:'organisationUnitGroups[id,displayName]'
 		},
 		{ get: { method: "GET"} });
 }]);

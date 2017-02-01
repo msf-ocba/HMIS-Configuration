@@ -243,6 +243,7 @@ Dhis2Api.service('projectService', ['$q', 'commonvariable', 'User', 'OrgUnitOrgU
 	      var projectEdited = false;		  
 	      
 	      OrgUnit.PATCH({id:idOu},editOu).$promise.then(function(data){
+			  console.log(data);
 	    	  	    	  
 	    	  if (data.response.status=="SUCCESS") {
 	    		  //projectEdited=true;
