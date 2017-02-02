@@ -182,18 +182,16 @@ Dhis2Api.service('projectService', ['$q', 'commonvariable', 'User', 'OrgUnitOrgU
 	  
 	  this.saveHealthSite = function (newOu){
 		  
-	      var defered = $q.defer();
-	      var promise = defered.promise;
+	      var deferred = $q.defer();
+	      var promise = deferred.promise;
 	      var siteImported = false;
 
           OrgUnit.POST({}, newOu).$promise.then(function (data) {
               
-        	  console.log(data);
-              // if(data.response.status=="SUCCESS"){
-              if (data.response.importCount.imported >= 1) {
+              if (data.httpStatusCode >= 201) {
             	  siteImported = true;
                   
-                  newOu.id = data.response.lastImported;
+                  newOu.id = data.response.uid;
                   commonvariable.NewOrganisationUnit = newOu;
 
                   if (commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.SiteType] != undefined) {
@@ -203,7 +201,7 @@ Dhis2Api.service('projectService', ['$q', 'commonvariable', 'User', 'OrgUnitOrgU
 
                   OrgUnitGroupByOrgUnit.get({ uid: commonvariable.OrganisationUnit.id }).$promise.then(function (response) {
 
-                      listOrgUnitGroups = response.organisationUnitGroups;
+                      var listOrgUnitGroups = response.organisationUnitGroups;
 
                       angular.forEach(listOrgUnitGroups, function (value, key) {
                           OrgUnitGroupsOrgUnit.POST({ uidgroup: value.id, uidorgunit: newOu.id });
@@ -227,7 +225,7 @@ Dhis2Api.service('projectService', ['$q', 'commonvariable', 'User', 'OrgUnitOrgU
             	  siteImported = false;
               }
               
-              defered.resolve(siteImported);
+              deferred.resolve(siteImported);
               
           });		  
 

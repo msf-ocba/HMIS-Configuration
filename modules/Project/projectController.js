@@ -56,7 +56,6 @@ appConfigProjectMSF.controller('projectController', ["$scope", "$timeout", '$fil
 	    if (commonvariable.OrganisationUnit.code != undefined && commonvariable.OrganisationUnit.code.length >= 7)
 	        codeOrgUnit = "OU_" + commonvariable.OrganisationUnit.code.slice(2, 7) + $scope.siteprefix;
 
-
 	    var newOu = {//payload and other validate for Validate
 	        name: commonvariable.ouDirective,
 	        level: (commonvariable.OrganisationUnit.level + 1),
