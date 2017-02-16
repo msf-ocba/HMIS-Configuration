@@ -63,42 +63,40 @@ Dhis2Api.service('missionService', ['$q', 'commonvariable', 'User', 'OrgUnitGrou
 	
 	this.saveProject = function (newOu) {
 		
-		var defered = $q.defer();
-	    var promise = defered.promise;
+		var deferred = $q.defer();
+	    var promise = deferred.promise;
 	    var projectImported = false;
 	    
 		OrgUnit.POST({},newOu).$promise.then(function(data){
-    		  console.log(data);
-    		 // if (data.response.status == "SUCCESS") { ///verificar que en la versi�n 2.19 y 2.20 sea data.response.status
-    		  if (data.response.importCount.imported >= 1) {
-				  newOu.id=data.response.lastImported;
-				  commonvariable.NewOrganisationUnit=newOu;
-				  projectImported = true;
+			if (data.httpStatusCode >= 201) {
+				newOu.id = data.response.uid;
+				commonvariable.NewOrganisationUnit = newOu;
+				projectImported = true;
 				 
-				  if (commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.ProjectType] != undefined)
-				      OrgUnitGroupsOrgUnit.POST({uidgroup:commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.ProjectType].id, uidorgunit:newOu.id});
-				  if (commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.PopulationType] != undefined)
-				      OrgUnitGroupsOrgUnit.POST({ uidgroup: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.PopulationType].id, uidorgunit: newOu.id });
-				  if (commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.TypeManagement] != undefined)
-				      OrgUnitGroupsOrgUnit.POST({ uidgroup: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.TypeManagement].id, uidorgunit: newOu.id });
-				  if (commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.Event] != undefined)
-				      OrgUnitGroupsOrgUnit.POST({ uidgroup: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.Event].id, uidorgunit: newOu.id });
-				  if (commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.Context] != undefined)
-				      OrgUnitGroupsOrgUnit.POST({ uidgroup: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.Context].id, uidorgunit: newOu.id });
-				  
+				if (commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.ProjectType] != undefined)
+				  OrgUnitGroupsOrgUnit.POST({uidgroup:commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.ProjectType].id, uidorgunit:newOu.id});
+				if (commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.PopulationType] != undefined)
+				  OrgUnitGroupsOrgUnit.POST({ uidgroup: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.PopulationType].id, uidorgunit: newOu.id });
+				if (commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.TypeManagement] != undefined)
+				  OrgUnitGroupsOrgUnit.POST({ uidgroup: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.TypeManagement].id, uidorgunit: newOu.id });
+				if (commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.Event] != undefined)
+				  OrgUnitGroupsOrgUnit.POST({ uidgroup: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.Event].id, uidorgunit: newOu.id });
+				if (commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.Context] != undefined)
+				  OrgUnitGroupsOrgUnit.POST({ uidgroup: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.Context].id, uidorgunit: newOu.id });
 
-				  FilterResource.GET({resource:'dataSets', filter:'code:eq:'+commonvariable.codedatasets.codeDSVacStaff}).$promise
-				  		.then(function(response){				  			
-				  			if (response.dataSets.length>0) {				  				
-				  				var dataSet = response.dataSets[0];
-				  				DataSetsOrgUnit.POST({uidorgunit:newOu.id, uiddataset:dataSet.id});
-				  			}				  							  			
-				  		});
-				  				  				  				  
+
+				FilterResource.GET({resource:'dataSets', filter:'code:eq:'+commonvariable.codedatasets.codeDSVacStaff}).$promise
+					.then(function(response){
+						if (response.dataSets.length > 0) {
+							var dataSet = response.dataSets[0];
+							DataSetsOrgUnit.POST({uidorgunit:newOu.id, uiddataset:dataSet.id});
+						}
+					});
+
 			}
 			else projectImported = false;
     
-    		defered.resolve(projectImported);
+    		deferred.resolve(projectImported);
 
 		});		
 		
