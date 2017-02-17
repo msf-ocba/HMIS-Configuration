@@ -220,6 +220,7 @@ Dhis2Api.controller("d2ResourcejsonvaccinationController", ['$scope', '$filter',
 	    $scope.dataSetDescription = ""
 	    commonvariable.PeriodSelected = [];
 	    commonvariable.DataElementSelected = [];
+	    $scope.checkingDEGroup();
 	};
 
     ///get if there exist a Dataset for this Mission.
