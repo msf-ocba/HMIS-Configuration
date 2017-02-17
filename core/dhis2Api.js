@@ -269,11 +269,13 @@ Dhis2Api.factory("DataSets", ['$resource', 'commonvariable', function ($resource
     return $resource(commonvariable.url + "dataSets/:uid",
 		{
 		    uid: '@uid',
-		    fields: 'name,id,code,periodType,dataElements,organisationUnits'
+		    fields: ':all'
+		    //fields: 'name,id,code,periodType,dataElements,organisationUnits'
 		},
 		{   Get:{method:"GET"},
 		Post: { method: "POST" },
-		Put: { method: "PUT" }
+		Put: { method: "PUT" },
+		Patch: {method: "PATCH"}
 		});
 }]);
 
@@ -323,6 +325,32 @@ Dhis2Api.factory("DataSetsOrgUnit",['$resource','commonvariable', function ($res
 	return $resource(commonvariable.url+"organisationUnits/:uidorgunit/dataSets/:uiddataset",
 		{	
 		uidorgunit:'@uidorgunit',
+		uiddataset: '@uiddataset'
+		},
+		{ POST: { method: "POST"},
+		  GET: {method: "GET"},
+		  DELETE: {method: "DELETE"}});
+}]);
+
+Dhis2Api.factory("UserRoles", ['$resource', 'commonvariable', function ($resource, commonvariable) {
+
+    return $resource(commonvariable.url + "userRoles/:uid",
+		{
+		    uid: '@uid'
+		},
+		{   Get:{method:"GET"},
+		Post: { method: "POST" },
+		Put: { method: "PUT" },
+		Patch: {method: "PATCH"}
+		});
+}]);
+
+
+Dhis2Api.factory("DataSetUserRole",['$resource','commonvariable', function ($resource,commonvariable) {
+	
+	return $resource(commonvariable.url+"userRoles/:uiduserrole/dataSets/:uiddataset",
+		{	
+		uiduserrole:'@uiduserrole',
 		uiddataset: '@uiddataset'
 		},
 		{ POST: { method: "POST"},

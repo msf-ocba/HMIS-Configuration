@@ -26,8 +26,8 @@ Dhis2Api.directive('d2Resourcejsonvaccination', function(){
 	}
 	}); 
 
-Dhis2Api.controller("d2ResourcejsonvaccinationController", ['$scope', '$filter', '$interval', "commonvariable", "loadjsonresource", "DataElements", "DataSets", "OrgUnit", "validatorService", "Section", "$q",
-                                                            function ($scope, $filter, $interval, commonvariable, loadjsonresource, DataElements, DataSets, OrgUnit, validatorService, Section, $q) {
+Dhis2Api.controller("d2ResourcejsonvaccinationController", ['$scope', '$filter', '$interval', "commonvariable", "loadjsonresource", "DataElements", "DataSets", "OrgUnit", "validatorService", "Section", "$q", "UserRoles", "DataSetUserRole",  
+                                                            function ($scope, $filter, $interval, commonvariable, loadjsonresource, DataElements, DataSets, OrgUnit, validatorService, Section, $q, UserRoles, DataSetUserRole) {
 	$scope.style=[];
 	var $translate = $filter('translate');
 	
@@ -86,13 +86,14 @@ Dhis2Api.controller("d2ResourcejsonvaccinationController", ['$scope', '$filter',
 
 	$scope.GetChildrenOU = function () {
 	    $scope.childOU = [];
-	    OrgUnit.get({ id: commonvariable.OrganisationUnit.id, includeDescendants: true, fields: 'name,id,level,closedDate', filter: 'level:eq:' + commonvariable.level.HealthService })
+	    OrgUnit.get({ id: commonvariable.OrganisationUnit.id, includeDescendants: true, fields: 'name,id,level,closedDate,organisationUnitGroups', filter: 'level:eq:' + commonvariable.level.HealthService })
           .$promise.then(function (childOU) {
               angular.forEach(childOU.organisationUnits, function (ou, key) {
-                  if(ou.id!=commonvariable.OrganisationUnit.id && ou.closedDate==undefined){
-                      $scope.childOU.push({ id: ou.id });
-                  }
-                    
+                  if(ou.id!=commonvariable.OrganisationUnit.id && ou.closedDate==undefined)
+                	  angular.forEach(ou.organisationUnitGroups, function (oug, key){
+                		  if (oug.code=="OUG_HSV_VAC")
+                              $scope.childOU.push({ id: ou.id });                		  
+                	  });     
               });
              
           });
@@ -219,6 +220,7 @@ Dhis2Api.controller("d2ResourcejsonvaccinationController", ['$scope', '$filter',
 	    $scope.dataSetDescription = ""
 	    commonvariable.PeriodSelected = [];
 	    commonvariable.DataElementSelected = [];
+	    $scope.checkingDEGroup();
 	};
 
     ///get if there exist a Dataset for this Mission.
@@ -241,6 +243,18 @@ Dhis2Api.controller("d2ResourcejsonvaccinationController", ['$scope', '$filter',
                    else
                        $scope.CreateDatasetVaccination = true;
                });
+	}
+	
+	$scope.assignUserRoles = function (uidDataSet) {
+		
+		UserRoles.Get({}).$promise.then (function(data){
+			
+			angular.forEach(data.userRoles, function(userRole, key) {
+				DataSetUserRole.POST({uiduserrole:userRole.id,uiddataset:uidDataSet});
+			});
+			
+		});
+		
 	}
 
     //
@@ -272,6 +286,7 @@ Dhis2Api.controller("d2ResourcejsonvaccinationController", ['$scope', '$filter',
 	            .$promise.then(function (data) {
 	                if (data.response.status == "SUCCESS") {
 	                	$scope.dataSetUid = data.response.lastImported;
+	                	$scope.assignUserRoles(data.response.lastImported);
 	                	$scope.createSectionsToDataSet().then(function(data){
 		                	$scope.dhisSectionsToRemove=$scope.dhisSections;
 		                	$scope.dhisSections=[];
@@ -364,7 +379,7 @@ Dhis2Api.controller("d2ResourcejsonvaccinationController", ['$scope', '$filter',
 
      $scope.GetDataelement=function(codes){
         $scope.ListnameDataelement=[];
-        DataElements.Get({filter:'code:in:['+codes+"]"})
+        DataElements.Get({paging:'no',filter:'code:in:'+codes})
         .$promise.then(function(response){
             angular.forEach(response.dataElements, function(dvalue,dkey){
                 $scope.ListnameDataelement[dvalue.code] = { id: dvalue.id, name: dvalue.name };
