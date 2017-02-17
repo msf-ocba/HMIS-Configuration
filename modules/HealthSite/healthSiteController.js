@@ -232,8 +232,8 @@ appConfigProjectMSF.controller('healthSiteController', ["$scope", '$filter', "co
 	      var servicesAllowed = undefined; 
 	      var compatible = true;
 	      
-	      loadjsonresource.get("servicebysite").then(function(response) { 
-				
+	      loadjsonresource.get("servicebysite").then(function(response) {
+			  
 	    	  angular.forEach(response.data.servicesBySite.siteType, function (site, key){
 	    		 
 	    		  if (site.code == ougroup.code) {
@@ -246,9 +246,9 @@ appConfigProjectMSF.controller('healthSiteController', ["$scope", '$filter', "co
 	    	  OrgUnitChildren.GET({ uid: commonvariable.OrganisationUnit.id }).$promise.then(function (response) {
 	   
 	    		  commonService.checkServicesOrgUnitGroups(response.children, servicesAllowed).then(function(services){
-            		  
+					  
 	    			  realServices = $scope.removeEmptyServices(services);
-	    			  
+					  
             		  if (realServices.length>0){
             			  
             			  compatible = false;
@@ -262,7 +262,6 @@ appConfigProjectMSF.controller('healthSiteController', ["$scope", '$filter', "co
             			  $scope.openWindow();            			  
             			  
             		  } else {
-            			  
             		      healthsiteService.editHealthSite(commonvariable.OrganisationUnit.id, $scope.editOu).then(function(result){
             		    	  if (result == true) {
             		    	      commonvariable.RefreshTreeOU = true;
@@ -272,7 +271,9 @@ appConfigProjectMSF.controller('healthSiteController', ["$scope", '$filter', "co
             		    	  } else
             		    		  $scope.messages.push({type:"danger",
             		    		      text:$translate('SITE_NOUPDATED')});	
-            		      }); 
+            		      }, function (error) {
+							  console.log(error);
+						  });
             			  
             		  }
             			  

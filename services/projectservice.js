@@ -188,7 +188,7 @@ Dhis2Api.service('projectService', ['$q', 'commonvariable', 'User', 'OrgUnitOrgU
 
           OrgUnit.POST({}, newOu).$promise.then(function (data) {
               
-              if (data.httpStatusCode >= 201) {
+              if (data.httpStatusCode == 201) {
             	  siteImported = true;
                   
                   newOu.id = data.response.uid;

@@ -65,7 +65,7 @@ Dhis2Api.controller("d2DropdownorgunitgroupsetController", ['$q','$scope','$http
 		$scope.ougName = ougSelected.displayName;
 		
 		getIDOUG.get({filter:'code:eq:'+ougSelected.code}).$promise.then(function(response) {
-			
+
 			commonvariable.orgUnitGroupSet[$scope.uidgroupset] = response.organisationUnitGroups[0];
 		
 		});

@@ -157,12 +157,9 @@ Dhis2Api.service('healthsiteService', ['$q', 'commonvariable', 'OrgUnit', 'Filte
 		 var promise = defered.promise;
 		 var siteEdited = false;
 
-	     OrgUnit.PATCH({id:idOu},editOu).$promise.then(function(data){
-	    	  
-	    	  if (data.response.status=="SUCCESS") {
-	    		  
-	    		  
-	    		  
+	     OrgUnit.PATCH({id:idOu}, editOu).$promise.then(function (data){
+	    	  if (data.httpStatusCode == 201) {
+				  
                   //asign OU selected 
 	    	      commonvariable.EditOrganisationUnit = commonvariable.OrganisationUnit;
                   ///replace with new value
@@ -175,7 +172,7 @@ Dhis2Api.service('healthsiteService', ['$q', 'commonvariable', 'OrgUnit', 'Filte
 	    	      
 	    	      if ( typeof commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.SiteType] != "undefined") {
 	    	      
-	    	    	  OrganisationUnitChildren.get({ uid: data.response.lastImported, fields: 'name,id,code,level' }).$promise.then(function (response) {
+	    	    	  OrganisationUnitChildren.get({ uid: data.response.uid, fields: 'name,id,code,level' }).$promise.then(function (response) {
 		   			   
 	    	    		  var children=response.organisationUnits;
 	   				    	    		  

@@ -213,7 +213,7 @@ Dhis2Api.factory("OrgUnitGroupByOrgUnit",['$resource','commonvariable', function
 	return $resource(commonvariable.url+"organisationUnits/:uid",
 		{	
 		uid:'@uid',
-		fields:'organisationUnitGroups[id,displayName]'
+		fields:'organisationUnitGroups[id,code,displayName]'
 		},
 		{ get: { method: "GET"} });
 }]);
@@ -296,7 +296,8 @@ Dhis2Api.factory("getIDOUG",  ['$resource', 'commonvariable', function ($resourc
 	
 	return $resource(commonvariable.url + "organisationUnitGroups",
 			{
-			filter:'@filter'
+			filter: '@filter',
+			fields: 'id,displayName,name,code'
 			},
 			{GET: {method: "GET"}});
 		
