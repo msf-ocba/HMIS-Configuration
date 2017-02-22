@@ -63,18 +63,15 @@ Dhis2Api.service('healthsiteService', ['$q', 'commonvariable', 'OrgUnit', 'Filte
 	    var serviceSaved = false;
 	    
         OrgUnit.POST({}, newOu).$promise.then(function (data) {
-            console.log(data);
             serviceSaved = true;
             
-            if (data.response.status == "SUCCESS") {
-                newOu.id = data.response.lastImported;
+            if (data.status == "OK") {
+                newOu.id = data.response.uid;
                 commonvariable.NewOrganisationUnit = newOu;
 
                 if (commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.HealthService] != undefined)
                     OrgUnitGroupsOrgUnit.POST({ uidgroup: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.HealthService].id, uidorgunit: newOu.id });
-
-                console.log(commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.HealthService].name)
-
+				
                 FilterResource.GET({ resource: 'dataSets', filter: 'code:eq:' + commonvariable.codedatasets.codeDSDemographic }).$promise
                   .then(function (response) {
 

@@ -193,7 +193,7 @@ Dhis2Api.factory("OrgUnitGroupSet",['$resource','commonvariable', function ($res
 	return $resource(commonvariable.url+"organisationUnitGroupSets/:uid",
 		{
 		uid:'@uid',
-		fields:'displayName,id,code,organisationUnitGroups[id,code,displayName]'	
+		fields:'displayName~name,id,code,organisationUnitGroups[id,code,displayName~name]'
 		},
 		{ get: { method: "GET"} });
 }]);

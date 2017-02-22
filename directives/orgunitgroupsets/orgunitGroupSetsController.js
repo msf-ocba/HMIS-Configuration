@@ -62,7 +62,7 @@ Dhis2Api.controller("d2DropdownorgunitgroupsetController", ['$q','$scope','$http
 	
 	
 	$scope.selectOrgUnitGroup = function(ougSelected){ 
-		$scope.ougName = ougSelected.displayName;
+		$scope.ougName = ougSelected.name;
 		
 		getIDOUG.get({filter:'code:eq:'+ougSelected.code}).$promise.then(function(response) {
 
@@ -138,7 +138,7 @@ Dhis2Api.controller("d2DropdownorgunitgroupsetController", ['$q','$scope','$http
 
 	        try {
 	            getOrgUnitGroup(commonvariable.OrganisationUnit.id, $scope.uidgroupset).then(function (data) {
-	            	$scope.ougName = data.displayName;
+	            	$scope.ougName = data.name;
 	            	if ($scope.operation=="edit") {
 	            	    commonvariable.preOrgUnitGroupSet[$scope.uidgroupset] = data;
                         ///
@@ -169,7 +169,7 @@ Dhis2Api.controller("d2DropdownorgunitgroupsetController", ['$q','$scope','$http
 	        	$scope.disabled = true;
 	            try{
 	                getOrgUnitGroup(commonvariable.OrganisationUnit.id, $scope.uidgroupset).then(function (data) {
-	                    $scope.ougName = data.displayName;
+	                    $scope.ougName = data.name;
 	                    if ($scope.uidgroupset == commonvariable.ouGroupsetId.HealthService) {
 	                        commonvariable.healhservicesCodeOUG = data.code;
 	                    }
