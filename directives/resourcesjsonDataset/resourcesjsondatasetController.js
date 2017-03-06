@@ -51,10 +51,9 @@ Dhis2Api.controller("d2ResourcejsondatasetController", ['$scope', '$filter', '$i
         }
         commonvariable.EditOrganisationUnit = commonvariable.OrganisationUnit;
         $scope.pdatasets = commonvariable.OrganisationUnit.dataSets;
-         //refresh tree for show change
-         commonvariable.RefreshTreeOU = true;
-       
-    }
+        //refresh tree for show change
+        commonvariable.RefreshTreeOU = true;
+    };
 
     $scope.$watch(function () {
         if ((commonvariable.OrganisationUnit && commonvariable.OrganisationUnit.id != $scope.prevOu) ||
@@ -76,22 +75,18 @@ Dhis2Api.controller("d2ResourcejsondatasetController", ['$scope', '$filter', '$i
                                                             
     $scope.editHealtServiceDataset = function () {
         angular.forEach($scope.datasetforsave, function (dvalue,dkey) {
-        	
-          if (dvalue.code != "DS_DEM"){
-          DataSets.Put({ uid: dvalue.id }, dvalue)
-         .$promise.then(function (data) {
-
-             if (data.response.status == "SUCCESS") {
-                 $scope.editOrgUnit($scope.datasetforsave);
-                // $scope.messages.push({ type: "success", text: $translate('DATASET_SAVED') });
-                 $scope.initForm();
-             }
-             else {
-                $scope.messages.push({ type: "danger", text: $translate('DATASET_NOSAVED') });
-             }
-         });
-          }
-
+            if (dvalue.code != "DS_DEM"){
+                DataSets.Put({ uid: dvalue.id }, dvalue).$promise
+                    .then(function (data) {
+                        if (data.status == "OK") {
+                            $scope.editOrgUnit($scope.datasetforsave);
+                            $scope.initForm();
+                        }
+                        else {
+                            $scope.messages.push({ type: "danger", text: $translate('DATASET_NOSAVED') });
+                        }
+                    });
+            }
         });
     };
 
