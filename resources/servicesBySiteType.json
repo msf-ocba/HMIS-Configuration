@@ -10,12 +10,12 @@
             "code": "OUG_HSV_EC"
           },
           {
-            "name": "External Consultations (children)",
+            "name": "Paediatric External Consultation",
             "code": "OUG_HSV_ECp"
           },
           {
-            "name": "Gender Based Violence",
-            "code": "OUG_HSV_GBV"
+            "name": "Sexual Violence",
+            "code": "OUG_HSV_SV"
           },
           {
             "name": "HIV",
@@ -66,8 +66,8 @@
             "code": "OUG_HSV_MOR"
           },
           {
-            "name": "Surveillance Nutrition",
-            "code": "OUG_HSV_NUT"
+            "name": "Surveillance Nut",
+            "code": "OUG_HSV_NS"
           },
           {
             "name": "TB",
@@ -96,12 +96,12 @@
             "code": "OUG_HSV_EC"
           },
           {
-            "name": "External Consultations (children)",
+            "name": "Paediatric External Consultation",
             "code": "OUG_HSV_ECp"
           },
           {
-            "name": "Gender Based Violence",
-            "code": "OUG_HSV_GBV"
+            "name": "Sexual Violence",
+            "code": "OUG_HSV_SV"
           },
           {
             "name": "HIV",
@@ -109,11 +109,11 @@
           },
           {
             "name": "Hospitalization Ward",
-            "code": "OUG_HSV_IPD"
+            "code": "OUG_HSV_HW"
           },
           {
-            "name": "Hospitalization Ward (children)",
-            "code": "OUG_HSV_IPDp"
+            "name": "Paediatric Ward",
+            "code": "OUG_HSV_HWp"
           },
           {
             "name": "Mental Health",
@@ -164,15 +164,15 @@
             "code": "OUG_HSV_MALOPD"
           },
           {
-            "name": "Sexual & Rep. Health IPD",
-            "code": "OUG_HSV_SRHIPD"
+            "name": "Sexual and Rep. Health IPD",
+            "code": "OUG_HSV_SRHHW"
           },
           {
-            "name": "Sexual & Rep. Health OPD",
-            "code": "OUG_HSV_SRHOPD"
+            "name": "Sexual and Rep. Health OPD",
+            "code": "OUG_HSV_SRHEC"
           },
           {
-            "name": "Surveillance Epid",
+            "name": "Early Warning System",
             "code": "OUG_HSV_EWS"
           },
           {
@@ -180,8 +180,8 @@
             "code": "OUG_HSV_MOR"
           },
           {
-            "name": "Surveillance Nutrition",
-            "code": "OUG_HSV_NUT"
+            "name": "Surveillance Nut",
+            "code": "OUG_HSV_NS"
           },
           {
             "name": "TB",
@@ -202,12 +202,12 @@
             "code": "OUG_HSV_EC"
           },
           {
-            "name": "External Consultations (children)",
+            "name": "Paediatric External Consultation",
             "code": "OUG_HSV_ECp"
           },
           {
-            "name": "Gender Based Violence",
-            "code": "OUG_HSV_GBV"
+            "name": "Sexual Violence",
+            "code": "OUG_HSV_SV"
           },
           {
             "name": "HIV",
@@ -243,14 +243,14 @@
           },
           {
             "name": "Outbreak Malaria OPD",
-            "code": "OUG_HSV_MALOPD"
+            "code": "OUG_HSV_MOEC"
           },
           {
-            "name": "Sexual & Rep. Health OPD",
-            "code": "OUG_HSV_SRHOPD"
+            "name": "Sexual and Rep. Health OPD",
+            "code": "OUG_HSV_SRHEC"
           },
           {
-            "name": "Surveillance Epid",
+            "name": "Early Warning System",
             "code": "OUG_HSV_EWS"
           },
           {
@@ -258,8 +258,8 @@
             "code": "OUG_HSV_MOR"
           },
           {
-            "name": "Surveillance Nutrition",
-            "code": "OUG_HSV_NUT"
+            "name": "Surveillance Nut",
+            "code": "OUG_HSV_NS"
           },
           {
             "name": "TB",
@@ -318,12 +318,12 @@
             "code": "OUG_HSV_EC"
           },
           {
-            "name": "External Consultations (children)",
+            "name": "Paediatric External Consultation",
             "code": "OUG_HSV_ECp"
           },
           {
-            "name": "Gender Based Violence",
-            "code": "OUG_HSV_GBV"
+            "name": "Sexual Violence",
+            "code": "OUG_HSV_SV"
           },
           {
             "name": "HIV",
@@ -331,11 +331,11 @@
           },
           {
             "name": "Hospitalization Ward",
-            "code": "OUG_HSV_IPD"
+            "code": "OUG_HSV_HW"
           },
           {
-            "name": "Hospitalization Ward (children)",
-            "code": "OUG_HSV_IPDp"
+            "name": "Paediatric Ward",
+            "code": "OUG_HSV_HWp"
           },
           {
             "name": "Mental Health",
@@ -383,26 +383,26 @@
           },
           {
             "name": "Outbreak Malaria IPD",
-            "code": "OUG_HSV_MALIPD"
+            "code": "OUG_HSV_MOHW"
           },
           {
             "name": "Outbreak Malaria OPD",
-            "code": "OUG_HSV_MALOPD"
+            "code": "OUG_HSV_MOEC"
           },
           {
-            "name": "Sexual & Rep. Health IPD",
-            "code": "OUG_HSV_SRHIPD"
+            "name": "Sexual and Rep. Health IPD",
+            "code": "OUG_HSV_SRHHW"
           },
           {
-            "name": "Sexual & Rep. Health OPD",
-            "code": "OUG_HSV_SRHOPD"
+            "name": "Sexual and Rep. Health OPD",
+            "code": "OUG_HSV_SRHEC"
           },
           {
             "name": "Surgical Ward",
             "code": "OUG_HSV_SW"
           },
           {
-            "name": "Surveillance Epid",
+            "name": "Early Warning System",
             "code": "OUG_HSV_EWS"
           },
           {
@@ -410,8 +410,8 @@
             "code": "OUG_HSV_MOR"
           },
           {
-            "name": "Surveillance Nutrition",
-            "code": "OUG_HSV_NUT"
+            "name": "Surveillance Nut",
+            "code": "OUG_HSV_NS"
           },
           {
             "name": "TB",
