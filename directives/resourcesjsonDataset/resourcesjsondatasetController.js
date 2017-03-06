@@ -25,8 +25,8 @@ Dhis2Api.directive('d2Resourcejsondataset', function(){
 		    }
 	}
 	}); 
-Dhis2Api.controller("d2ResourcejsondatasetController", ['$scope', '$filter', '$interval', "commonvariable", "loadjsonresource", "OrgUnit", "DataSets", "commonService",
-                                                        function ($scope,$filter, $interval, commonvariable, loadjsonresource, OrgUnit, DataSets, commonService) {
+Dhis2Api.controller("d2ResourcejsondatasetController", ['$scope', '$filter', '$interval', "commonvariable", "loadjsonresource", "OrgUnit", "DataSets", "commonService", "DatasetService",
+                                                        function ($scope,$filter, $interval, commonvariable, loadjsonresource, OrgUnit, DataSets, commonService, DatasetService) {
    
     
     var stop;
@@ -69,10 +69,11 @@ Dhis2Api.controller("d2ResourcejsondatasetController", ['$scope', '$filter', '$i
     });
 
 
-    $scope.showedit = function () {
+    $scope.showEdit = function () {
         $scope.operation = 'edit';
-        $scope.loadlevel();
-    }
+        $scope.loadLevels();
+    };
+                                                            
     $scope.editHealtServiceDataset = function () {
         angular.forEach($scope.datasetforsave, function (dvalue,dkey) {
         	
@@ -94,36 +95,14 @@ Dhis2Api.controller("d2ResourcejsondatasetController", ['$scope', '$filter', '$i
         });
     };
 
-    $scope.loadlevel = function () {
-        $scope.levels = [];
-        $scope.GroupDE = [];
+    $scope.loadLevels = function () {
         commonvariable.healhservicesCodeOUG = commonvariable.healhservicesCodeOUG.trim();
-       // $scope.serviceName = "No existen Dataset para " + commonvariable.OrganisationUnit.name;
-       loadjsonresource.get($scope.id)
-        .then(function(response){
-            $scope.services = response.data.datasetByService[0].service;
-            var ouname = commonvariable.OrganisationUnit.name.split("_");
-            if (ouname == undefined)
-                ouname = commonvariable.OrganisationUnit.name
-            else
-                ouname = ouname[ouname.length-1];
-            angular.forEach($scope.services, function (svalue, skey) {
-                if (svalue.code == commonvariable.healhservicesCodeOUG) {
-                     $scope.levels = svalue.levels;
-                     // $scope.serviceName = svalue.name;
-                }
-                if ($scope.services.length == skey + 1 && $scope.levels.length == 0){
-                    $scope.messages.push({ type: "danger", text: "code " + commonvariable.healhservicesCodeOUG + " not found in file" });
-                }
-                
-             });
-            
-            $scope.levels = commonService.sortByKey($scope.levels, 'name');
-            
-         });
-    }
-
-    //$scope.loadlevel();
+        DatasetService.getByService(commonvariable.healhservicesCodeOUG)
+            .then( function (dataSetByLevels) {
+                $scope.levels = dataSetByLevels.levels;
+                $scope.levels = commonService.sortByKey($scope.levels, 'value');
+            });
+    };
 
     $scope.loadDataSet = function () {
         

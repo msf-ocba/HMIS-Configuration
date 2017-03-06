@@ -48,7 +48,6 @@ dhis2.settings.baseUrl = auxBaseUrl;
 
 
 var urlResource ={"vaccination":{url:"resources/vaccinationDataset.json"},
-				"datasetbyservices":{url:"resources/datasetByService.json"},
 				"healthservice":{url:"resources/healthserviceSuffix.json"},
 				"servicebysite":{url:"resources/servicesBySiteType.json"},
 				"servicebyservicetype":{url:"resources/serviceByServiceType.json"}
