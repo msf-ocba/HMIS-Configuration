@@ -30,7 +30,7 @@
                     <div class="col-md-6">
                         <table class="table table-condensed">
                             <tbody>
-                                <tr ng-repeat="pdataset in pdatasets" class="{{style[pdataset.code]}}">
+                                <tr ng-repeat="pdataset in pdatasets" class="{{style[pdataset.id]}}">
                                     <td>{{pdataset.name}}</td>
                                 </tr>
                             </tbody>
@@ -56,10 +56,10 @@
 
                                 <table class="table table-condensed">
                                     <tbody>
-                                        <tr ng-repeat="dataset in period.dataSets" class="{{style[dataset.code.trim()]}}">
+                                        <tr ng-repeat="dataset in period.dataSets" class="{{style[dataset.id]}}">
                                             <td>{{dataset.displayName}}</td>
                                             <td>
-                                                <button ng-click="finddatasetSelected(dataset.code)" type="button" class="btn btn-{{style[dataset.code.trim()]}}" aria-label="Left Align">
+                                                <button ng-click="selectDataSet(dataset.id)" type="button" class="btn btn-{{style[dataset.id]}}" aria-label="Left Align">
                                                     <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
                                                 </button>
                                             </td>

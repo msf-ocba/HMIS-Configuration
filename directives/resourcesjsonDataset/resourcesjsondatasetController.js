@@ -19,149 +19,111 @@
 Dhis2Api.directive('d2Resourcejsondataset', function(){
 	return{
 		restrict: 'E',
-		templateUrl: 'directives/resourcesjsonDataset/resourcesjsondatasetView.html',
-		scope: {
-		    id: '@'
-		    }
+		templateUrl: 'directives/resourcesjsonDataset/resourcesjsondatasetView.html'
 	}
-	}); 
-Dhis2Api.controller("d2ResourcejsondatasetController", ['$scope', '$filter', '$interval', "commonvariable", "loadjsonresource", "OrgUnit", "DataSets", "commonService", "DatasetService",
-                                                        function ($scope,$filter, $interval, commonvariable, loadjsonresource, OrgUnit, DataSets, commonService, DatasetService) {
-   
-    
-    var stop;
-    $scope.messages = [];
-    $scope.prevOu = undefined;
-    var $translate = $filter('translate');
+});
 
+Dhis2Api.controller("d2ResourcejsondatasetController",
+    ['$scope', '$filter', "commonvariable", "DataSetsOrgUnit", "commonService", "DatasetService",
+    function ($scope, $filter, commonvariable, DataSetsOrgUnit, commonService, DatasetService) {
 
-    $scope.initForm = function () {
-        $scope.style = [];
-        $scope.datasetcodeSelected = [];
-        $scope.operation = 'show';
+        $scope.messages = [];
         $scope.prevOu = undefined;
-    }
-    
-    $scope.editOrgUnit = function (datasets) {
-        try {
-            commonvariable.OrganisationUnit.dataSets = datasets;
-        }catch(err){
-            commonvariable.OrganisationUnit.dataSets = [];
-            commonvariable.OrganisationUnit.dataSets = datasets;
-        }
-        commonvariable.EditOrganisationUnit = commonvariable.OrganisationUnit;
-        $scope.pdatasets = commonvariable.OrganisationUnit.dataSets;
-        //refresh tree for show change
-        commonvariable.RefreshTreeOU = true;
-    };
+        var $translate = $filter('translate');
 
-    $scope.$watch(function () {
-        if ((commonvariable.OrganisationUnit && commonvariable.OrganisationUnit.id != $scope.prevOu) ||
-        		commonvariable.refreshDataSets) {
-            $scope.initForm();
-            $scope.prevOu = commonvariable.OrganisationUnit.id;
+        $scope.levels = [];
+        var serviceDataSets = [];
+
+        $scope.initForm = function () {
+            $scope.style = [];
+            $scope.datasetIdSelected = [];
+            $scope.operation = 'show';
+            $scope.prevOu = undefined;
+        };
+
+        $scope.editOrgUnit = function (datasets) {
+            try {
+                commonvariable.OrganisationUnit.dataSets = datasets;
+            }catch(err){
+                commonvariable.OrganisationUnit.dataSets = [];
+                commonvariable.OrganisationUnit.dataSets = datasets;
+            }
+            commonvariable.EditOrganisationUnit = commonvariable.OrganisationUnit;
             $scope.pdatasets = commonvariable.OrganisationUnit.dataSets;
-            $scope.loadDataSet();
-            commonvariable.refreshDataSets = false;
-            //$scope.finddatasetSelected();
-        }
-    });
+            //refresh tree for show change
+            commonvariable.RefreshTreeOU = true;
+        };
 
-
-    $scope.showEdit = function () {
-        $scope.operation = 'edit';
-        $scope.loadLevels();
-    };
-                                                            
-    $scope.editHealtServiceDataset = function () {
-        angular.forEach($scope.datasetforsave, function (dvalue,dkey) {
-            if (dvalue.code != "DS_DEM"){
-                DataSets.Put({ uid: dvalue.id }, dvalue).$promise
-                    .then(function (data) {
-                        if (data.status == "OK") {
-                            $scope.editOrgUnit($scope.datasetforsave);
-                            $scope.initForm();
-                        }
-                        else {
-                            $scope.messages.push({ type: "danger", text: $translate('DATASET_NOSAVED') });
-                        }
-                    });
+        $scope.$watch(function () {
+            if ((commonvariable.OrganisationUnit && commonvariable.OrganisationUnit.id != $scope.prevOu) ||
+                    commonvariable.refreshDataSets) {
+                $scope.initForm();
+                $scope.prevOu = commonvariable.OrganisationUnit.id;
+                $scope.pdatasets = commonvariable.OrganisationUnit.dataSets;
+                $scope.loadDataSet();
+                commonvariable.refreshDataSets = false;
             }
         });
-    };
 
-    $scope.loadLevels = function () {
-        commonvariable.healhservicesCodeOUG = commonvariable.healhservicesCodeOUG.trim();
-        DatasetService.getByService(commonvariable.healhservicesCodeOUG)
-            .then( function (dataSetByLevels) {
-                $scope.levels = dataSetByLevels.levels;
-                $scope.levels = commonService.sortByKey($scope.levels, 'value');
+
+        $scope.showEdit = function () {
+            $scope.operation = 'edit';
+            $scope.loadLevels();
+        };
+
+        $scope.editHealtServiceDataset = function () {
+            var dataSetsToAdd = serviceDataSets
+                .filter(function (ds) { return $scope.datasetIdSelected.indexOf(ds.id) > -1});
+            var dataSetsToRemove = serviceDataSets
+                .filter(function (ds) { return $scope.datasetIdSelected.indexOf(ds.id) <= -1});
+
+            var payload = {
+                "additions": dataSetsToAdd.map(function (ds) { return { "id": ds.id };}),
+                "deletions": dataSetsToRemove.map(function (ds) { return { "id": ds.id };})
+            };
+            DataSetsOrgUnit.POST({"uidorgunit": commonvariable.OrganisationUnit.id}, payload).$promise.then(function (data) {
+                $scope.editOrgUnit(dataSetsToAdd);
+                $scope.initForm();
             });
-    };
+        };
 
-    $scope.loadDataSet = function () {
-        
-        angular.forEach($scope.pdatasets, function (value, key) {
+        $scope.loadLevels = function () {
+            commonvariable.healhservicesCodeOUG = commonvariable.healhservicesCodeOUG.trim();
+            DatasetService.getByService(commonvariable.healhservicesCodeOUG)
+                .then( function (dataSetByLevels) {
+                    $scope.levels = dataSetByLevels.levels;
+                    $scope.levels = commonService.sortByKey($scope.levels, 'value');
+                    serviceDataSets = $scope.levels
+                        .reduce(function (array, level) {
+                            return array.concat(level.periods.reduce(function (periods, period) {
+                                return periods.concat(period.dataSets);
+                            }, []));
+                        }, []);
+                });
+        };
 
-            var dcode = value.code;
-            var index = $scope.datasetcodeSelected.indexOf(dcode);
+        $scope.loadDataSet = function () {
+            angular.forEach($scope.pdatasets, function (dataSet, key) {
+                $scope.selectDataSet(dataSet.id);
+            });
+        };
+
+        $scope.selectDataSet = function(dsId) {
+            var index = $scope.datasetIdSelected.indexOf(dsId);
             if (index > -1) {
-                $scope.datasetcodeSelected.splice(index, 1);
-                $scope.style[dcode] = '';
+                $scope.datasetIdSelected.splice(index, 1);
+                $scope.style[dsId] = '';
             }
             else {
-                $scope.style[dcode] = 'success';
-                $scope.datasetcodeSelected.push(dcode);
+                $scope.style[dsId] = "success";
+                $scope.datasetIdSelected.push(dsId);
             }
+        };
 
-
-        });
-    }
-
-    $scope.selectdataset= function(dcode) {
-
-        var index = $scope.datasetcodeSelected.indexOf(dcode);
-            if (index > -1) {
-                $scope.datasetcodeSelected.splice(index, 1);
-                $scope.style[dcode] = '';
-            }
-            else {
-                $scope.style[dcode] = "success";
-                $scope.datasetcodeSelected.push(dcode);
-            }
-
-
-
-    };
-
-    $scope.finddatasetSelected = function (dcode) {
-        dcode = dcode.trim();
-        $scope.datasetforsave = [];
-        /////
-        $scope.selectdataset(dcode);
-       angular.forEach($scope.datasetcodeSelected, function (value, key) {
-        DataSets.Get({ filter: 'code:eq:' + value })
-            .$promise.then(function (ds) {
-                if (ds.dataSets.length > 0) {
-                    //add the new OU to DataSet
-                    ds.dataSets[0].organisationUnits.push(commonvariable.OrganisationUnitParentConf);
-                    ///
-                    $scope.datasetforsave.push(ds.dataSets[0]);                     
-                }
-                else {
-                  $scope.style[dcode]= 'danger';
-            }
-            });
-
-       });
-
-    }
-
-
-    //set message variable
-	  $scope.closeAlertMessage = function (index) {
-	      $scope.messages.splice(index, 1);
-	  };
+        //set message variable
+        $scope.closeAlertMessage = function (index) {
+            $scope.messages.splice(index, 1);
+        };
 
 
    }]);
