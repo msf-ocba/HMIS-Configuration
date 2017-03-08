@@ -16,8 +16,8 @@
    You should have received a copy of the GNU General Public License
    along with Project Configuration.  If not, see <http://www.gnu.org/licenses/>. */
 
-Dhis2Api.service('missionService', ['$q', 'commonvariable', 'User', 'OrgUnitGroupsOrgUnit', 'OrgUnit', 'FilterResource', 'DataSetsOrgUnit',
-                                    function ($q, commonvariable, User, OrgUnitGroupsOrgUnit, OrgUnit, FilterResource, DataSetsOrgUnit) {
+Dhis2Api.service('missionService', ['$q', 'commonvariable', 'User', 'OrgUnitGroupsOrgUnit', 'OrgUnit', 'FilterResource', 'DataSetsOrgUnit', 'DemographicService',
+                                    function ($q, commonvariable, User, OrgUnitGroupsOrgUnit, OrgUnit, FilterResource, DataSetsOrgUnit, DemographicService) {
 
     this.initValue = function ($scope) { 
         $scope.projectTypeId = commonvariable.ouGroupsetId.ProjectType;
@@ -29,11 +29,11 @@ Dhis2Api.service('missionService', ['$q', 'commonvariable', 'User', 'OrgUnitGrou
     
 	this.saveUsers=function(){
 		
-		var user
+		var user;
 		
 		for (var i=0; i<=10;i++) {
 			
-			user={}
+			user={};
 			user.surname = commonvariable.userDirective
 			user.userCredentials= {}
 			user.userCredentials.password=commonvariable.users.passwd
@@ -64,14 +64,11 @@ Dhis2Api.service('missionService', ['$q', 'commonvariable', 'User', 'OrgUnitGrou
 	this.saveProject = function (newOu) {
 		
 		var deferred = $q.defer();
-	    var promise = deferred.promise;
-	    var projectImported = false;
 	    
 		OrgUnit.POST({},newOu).$promise.then(function(data){
-			if (data.httpStatusCode >= 201) {
+			if (data.status = "OK") {
 				newOu.id = data.response.uid;
 				commonvariable.NewOrganisationUnit = newOu;
-				projectImported = true;
 				 
 				if (commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.ProjectType] != undefined)
 				  OrgUnitGroupsOrgUnit.POST({uidgroup:commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.ProjectType].id, uidorgunit:newOu.id});
@@ -85,6 +82,8 @@ Dhis2Api.service('missionService', ['$q', 'commonvariable', 'User', 'OrgUnitGrou
 				  OrgUnitGroupsOrgUnit.POST({ uidgroup: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.Context].id, uidorgunit: newOu.id });
 
 
+				//We don't use vaccination DataSet yet
+				/**
 				FilterResource.GET({resource:'dataSets', filter:'code:eq:'+commonvariable.codedatasets.codeDSVacStaff}).$promise
 					.then(function(response){
 						if (response.dataSets.length > 0) {
@@ -92,15 +91,25 @@ Dhis2Api.service('missionService', ['$q', 'commonvariable', 'User', 'OrgUnitGrou
 							DataSetsOrgUnit.POST({uidorgunit:newOu.id, uiddataset:dataSet.id});
 						}
 					});
+				 */
 
+				DemographicService.assignDemographicInfoDataSet(newOu.id).then(function () {
+					return DemographicService.assignPopulationDataSet(newOu.id);
+				}).then(
+					function success() {
+						deferred.resolve(true);
+					},
+					function error() {
+						deferred.resolve(false);
+					}
+				);
 			}
-			else projectImported = false;
-    
-    		deferred.resolve(projectImported);
-
+			else {
+				deferred.resolve(false);
+			}
 		});		
 		
-		return promise;
+		return deferred.promise;
 	};
     
     
