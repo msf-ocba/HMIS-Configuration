@@ -16,8 +16,8 @@
    You should have received a copy of the GNU General Public License
    along with Project Configuration.  If not, see <http://www.gnu.org/licenses/>. */
 
-Dhis2Api.service('projectService', ['$q', 'commonvariable', 'User', 'OrgUnitOrgUnitGroups', 'OrgUnit', 'OrgUnitGroupsOrgUnit', 'FilterResource', 'OrgUnitGroupByOrgUnit', 'OrganisationUnitChildren', 'DataSetsOrgUnit',
-                                    function ($q, commonvariable, User, OrgUnitOrgUnitGroups, OrgUnit, OrgUnitGroupsOrgUnit, FilterResource, OrgUnitGroupByOrgUnit, OrganisationUnitChildren, DataSetsOrgUnit) {
+Dhis2Api.service('projectService', ['$q', 'commonvariable', 'User', 'OrgUnitOrgUnitGroups', 'OrgUnit', 'OrgUnitGroupsOrgUnit', 'FilterResource', 'OrgUnitGroupByOrgUnit', 'OrganisationUnitChildren', 'DemographicService',
+                                    function ($q, commonvariable, User, OrgUnitOrgUnitGroups, OrgUnit, OrgUnitGroupsOrgUnit, FilterResource, OrgUnitGroupByOrgUnit, OrganisationUnitChildren, DemographicService) {
 	
 	
     this.initValue=function($scope) {
@@ -183,19 +183,14 @@ Dhis2Api.service('projectService', ['$q', 'commonvariable', 'User', 'OrgUnitOrgU
 	  this.saveHealthSite = function (newOu){
 		  
 	      var deferred = $q.defer();
-	      var promise = deferred.promise;
-	      var siteImported = false;
 
           OrgUnit.POST({}, newOu).$promise.then(function (data) {
               
               if (data.status == "OK") {
-            	  siteImported = true;
-                  
-                  newOu.id = data.response.uid;
+            	  newOu.id = data.response.uid;
                   commonvariable.NewOrganisationUnit = newOu;
 
                   if (commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.SiteType] != undefined) {
-
                       OrgUnitGroupsOrgUnit.POST({ uidgroup: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.SiteType].id, uidorgunit: newOu.id });
                   }
 
@@ -209,28 +204,22 @@ Dhis2Api.service('projectService', ['$q', 'commonvariable', 'User', 'OrgUnitOrgU
 
                   });
 
-                  FilterResource.GET({ resource: 'dataSets', filter: 'code:eq:' + commonvariable.codedatasets.codeDSDemographic }).$promise
-                    .then(function (response) {
-
-                        if (response.dataSets.length > 0) {
-
-                            var dataSet = response.dataSets[0];
-                            DataSetsOrgUnit.POST({ uidorgunit: newOu.id, uiddataset: dataSet.id });
-                        }
-
-                    });
+				  DemographicService.assignPopulationDataSet(newOu.id).then(
+					  function success() {
+						  deferred.resolve(true);
+					  },
+					  function error() {
+						  deferred.resolve(false);
+					  }
+				  );
 
               }
-              else {            	  
-            	  siteImported = false;
+              else {
+				  deferred.resolve(false);
               }
-              
-              deferred.resolve(siteImported);
-              
           });		  
 
-          return promise;              
-		  
+          return deferred.promise;
 	  };
 	  
 	  

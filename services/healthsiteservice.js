@@ -72,16 +72,6 @@ Dhis2Api.service('healthsiteService', ['$q', 'commonvariable', 'OrgUnit', 'Filte
                 if (commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.HealthService] != undefined)
                     OrgUnitGroupsOrgUnit.POST({ uidgroup: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.HealthService].id, uidorgunit: newOu.id });
 				
-                FilterResource.GET({ resource: 'dataSets', filter: 'code:eq:' + commonvariable.codedatasets.codeDSDemographic }).$promise
-                  .then(function (response) {
-
-                      if (response.dataSets.length > 0) {
-                          var dataSet = response.dataSets[0];
-                          DataSetsOrgUnit.POST({ uidorgunit: newOu.id, uiddataset: dataSet.id });
-                      }
-
-                  });
-
                 if (commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.HealthService].name == "Vaccination") { //Assocate Vacc datasets 
 
                     GetMission.get({ uid: newOu.id }).$promise.then(function (data) {
