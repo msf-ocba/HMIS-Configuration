@@ -19,6 +19,14 @@
 Dhis2Api.service('DatasetService', ['$q', 'DataSets', function ($q, DataSets) {
 
     const DEFAULT_LEVEL = "3";
+    const SERVICE_EXCEPTIONS = {
+        "OUG_HSV_MOHW": "OUG_DICT_MS",
+        "OUG_HSV_MOEC": "OUG_DICT_MS",
+        "OUG_HSV_ATFC": "OUG_DICT_NUT",
+        "OUG_HSV_ITFC": "OUG_DICT_NUT",
+        "OUG_HSV_TSFC": "OUG_DICT_NUT",
+        "OUG_HSV_NS": "OUG_DICT_NUT"
+    };
 
     /**
      * It accepts a health service code (like OUG_HS_ER) and returns a promise that resolves to an object with the
@@ -39,7 +47,7 @@ Dhis2Api.service('DatasetService', ['$q', 'DataSets', function ($q, DataSets) {
      */
     var getByService = function (healthServiceCode) {
 
-        return getServiceMainDataSets(healthServiceCode)
+        return getServiceMainDataSets( applyServiceExceptions(healthServiceCode) )
             .then(getRelatedDatasets)
             .then(formatDataSetsByLevelAndPeriod);
     };
@@ -124,6 +132,10 @@ Dhis2Api.service('DatasetService', ['$q', 'DataSets', function ($q, DataSets) {
         // that it fits other commonCode pattern
         var antiPattern = new RegExp('^' + commonCode + '[A-Z]');
         return !antiPattern.test(dsCode);
+    }
+
+    function applyServiceExceptions (healthServiceCode) {
+        return SERVICE_EXCEPTIONS[healthServiceCode] || healthServiceCode;
     }
 
     return {
