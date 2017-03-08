@@ -60,19 +60,25 @@ appConfigProjectMSF.controller('missionController', ["$scope", '$filter', "commo
 		validatorService.emptyValue(newOu).then(function (result) {
 		    if (result == false) {
 		    	
-		    	missionService.saveProject(newOu).then(function(imported){
-		    		if (imported) {
-		    		      commonvariable.RefreshTreeOU=true;
-		    		      missionService.saveUsers();
-		 				 //set message variable
-						  $scope.messages.push({ type: "success", text: $translate('PROJECT_SAVED') });
-						  $scope.hideForm();
-						  //clear txtbox
-						  $scope.projectName="";
-		    		} else 		        
-		   		      	$scope.messages.push({ type: "danger", text: $translate('PROJECT_NOSAVED') });
-		    	});
-		    	
+		    	missionService.saveProject(newOu).then(
+					function success() {
+						commonvariable.RefreshTreeOU = true;
+						missionService.saveUsers().then(
+							function success(){
+								$scope.messages.push({ type: "success", text: $translate('PROJECT_SAVED') });
+							}, 
+							function error() {
+								$scope.messages.push({ type: "danger", text: $translate('PROJECT_USERS_NOSAVED') });
+							})
+							.then(function () {
+								$scope.hideForm();
+								$scope.projectName = "";
+							});
+		    		}, 
+					function error() {
+						$scope.messages.push({ type: "danger", text: $translate('PROJECT_NOSAVED') });
+					}
+				);
 		    }
 		    else 
 		    	$scope.messages.push({type: "warning", text: $translate("FORM_MSG_EMPTYFIELD")});

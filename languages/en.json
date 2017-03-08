@@ -77,6 +77,7 @@
   "PROJECT_LABEL_LIST": "List Projects",
   "PROJECT_SAVED": "Project saved",
   "PROJECT_NOSAVED": "Project doesn't saved, review that the field name isn't empty",
+	"PROJECT_USERS_NOSAVED": "There is a problem while creating project users.",
 	"VACCINATION_DATASET":"Create vaccination dataset",
 	"VACCINATION_DATASET_NAME":"Name",
 	"VACCINATION_DATASET_CODE":"Code",

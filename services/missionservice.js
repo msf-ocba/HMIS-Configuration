@@ -16,8 +16,8 @@
    You should have received a copy of the GNU General Public License
    along with Project Configuration.  If not, see <http://www.gnu.org/licenses/>. */
 
-Dhis2Api.service('missionService', ['$q', 'commonvariable', 'User', 'OrgUnitGroupsOrgUnit', 'OrgUnit', 'FilterResource', 'DataSetsOrgUnit', 'DemographicService',
-                                    function ($q, commonvariable, User, OrgUnitGroupsOrgUnit, OrgUnit, FilterResource, DataSetsOrgUnit, DemographicService) {
+Dhis2Api.service('missionService', ['$q', 'commonvariable', 'User', 'OrgUnitGroupsOrgUnit', 'OrgUnit', 'FilterResource', 'DataSetsOrgUnit', 'DemographicService', 'SystemId',
+                                    function ($q, commonvariable, User, OrgUnitGroupsOrgUnit, OrgUnit, FilterResource, DataSetsOrgUnit, DemographicService, SystemId) {
 
     this.initValue = function ($scope) { 
         $scope.projectTypeId = commonvariable.ouGroupsetId.ProjectType;
@@ -27,39 +27,43 @@ Dhis2Api.service('missionService', ['$q', 'commonvariable', 'User', 'OrgUnitGrou
         $scope.gsContextId = commonvariable.ouGroupsetId.Context;
     };
     
-	this.saveUsers=function(){
-		
-		var user;
-		
-		for (var i=0; i<=10;i++) {
-			
-			user={};
-			user.surname = commonvariable.userDirective
-			user.userCredentials= {}
-			user.userCredentials.password=commonvariable.users.passwd
-			user.organisationUnits = [{"id":commonvariable.NewOrganisationUnit.id}]
-			user.dataViewOrganisationUnits = [{"id":commonvariable.NewOrganisationUnit.id}]
-			user.userGroups = [{"id":commonvariable.users.uid_project_users_userGroup}]			
-			if (i == 0) { //MFP User
-				user.firstName = commonvariable.users.postfix_mfp
-				user.userCredentials.userRoles = [{"id":commonvariable.users.uid_role_mfp}]
-				user.userCredentials.username=commonvariable.users.prefix + "-" + commonvariable.userDirective + "-" + commonvariable.users.postfix_mfp				
-			} else { //FIELD User
-				user.firstName = commonvariable.users.postfix_fielduser + i
-				user.userCredentials.userRoles = [{"id":commonvariable.users.uid_role_fielduser}]
-				user.userCredentials.username=commonvariable.users.prefix + "-" + commonvariable.userDirective + "-" + commonvariable.users.postfix_fielduser + i				
-			}			
-			console.log(user)
-			
-			User.POST(user).$promise.then(function (data) {
-				
-				console.log(data)
-				
-			});
-			
-		}				
+	this.saveUsers = function(){
+
+		var userPromises = (Array.apply(null, {length: 11})).map(function (elem, index) {
+			var isMFP = index == 0;
+
+			var firstName = isMFP ? commonvariable.users.postfix_mfp : commonvariable.users.postfix_fielduser + index;
+			var userRoles = isMFP ? commonvariable.users.uid_role_mfp : commonvariable.users.uid_role_fielduser;
+			var userName = commonvariable.users.prefix + "-" + commonvariable.userDirective + "-" + firstName;
+
+			var user = {
+				firstName: firstName,
+				surname: commonvariable.userDirective,
+				userCredentials: {
+					userRoles: [{"id": userRoles}],
+					username: userName,
+					password: commonvariable.users.passwd
+				},
+				organisationUnits: [{"id": commonvariable.NewOrganisationUnit.id}],
+				dataViewOrganisationUnits: [{"id": commonvariable.NewOrganisationUnit.id}],
+				userGroups: [{"id": commonvariable.users.uid_project_users_userGroup}]
+			};
+
+			return saveUser(user);
+		});
+
+		return $q.all(userPromises);
 	};
-	
+
+	function saveUser (user) {
+		return SystemId.get().$promise.then(function (data) {
+			var userId = data.codes[0];
+			user.id = userId;
+			user.userCredentials.userInfo = {"id": userId};
+			console.log("Creating user: " + user.userCredentials.username);
+			return User.POST(user).$promise;
+		})
+	}
 	
 	this.saveProject = function (newOu) {
 		
@@ -97,22 +101,19 @@ Dhis2Api.service('missionService', ['$q', 'commonvariable', 'User', 'OrgUnitGrou
 					return DemographicService.assignPopulationDataSet(newOu.id);
 				}).then(
 					function success() {
-						deferred.resolve(true);
+						deferred.resolve();
 					},
 					function error() {
-						deferred.resolve(false);
+						deferred.reject('DEMOGRAPHICS NOT ASSIGNED');
 					}
 				);
 			}
 			else {
-				deferred.resolve(false);
+				deferred.reject('PROJECT NOT SAVED');
 			}
 		});		
 		
 		return deferred.promise;
 	};
-    
-    
-
 
 }]);

@@ -396,3 +396,6 @@ Dhis2Api.factory("Section",['$resource','commonvariable', function ($resource,co
 		  PATCH: {method: "PATCH"}});
 }]);
 
+Dhis2Api.factory("SystemId", ['$resource', 'commonvariable', function ($resource, commonvariable) {
+	return $resource(commonvariable.url + "system/id")
+}]);

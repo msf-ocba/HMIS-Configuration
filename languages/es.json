@@ -76,6 +76,7 @@
   "PROJECT_LABEL_LIST": "Lista de proyecto",
   "PROJECT_SAVED": "Proyecto guardado",
   "PROJECT_NOSAVED": "Proyecto no guardado, revise que el campo del nombre no este en blanco",
+	"PROJECT_USERS_NOSAVED": "Ha habido un problema en la creación de usuarios de proyecto.",
 	"VACCINATION_DATASET":"Crear formulario de vacunación",
 	"VACCINATION_DATASET_NAME":"Nombre",
 	"VACCINATION_DATASET_CODE":"Codigo",
