@@ -16,8 +16,8 @@
    You should have received a copy of the GNU General Public License
    along with Project Configuration.  If not, see <http://www.gnu.org/licenses/>. */
 
-appConfigProjectMSF.controller('missionController', ["$scope", '$filter', "commonvariable", "$modal", "validatorService", "missionService", "OrgUnitChildren",
-                                                     function ($scope, $filter, commonvariable, $modal, validatorService, missionService, OrgUnitChildren) {
+appConfigProjectMSF.controller('missionController', ["$scope", '$filter', "commonvariable", "$modal", "validatorService", "missionService", "UserService", "OrgUnitChildren",
+                                                     function ($scope, $filter, commonvariable, $modal, validatorService, missionService, UserService, OrgUnitChildren) {
     var $translate = $filter('translate');
     //Load Data of OU selected
     $scope.prevOu = "";
@@ -59,11 +59,11 @@ appConfigProjectMSF.controller('missionController', ["$scope", '$filter', "commo
 		///validate if object is ok.
 		validatorService.emptyValue(newOu).then(function (result) {
 		    if (result == false) {
-		    	
+
 		    	missionService.saveProject(newOu).then(
-					function success() {
+					function success(project) {
 						commonvariable.RefreshTreeOU = true;
-						missionService.saveUsers().then(
+						UserService.createProjectUsers(project, commonvariable.userDirective).then(
 							function success(){
 								$scope.messages.push({ type: "success", text: $translate('PROJECT_SAVED') });
 							}, 
