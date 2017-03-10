@@ -102,6 +102,7 @@ appConfigProjectMSF.controller('projectController', ["$scope", "$timeout", '$fil
 	};
 		
 	$scope.toggleManageUsers = function () {
+		$scope.project = commonvariable.OrganisationUnit;
 		$scope.manageUsers = !$scope.manageUsers;
 	};
 	
@@ -156,7 +157,9 @@ appConfigProjectMSF.controller('projectController', ["$scope", "$timeout", '$fil
 					$scope.projectcode=commonvariable.OrganisationUnit.code;
 					$scope.projectcreated = commonvariable.OrganisationUnit.openingDate;
 
+					// Hide forms
 					$scope.hideForm();
+					$scope.manageUsers = false;
 			}
 			});
 	
