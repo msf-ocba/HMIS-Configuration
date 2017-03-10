@@ -30,14 +30,23 @@ Dhis2Api.controller("d2UserManagerController", ['$scope', 'UserService', functio
     $scope.userList = [];
     
     function loadUsers () {
+        console.log("asfd");
         UserService.getOrgUnitUsers($scope.orgunit).then(function (data) {
             $scope.userList = data.users;
         });
     }
     
     $scope.createUsers = function () {
-        UserService.createProjectUsers($scope.orgunit, $scope.commonUserName)
-            .then(loadUsers);
+        UserService.createProjectUsers($scope.orgunit, $scope.commonUserName).then(loadUsers).then(
+            function success() {
+                // TODO Show a success dialog
+                console.log("Success");
+            },
+            function error() {
+                console.log("ERROR: There is a problem in user creation for orgunit "
+                    + $scope.orgunit.name + " (" + $scope.orgunit.id + ")");
+            }
+        );
     };
     
     $scope.printUserRoles = function (user) {
