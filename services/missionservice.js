@@ -26,40 +26,6 @@ Dhis2Api.service('missionService', ['$q', 'commonvariable', 'User', 'OrgUnitGrou
         $scope.gsEventId = commonvariable.ouGroupsetId.Event;
         $scope.gsContextId = commonvariable.ouGroupsetId.Context;
     };
-    
-	this.saveUsers=function(){
-		
-		var user;
-		
-		for (var i=0; i<=10;i++) {
-			
-			user={};
-			user.surname = commonvariable.userDirective
-			user.userCredentials= {}
-			user.userCredentials.password=commonvariable.users.passwd
-			user.organisationUnits = [{"id":commonvariable.NewOrganisationUnit.id}]
-			user.dataViewOrganisationUnits = [{"id":commonvariable.NewOrganisationUnit.id}]
-			user.userGroups = [{"id":commonvariable.users.uid_project_users_userGroup}]			
-			if (i == 0) { //MFP User
-				user.firstName = commonvariable.users.postfix_mfp
-				user.userCredentials.userRoles = [{"id":commonvariable.users.uid_role_mfp}]
-				user.userCredentials.username=commonvariable.users.prefix + "-" + commonvariable.userDirective + "-" + commonvariable.users.postfix_mfp				
-			} else { //FIELD User
-				user.firstName = commonvariable.users.postfix_fielduser + i
-				user.userCredentials.userRoles = [{"id":commonvariable.users.uid_role_fielduser}]
-				user.userCredentials.username=commonvariable.users.prefix + "-" + commonvariable.userDirective + "-" + commonvariable.users.postfix_fielduser + i				
-			}			
-			console.log(user)
-			
-			User.POST(user).$promise.then(function (data) {
-				
-				console.log(data)
-				
-			});
-			
-		}				
-	};
-	
 	
 	this.saveProject = function (newOu) {
 		
@@ -97,22 +63,19 @@ Dhis2Api.service('missionService', ['$q', 'commonvariable', 'User', 'OrgUnitGrou
 					return DemographicService.assignPopulationDataSet(newOu.id);
 				}).then(
 					function success() {
-						deferred.resolve(true);
+						deferred.resolve(newOu);
 					},
 					function error() {
-						deferred.resolve(false);
+						deferred.reject('DEMOGRAPHICS NOT ASSIGNED');
 					}
 				);
 			}
 			else {
-				deferred.resolve(false);
+				deferred.reject('PROJECT NOT SAVED');
 			}
 		});		
 		
 		return deferred.promise;
 	};
-    
-    
-
 
 }]);

@@ -16,8 +16,8 @@
    You should have received a copy of the GNU General Public License
    along with Project Configuration.  If not, see <http://www.gnu.org/licenses/>. */
 
-appConfigProjectMSF.controller('missionController', ["$scope", '$filter', "commonvariable", "$modal", "validatorService", "missionService", "OrgUnitChildren",
-                                                     function ($scope, $filter, commonvariable, $modal, validatorService, missionService, OrgUnitChildren) {
+appConfigProjectMSF.controller('missionController', ["$scope", '$filter', "commonvariable", "$modal", "validatorService", "missionService", "UserService", "OrgUnitChildren",
+                                                     function ($scope, $filter, commonvariable, $modal, validatorService, missionService, UserService, OrgUnitChildren) {
     var $translate = $filter('translate');
     //Load Data of OU selected
     $scope.prevOu = "";
@@ -59,20 +59,26 @@ appConfigProjectMSF.controller('missionController', ["$scope", '$filter', "commo
 		///validate if object is ok.
 		validatorService.emptyValue(newOu).then(function (result) {
 		    if (result == false) {
-		    	
-		    	missionService.saveProject(newOu).then(function(imported){
-		    		if (imported) {
-		    		      commonvariable.RefreshTreeOU=true;
-		    		      missionService.saveUsers();
-		 				 //set message variable
-						  $scope.messages.push({ type: "success", text: $translate('PROJECT_SAVED') });
-						  $scope.hideForm();
-						  //clear txtbox
-						  $scope.projectName="";
-		    		} else 		        
-		   		      	$scope.messages.push({ type: "danger", text: $translate('PROJECT_NOSAVED') });
-		    	});
-		    	
+
+		    	missionService.saveProject(newOu).then(
+					function success(project) {
+						commonvariable.RefreshTreeOU = true;
+						UserService.createProjectUsers(project, commonvariable.userDirective).then(
+							function success(){
+								$scope.messages.push({ type: "success", text: $translate('PROJECT_SAVED') });
+							}, 
+							function error() {
+								$scope.messages.push({ type: "danger", text: $translate('PROJECT_USERS_NOSAVED') });
+							})
+							.then(function () {
+								$scope.hideForm();
+								$scope.projectName = "";
+							});
+		    		}, 
+					function error() {
+						$scope.messages.push({ type: "danger", text: $translate('PROJECT_NOSAVED') });
+					}
+				);
 		    }
 		    else 
 		    	$scope.messages.push({type: "warning", text: $translate("FORM_MSG_EMPTYFIELD")});

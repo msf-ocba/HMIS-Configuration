@@ -183,7 +183,9 @@ Dhis2Api.factory("OrgUnitGroup",['$resource','commonvariable', function ($resour
 
 Dhis2Api.factory("User",['$resource','commonvariable', function ($resource,commonvariable) {
 	return $resource(commonvariable.url+"users",
-		{},
+		{
+			paging: false
+		},
 		{ POST: { method: "POST"} });
 }]);
 
@@ -396,3 +398,6 @@ Dhis2Api.factory("Section",['$resource','commonvariable', function ($resource,co
 		  PATCH: {method: "PATCH"}});
 }]);
 
+Dhis2Api.factory("SystemId", ['$resource', 'commonvariable', function ($resource, commonvariable) {
+	return $resource(commonvariable.url + "system/id")
+}]);
