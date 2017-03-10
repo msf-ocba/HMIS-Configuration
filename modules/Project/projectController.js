@@ -30,6 +30,7 @@ appConfigProjectMSF.controller('projectController', ["$scope", "$timeout", '$fil
 	$scope.messages=[];
 	
 	$scope.prevOu=undefined;
+	$scope.project = commonvariable.OrganisationUnit;													 
 	
 	var $translate = $filter('translate');
 	
@@ -83,7 +84,7 @@ appConfigProjectMSF.controller('projectController', ["$scope", "$timeout", '$fil
                         });
 
                         $scope.hideForm();
-                        	            	}
+					}
 	            	else 
                         $scope.messages.push({
                             type: "danger", text: $translate("SITE_NOSAVED")
@@ -100,7 +101,9 @@ appConfigProjectMSF.controller('projectController', ["$scope", "$timeout", '$fil
 	    });
 	};
 		
-	
+	$scope.toggleManageUsers = function () {
+		$scope.manageUsers = !$scope.manageUsers;
+	};
 	
 	$scope.showForm=function(frm){
 		

@@ -44,6 +44,14 @@ Dhis2Api.service('UserService', ['$q', 'commonvariable', 'SystemId', 'User', fun
 
         return $q.all(userPromises);
     };
+    
+    var getOrgUnitUsers = function (orgUnit) {
+        var params = {
+            fields: "id,displayName,userCredentials[username,userRoles[id,displayName]]",
+            filter: "organisationUnits.id:eq:" + orgUnit.id
+        };
+        return User.get(params).$promise;
+    };
 
     function saveUser (user) {
         return SystemId.get().$promise.then(function (data) {
@@ -54,9 +62,9 @@ Dhis2Api.service('UserService', ['$q', 'commonvariable', 'SystemId', 'User', fun
             return User.POST(user).$promise;
         });
     }
-
+    
     return {
-        createProjectUsers: createProjectUsers
+        createProjectUsers: createProjectUsers,
+        getOrgUnitUsers: getOrgUnitUsers
     }
-
 }]);
