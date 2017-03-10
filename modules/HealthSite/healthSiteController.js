@@ -66,7 +66,7 @@ appConfigProjectMSF.controller('healthSiteController', ["$scope", '$filter', "co
 			    if (result == false) {
 
 			        healthServiceSuffix = commonService.getServiceSuffix(response.data.healthserviceSuffix).suffix;
-			        healthServiceName = healthServiceName + "_" + commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.HealthService].name;
+			        healthServiceName = nameforValidate;
 			       
 			        healthServiceCode = commonvariable.OrganisationUnit.code + "_" + healthServiceSuffix;
 
