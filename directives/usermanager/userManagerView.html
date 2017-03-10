@@ -19,11 +19,11 @@
 
 <div  ng-controller="d2UserManagerController">
     <div class="panel panel-default">
-        <div class="panel-heading">{{'HEALTHSITE_TITLE' | translate}}</div>
+        <div class="panel-heading">{{'USERS_ASSOCIATED_TO' | translate}} {{orgunit.name}}</div>
         <div class="panel-body">
             <div class="col-md-7">
                 <div class="panel panel-default">
-                    <div class="panel-heading">{{ 'USERS' | translate }}</div>
+                    <div class="panel-heading">{{ 'CREATE_NEW_USERS' | translate }}</div>
                     <ul class="list-group user-list">
                         <li ng-repeat="user in userList | orderBy:'userCredentials.username'" class="list-group-item">
                             <div class="row">

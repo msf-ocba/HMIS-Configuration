@@ -3,6 +3,7 @@
   "TITLE_APPS":"MSF-OCBA Health Information System",
   "YES":"Si",
   "NO":"No",
+	"CREATE_NEW_USERS": "Crear nuevos usuarios",
 	"CREATE_USERS": "Crear usuarios",
   "CREATION_DATE":"Fecha de creación",
   "ALARM_EXIST": "Este objeto ya existe en el sistema",
@@ -16,6 +17,7 @@
 	"PERIODTYPE_MONTHLY":"Mensualmente",
   "PERIODTYPE_YEARLY": "Anualmente",
 	"USERS": "Usuarios",
+	"USERS_ASSOCIATED_TO": "Usuarios asociados a ",
 	"MANAGE_USERS": "Gestionar usuarios",
 
   "_____________MODAL": "modal for delete _____",

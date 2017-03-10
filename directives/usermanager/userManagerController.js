@@ -36,8 +36,6 @@ Dhis2Api.controller("d2UserManagerController", ['$scope', 'UserService', functio
     }
     
     $scope.createUsers = function () {
-        console.log($scope.orgunit);
-        console.log($scope.commonUserName);
         UserService.createProjectUsers($scope.orgunit, $scope.commonUserName)
             .then(loadUsers);
     };
