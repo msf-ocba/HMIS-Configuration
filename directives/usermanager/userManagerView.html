@@ -23,7 +23,7 @@
         <div class="panel-body">
             <div class="col-md-7">
                 <div class="panel panel-default">
-                    <div class="panel-heading">{{ 'CREATE_NEW_USERS' | translate }}</div>
+                    <div class="panel-heading">{{ 'USERS' | translate }}</div>
                     <ul class="list-group user-list">
                         <li ng-repeat="user in userList | orderBy:'userCredentials.username'" class="list-group-item">
                             <div class="row">
@@ -41,7 +41,7 @@
             <div class="col-md-1"></div>
             <div class="col-md-4">
                 <form name="createUsersForm" ng-submit="createUsers()">
-                    <h3>{{ 'USERS' | translate }}</h3>
+                    <h3>{{ 'CREATE_NEW_USERS' | translate }}</h3>
                     <input name="commonUserName" type="text" class="form-control" ng-model="commonUserName" required/>
                     <br/>
                     <div class="form_group">
