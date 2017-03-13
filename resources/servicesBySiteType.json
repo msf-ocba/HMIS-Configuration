@@ -51,7 +51,7 @@
           },
           {
             "name": "Outbreak Malaria OPD",
-            "code": "OUG_HSV_MALOPD"
+            "code": "OUG_HSV_MOEC"
           },
           {
             "name": "Sexual & Rep. Health OPD",
@@ -157,11 +157,11 @@
           },
           {
             "name": "Outbreak Malaria IPD",
-            "code": "OUG_HSV_MALIPD"
+            "code": "OUG_HSV_MOHW"
           },
           {
             "name": "Outbreak Malaria OPD",
-            "code": "OUG_HSV_MALOPD"
+            "code": "OUG_HSV_MOEC"
           },
           {
             "name": "Sexual and Rep. Health IPD",
@@ -473,7 +473,7 @@
           },
           {
             "name": "Outbreak Malaria OPD",
-            "code": "OUG_HSV_MALOPD"
+            "code": "OUG_HSV_MOEC"
           },
           {
             "name": "Sexual & Rep. Health OPD",
@@ -551,7 +551,7 @@
           },
           {
             "name": "Outbreak Malaria OPD",
-            "code": "OUG_HSV_MALOPD"
+            "code": "OUG_HSV_MOEC"
           },
           {
             "name": "Sexual & Rep. Health OPD",
@@ -629,7 +629,7 @@
           },
           {
             "name": "Outbreak Malaria OPD",
-            "code": "OUG_HSV_MALOPD"
+            "code": "OUG_HSV_MOEC"
           },
           {
             "name": "Sexual & Rep. Health OPD",
