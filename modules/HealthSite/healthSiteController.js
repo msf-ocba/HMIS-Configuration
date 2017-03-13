@@ -223,6 +223,7 @@ appConfigProjectMSF.controller('healthSiteController', ["$scope", '$filter', "co
 	  $scope.EditSite = function () {
 
 	      $scope.editOu = {//payload
+			  id: commonvariable.OrganisationUnit.id,
 	          name: commonvariable.ouDirective,
 	          shortName: commonvariable.ouDirective,
 	          openingDate: $filter('date')($scope.healthsitecreated, 'yyyy-MM-dd')
@@ -262,7 +263,7 @@ appConfigProjectMSF.controller('healthSiteController', ["$scope", '$filter', "co
             			  $scope.openWindow();            			  
             			  
             		  } else {
-            		      healthsiteService.editHealthSite(commonvariable.OrganisationUnit.id, $scope.editOu).then(function(result){
+            		      healthsiteService.editHealthSite($scope.editOu).then(function(result){
             		    	  if (result == true) {
             		    	      commonvariable.RefreshTreeOU = true;
             					  $scope.healthsitename =  commonvariable.ouDirective;		
