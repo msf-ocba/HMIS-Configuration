@@ -54,8 +54,8 @@
             "code": "OUG_HSV_MOEC"
           },
           {
-            "name": "Sexual & Rep. Health OPD",
-            "code": "OUG_HSV_SRHOPD"
+            "name": "Sexual and Rep. Health OPD",
+            "code": "OUG_HSV_SRHEC"
           },
           {
             "name": "Surveillance Epid",
@@ -476,8 +476,8 @@
             "code": "OUG_HSV_MOEC"
           },
           {
-            "name": "Sexual & Rep. Health OPD",
-            "code": "OUG_HSV_SRHOPD"
+            "name": "Sexual and Rep. Health OPD",
+            "code": "OUG_HSV_SRHEC"
           },
           {
             "name": "Surveillance Epid",
@@ -554,8 +554,8 @@
             "code": "OUG_HSV_MOEC"
           },
           {
-            "name": "Sexual & Rep. Health OPD",
-            "code": "OUG_HSV_SRHOPD"
+            "name": "Sexual and Rep. Health OPD",
+            "code": "OUG_HSV_SRHEC"
           },
           {
             "name": "Surveillance Epid",
@@ -632,8 +632,8 @@
             "code": "OUG_HSV_MOEC"
           },
           {
-            "name": "Sexual & Rep. Health OPD",
-            "code": "OUG_HSV_SRHOPD"
+            "name": "Sexual and Rep. Health OPD",
+            "code": "OUG_HSV_SRHEC"
           },
           {
             "name": "Surveillance Epid",
