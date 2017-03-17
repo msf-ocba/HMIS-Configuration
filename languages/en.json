@@ -16,6 +16,7 @@
 	"PERIODTYPE_WEEKLY":"Weekly",
 	"PERIODTYPE_MONTHLY":"Monthly",
   "PERIODTYPE_YEARLY": "Yearly",
+	"SHOW_ALL": "Show all",
 	"USERS": "Users",
 	"USERS_ASSOCIATED_TO": "Users associated to ",
 	"MANAGE_USERS": "Manage users",

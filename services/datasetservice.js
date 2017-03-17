@@ -46,9 +46,15 @@ Dhis2Api.service('DatasetService', ['$q', 'DataSets', function ($q, DataSets) {
      * @returns {*} Promise that resolves to an object structured by level and period.
      */
     var getByService = function (healthServiceCode) {
-
         return getServiceMainDataSets( applyServiceExceptions(healthServiceCode) )
             .then(getRelatedDatasets)
+            .then(formatDataSetsByLevelAndPeriod);
+    };
+
+    var getAllDataSets = function () {
+        return DataSets.get().$promise.then( function (data) {
+            return data.dataSets;
+        })
             .then(formatDataSetsByLevelAndPeriod);
     };
 
@@ -139,6 +145,7 @@ Dhis2Api.service('DatasetService', ['$q', 'DataSets', function ($q, DataSets) {
     }
 
     return {
+        getAllDataSets: getAllDataSets,
         getByService: getByService
     }
 

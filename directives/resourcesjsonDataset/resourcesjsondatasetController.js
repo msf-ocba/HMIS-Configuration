@@ -90,17 +90,19 @@ Dhis2Api.controller("d2ResourcejsondatasetController",
         $scope.loadLevels = function () {
             commonvariable.healhservicesCodeOUG = commonvariable.healhservicesCodeOUG.trim();
             DatasetService.getByService(commonvariable.healhservicesCodeOUG)
-                .then( function (dataSetByLevels) {
-                    $scope.levels = dataSetByLevels.levels;
-                    $scope.levels = commonService.sortByKey($scope.levels, 'value');
-                    serviceDataSets = $scope.levels
-                        .reduce(function (array, level) {
-                            return array.concat(level.periods.reduce(function (periods, period) {
-                                return periods.concat(period.dataSets);
-                            }, []));
-                        }, []);
-                });
+                .then(saveDataSets);
         };
+        
+        function saveDataSets (dataSetByLevels) {
+            $scope.levels = dataSetByLevels.levels;
+            $scope.levels = commonService.sortByKey($scope.levels, 'value');
+            serviceDataSets = $scope.levels
+                .reduce(function (array, level) {
+                    return array.concat(level.periods.reduce(function (periods, period) {
+                        return periods.concat(period.dataSets);
+                    }, []));
+                }, []);
+        }
 
         $scope.loadDataSet = function () {
             angular.forEach($scope.pdatasets, function (dataSet, key) {
@@ -125,6 +127,10 @@ Dhis2Api.controller("d2ResourcejsondatasetController",
             $scope.messages.splice(index, 1);
         };
 
+        $scope.showAllDatasets = function () {
+            DatasetService.getAllDataSets()
+                .then(saveDataSets);
+        };
 
    }]);
 
