@@ -54,10 +54,7 @@ Dhis2Api.service('healthserviceService', ['$q', 'commonvariable', 'OrgUnitOrgUni
 			  OrgUnitOrgUnitGroups.POST({ uidorgunit: commonvariable.OrganisationUnit.id, uidgroup: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.HealthService].id });
 			  commonvariable.healhservicesCodeOUG = commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.HealthService].code;
 			  
-			  var sitePrefix = commonvariable.OrganisationUnit.name.slice(0,3);
-			  var healthServiceName = sitePrefix + commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.HealthService].name;
-				 
-			  editOu.name = healthServiceName;
+			  editOu.name = commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.HealthService].name;
 				 
 			  loadjsonresource.get("healthservice").then(function(response) {
 						
@@ -112,15 +109,13 @@ Dhis2Api.service('healthserviceService', ['$q', 'commonvariable', 'OrgUnitOrgUni
 			  });
 			  			  
 		  }
-		  else{
-			    OrgUnit.PATCH({id:idOu},editOu).$promise.then(function(data){
-			    	  
-			    	  if (data.response.status=="SUCCESS") {
-			    		  healthServiceEdited =true;
-		                  updateOUVariable(editOu);			    	      
-			    	  }
-					  defered.resolve(healthServiceEdited);				  			      
-			    });	    			  
+		  else {
+			  OrgUnit.PATCH({id:idOu},editOu).$promise.then(function success(){
+				  updateOUVariable(editOu);
+				  defered.resolve(true);
+			  }, function error() {
+				  defered.resolve(false);
+			  });
 		  }
 		  
 		  return promise;
