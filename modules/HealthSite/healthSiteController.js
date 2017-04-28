@@ -70,8 +70,16 @@ appConfigProjectMSF.controller('healthSiteController', ["$scope", '$filter', "co
 			       
 			        healthServiceCode = commonvariable.OrganisationUnit.code + "_" + healthServiceSuffix;
 
-			        if (commonvariable.OrganisationUnit.children.length > 0)
-			            healthServiceCode = healthServiceCode + "_" + (commonvariable.OrganisationUnit.children.length + 1);
+					var count = 0;
+					while(codeInOrgunits(healthServiceCode, commonvariable.OrganisationUnit.children)) {
+						if(count == 0) {
+							count++;
+							healthServiceCode = healthServiceCode + "_" + count;
+						} else {
+							count++;
+							healthServiceCode = healthServiceCode.substr(0, healthServiceCode.length - 1) + count;
+						}
+					}
 
 			        var newOu = {//payload
 			            name: healthServiceName,
@@ -120,8 +128,13 @@ appConfigProjectMSF.controller('healthSiteController', ["$scope", '$filter', "co
 		});
 
 	};
-	
-	
+
+	function codeInOrgunits(code, orgunits) {
+		return orgunits.some(function (orgunit) {
+			return orgunit.code == code;
+		})
+	}
+
 	
 	$scope.showForm=function(frm){
 		
