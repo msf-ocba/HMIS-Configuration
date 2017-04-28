@@ -60,11 +60,11 @@ Dhis2Api.service('UserService', ['$q', 'commonvariable', 'SystemId', 'User', fun
             user.userCredentials.userInfo = {"id": userId};
             return User.POST(user).$promise;
         }).then(function (response) {
-            if (response == "OK") {
+            if (response.status == "OK") {
                 console.log("Created user: " + user.userCredentials.username);
-                return $q.resolve();
+                return $q.when("Created user: " + user.userCredentials.username);
             } else {
-                return $q.reject();
+                return $q.reject("Error while creating user " + user.userCredentials.username);
             }
         });
     }
