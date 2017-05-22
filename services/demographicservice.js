@@ -35,6 +35,7 @@ Dhis2Api.service('DemographicService', ['$q', 'FilterResource', 'DataSetsOrgUnit
         })
     }
 
+    // TODO Cache the dataset id
     function getDatasetByCode (dsCode) {
         return FilterResource.GET({ resource: 'dataSets', filter: 'code:eq:' + dsCode }).$promise
             .then(function (response) {
@@ -44,7 +45,27 @@ Dhis2Api.service('DemographicService', ['$q', 'FilterResource', 'DataSetsOrgUnit
             });
     }
 
+
+    var assignDemographicsDataset = function (orgunit) {
+        switch (orgunit.level) {
+            case 3: // Mission level
+                return assignDemographicInfoDataSet(orgunit.id);
+                break;
+            case 4:
+                return assignDemographicInfoDataSet(orgunit.id).then(function() {
+                    return assignPopulationDataSet(orgunit.id);
+                });
+                break;
+            case 5:
+                return assignPopulationDataSet(orgunit.id);
+                break;
+            default:
+                return $q.when("No demographic dataSet at this level");
+        }
+    };
+
     return {
+        assignDemographicsDataset: assignDemographicsDataset,
         assignDemographicInfoDataSet: assignDemographicInfoDataSet,
         assignPopulationDataSet: assignPopulationDataSet
     }
