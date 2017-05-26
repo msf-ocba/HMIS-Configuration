@@ -14,10 +14,6 @@
             "code": "OUG_HSV_ECp"
           },
           {
-            "name": "Sexual Violence",
-            "code": "OUG_HSV_SV"
-          },
-          {
             "name": "HIV",
             "code": "OUG_HSV_HIV"
           },
@@ -58,6 +54,10 @@
             "code": "OUG_HSV_SRHEC"
           },
           {
+            "name": "Sexual Violence",
+            "code": "OUG_HSV_SV"
+          },
+          {
             "name": "Surveillance Epid",
             "code": "OUG_HSV_EWS"
           },
@@ -88,6 +88,10 @@
             "code": "OUG_HSV_DT"
           },
           {
+            "name": "Early Warning System",
+            "code": "OUG_HSV_EWS"
+          },
+          {
             "name": "Emergency Room",
             "code": "OUG_HSV_ER"
           },
@@ -98,10 +102,6 @@
           {
             "name": "Paediatric External Consultation",
             "code": "OUG_HSV_ECp"
-          },
-          {
-            "name": "Sexual Violence",
-            "code": "OUG_HSV_SV"
           },
           {
             "name": "HIV",
@@ -172,8 +172,8 @@
             "code": "OUG_HSV_SRHEC"
           },
           {
-            "name": "Early Warning System",
-            "code": "OUG_HSV_EWS"
+            "name": "Sexual Violence",
+            "code": "OUG_HSV_SV"
           },
           {
             "name": "Surveillance Mortality",
@@ -198,16 +198,16 @@
         "code": "OUG_HST_HC",
         "services": [
           {
+            "name": "Early Warning System",
+            "code": "OUG_HSV_EWS"
+          },
+          {
             "name": "External Consultations",
             "code": "OUG_HSV_EC"
           },
           {
             "name": "Paediatric External Consultation",
             "code": "OUG_HSV_ECp"
-          },
-          {
-            "name": "Sexual Violence",
-            "code": "OUG_HSV_SV"
           },
           {
             "name": "HIV",
@@ -250,8 +250,8 @@
             "code": "OUG_HSV_SRHEC"
           },
           {
-            "name": "Early Warning System",
-            "code": "OUG_HSV_EWS"
+            "name": "Sexual Violence",
+            "code": "OUG_HSV_SV"
           },
           {
             "name": "Surveillance Mortality",
@@ -310,6 +310,10 @@
             "code": "OUG_HSV_DT"
           },
           {
+            "name": "Early Warning System",
+            "code": "OUG_HSV_EWS"
+          },
+          {
             "name": "Emergency Room",
             "code": "OUG_HSV_ER"
           },
@@ -320,10 +324,6 @@
           {
             "name": "Paediatric External Consultation",
             "code": "OUG_HSV_ECp"
-          },
-          {
-            "name": "Sexual Violence",
-            "code": "OUG_HSV_SV"
           },
           {
             "name": "HIV",
@@ -398,12 +398,12 @@
             "code": "OUG_HSV_SRHEC"
           },
           {
-            "name": "Surgical Ward",
-            "code": "OUG_HSV_SW"
+            "name": "Sexual Violence",
+            "code": "OUG_HSV_SV"
           },
           {
-            "name": "Early Warning System",
-            "code": "OUG_HSV_EWS"
+            "name": "Surgical Ward",
+            "code": "OUG_HSV_SW"
           },
           {
             "name": "Surveillance Mortality",
@@ -434,10 +434,6 @@
           {
             "name": "External Consultations (children)",
             "code": "OUG_HSV_ECp"
-          },
-          {
-            "name": "Gender Based Violence",
-            "code": "OUG_HSV_GBV"
           },
           {
             "name": "HIV",
@@ -478,6 +474,10 @@
           {
             "name": "Sexual and Rep. Health OPD",
             "code": "OUG_HSV_SRHEC"
+          },
+          {
+            "name": "Sexual Violence",
+            "code": "OUG_HSV_SV"
           },
           {
             "name": "Surveillance Epid",
@@ -514,10 +514,6 @@
             "code": "OUG_HSV_ECp"
           },
           {
-            "name": "Gender Based Violence",
-            "code": "OUG_HSV_GBV"
-          },
-          {
             "name": "HIV",
             "code": "OUG_HSV_HIV"
           },
@@ -556,6 +552,10 @@
           {
             "name": "Sexual and Rep. Health OPD",
             "code": "OUG_HSV_SRHEC"
+          },
+          {
+            "name": "Sexual Violence",
+            "code": "OUG_HSV_SV"
           },
           {
             "name": "Surveillance Epid",
@@ -592,10 +592,6 @@
             "code": "OUG_HSV_ECp"
           },
           {
-            "name": "Gender Based Violence",
-            "code": "OUG_HSV_GBV"
-          },
-          {
             "name": "HIV",
             "code": "OUG_HSV_HIV"
           },
@@ -634,6 +630,10 @@
           {
             "name": "Sexual and Rep. Health OPD",
             "code": "OUG_HSV_SRHEC"
+          },
+          {
+            "name": "Sexual Violence",
+            "code": "OUG_HSV_SV"
           },
           {
             "name": "Surveillance Epid",
