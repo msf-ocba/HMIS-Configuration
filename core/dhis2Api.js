@@ -77,10 +77,12 @@ var levelMSF = {OperationalCenter: "2"
 
 var usersMSF = {prefix: "msfe",
 			 postfix_mfp: "mfp",
-			 postfix_fielduser:"user",
-			 postfix_siteuser:"app",
+			 postfix_fielduser: "user",
+			 postfix_siteuser: "app",
+			 postfix_onlineuser: "online",
 			 uid_role_mfp: "gmOkgYI46ny",
 			 uid_role_fielduser: "N4dxeOVu7aN",
+			 uid_role_onlineuser: "mnIBssgDVSC",
 			 passwd: "District123",
 			 uid_project_users_userGroup: "EmlkqPJLcAh"};
 			

@@ -45,6 +45,28 @@ Dhis2Api.service('UserService', ['$q', 'commonvariable', 'SystemId', 'User', fun
         return $q.all(userPromises);
     };
     
+    var createOnlineUsers = function (project, commonName, password) {
+        var onlineUserPromises = (Array.apply(null, {length: 3})).map(function (elem, index) {
+            var firstName = commonvariable.users.postfix_onlineuser + (index + 1);
+            var user = {
+                firstName: firstName[0].toUpperCase() + firstName.slice(1),
+                surname: commonName[0].toUpperCase() + commonName.slice(1),
+                userCredentials: {
+                    userRoles: [{"id": commonvariable.users.uid_role_onlineuser}],
+                    username: commonvariable.users.prefix + "-" + commonName + "-" + firstName,
+                    password: password || commonvariable.users.passwd
+                },
+                organisationUnits: [{"id": project.id}],
+                dataViewOrganisationUnits: [{"id": project.id}]
+                // TODO Assign to capital users in the mission?
+            };
+            
+            return saveUser(user);
+        });
+        
+        return $q.all(onlineUserPromises);
+    };
+    
     var getOrgUnitUsers = function (orgUnit) {
         var params = {
             fields: "id,displayName,userCredentials[username,userRoles[id,displayName]]",
@@ -71,6 +93,7 @@ Dhis2Api.service('UserService', ['$q', 'commonvariable', 'SystemId', 'User', fun
     
     return {
         createProjectUsers: createProjectUsers,
+        createOnlineUsers: createOnlineUsers,
         getOrgUnitUsers: getOrgUnitUsers
     }
 }]);

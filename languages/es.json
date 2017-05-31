@@ -3,8 +3,6 @@
   "TITLE_APPS": "MSF-OCBA Health Information System",
   "YES": "Si",
   "NO": "No",
-  "CREATE_NEW_USERS": "Crear nuevos usuarios",
-  "CREATE_USERS": "Crear usuarios",
   "CREATION_DATE": "Fecha de creación",
   "ALARM_EXIST": "Este objeto ya existe en el sistema",
   "ALARM_LENGTH": "Solo se permiten hasta tres caracteres",
@@ -154,5 +152,10 @@
   "______________ Directive ": " Access_____________",
   "ACCESS_TITLE": "Error de Acceso",
   "ACCESS_DESC": "No tienes acceso a este modulo. Si requieres acceso por favor comunicate con el administrador del sistema",
-  "ACCESS_BUTTON": "Regresar"
+  "ACCESS_BUTTON": "Regresar",
+
+  "_______________Directive ": " User manager_______",
+  "CREATE_PROJECT_USERS": "Crear usuarios de proyecto",
+  "CREATE_USERS": "Crear usuarios",
+  "ONLINE": "Online"
 }

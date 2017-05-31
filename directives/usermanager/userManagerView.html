@@ -27,12 +27,12 @@
                     <ul class="list-group user-list">
                         <li ng-repeat="user in userList | orderBy:'userCredentials.username'" class="list-group-item">
                             <div class="row">
-                            <div class="col-md-6">
-                                {{user.userCredentials.username}}
-                            </div>
-                            <div class="col-md-6">
-                                <i>{{printUserRoles(user)}}</i>
-                            </div>
+                                <div class="col-md-6">
+                                    {{user.userCredentials.username}}
+                                </div>
+                                <div class="col-md-6">
+                                    <i>{{printUserRoles(user)}}</i>
+                                </div>
                             </div>
                         </li>
                     </ul>
@@ -40,16 +40,23 @@
             </div>
             <div class="col-md-1"></div>
             <div class="col-md-4">
-                <form name="createUsersForm" ng-submit="createUsers()">
-                    <h3>{{ 'CREATE_NEW_USERS' | translate }}</h3>
-                    <input name="commonUserName" type="text" class="form-control" ng-model="commonUserName" required/>
-                    <br/>
-                    <div class="form_group">
-                        <button type="submit" ng-disabled="createUsers.$invalid" class="btn btn-primary">
-                            {{ 'CREATE_USERS' | translate }}
-                        </button>
-                    </div>
-                </form>
+                <div class="row">
+                    <form name="createUsersForm" ng-submit="createUsers()">
+                        <h3>{{ 'CREATE_USERS' | translate }}</h3>
+                        <input name="commonUserName" type="text" class="form-control" ng-model="commonUserName" required/>
+                        <br/>
+                        <div class="form_group">
+                            <button type="submit" ng-disabled="createUsers.$invalid" class="btn btn-primary pull-left">
+                                {{ 'CREATE_USERS' | translate }}
+                            </button>
+                            <div class="checkbox pull-right">
+                                <label>
+                                    <input type="checkbox" ng-model="onlineUsers">{{ 'ONLINE' | translate }}
+                                </label>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
