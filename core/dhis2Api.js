@@ -403,3 +403,12 @@ Dhis2Api.factory("Section",['$resource','commonvariable', function ($resource,co
 Dhis2Api.factory("SystemId", ['$resource', 'commonvariable', function ($resource, commonvariable) {
 	return $resource(commonvariable.url + "system/id")
 }]);
+
+Dhis2Api.factory("UserSettings", ['$resource', 'commonvariable', function($resource, commonvariable) {
+	return $resource(commonvariable.url + "userSettings/:key?user=:user&value=:value",
+		{
+			key:'@key',
+			user:'@user',
+			value:'@value'
+		});
+}]);

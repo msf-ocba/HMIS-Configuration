@@ -16,9 +16,11 @@
  You should have received a copy of the GNU General Public License
  along with Project Configuration.  If not, see <http://www.gnu.org/licenses/>. */
 
-Dhis2Api.service('UserService', ['$q', 'commonvariable', 'SystemId', 'User', function ($q, commonvariable, SystemId, User) {
+Dhis2Api.service('UserService', ['$q', 'commonvariable', 'SystemId', 'User', 'UserSettings', function ($q, commonvariable, SystemId, User, UserSettings) {
 
-    var createProjectUsers = function (project, commonName) {
+    const DEFAULT_LANG = 'en';
+
+    var createProjectUsers = function (project, commonName, language) {
         var userPromises = (Array.apply(null, {length: 11})).map(function (elem, index) {
             var isMFP = index == 0;
 
@@ -39,13 +41,13 @@ Dhis2Api.service('UserService', ['$q', 'commonvariable', 'SystemId', 'User', fun
                 userGroups: [{"id": commonvariable.users.uid_project_users_userGroup}]
             };
 
-            return saveUser(user);
+            return saveUser(user, language || DEFAULT_LANG);
         });
 
         return $q.all(userPromises);
     };
     
-    var createOnlineUsers = function (project, commonName, password) {
+    var createOnlineUsers = function (project, commonName, language, password) {
         var onlineUserPromises = (Array.apply(null, {length: 3})).map(function (elem, index) {
             var firstName = commonvariable.users.postfix_onlineuser + (index + 1);
             var user = {
@@ -61,7 +63,7 @@ Dhis2Api.service('UserService', ['$q', 'commonvariable', 'SystemId', 'User', fun
                 // TODO Assign to capital users in the mission?
             };
             
-            return saveUser(user);
+            return saveUser(user, language || DEFAULT_LANG);
         });
         
         return $q.all(onlineUserPromises);
@@ -75,7 +77,7 @@ Dhis2Api.service('UserService', ['$q', 'commonvariable', 'SystemId', 'User', fun
         return User.get(params).$promise;
     };
 
-    function saveUser (user) {
+    function saveUser (user, language) {
         return SystemId.get().$promise.then(function (data) {
             var userId = data.codes[0];
             user.id = userId;
@@ -84,11 +86,29 @@ Dhis2Api.service('UserService', ['$q', 'commonvariable', 'SystemId', 'User', fun
         }).then(function (response) {
             if (response.status == "OK") {
                 console.log("Created user: " + user.userCredentials.username);
-                return $q.when("Created user: " + user.userCredentials.username);
+                return saveUserLanguage(user.userCredentials.username, language);
             } else {
                 return $q.reject("Error while creating user " + user.userCredentials.username);
             }
         });
+    }
+
+    function saveUserLanguage (username, language) {
+        var keyUiLocale = {
+            key: 'keyUiLocale',
+            user: username,
+            value: language
+        }
+        var keyDbLocale = {
+            key: 'keyDbLocale',
+            user: username,
+            value: language
+        }
+
+        return UserSettings.save(keyUiLocale, {}).$promise
+            .then(function success() {
+                return UserSettings.save(keyDbLocale, {}).$promise;
+            });
     }
     
     return {
