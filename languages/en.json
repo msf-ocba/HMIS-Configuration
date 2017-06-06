@@ -10,6 +10,7 @@
   "ENABLE_ORGUNIT": "Enable",
   "CANCEL": "Clear Form",
   "FORM_MSG_EMPTYFIELD": "verify that the form does not have empty fields",
+  "LOCALE": "Locale",
   "PERIOD_LIST": "Select period",
   "PERIODTYPE_DAILY": "Daily",
   "PERIODTYPE_WEEKLY": "Weekly",
@@ -19,6 +20,10 @@
   "USERS": "Users",
   "USERS_ASSOCIATED_TO": "Users associated to ",
   "MANAGE_USERS": "Manage users",
+  "en": "English",
+  "es": "Spanish",
+  "fr": "French",
+  "pt": "Portuguese",
 
   "_____________MODAL": "modal for delete _____",
   "CLOSE_DATE": "Close Date",

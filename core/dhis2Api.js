@@ -85,6 +85,8 @@ var usersMSF = {prefix: "msfe",
 			 uid_role_onlineuser: "mnIBssgDVSC",
 			 passwd: "District123",
 			 uid_project_users_userGroup: "EmlkqPJLcAh"};
+
+var locales = ["en", "es", "fr", "pt"];
 			
 
 var prefixVaccination = { vaccinationName: 'Vaccination_', vaccinationCode: 'DS_VAC_' };
@@ -115,7 +117,8 @@ Dhis2Api.factory("commonvariable", function () {
 		    users: usersMSF,
 		    healhservicesCodeOUG: "",
 		    refreshDataSets:false,
-		    clearForm:[]
+		    clearForm:[],
+			locales: locales
 			};
 
    return Vari; 

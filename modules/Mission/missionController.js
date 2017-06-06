@@ -23,6 +23,10 @@ appConfigProjectMSF.controller('missionController', ["$scope", '$filter', "commo
     $scope.prevOu = "";
     $scope.showbutton = true;
     $scope.CreateDatasetVaccination = true;
+
+	//Locale information and default value
+	$scope.locales = commonvariable.locales;
+	$scope.selectedLocale = "en";
     
     missionService.initValue($scope);
    
@@ -63,7 +67,7 @@ appConfigProjectMSF.controller('missionController', ["$scope", '$filter', "commo
 		    	missionService.saveProject(newOu).then(
 					function success(project) {
 						commonvariable.RefreshTreeOU = true;
-						UserService.createProjectUsers(project, commonvariable.userDirective).then(
+						UserService.createProjectUsers(project, commonvariable.userDirective, $scope.selectedLocale).then(
 							function success(){
 								$scope.messages.push({ type: "success", text: $translate('PROJECT_SAVED') });
 							}, 
@@ -187,6 +191,9 @@ appConfigProjectMSF.controller('missionController', ["$scope", '$filter', "commo
 	       }
 	   });
       
+	  $scope.selectLocale = function(locale) {
+		  $scope.selectedLocale = locale;
+	  }
 }]);
 
 
