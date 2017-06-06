@@ -25,8 +25,12 @@ Dhis2Api.directive('d2UserManager', function(){
         }
     }
 });
-Dhis2Api.controller("d2UserManagerController", ['$scope', 'UserService', function ($scope, UserService) {
+Dhis2Api.controller("d2UserManagerController", ['$scope', 'commonvariable', 'UserService', function ($scope, commonvariable, UserService) {
     
+    //Locale information
+    $scope.locales = commonvariable.locales;
+    $scope.selectedLocale = "en";
+
     $scope.userList = [];
     
     function loadUsers () {
@@ -44,7 +48,7 @@ Dhis2Api.controller("d2UserManagerController", ['$scope', 'UserService', functio
     };
     
     function createOfflineUsers () {
-        UserService.createProjectUsers($scope.orgunit, $scope.commonUserName).then(loadUsers).then(
+        UserService.createProjectUsers($scope.orgunit, $scope.commonUserName, $scope.selectedLocale).then(loadUsers).then(
             function success() {
                 // TODO Show a success dialog
                 console.log("Success");
@@ -57,7 +61,7 @@ Dhis2Api.controller("d2UserManagerController", ['$scope', 'UserService', functio
     }
 
     function createOnlineUsers () {
-        UserService.createOnlineUsers($scope.orgunit, $scope.commonUserName).then(loadUsers).then(
+        UserService.createOnlineUsers($scope.orgunit, $scope.commonUserName, $scope.selectedLocale).then(loadUsers).then(
             function success() {
                 // TODO Show a success dialog
                 console.log("Success");
@@ -74,6 +78,10 @@ Dhis2Api.controller("d2UserManagerController", ['$scope', 'UserService', functio
             return role.displayName
         }).concat();
     };
+
+    $scope.selectLocale = function (locale) {
+        $scope.selectedLocale = locale;
+    }
     
     loadUsers();
     
