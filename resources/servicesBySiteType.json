@@ -112,6 +112,10 @@
             "code": "OUG_HSV_HW"
           },
           {
+            "name": "ICU/PICU",
+            "code": "OUG_HSV_ICU"
+          },
+          {
             "name": "Paediatric Ward",
             "code": "OUG_HSV_HWp"
           },
@@ -332,6 +336,10 @@
           {
             "name": "Hospitalization Ward",
             "code": "OUG_HSV_HW"
+          },
+          {
+            "name": "ICU/PICU",
+            "code": "OUG_HSV_ICU"
           },
           {
             "name": "Paediatric Ward",

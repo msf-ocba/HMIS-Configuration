@@ -64,6 +64,10 @@
             "code": "OUG_HSV_HW"
           },
           {
+            "name": "ICU/PICU",
+            "code": "OUG_HSV_ICU"
+          },
+          {
             "name": "Neonatology/NICU",
             "code": "OUG_HSV_NEO"
           },
