@@ -16,8 +16,8 @@
    You should have received a copy of the GNU General Public License
    along with Project Configuration.  If not, see <http://www.gnu.org/licenses/>. */
 
-Dhis2Api.service('healthsiteService', ['$q', 'commonvariable', 'OrgUnit', 'FilterResource', 'DataSetsOrgUnit', 'GetMission', 'loadjsonresource', 'OrgUnitGroupByOrgUnit', 'OrgUnitOrgUnitGroups', 'OrganisationUnitChildren', 'OrgUnitGroupsOrgUnit', 'OrgUnitGroupByGroupSets',
-                                       function ($q, commonvariable, OrgUnit, FilterResource, DataSetsOrgUnit, GetMission, loadjsonresource, OrgUnitGroupByOrgUnit, OrgUnitOrgUnitGroups, OrganisationUnitChildren, OrgUnitGroupsOrgUnit, OrgUnitGroupByGroupSets) {
+Dhis2Api.service('healthsiteService', ['$q', 'commonvariable', 'OrgUnit', 'FilterResource', 'DataSetsOrgUnit', 'GetMission', 'loadjsonresource', 'OrgUnitGroupsOrgUnit', 'OrgUnitGroupByGroupSets',
+                                       function ($q, commonvariable, OrgUnit, FilterResource, DataSetsOrgUnit, GetMission, loadjsonresource, OrgUnitGroupsOrgUnit, OrgUnitGroupByGroupSets) {
     //get validation rules
 	
 	
