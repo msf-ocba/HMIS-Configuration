@@ -225,7 +225,6 @@ appConfigProjectMSF.controller('projectController', ["$scope", "$timeout", '$fil
 	      };
 	      
 	      projectService.editProject(commonvariable.OrganisationUnit.id, editOu).then(function (result){
-              console.log(result);
 	    	  if (result == true) {
                   //refresh tree for show change
 	    	      commonvariable.RefreshTreeOU = true;

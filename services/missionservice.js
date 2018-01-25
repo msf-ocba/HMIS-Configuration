@@ -62,12 +62,8 @@ Dhis2Api.service('missionService', ['$q', 'commonvariable', 'User', 'OrgUnitGrou
 				DemographicService.assignDemographicInfoDataSet(newOu.id).then(function () {
 					return DemographicService.assignPopulationDataSet(newOu.id);
 				}).then(
-					function success() {
-						deferred.resolve(newOu);
-					},
-					function error() {
-						deferred.reject('DEMOGRAPHICS NOT ASSIGNED');
-					}
+					success => deferred.resolve(newOu),
+					error => deferred.reject('DEMOGRAPHICS NOT ASSIGNED')
 				);
 			}
 			else {
