@@ -59,22 +59,27 @@ Dhis2Api.service('DatasetService', ['$q', 'DataSets', function ($q, DataSets) {
     };
 
     function getServiceMainDataSets (healthServiceCode) {
-        var params = {
-            filter: [
-                "attributeValues.value:$like:" + ('_' + healthServiceCode.split('_')[2]),
-                "attributeValues.value:like:" + ('_' + healthServiceCode.split('_')[2] + '_')
-            ],
-            rootJunction: "OR"
-        };
+        const rootServiceCode = healthServiceCode.split('_')[2];
 
-        return DataSets.get(params).$promise
+        return DataSets.get({}).$promise.then( response => {
+            const filteredDatasets = response.dataSets.filter( ds => {
+                return ds.attributeValues.some( entry => {
+                    return (new RegExp(`_${rootServiceCode}$`)).test(entry.value) ||
+                            (new RegExp(`_${rootServiceCode}_`)).test(entry.value)
+                });
+            });
+
+            return {
+                dataSets: filteredDatasets
+            }
+        });
     }
 
     function getRelatedDatasets (dataSetArray) {
         var promises = dataSetArray.dataSets.map( function (dataSet) {
             var commonCode = extractCommonCode(dataSet.code);
             var params = {
-                filter: "code:^like:" + commonCode
+                filter: "code:like:" + commonCode
             };
             return DataSets.get(params).$promise.then( function (data) {
                 // Filter dataset by commonCode

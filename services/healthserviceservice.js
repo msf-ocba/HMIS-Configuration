@@ -22,7 +22,7 @@ Dhis2Api.service('healthserviceService', ['$q', 'commonvariable', 'OrgUnitOrgUni
     //get validation rules
 	
 	
-    this.initValue=function($scope) {
+    this.initValue = function($scope) {
         $scope.healthServiceId = commonvariable.ouGroupsetId.HealthService;
         commonService.selectOrgUnitGroup(commonvariable.OrganisationUnit.id, commonvariable.ouGroupsetId.HealthServiceType).then(function(ouGroup){
         	$scope.servicetype = ouGroup.name;
