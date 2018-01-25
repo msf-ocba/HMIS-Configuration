@@ -73,7 +73,7 @@ Dhis2Api.service('healthsiteService', ['$q', 'commonvariable', 'OrgUnit', 'Filte
                 if (healthService != undefined) {
                     OrgUnitGroupsOrgUnit.POST({ uidgroup: healthService.id, uidorgunit: newOu.id });
                 } else {
-                    console.warn("Service do not associated to any health service group");
+                    console.warn("Health service not associated to any health service group");
                 }
                 
                 // No vaccination dataset at the moment
@@ -156,12 +156,12 @@ Dhis2Api.service('healthsiteService', ['$q', 'commonvariable', 'OrgUnit', 'Filte
         return OrgUnitGroupByGroupSets.get({uid: commonvariable.ouGroupsetId.SiteType}).$promise.then(function (data) {
             allHealthSiteTypes = data.organisationUnitGroups;
             var payload = {
-                additions: {id: orgUnit.id}
+                additions: [{id: orgUnit.id}]
             };
             return OrgUnitGroupsOrgUnit.POST({uidgroup: healthSiteTypeId}, payload).$promise;
         }).then(function success() {
             var payload = {
-                deletions: {id: orgUnit.id}
+                deletions: [{id: orgUnit.id}]
             };
             var deletePromises = allHealthSiteTypes
                 .filter( siteType => siteType.id != healthSiteTypeId )
