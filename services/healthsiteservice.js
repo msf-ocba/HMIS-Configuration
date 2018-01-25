@@ -69,9 +69,15 @@ Dhis2Api.service('healthsiteService', ['$q', 'commonvariable', 'OrgUnit', 'Filte
                 newOu.id = data.response.uid;
                 commonvariable.NewOrganisationUnit = newOu;
 
-                if (commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.HealthService] != undefined)
-                    OrgUnitGroupsOrgUnit.POST({ uidgroup: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.HealthService].id, uidorgunit: newOu.id });
-				
+                const healthService = commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.HealthService];
+                if (healthService != undefined) {
+                    OrgUnitGroupsOrgUnit.POST({ uidgroup: healthService.id, uidorgunit: newOu.id });
+                } else {
+                    console.warn("Service do not associated to any health service group");
+                }
+                
+                // No vaccination dataset at the moment
+                /**
                 if (commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.HealthService].name == "Vaccination") { //Assocate Vacc datasets 
 
                     GetMission.get({ uid: newOu.id }).$promise.then(function (data) {
@@ -87,16 +93,15 @@ Dhis2Api.service('healthsiteService', ['$q', 'commonvariable', 'OrgUnit', 'Filte
                                   var dataSet = response.dataSets[0];
                                   DataSetsOrgUnit.POST({ uidorgunit: newOu.id, uiddataset: dataSet.id });
                               }
-
                           });
-
                     });
                 }
+                */
 
-                var codeServiceType = undefined;
-
+                // Associate service type level
                 loadjsonresource.get("servicebyservicetype").then(function (response) {
 
+                    var codeServiceType = undefined;
                     codeServiceType = getServiceType(response.data.servicesByServiceType);
 
                     FilterResource.GET({ resource: 'organisationUnitGroups', filter: 'code:eq:' + codeServiceType }).$promise
@@ -108,21 +113,7 @@ Dhis2Api.service('healthsiteService', ['$q', 'commonvariable', 'OrgUnit', 'Filte
                               OrgUnitGroupsOrgUnit.POST({ uidgroup: orgUnitGroup.id, uidorgunit: newOu.id });
 
                           }
-
                       });
-
-
-                });
-
-
-                OrgUnitGroupByOrgUnit.get({ uid: commonvariable.OrganisationUnit.id }).$promise.then(function (response) {
-
-                    listOrgUnitGroups = response.organisationUnitGroups;
-
-                    angular.forEach(listOrgUnitGroups, function (value, key) {
-                        OrgUnitGroupsOrgUnit.POST({ uidgroup: value.id, uidorgunit: newOu.id });
-                    });
-
                 });
 
             }
@@ -136,56 +127,48 @@ Dhis2Api.service('healthsiteService', ['$q', 'commonvariable', 'OrgUnit', 'Filte
 		
 	};
 
-	 this.editHealthSite = function(editOu) {
-		 
-	     return OrgUnit.PATCH({id: editOu.id}, editOu).$promise.then(
-			 function success() {
-				 //asign OU selected
-				 commonvariable.EditOrganisationUnit = commonvariable.OrganisationUnit;
-				 ///replace with new value
-				 commonvariable.EditOrganisationUnit.name = editOu.name;
-				 commonvariable.EditOrganisationUnit.shortName = editOu.name;
-				 commonvariable.EditOrganisationUnit.code = commonvariable.OrganisationUnit.code;
-				 commonvariable.EditOrganisationUnit.openingDate = editOu.openingDate;
+    this.editHealthSite = function(editOu) {
+        
+        return OrgUnit.PATCH({id: editOu.id}, editOu).$promise.then(
+            function success() {
+                //asign OU selected
+                commonvariable.EditOrganisationUnit = commonvariable.OrganisationUnit;
+                ///replace with new value
+                commonvariable.EditOrganisationUnit.name = editOu.name;
+                commonvariable.EditOrganisationUnit.shortName = editOu.name;
+                commonvariable.EditOrganisationUnit.code = commonvariable.OrganisationUnit.code;
+                commonvariable.EditOrganisationUnit.openingDate = editOu.openingDate;
 
-				 if (typeof commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.SiteType] != "undefined") {
-					 return setHealthSiteType(editOu, commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.SiteType].id);
-				 }
-			 }
-		 ).then(
-			 function success() {
-				 return true;
-			 },
-			 function error() {
-				 return false;
-			 }
-		 );
-	 };
-										   
-	function setHealthSiteType (orgUnit, healthSiteTypeId) {
-		var allHealthSiteTypes;
-		var targetedOrgUnits;
-		
-		return OrgUnitGroupByGroupSets.get({uid: commonvariable.ouGroupsetId.SiteType}).$promise.then(function (data) {
-			allHealthSiteTypes = data.organisationUnitGroups;
-			return OrganisationUnitChildren.get({uid: orgUnit.id}).$promise;
-		}).then(function (allDescendants) {
-			targetedOrgUnits = allDescendants.organisationUnits.map(function (ou) {return {id: ou.id};});
-			var payload = {
-				additions: targetedOrgUnits
-			};
-			return OrgUnitGroupsOrgUnit.POST({uidgroup: healthSiteTypeId}, payload).$promise;
-		}).then(function success() {
-			var payload = {
-				deletions: targetedOrgUnits
-			};
-			var deletePromises = allHealthSiteTypes.filter(function (siteType) {
-				return siteType.id != healthSiteTypeId;
-			}).map(function (siteType) {
-				return OrgUnitGroupsOrgUnit.POST({uidgroup: siteType.id}, payload).$promise;
-			});
-			return $q.all(deletePromises);
-		});
-	}
+                const siteType = commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.SiteType];
+                if (typeof siteType != "undefined") {
+                    return setHealthSiteType(editOu, siteType.id);
+                }
+            }
+        ).then(
+            success => true,
+            error => false
+        );
+    };
+                                        
+    function setHealthSiteType (orgUnit, healthSiteTypeId) {
+        var allHealthSiteTypes;
+
+        return OrgUnitGroupByGroupSets.get({uid: commonvariable.ouGroupsetId.SiteType}).$promise.then(function (data) {
+            allHealthSiteTypes = data.organisationUnitGroups;
+            var payload = {
+                additions: {id: orgUnit.id}
+            };
+            return OrgUnitGroupsOrgUnit.POST({uidgroup: healthSiteTypeId}, payload).$promise;
+        }).then(function success() {
+            var payload = {
+                deletions: {id: orgUnit.id}
+            };
+            var deletePromises = allHealthSiteTypes
+                .filter( siteType => siteType.id != healthSiteTypeId )
+                .map( siteType => OrgUnitGroupsOrgUnit.POST({uidgroup: siteType.id}, payload).$promise );
+                
+            return $q.all(deletePromises);
+        });
+    }
 	 
 }]);
