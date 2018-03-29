@@ -37,6 +37,11 @@
         "suffix": "HW"
       },
       {
+        "name": "Hospitalization Ward Multiservice",
+        "code": "OUG_HSV_MSW",
+        "suffix": "MSW"
+      },
+      {
         "name": "ICU/PICU",
         "code": "OUG_HSV_ICU",
         "suffix": "ICU"
