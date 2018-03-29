@@ -132,6 +132,10 @@
           {
             "name": "Surveillance Nut",
             "code": "OUG_HSV_NS"
+          },
+          {
+            "name": "EVD Screening",
+            "code": "OUG_HSV_EVD"
           }
         ]
       },

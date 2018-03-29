@@ -10,6 +10,10 @@
             "code": "OUG_HSV_EC"
           },
           {
+            "name": "EVD Screening",
+            "code": "OUG_HSV_EVD"
+          },
+          {
             "name": "Paediatric External Consultation",
             "code": "OUG_HSV_ECp"
           },
@@ -90,6 +94,10 @@
           {
             "name": "Early Warning System",
             "code": "OUG_HSV_EWS"
+          },
+          {
+            "name": "EVD Screening",
+            "code": "OUG_HSV_EVD"
           },
           {
             "name": "Emergency Room",
@@ -206,6 +214,10 @@
             "code": "OUG_HSV_EWS"
           },
           {
+            "name": "EVD Screening",
+            "code": "OUG_HSV_EVD"
+          },
+          {
             "name": "External Consultations",
             "code": "OUG_HSV_EC"
           },
@@ -280,6 +292,10 @@
         "code": "OUG_HST_EIU",
         "services": [
           {
+            "name": "EVD Screening",
+            "code": "OUG_HSV_EVD"
+          },         
+          {
             "name": "Outbreak Cholera",
             "code": "OUG_HSV_CH"
           },
@@ -320,6 +336,10 @@
           {
             "name": "Emergency Room",
             "code": "OUG_HSV_ER"
+          },
+          {
+            "name": "EVD Screening",
+            "code": "OUG_HSV_EVD"
           },
           {
             "name": "External Consultations",
@@ -440,6 +460,10 @@
         "code": "OUG_HST_CA",
         "services": [
           {
+            "name": "EVD Screening",
+            "code": "OUG_HSV_EVD"
+          },
+          {
             "name": "External Consultations",
             "code": "OUG_HSV_EC"
           },
@@ -518,6 +542,11 @@
         "code": "OUG_HST_VAC",
         "services": [
           {
+            "name": "EVD Screening",
+            "code": "OUG_HSV_EVD"
+          },
+          
+          {
             "name": "External Consultations",
             "code": "OUG_HSV_EC"
           },
@@ -595,6 +624,11 @@
         "name": "Mobile Clinic Site",
         "code": "OUG_HST_MC",
         "services": [
+          {
+            "name": "EVD Screening",
+            "code": "OUG_HSV_EVD"
+          },
+          
           {
             "name": "External Consultations",
             "code": "OUG_HSV_EC"
