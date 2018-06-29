@@ -10,7 +10,7 @@
             "code": "OUG_HSV_EC"
           },
           {
-            "name": "EVD Screening",
+            "name": "Viral Hemorrhagic Fever",
             "code": "OUG_HSV_EVD"
           },
           {
@@ -96,7 +96,7 @@
             "code": "OUG_HSV_EWS"
           },
           {
-            "name": "EVD Screening",
+            "name": "Viral Hemorrhagic Fever",
             "code": "OUG_HSV_EVD"
           },
           {
@@ -214,7 +214,7 @@
             "code": "OUG_HSV_EWS"
           },
           {
-            "name": "EVD Screening",
+            "name": "Viral Hemorrhagic Fever",
             "code": "OUG_HSV_EVD"
           },
           {
@@ -292,7 +292,7 @@
         "code": "OUG_HST_EIU",
         "services": [
           {
-            "name": "EVD Screening",
+            "name": "Viral Hemorrhagic Fever",
             "code": "OUG_HSV_EVD"
           },         
           {
@@ -338,7 +338,7 @@
             "code": "OUG_HSV_ER"
           },
           {
-            "name": "EVD Screening",
+            "name": "Viral Hemorrhagic Fever",
             "code": "OUG_HSV_EVD"
           },
           {
@@ -460,7 +460,7 @@
         "code": "OUG_HST_CA",
         "services": [
           {
-            "name": "EVD Screening",
+            "name": "Viral Hemorrhagic Fever",
             "code": "OUG_HSV_EVD"
           },
           {
@@ -542,7 +542,7 @@
         "code": "OUG_HST_VAC",
         "services": [
           {
-            "name": "EVD Screening",
+            "name": "Viral Hemorrhagic Fever",
             "code": "OUG_HSV_EVD"
           },
           
@@ -625,7 +625,7 @@
         "code": "OUG_HST_MC",
         "services": [
           {
-            "name": "EVD Screening",
+            "name": "Viral Hemorrhagic Fever",
             "code": "OUG_HSV_EVD"
           },
           
