@@ -132,6 +132,10 @@
           {
             "name": "Surveillance Nut",
             "code": "OUG_HSV_NS"
+          },
+          {
+            "name": "Viral Hemorrhagic Fever",
+            "code": "OUG_HSV_EVD"
           }
         ]
       },

@@ -76,6 +76,10 @@
           {
             "name": "Vaccination",
             "code": "OUG_HSV_VAC"
+          },
+          {
+            "name": "Viral Hemorrhagic Fever",
+            "code": "OUG_HSV_EVD"
           }
         ]
       },
@@ -195,6 +199,11 @@
             "name": "Vaccination",
             "code": "OUG_HSV_VAC"
           }
+          ,
+          {
+            "name": "Viral Hemorrhagic Fever",
+            "code": "OUG_HSV_EVD"
+          }
         ]
       },
       {
@@ -272,13 +281,19 @@
           {
             "name": "Vaccination",
             "code": "OUG_HSV_VAC"
+          },
+          {
+            "name": "Viral Hemorrhagic Fever",
+            "code": "OUG_HSV_EVD"
           }
+          
         ]
       },
       {
         "name": "Epidemic Isolation Unit ",
         "code": "OUG_HST_EIU",
         "services": [
+              
           {
             "name": "Outbreak Cholera",
             "code": "OUG_HSV_CH"
@@ -302,6 +317,10 @@
           {
             "name": "Surveillance Mortality",
             "code": "OUG_HSV_MOR"
+          },
+          {
+            "name": "Viral Hemorrhagic Fever",
+            "code": "OUG_HSV_EVD"
           }
         ]
       },
@@ -432,6 +451,10 @@
           {
             "name": "Vaccination",
             "code": "OUG_HSV_VAC"
+          },
+          {
+            "name": "Viral Hemorrhagic Fever",
+            "code": "OUG_HSV_EVD"
           }
         ]
       },
@@ -439,6 +462,7 @@
         "name": "Community area",
         "code": "OUG_HST_CA",
         "services": [
+         
           {
             "name": "External Consultations",
             "code": "OUG_HSV_EC"
@@ -510,6 +534,10 @@
           {
             "name": "Vaccination",
             "code": "OUG_HSV_VAC"
+          },
+          {
+            "name": "Viral Hemorrhagic Fever",
+            "code": "OUG_HSV_EVD"
           }
         ]
       },
@@ -517,6 +545,7 @@
         "name": "Vaccination Site",
         "code": "OUG_HST_VAC",
         "services": [
+                
           {
             "name": "External Consultations",
             "code": "OUG_HSV_EC"
@@ -588,6 +617,10 @@
           {
             "name": "Vaccination",
             "code": "OUG_HSV_VAC"
+          },
+          {
+            "name": "Viral Hemorrhagic Fever",
+            "code": "OUG_HSV_EVD"
           }
         ]
       },
@@ -595,6 +628,11 @@
         "name": "Mobile Clinic Site",
         "code": "OUG_HST_MC",
         "services": [
+          {
+            "name": "Viral Hemorrhagic Fever",
+            "code": "OUG_HSV_EVD"
+          },
+          
           {
             "name": "External Consultations",
             "code": "OUG_HSV_EC"
