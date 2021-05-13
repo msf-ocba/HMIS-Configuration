@@ -2,6 +2,35 @@
   "healthserviceSuffix": {
     "service": [
       {
+        "name": "Community Activities sites",
+        "code": "OUG_HST_CA",
+        "suffix": "CA"
+      },
+     {
+        "name": "IPC/SIPCA - Surgical capacity",
+        "code": "OUG_HSV_SIPCA",
+        "suffix": "SIPCA"
+      },
+      {
+        "name": "IPC/SIPCA - No Surgical capacity",
+        "code": "OUG_HSV_SIPCAWO",
+        "suffix": "SIPCAWO"
+      },
+
+      {
+        "name": "Antenatal Care (ANC)",
+        "code": "OUG_HSV_ANC",
+        "suffix": "ANC"
+      },
+
+      {
+        "name": "COVID - 19",
+        "code": "OUG_HSV_COVID",
+        "suffix": "COVID"
+      },
+
+
+      {
         "name": "Diagnostic test",
         "code": "OUG_HSV_DT",
         "suffix": "DT"
@@ -41,6 +70,21 @@
         "code": "OUG_HSV_MSW",
         "suffix": "MSW"
       },
+
+      {
+        "name": "Isolation Ward",
+        "code": "OUG_HSV_ISOW",
+        "suffix": "ISOW"
+      },
+
+      {
+        "name": "Medical Imaging",
+        "code": "OUG_HSV_MI",
+        "suffix": "MI"
+      },
+
+
+
       {
         "name": "ICU/PICU",
         "code": "OUG_HSV_ICU",
@@ -111,18 +155,21 @@
         "code": "OUG_HSV_MNG",
         "suffix": "MNG"
       },
-      {
-        "name": "Paediatric External Consultation",
-        "code": "OUG_HSV_ECp",
-        "suffix": "ECp"
-      },
+   
       {
         "name": "Paediatric Ward",
         "code": "OUG_HSV_HWp",
         "suffix": "HWp"
       },
+
       {
-        "name": "Sexual and Rep. Health IPD",
+        "name": "Postnatal Care (PNC)",
+        "code": "OUG_HSV_PNC",
+        "suffix": "PNC"
+      },
+
+      {
+        "name": "Gyn/Obs Ward",
         "code": "OUG_HSV_SRHHW",
         "suffix": "SRHHW"
       },
@@ -141,11 +188,9 @@
         "code": "OUG_HSV_SW",
         "suffix": "SW"
       },
-      {
-        "name": "Surveillance Mortality",
-        "code": "OUG_HSV_MOR",
-        "suffix": "MOR"
-      },
+   
+
+      
       {
         "name": "Surveillance Nut",
         "code": "OUG_HSV_NS",

@@ -31,13 +31,14 @@ appConfigProjectMSF.controller('healthServiceController', ["$scope",'$filter',"c
 	$scope.messages=[];
 
 	$scope.showfields=false;
-
+	
 	$scope.showForm = function(frm){
 		$scope.frmSite = (frm == 1);
 	};
 
 	$scope.$watch(
 		function($scope) {
+			
 			if(commonvariable.OrganisationUnit!=undefined && commonvariable.OrganisationUnit.id != $scope.prevOu){
 
 				$scope.operation = 'show';
@@ -46,6 +47,7 @@ appConfigProjectMSF.controller('healthServiceController', ["$scope",'$filter',"c
 				$scope.prevOu = commonvariable.OrganisationUnit.id;
 
 				$scope.name = commonvariable.OrganisationUnit.name;
+			
 				$scope.healthservicecreated = commonvariable.OrganisationUnit.openingDate;
 				$scope.code = commonvariable.OrganisationUnit.code;
 			}

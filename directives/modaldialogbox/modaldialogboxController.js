@@ -32,21 +32,52 @@ Dhis2Api.controller('ModalConfirmCtrl', function ($scope, $q, $modalInstance, in
 	$scope.information=information;
 
 	$scope.ok = function () {
-
+		console.log("Remove");
+		console.log($scope.removeDatasets);
 	    OrganisationUnitChildren.get({uid:$scope.information.id,fields:'name,id,dataSets'}).$promise.then(function(response){
 			var targetOu = response.organisationUnits;
 			var closeTargetOuPromises = targetOu.map(function (orgUnit) {
 				return OrgUnit.PATCH({id: orgUnit.id}, {closedDate: $scope.closedate}).$promise;
 			});
-
-			var unassignDatasetsPromises = targetOu.map(function (orgUnit) {
+// REMOVE dataasets when closing a proejct
+var unassignDatasetsPromises=[];
+if  ($scope.removeDatasets) {
+			
+	for (i in targetOu) {
+		orgUnit=targetOu[i];
+		for (x in orgUnit.dataSets) {
+		ds=orgUnit.dataSets[x];
+		unassignDatasetsPromises=unassignDatasetsPromises.concat(DataSetsOrgUnit.DELETE({"uidorgunit": orgUnit.id, "uiddataset":ds.id}).$promise);
+		}
+	}
+//	return unassignDatasetsPromises;
+/*	
+	var unassignDatasetsPromises = targetOu.map(function (orgUnit) {
 				var payload = {
-					"deletions": orgUnit.dataSets.map(function (ds) { return { "id": ds.id };})
+					"deletions": orgUnit.dataSets.map(function (ds) { 
+						
+						return { "id": ds.id };
+								})
 				};
+			console.log("OU");
+				console.log(orgUnit.id);
+				console.log(payload);
+				//return DataSetsOrgUnit.DELETE({"uidorgunit": orgUnit.id, "uiddataset":ds.id}).$promise;
+				//http://localhost:8989/dhis/api/organisationUnits/QsFDgg9tCoP/dataSets/pMIZK4leYjt
 				return DataSetsOrgUnit.POST({"uidorgunit": orgUnit.id}, payload).$promise;
 			});
 			
-			$q.all(closeTargetOuPromises.concat(unassignDatasetsPromises)).then(function(result) {
+*/	
+			var prom=closeTargetOuPromises.concat(unassignDatasetsPromises);
+
+			//$q.all(prom).then(function(result) {
+			}
+			if ($scope.removeDatasets==undefined || $scope.removeDatasets==false) { 
+				var prom=closeTargetOuPromises;
+			}
+				$q.all(prom).then(function(result) {
+				//$q.all(closeTargetOuPromises).then(function(result) {
+				
 				console.log(result);
 
 				commonvariable.EditOrganisationUnit = commonvariable.OrganisationUnit;
@@ -56,6 +87,7 @@ Dhis2Api.controller('ModalConfirmCtrl', function ($scope, $q, $modalInstance, in
 
 				$modalInstance.close(true);
 			})
+			
 		});
 	};
 

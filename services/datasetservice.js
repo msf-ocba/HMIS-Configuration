@@ -99,7 +99,7 @@ Dhis2Api.service('DatasetService', ['$q', 'DataSets', function ($q, DataSets) {
     function formatDataSetsByLevelAndPeriod (dataSetArray) {
         return dataSetArray.reduce(
             function (acc, dataSet) {
-                var lastChar = dataSet.code[dataSet.code.length - 1];
+               if (dataSet.code!=undefined) var lastChar = dataSet.code[dataSet.code.length - 1];
                 var level = isNaN(lastChar) ? DEFAULT_LEVEL : lastChar;
                 var period = dataSet.periodType;
 

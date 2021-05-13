@@ -66,11 +66,15 @@ appConfigProjectMSF.controller('projectController', ["$scope", "$timeout", '$fil
 	        parent: commonvariable.OrganisationUnitParentConf,
 	        healthsitetype: commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.SiteType]
 	    };
-        ///validate if object is ok.
+		///validate if object is ok.
+		
 	    validatorService.emptyValue(newOu).then(function (result) {
+			
 	        if (result == false && $scope.siteprefix!="") {
-           
+				
 	            projectService.saveHealthSite(newOu).then(function (result) {
+					
+					console.log(result);
 	            	if (result == true) {
 
 	            		commonvariable.RefreshTreeOU = true;
@@ -112,7 +116,7 @@ appConfigProjectMSF.controller('projectController', ["$scope", "$timeout", '$fil
 	        commonvariable.clearForm["hsname"] = true;
 	        commonvariable.clearForm["healthsitetype"] = true;
 	        commonvariable.clearForm["usernameproject"] = true;
-	        $scope.siteDate = "";
+	        $scope.siteDate = $scope.projectcreated;
 	        $scope.siteprefix = "";
 			$scope.frmSite=true;
 		}

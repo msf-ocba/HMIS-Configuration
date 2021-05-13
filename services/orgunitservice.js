@@ -19,11 +19,12 @@
 Dhis2Api.service('OrgunitService', ['$q', 'commonvariable', 'OrganisationUnitChildren', 'OrgUnit', 'DemographicService', function ($q, commonvariable, OrganisationUnitChildren, OrgUnit, DemographicService) {
     
     var openOrgunit = function (orgunitId) {
-        return OrganisationUnitChildren.get({uid:orgunitId, fields:'name,id,level'}).$promise.then(function(response){
+        return OrganisationUnitChildren.get({uid:orgunitId, fields:':owner'}).$promise.then(function(response){
             var targetOu = response.organisationUnits;
 
             var openTargetOuPromises = targetOu.map(function (orgUnit) {
-                return OrgUnit.PATCH({id: orgUnit.id}, {closedDate: ''}).$promise;
+                delete orgUnit.closedDate;
+                return OrgUnit.PUT({id: orgUnit.id}, orgUnit).$promise;
             });
 
             var demographicPromises = targetOu.map(function (orgUnit) {

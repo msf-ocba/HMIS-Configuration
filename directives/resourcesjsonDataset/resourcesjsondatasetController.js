@@ -71,20 +71,30 @@ Dhis2Api.controller("d2ResourcejsondatasetController",
             $scope.loadLevels();
         };
 
-        $scope.editHealtServiceDataset = function () {
+        $scope.editHealtServiceDataset = async function () {
             var dataSetsToAdd = serviceDataSets
                 .filter(function (ds) { return $scope.datasetIdSelected.indexOf(ds.id) > -1});
             var dataSetsToRemove = serviceDataSets
                 .filter(function (ds) { return $scope.datasetIdSelected.indexOf(ds.id) <= -1});
-
+/*
             var payload = {
                 "additions": dataSetsToAdd.map(function (ds) { return { "id": ds.id };}),
                 "deletions": dataSetsToRemove.map(function (ds) { return { "id": ds.id };})
             };
-            DataSetsOrgUnit.POST({"uidorgunit": commonvariable.OrganisationUnit.id}, payload).$promise.then(function (data) {
+*/
+            for (x in dataSetsToAdd) {
+                ds=dataSetsToAdd[x];
+               await  DataSetsOrgUnit.POST({"uidorgunit": commonvariable.OrganisationUnit.id, "uiddataset":ds.id});
+                }
+                for (x in dataSetsToRemove) {
+                    ds=dataSetsToRemove[x];
+                   await  DataSetsOrgUnit.DELETE({"uidorgunit": commonvariable.OrganisationUnit.id, "uiddataset":ds.id});
+                    }
+
+           // DataSetsOrgUnit.POST({"uidorgunit": commonvariable.OrganisationUnit.id}, payload).$promise.then(function (data) {
                 $scope.editOrgUnit(dataSetsToAdd);
                 $scope.initForm();
-            });
+            //});
         };
 
         $scope.loadLevels = function () {

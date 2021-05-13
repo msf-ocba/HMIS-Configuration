@@ -141,13 +141,14 @@ appConfigProjectMSF.controller('healthSiteController', ["$scope", '$filter', "co
 		if(frm==1){
 		    $scope.frmService = true;
 		    commonvariable.clearForm["healthservice"] = true;
-		    $scope.healthServiceDate = "";
-		    commonvariable.orgUnitGroupSet = [];
-		    //$scope.healthsitecreated = "";
+		   // $scope.healthServiceDate = "";
+			commonvariable.orgUnitGroupSet = [];
+			$scope.healthServiceDate=$scope.healthsitecreated;
+		   
 		}
 		else{
 			$scope.frmService=false;
-		}
+					}
 
 		
 	//	$scope.showfields=true;

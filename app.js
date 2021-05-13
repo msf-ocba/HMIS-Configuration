@@ -72,6 +72,8 @@ appConfigProjectMSF.config(function ($translateProvider, urlApi) {
 			);
 	  
 	  $translateProvider.fallbackLanguage(['en']);
+console.log("URL");
+console.log(urlApi);
 
 	  jQuery.ajax({ url: urlApi + 'userSettings/keyUiLocale/', contentType: 'text/plain', method: 'GET', dataType: 'text', async: false}).success(function (uiLocale) {
 		  if (uiLocale == ''){

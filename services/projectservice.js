@@ -107,19 +107,23 @@ Dhis2Api.service('projectService', ['$q', 'commonvariable', 'commonService', 'Us
         return promise;
     };
 	  
-    this.saveHealthSite = function (newOu){
+    this.saveHealthSite = async function (newOu){
         
         var deferred = $q.defer();
 
-        OrgUnit.POST({}, newOu).$promise.then( data => {
-            
+    
+    ou=await OrgUnit.POST({}, newOu);
+      
+    // var data=ou.$promise.$$state.value.data;
+       ou.$promise.then(data=>{  
             if (data.status == "OK") {
+                saved=true;
                 newOu.id = data.response.uid;
                 commonvariable.NewOrganisationUnit = newOu;
 
                 const siteTypeGroup = commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.SiteType];
                 if (siteTypeGroup != undefined) {
-                    OrgUnitGroupsOrgUnit.POST({ uidgroup: siteTypeGroup.id, uidorgunit: newOu.id });
+               OrgUnitGroupsOrgUnit.POST({ uidgroup: siteTypeGroup.id, uidorgunit: newOu.id });
                 } else {
                     console.warn("Health site not associated to any health site group")
                 }
@@ -130,12 +134,21 @@ Dhis2Api.service('projectService', ['$q', 'commonvariable', 'commonService', 'Us
                 );
 
             }
-            else {
-                deferred.resolve(false);
-            }
-        });		  
+           
+     		  
+        },
+        
+    rejected => {  
+ 
+    deferred.resolve(false) ;
+    return deferred.promise;
+ }
+        
+        );
 
-        return deferred.promise;
+//if (!saved) {  deferred.resolve(false) }
+    return deferred.promise;
+
     };
 	  
 	  
