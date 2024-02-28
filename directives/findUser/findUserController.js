@@ -30,7 +30,7 @@ Dhis2Api.controller("findUserController", ['$scope','$http', 'FilterResource',"c
 
     $scope.findUser = function () {
 
-        FilterResource.get({ resource: "users", filter: 'userCredentials.code:eq:'+ commonvariable.users.prefix + "-" + $scope.user + "-" + commonvariable.users.postfix_mfp  })
+        FilterResource.get({ resource: "users", filter: 'userCredentials.username:eq:'+ commonvariable.users.prefix + "-" + $scope.user + "-" + commonvariable.users.postfix_mfp  })
             .$promise.then(function (data) {
             	
             	if (data.users.length>0) {
