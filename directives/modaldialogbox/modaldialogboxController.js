@@ -37,7 +37,18 @@ Dhis2Api.controller('ModalConfirmCtrl', function ($scope, $q, $modalInstance, in
 	    OrganisationUnitChildren.get({uid:$scope.information.id,fields:'name,id,dataSets'}).$promise.then(function(response){
 			var targetOu = response.organisationUnits;
 			var closeTargetOuPromises = targetOu.map(function (orgUnit) {
-				return OrgUnit.PATCH({id: orgUnit.id}, {closedDate: $scope.closedate}).$promise;
+				return OrgUnit.PATCH({id: orgUnit.id}, 
+					
+					//{closedDate: $scope.closedate}
+					[
+						{
+							"op": "replace",
+							"path": "/closedDate",
+							"value": $scope.closedate
+						},
+					]
+					
+					).$promise;
 			});
 // REMOVE dataasets when closing a proejct
 var unassignDatasetsPromises=[];

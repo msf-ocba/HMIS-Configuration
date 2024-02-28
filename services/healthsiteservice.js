@@ -129,15 +129,15 @@ Dhis2Api.service('healthsiteService', ['$q', 'commonvariable', 'OrgUnit', 'Filte
 
     this.editHealthSite = function(editOu) {
         
-        return OrgUnit.PATCH({id: editOu.id}, editOu).$promise.then(
+        return OrgUnit.PATCH({id: editOu[2].value}, editOu).$promise.then(
             function success() {
                 //asign OU selected
                 commonvariable.EditOrganisationUnit = commonvariable.OrganisationUnit;
                 ///replace with new value
-                commonvariable.EditOrganisationUnit.name = editOu.name;
-                commonvariable.EditOrganisationUnit.shortName = editOu.name;
+                commonvariable.EditOrganisationUnit.name = editOu[0].value;
+                commonvariable.EditOrganisationUnit.shortName = editOu[1].value;
                 commonvariable.EditOrganisationUnit.code = commonvariable.OrganisationUnit.code;
-                commonvariable.EditOrganisationUnit.openingDate = editOu.openingDate;
+                commonvariable.EditOrganisationUnit.openingDate = editOu[3].value;
 
                 const siteType = commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.SiteType];
                 if (typeof siteType != "undefined") {

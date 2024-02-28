@@ -99,6 +99,7 @@ Dhis2Api.controller("d2ResourcejsondatasetController",
 
         $scope.loadLevels = function () {
             commonvariable.healhservicesCodeOUG = commonvariable.healhservicesCodeOUG.trim();
+          
             DatasetService.getByService(commonvariable.healhservicesCodeOUG)
                 .then(saveDataSets);
         };

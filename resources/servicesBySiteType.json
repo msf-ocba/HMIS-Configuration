@@ -6,9 +6,10 @@
         "code": "OUG_HST_HP",
         "services": [
           {
-            "name": "Community Activities sites",
-            "code": "OUG_HST_CA"
+            "name": "HP/CE in Health Structure",
+            "code": "OUG_HSV_HPCE"
           },
+        
          {
             "name": "IPC/SIPCA - Surgical capacity",
             "code": "OUG_HSV_SIPCA"
@@ -213,9 +214,219 @@
         "code": "OUG_HST_HCH",
         "services": [
           {
-            "name": "Community Activities sites",
-            "code": "OUG_HST_CA"
+            "name": "HP/CE in Health Structure",
+            "code": "OUG_HSV_HPCE"
           },
+          
+         {
+            "name": "IPC/SIPCA - Surgical capacity",
+            "code": "OUG_HSV_SIPCA"
+            },
+          {
+            "name": "IPC/SIPCA - No Surgical capacity",
+            "code": "OUG_HSV_SIPCAWO"
+      },         
+      {
+        "name": "Antenatal Care (ANC)",
+        "code": "OUG_HSV_ANC"
+        
+      },
+
+      {
+        "name": "COVID - 19",
+        "code": "OUG_HSV_COVID"
+
+      },
+
+
+      {
+        "name": "Diagnostic test",
+        "code": "OUG_HSV_DT"
+       
+      },
+      {
+        "name": "Early Warning System",
+        "code": "OUG_HSV_EWS"
+       
+      },
+      {
+        "name": "Emergency Room",
+        "code": "OUG_HSV_ER"
+        
+      },
+      {
+        "name": "Viral Hemorrhagic Fever",
+        "code": "OUG_HSV_EVD"
+        
+      },
+      {
+        "name": "External Consultations",
+        "code": "OUG_HSV_EC"
+        
+      },
+      {
+        "name": "HIV",
+        "code": "OUG_HSV_HIV"
+       
+      },
+      {
+        "name": "Hospitalization Ward",
+        "code": "OUG_HSV_HW"
+        
+      },
+      {
+        "name": "Hospitalization Ward Multiservice",
+        "code": "OUG_HSV_MSW"
+        
+      },
+
+      {
+        "name": "Isolation Ward",
+        "code": "OUG_HSV_ISOW"
+        
+      },
+
+      {
+        "name": "Medical Imaging",
+        "code": "OUG_HSV_MI"
+        
+      },
+
+
+
+      {
+        "name": "ICU/PICU",
+        "code": "OUG_HSV_ICU"
+        
+      },
+      {
+        "name": "Mental Health",
+        "code": "OUG_HSV_MH"
+       
+      },
+      {
+        "name": "Neonatology/NICU",
+        "code": "OUG_HSV_NEO"
+        
+      },
+      {
+        "name": "NUT ATFC",
+        "code": "OUG_HSV_ATFC"
+        
+      },
+      {
+        "name": "NUT ITFC",
+        "code": "OUG_HSV_ITFC"
+       
+      },
+      {
+        "name": "NUT TSFC",
+        "code": "OUG_HSV_TSFC"
+        
+      },
+      {
+        "name": "Observation Room",
+        "code": "OUG_HSV_OR"
+        
+      },
+      {
+        "name": "Operating Theatre",
+        "code": "OUG_HSV_OT"
+        
+      },
+      {
+        "name": "Outbreak Cholera",
+        "code": "OUG_HSV_CH"
+        
+      },
+      {
+        "name": "Outbreak Dengue",
+        "code": "OUG_HSV_DEN"
+        
+      },
+      {
+        "name": "Outbreak Malaria IPD",
+        "code": "OUG_HSV_MOHW"
+        
+      },
+      {
+        "name": "Outbreak Malaria OPD",
+        "code": "OUG_HSV_MOEC"
+       
+      },
+      {
+        "name": "Outbreak Measles",
+        "code": "OUG_HSV_MSL"
+        
+      },
+      {
+        "name": "Outbreak Meningitis",
+        "code": "OUG_HSV_MNG"
+        
+      },
+   
+      {
+        "name": "Paediatric Ward",
+        "code": "OUG_HSV_HWp"
+        
+      },
+
+      {
+        "name": "Postnatal Care (PNC)",
+        "code": "OUG_HSV_PNC"
+        
+      },
+      
+      {
+        "name": "Gyn/Obs Ward",
+        "code": "OUG_HSV_SRHHW"
+        
+      },
+      {
+        "name": "Sexual and Rep. Health OPD",
+        "code": "OUG_HSV_SRHEC"
+        
+      },
+      {
+        "name": "Sexual Violence",
+        "code": "OUG_HSV_SV"
+        
+      },
+      {
+        "name": "Surgical Ward",
+        "code": "OUG_HSV_SW"
+       
+      },
+     
+      
+      {
+        "name": "Surveillance Nut",
+        "code": "OUG_HSV_NS"
+       
+      },
+      {
+        "name": "TB",
+        "code": "OUG_HSV_TB"
+        
+      },
+      {
+        "name": "Vaccination",
+        "code": "OUG_HSV_VAC"
+        
+      }
+   
+        ]
+      },
+
+      {
+        "name": "Health center without hospitalization",
+        "code": "OUG_HST_HC",
+        "services": [
+          {
+            "name": "HP/CE in Health Structure",
+            "code": "OUG_HSV_HPCE"
+          },
+          
          {
             "name": "IPC/SIPCA - Surgical capacity",
             "code": "OUG_HSV_SIPCA"
@@ -420,9 +631,10 @@
         "code": "OUG_HST_EIU",
         "services": [
           {
-            "name": "Community Activities sites",
-            "code": "OUG_HST_CA"
+            "name": "HP/CE in Health Structure",
+            "code": "OUG_HSV_HPCE"
           },
+         
          {
             "name": "IPC/SIPCA - Surgical capacity",
             "code": "OUG_HSV_SIPCA"
@@ -627,9 +839,10 @@
         "code": "OUG_HST_HOS",
         "services": [
           {
-            "name": "Community Activities sites",
-            "code": "OUG_HST_CA"
+            "name": "HP/CE in Health Structure",
+            "code": "OUG_HSV_HPCE"
           },
+         
          {
             "name": "IPC/SIPCA - Surgical capacity",
             "code": "OUG_HSV_SIPCA"
@@ -829,14 +1042,17 @@
    
         ]
       },
+
+
       {
-        "name": "Community Activities sites",
-        "code": "OUG_HST_CA",
+        "name": "Other",
+        "code": "OUG_HST_OT",
         "services": [
           {
-            "name": "Community Activities sites",
-            "code": "OUG_HST_CA"
+            "name": "HP/CE in Health Structure",
+            "code": "OUG_HSV_HPCE"
           },
+         
          {
             "name": "IPC/SIPCA - Surgical capacity",
             "code": "OUG_HSV_SIPCA"
@@ -845,12 +1061,6 @@
             "name": "IPC/SIPCA - No Surgical capacity",
             "code": "OUG_HSV_SIPCAWO"
       },         
-          {
-            "name": "Community Activities sites",
-            "code": "OUG_HST_CA",
-            "suffix": "CA"
-          },
-    
       {
         "name": "Antenatal Care (ANC)",
         "code": "OUG_HSV_ANC"
@@ -1039,6 +1249,23 @@
         "code": "OUG_HSV_VAC"
         
       }
+   
+        ]
+      },
+
+
+      {
+        "name": "Community activities cluster",
+        "code": "OUG_HST_CA",
+        "services": [
+         
+          {
+            "name": "Community",
+            "code": "OUG_HSV_CA",
+            "suffix": "CA"
+          }
+    
+      
    
         ]
       },
@@ -1047,9 +1274,10 @@
         "code": "OUG_HST_VAC",
         "services": [
           {
-            "name": "Community Activities sites",
-            "code": "OUG_HST_CA"
+            "name": "HP/CE in Health Structure",
+            "code": "OUG_HSV_HPCE"
           },
+         
          {
             "name": "IPC/SIPCA - Surgical capacity",
             "code": "OUG_HSV_SIPCA"
@@ -1253,9 +1481,10 @@
         "name": "Mobile Clinic Site",
         "code": "OUG_HST_MC",
         "services": [
+       
           {
-            "name": "Community Activities sites",
-            "code": "OUG_HST_CA"
+            "name": "Community",
+            "code": "OUG_HSV_CA"
           },
          {
             "name": "IPC/SIPCA - Surgical capacity",

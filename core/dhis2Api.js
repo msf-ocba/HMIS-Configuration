@@ -83,7 +83,7 @@ var usersMSF = {prefix: "msfe",
 			 uid_role_mfp: "gmOkgYI46ny",
 			 uid_role_fielduser: "N4dxeOVu7aN",
 			 uid_role_onlineuser: "mnIBssgDVSC",
-			 passwd: "District123",
+			 passwd: "District123!",
 			 uid_project_users_userGroup: "EmlkqPJLcAh"};
 
 var locales = ["en", "es", "fr", "pt"];
@@ -171,18 +171,23 @@ Dhis2Api.factory("OrgUnit",['$resource','commonvariable', function ($resource,co
 		{id:'@id',
 		fields:'@fields'},
 		{Get: { method: "GET"},
-		    POST: { method: "POST" },
-		  PUT: { method: "PUT"},
-		  PATCH: {method: "PATCH"}});
+		 POST: { method: "POST" },
+		 PUT: { method: "PUT"},
+		 PATCH: {method: "PATCH",
+		 headers: {
+			'Content-Type': 'application/json-patch+json'}}});
 }]);
 
 Dhis2Api.factory("OrgUnitGroup",['$resource','commonvariable', function ($resource,commonvariable) {
 	return $resource(commonvariable.url+"organisationUnitGroups/:id",
 		{id:'@id'},
 		{Get: { method: "GET"},
-		    POST: { method: "POST" },
-		  PUT: { method: "PUT"},
-		  PATCH: {method: "PATCH"}});
+		 POST: { method: "POST" },
+		 PUT: { method: "PUT"},
+		 PATCH: {method: "PATCH",
+				 headers: {'Content-Type': 'application/json-patch+json'}
+		
+		}});
 }]);
 
 
@@ -283,7 +288,9 @@ Dhis2Api.factory("DataSets", ['$resource', 'commonvariable', function ($resource
 			Get: { method:"GET" }, 
 			Post: { method: "POST" }, 
 			Put: { method: "PUT" }, 
-			Patch: {method: "PATCH"}
+			Patch: {method: "PATCH",
+					headers: {'Content-Type': 'application/json-patch+json'}
+		}
 		});
 }]);
 
@@ -350,7 +357,9 @@ Dhis2Api.factory("UserRoles", ['$resource', 'commonvariable', function ($resourc
 		{   Get:{method:"GET"},
 		Post: { method: "POST" },
 		Put: { method: "PUT" },
-		Patch: {method: "PATCH"}
+		Patch: {method: "PATCH",
+				headers: {'Content-Type': 'application/json-patch+json'}
+	}
 		});
 }]);
 
@@ -401,7 +410,9 @@ Dhis2Api.factory("Section",['$resource','commonvariable', function ($resource,co
 	      Delete: {method: "DELETE"},
 		  POST: { method: "POST" },
 		  PUT: { method: "PUT"},
-		  PATCH: {method: "PATCH"}});
+		  PATCH: {method: "PATCH",
+		  		  headers: {'Content-Type': 'application/json-patch+json'}
+		}});
 }]);
 
 Dhis2Api.factory("SystemId", ['$resource', 'commonvariable', function ($resource, commonvariable) {

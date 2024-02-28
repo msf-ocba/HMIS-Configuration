@@ -67,6 +67,7 @@ appConfigProjectMSF.controller('missionController', ["$scope", '$filter', "commo
 		    	missionService.saveProject(newOu).then(
 					function success(project) {
 						commonvariable.RefreshTreeOU = true;
+						/*
 						UserService.createProjectUsers(project, commonvariable.userDirective, $scope.selectedLocale).then(
 							function success(){
 								$scope.messages.push({ type: "success", text: $translate('PROJECT_SAVED') });
@@ -78,6 +79,9 @@ appConfigProjectMSF.controller('missionController', ["$scope", '$filter', "commo
 								$scope.hideForm();
 								$scope.projectName = "";
 							});
+							*/
+							$scope.hideForm();
+							$scope.projectName = "";
 		    		}, 
 					function error() {
 						$scope.messages.push({ type: "danger", text: $translate('PROJECT_NOSAVED') });

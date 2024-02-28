@@ -2,8 +2,8 @@
   "healthserviceSuffix": {
     "service": [
       {
-        "name": "Community Activities sites",
-        "code": "OUG_HST_CA",
+        "name": "Community",
+        "code": "OUG_HSV_CA",
         "suffix": "CA"
       },
      {
@@ -55,6 +55,13 @@
         "code": "OUG_HSV_EC",
         "suffix": "EC"
       },
+
+      {
+        "name": "HP/CE in Health Structure",
+        "code": "OUG_HSV_HPCE",
+        "suffix": "HPCE"
+      },
+      
       {
         "name": "HIV",
         "code": "OUG_HSV_HIV",
@@ -206,6 +213,9 @@
         "code": "OUG_HSV_VAC",
         "suffix": "VAC"
       }
+
+
+      
     ]
   }
 }	

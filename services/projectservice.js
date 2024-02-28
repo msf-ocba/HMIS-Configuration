@@ -79,7 +79,15 @@ Dhis2Api.service('projectService', ['$q', 'commonvariable', 'commonService', 'Us
             var textToUpdate = "OU_" + commonvariable.ouDirectiveCode.slice(2, 7);
             var newCode = textToUpdate + orgUnit.code.slice(8);
             
-            OrgUnit.PATCH({id:orgUnit.id},{code:newCode}).$promise.then( data => {
+            OrgUnit.PATCH({id:orgUnit.id},
+                [
+                    { "op": "replace", "path": "/code", "value": newCode }
+               ]   
+               /*
+                {
+                  code:newCode}
+                  */
+                  ).$promise.then( data => {
                 defered.resolve(data);
                 if (data.response.status != "SUCCESS")
                     console.log("Eror");
@@ -124,6 +132,33 @@ Dhis2Api.service('projectService', ['$q', 'commonvariable', 'commonService', 'Us
                 const siteTypeGroup = commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.SiteType];
                 if (siteTypeGroup != undefined) {
                OrgUnitGroupsOrgUnit.POST({ uidgroup: siteTypeGroup.id, uidorgunit: newOu.id });
+switch(siteTypeGroup.code) {
+
+case "OUG_HST_HOS": 
+case "OUG_HST_HP":
+case "OUG_HST_EIU":
+case "OUG_HST_HCH":
+case "OUG_HST_HC":
+case "OUG_HST_VAC":
+case "OUG_HST_OT":
+    
+
+//Add to Facilities OUG
+OrgUnitGroupsOrgUnit.POST({ uidgroup: "v1pQlctBrzu", uidorgunit: newOu.id });
+break;
+case "OUG_HST_CA":
+case "OUG_HST_OS":
+case "OUG_HST_MC":
+//Add to DMC OUG
+OrgUnitGroupsOrgUnit.POST({ uidgroup: "QDPZ3c22JsQ", uidorgunit: newOu.id });
+break;
+
+
+}
+
+
+
+
                 } else {
                     console.warn("Health site not associated to any health site group")
                 }
@@ -162,10 +197,10 @@ Dhis2Api.service('projectService', ['$q', 'commonvariable', 'commonService', 'Us
             success => {
                 commonvariable.EditOrganisationUnit = commonvariable.OrganisationUnit;
                 ///replace with new value
-                commonvariable.EditOrganisationUnit.name = editOu.name;
-                commonvariable.EditOrganisationUnit.shortName= editOu.codeshortName
-                commonvariable.EditOrganisationUnit.code = editOu.code;
-                commonvariable.EditOrganisationUnit.openingDate = editOu.openingDate;
+                commonvariable.EditOrganisationUnit.name = editOu[0].value;
+                commonvariable.EditOrganisationUnit.shortName= editOu[1].value
+                commonvariable.EditOrganisationUnit.code = editOu[2].value;
+                commonvariable.EditOrganisationUnit.openingDate = editOu[3].value;
                 //refresh tree for show change
 
                 updateOrgUnitGroups({id:idOu}).then(

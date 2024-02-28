@@ -25,7 +25,7 @@
 //        '/dhis-web-commons/javascripts/dhis2/dhis2.util.js',
 //        '/dhis-web-commons/javascripts/dhis2/dhis2.period.js',
 //        '/dhis-web-commons/javascripts/jQuery/ui/jquery-ui.min.js',
-        '/dhis-web-commons/javascripts/dhis2/dhis2.translate.js',
+     '/dhis-web-commons/javascripts/dhis2/dhis2.translate.js',
         '/dhis-web-commons/javascripts/dhis2/dhis2.menu.js',
         '/dhis-web-commons/javascripts/dhis2/dhis2.menu.ui.js',
         

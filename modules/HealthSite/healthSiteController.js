@@ -80,6 +80,10 @@ appConfigProjectMSF.controller('healthSiteController', ["$scope", '$filter', "co
 							healthServiceCode = healthServiceCode.substr(0, healthServiceCode.length - 1) + count;
 						}
 					}
+//console.log(healthServiceName);
+//console.log(healthServiceCode);
+if (healthServiceSuffix=="HPCE") { healthServiceName="HP/CE" }
+
 
 			        var newOu = {//payload
 			            name: healthServiceName,
@@ -220,7 +224,7 @@ appConfigProjectMSF.controller('healthSiteController', ["$scope", '$filter', "co
 	      $scope.operation = 'show';
 	  }
 	  
-	  $scope.editOu = {};
+	  $scope.editOu = [];
 	  
 	  $scope.removeEmptyServices = function(services) {
 		  var realServices = [];
@@ -235,13 +239,20 @@ appConfigProjectMSF.controller('healthSiteController', ["$scope", '$filter', "co
 	  
     ////Edit SITE
 	  $scope.EditSite = function () {
-
+/*
 	      $scope.editOu = {//payload
 			  id: commonvariable.OrganisationUnit.id,
 	          name: commonvariable.ouDirective,
 	          shortName: commonvariable.ouDirective,
 	          openingDate: $filter('date')($scope.healthsitecreated, 'yyyy-MM-dd')
 	      };
+*/
+		   $scope.editOu = [//payload
+		{"op": "replace", "path": "/name", "value": commonvariable.ouDirective},
+		{"op": "replace", "path": "/shortName", "value":  commonvariable.ouDirective},
+		{"op": "replace", "path": "/id", "value": commonvariable.OrganisationUnit.id},
+		{"op": "replace", "path": "/openingDate", "value":$filter('date')($scope.healthsitecreated, 'yyyy-MM-dd')}
+];
 	      
 	      var ougroup = commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.SiteType];
 	      var servicesAllowed = undefined; 
@@ -351,7 +362,7 @@ appConfigProjectMSF.controller('healthSiteController', ["$scope", '$filter', "co
 	    });
 
 	    modalInstance.result.then(function () {
-	      console.log("Hago algo");
+	     // console.log("Hago algo");
 	      
 	      
 	      healthsiteService.editHealthSite(commonvariable.OrganisationUnit.id, $scope.editOu).then(function(result){

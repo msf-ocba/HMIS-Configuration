@@ -5,9 +5,14 @@
         "name": "External patients",
         "code": "OUG_HSVT_EXT",
         "services": [
+
           {
-            "name": "Community Activities sites",
-            "code": "OUG_HST_CA"
+            "name": "HP/CE in Health Structure",
+            "code": "OUG_HSV_HPCE"
+          },
+          {
+            "name": "Community",
+            "code": "OUG_HSV_CA"
           },
          {
             "name": "IPC/SIPCA - Surgical capacity",
@@ -214,8 +219,12 @@
         "code": "OUG_HSVT_HOS",
         "services": [
           {
-            "name": "Community Activities sites",
-            "code": "OUG_HST_CA"
+            "name": "Community",
+            "code": "OUG_HSV_CA"
+          },
+          {
+            "name": "HP/CE in Health Structure",
+            "code": "OUG_HSV_HPCE"
           },
          {
             "name": "IPC/SIPCA - Surgical capacity",
@@ -422,8 +431,12 @@
         "code": "OUG_HSVT_SUR",
         "services": [
           {
-            "name": "Community Activities sites",
-            "code": "OUG_HST_CA"
+            "name": "Community",
+            "code": "OUG_HSV_CA"
+          },
+          {
+            "name": "HP/CE in Health Structure",
+            "code": "OUG_HSV_HPCE"
           },
          {
             "name": "IPC/SIPCA - Surgical capacity",
@@ -630,8 +643,12 @@
         "code": "OUG_HSVT_TRA",
         "services": [
           {
-            "name": "Community Activities sites",
-            "code": "OUG_HST_CA"
+            "name": "Community",
+            "code": "OUG_HSV_CA"
+          },
+          {
+            "name": "HP/CE in Health Structure",
+            "code": "OUG_HSV_HPCE"
           },
          {
             "name": "IPC/SIPCA - Surgical capacity",

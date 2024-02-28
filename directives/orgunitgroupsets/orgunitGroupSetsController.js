@@ -167,12 +167,16 @@ Dhis2Api.controller("d2DropdownorgunitgroupsetController", ['$q','$scope','$http
 	        if ($scope.operation == "show") {
 
 	        	$scope.disabled = true;
+				
+				
 	            try{
 	                getOrgUnitGroup(commonvariable.OrganisationUnit.id, $scope.uidgroupset).then(function (data) {
 	                    $scope.ougName = data.name;
 	                    if ($scope.uidgroupset == commonvariable.ouGroupsetId.HealthService) {
 	                        commonvariable.healhservicesCodeOUG = data.code;
+							
 	                    }
+						
 
 	                })
 	            }catch(err){

@@ -60,30 +60,47 @@ Dhis2Api.service('DatasetService', ['$q', 'DataSets', function ($q, DataSets) {
 
     function getServiceMainDataSets (healthServiceCode) {
         const rootServiceCode = healthServiceCode.split('_')[2];
+        console.log("healthServiceCode");
+        console.log(healthServiceCode);
+        console.log(rootServiceCode);
 
-        return DataSets.get({}).$promise.then( response => {
+        var params = {
+            filter: "attributeValues.value:eq:DS_" + rootServiceCode
+        };
+
+        
+        return DataSets.get(params).$promise.then( response => {
             const filteredDatasets = response.dataSets.filter( ds => {
                 return ds.attributeValues.some( entry => {
                     return (new RegExp(`_${rootServiceCode}$`)).test(entry.value) ||
                             (new RegExp(`_${rootServiceCode}_`)).test(entry.value)
                 });
             });
-
+           
             return {
+                
                 dataSets: filteredDatasets
             }
         });
     }
 
     function getRelatedDatasets (dataSetArray) {
+     
+        console.log(dataSetArray);
         var promises = dataSetArray.dataSets.map( function (dataSet) {
+            console.log(dataSet.name);
+            console.log(dataSet.code);
             var commonCode = extractCommonCode(dataSet.code);
             var params = {
                 filter: "code:like:" + commonCode
             };
+            console.log(commonCode);
             return DataSets.get(params).$promise.then( function (data) {
                 // Filter dataset by commonCode
                 return data.dataSets.filter( function (dataSet) {
+                    console.log("datasetCode");
+                    console.log(dataSet.code);
+
                     return fitsCommonCode(dataSet.code, commonCode);
                 })
             });
@@ -95,8 +112,18 @@ Dhis2Api.service('DatasetService', ['$q', 'DataSets', function ($q, DataSets) {
             });
         });
     }
+   
 
     function formatDataSetsByLevelAndPeriod (dataSetArray) {
+        console.log("formatDataSetsByLevelAndPeriod");
+        console.log(dataSetArray);
+        dataSetArray = dataSetArray.filter((value, index, self) =>
+        index === self.findIndex((t) => (
+          t.id === value.id 
+        ))
+      )
+        console.log("formatDataSetsByLevelAndPeriod2");
+        console.log(dataSetArray);
         return dataSetArray.reduce(
             function (acc, dataSet) {
                if (dataSet.code!=undefined) var lastChar = dataSet.code[dataSet.code.length - 1];

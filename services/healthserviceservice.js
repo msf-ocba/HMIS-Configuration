@@ -33,10 +33,10 @@ Dhis2Api.service("healthserviceService", ["$q", "commonvariable", "OrgUnitOrgUni
         //asign OU selected
         commonvariable.EditOrganisationUnit = commonvariable.OrganisationUnit;
         ///replace with new value
-        commonvariable.EditOrganisationUnit.name = editOu.name;
-        commonvariable.EditOrganisationUnit.shortName = editOu.name;
-        commonvariable.EditOrganisationUnit.code = editOu.code;
-        commonvariable.EditOrganisationUnit.openingDate = editOu.openingDate;
+        commonvariable.EditOrganisationUnit.name = editOu[0].value;
+        commonvariable.EditOrganisationUnit.shortName = editOu[1].value;
+        commonvariable.EditOrganisationUnit.code = editOu[2].value;
+        commonvariable.EditOrganisationUnit.openingDate = editOu[3].value;
     };
 
     this.editHealthService = function(idOu, editOu, $scope) {
@@ -63,7 +63,7 @@ Dhis2Api.service("healthserviceService", ["$q", "commonvariable", "OrgUnitOrgUni
                     });
                     commonvariable.healhservicesCodeOUG = newHealthService.code;
 
-                    editOu.name = newHealthService.name;
+                    editOu[0].value = newHealthService.name;
 
                     loadjsonresource.get("healthservice").then( response => {
                         healthServiceSuffix = commonService.getServiceSuffix(response.data.healthserviceSuffix).suffix;
@@ -73,7 +73,7 @@ Dhis2Api.service("healthserviceService", ["$q", "commonvariable", "OrgUnitOrgUni
                         //if (commonvariable.OrganisationUnit.children.length>0)
                         //  healthServiceCode = healthServiceCode +"_" + (commonvariable.OrganisationUnit.parent.children.length + 1);
 
-                        editOu.code = healthServiceCode;
+                        editOu[2].value = healthServiceCode;
 
                         var codeServiceType = undefined;
 
@@ -97,8 +97,8 @@ Dhis2Api.service("healthserviceService", ["$q", "commonvariable", "OrgUnitOrgUni
                                                 healthServiceEdited = true;
                                                 //asign OU selected
                                                 updateOUVariable(editOu);
-                                                $scope.code = editOu.code;
-                                                $scope.name = editOu.name;
+                                                $scope.code = editOu[2].value;
+                                                $scope.name = editOu[0].value;
                                             }
                                             defered.resolve(healthServiceEdited);
                                         });

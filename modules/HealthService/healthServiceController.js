@@ -95,10 +95,10 @@ appConfigProjectMSF.controller('healthServiceController', ["$scope",'$filter',"c
         //asign OU selected 
 	      commonvariable.EditOrganisationUnit = commonvariable.OrganisationUnit;
         ///replace with new value
-	      commonvariable.EditOrganisationUnit.name = editOu.name;
-	      commonvariable.EditOrganisationUnit.shortName= editOu.name;
-	      commonvariable.EditOrganisationUnit.code = editOu.code;
-	      commonvariable.EditOrganisationUnit.openingDate = editOu.openingDate;
+	      commonvariable.EditOrganisationUnit.name = editOu[0].value;
+	      commonvariable.EditOrganisationUnit.shortName= editOu[1].value;
+	      commonvariable.EditOrganisationUnit.code = editOu[2].value;
+	      commonvariable.EditOrganisationUnit.openingDate = editOu[3].value;
         //refresh tree for show change
 	      commonvariable.RefreshTreeOU = true;
 	
@@ -108,14 +108,21 @@ appConfigProjectMSF.controller('healthServiceController', ["$scope",'$filter',"c
 	
     ////Edit SERVICE
 	$scope.EditService = function () {
-
+/*
 		var editOu = {//payload
 	        openingDate: $filter('date')($scope.healthservicecreated, 'yyyy-MM-dd'),
 	        name: $scope.name,
 	        shortName: $scope.name.substr(0,50),
 	        code: $scope.code
 		};
+		*/
 
+		var editOu = [//payload
+		{"op": "replace", "path": "/name", "value": $scope.name},
+		{"op": "replace", "path": "/shortName", "value":  $scope.name.substr(0,50)},
+		{"op": "replace", "path": "/code", "value": $scope.code},
+		{"op": "replace", "path": "/openingDate", "value":$filter('date')($scope.healthservicecreated, 'yyyy-MM-dd')}
+];
 		if (typeof(commonvariable.orgUnitGroupSet[commonvariable.ouGroupsetId.HealthService])!="undefined") {
 
 			healthserviceService.editHealthService(commonvariable.OrganisationUnit.id, editOu, $scope).then(function(updated){

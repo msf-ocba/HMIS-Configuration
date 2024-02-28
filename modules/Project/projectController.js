@@ -219,14 +219,20 @@ appConfigProjectMSF.controller('projectController', ["$scope", "$timeout", '$fil
 
     ////Edit PROJECT
 	  $scope.EditProject = function () {
-		  		  		  
-		  		   		   		   
-	      var editOu = {//payload
-	          name: commonvariable.ouDirective,
-	          shortName: commonvariable.ouDirective,
-	          code: commonvariable.ouDirectiveCode,
-	          openingDate: $filter('date')($scope.projectcreated, 'yyyy-MM-dd')
-	      };
+		  /*		  		  
+		var editOu = {//payload
+			name: commonvariable.ouDirective,
+			shortName: commonvariable.ouDirective,
+			code: commonvariable.ouDirectiveCode,
+			openingDate: $filter('date')($scope.projectcreated, 'yyyy-MM-dd')
+		};  	*/
+
+	      var editOu = [//payload
+	          {"op": "replace", "path": "/name", "value": commonvariable.ouDirective},
+	          {"op": "replace", "path": "/shortName", "value": commonvariable.ouDirective},
+	          {"op": "replace", "path": "/code", "value": commonvariable.ouDirectiveCode},
+	          {"op": "replace", "path": "/openingDate", "value": $filter('date')($scope.projectcreated, 'yyyy-MM-dd')}
+	];
 	      
 	      projectService.editProject(commonvariable.OrganisationUnit.id, editOu).then(function (result){
 	    	  if (result == true) {
