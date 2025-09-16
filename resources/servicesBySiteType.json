@@ -156,6 +156,11 @@
         "code": "OUG_HSV_MNG"
         
       },
+        {
+        "name": "Outbreak Mpox",
+        "code": "OUG_HSV_MPOX"
+        
+      },
    
       {
         "name": "Paediatric Ward",
@@ -362,6 +367,11 @@
       {
         "name": "Outbreak Meningitis",
         "code": "OUG_HSV_MNG"
+        
+      },
+        {
+        "name": "Outbreak Mpox",
+        "code": "OUG_HSV_MPOX"
         
       },
    
@@ -573,6 +583,11 @@
         "code": "OUG_HSV_MNG"
         
       },
+        {
+        "name": "Outbreak Mpox",
+        "code": "OUG_HSV_MPOX"
+        
+      },
    
       {
         "name": "Paediatric Ward",
@@ -782,6 +797,11 @@
         
       },
     
+        {
+        "name": "Outbreak Mpox",
+        "code": "OUG_HSV_MPOX"
+        
+      },
       {
         "name": "Paediatric Ward",
         "code": "OUG_HSV_HWp"
@@ -989,7 +1009,11 @@
         "code": "OUG_HSV_MNG"
         
       },
-   
+     {
+        "name": "Outbreak Mpox",
+        "code": "OUG_HSV_MPOX"
+        
+      },
       {
         "name": "Paediatric Ward",
         "code": "OUG_HSV_HWp"
@@ -1200,6 +1224,11 @@
         
       },
    
+        {
+        "name": "Outbreak Mpox",
+        "code": "OUG_HSV_MPOX"
+        
+      },
       {
         "name": "Paediatric Ward",
         "code": "OUG_HSV_HWp"
@@ -1425,7 +1454,11 @@
         "code": "OUG_HSV_MNG"
         
       },
- 
+   {
+        "name": "Outbreak Mpox",
+        "code": "OUG_HSV_MPOX"
+        
+      },
       {
         "name": "Paediatric Ward",
         "code": "OUG_HSV_HWp"
@@ -1630,6 +1663,11 @@
       {
         "name": "Outbreak Meningitis",
         "code": "OUG_HSV_MNG"
+        
+      },
+        {
+        "name": "Outbreak Mpox",
+        "code": "OUG_HSV_MPOX"
         
       },
     

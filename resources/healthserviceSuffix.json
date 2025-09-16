@@ -163,6 +163,14 @@
         "suffix": "MNG"
       },
    
+
+    {
+        "name": "Outbreak Mpox",
+        "code": "OUG_HSV_MPOX",
+        "suffix": "MPOX"
+      },
+   
+
       {
         "name": "Paediatric Ward",
         "code": "OUG_HSV_HWp",
